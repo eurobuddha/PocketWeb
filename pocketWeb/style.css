@@ -1,0 +1,199 @@
+@font-face {
+	font-family: Manrope;
+	src: url('./root/miniweb/fonts/Manrope-Regular.ttf');
+}
+
+body {
+	font-family: Manrope;
+	margin: 0;
+	padding: 16px;
+	background: #F1F5F9;
+	color: #0F172A;
+}
+
+/* ── Title bar ─────────────────────────────────── */
+.titlebar {
+	width: 100%;
+	max-width: 840px;
+	min-width: 360px;
+	height: 50px;
+	text-align: left;
+	border: 1px solid #E2E8F0;
+	border-radius: 10px;
+	background: #FFFFFF;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+/* ── Blue border containers ─────────────────────── */
+.blueborder {
+	width: 100%;
+	max-width: 840px;
+	min-width: 360px;
+	text-align: left;
+	border: 1px solid #E2E8F0;
+	border-radius: 10px;
+	background: #FFFFFF;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+/* ── File packet cards ──────────────────────────── */
+.filepacketview {
+	width: 100%;
+	max-width: 840px;
+	min-width: 360px;
+	padding: 8px 8px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #E2E8F0;
+	border-radius: 10px;
+	background-color: #FFFFFF;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+/* ── Edit form label column ─────────────────────── */
+.edittableident {
+	text-align: right;
+	font-weight: bold;
+	white-space: nowrap;
+	vertical-align: top;
+	color: #475569;
+}
+
+/* ── Search input ───────────────────────────────── */
+.searchfield {
+	min-width: 100px;
+	border: 1px solid #CBD5E1;
+	border-radius: 8px;
+	padding: 8px 10px;
+	font-family: Manrope;
+	font-size: 14px;
+	outline: none;
+	transition: border-color 150ms ease;
+}
+.searchfield:focus {
+	border-color: #2563EB;
+	box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* ── GenSite fields ─────────────────────────────── */
+.gensitefield {
+	width: 100%;
+	max-width: 840px;
+	min-width: 300px;
+	resize: vertical;
+	border: 1px solid #CBD5E1;
+	border-radius: 8px;
+	padding: 8px 10px;
+	font-family: Manrope;
+	font-size: 14px;
+	outline: none;
+	transition: border-color 150ms ease;
+}
+.gensitefield:focus {
+	border-color: #2563EB;
+	box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.gensitelink {
+	width: 100%;
+	max-width: 400px;
+	margin-top: 4px;
+	border: 1px solid #CBD5E1;
+	border-radius: 8px;
+	padding: 8px 10px;
+	font-family: Manrope;
+	font-size: 14px;
+	outline: none;
+	transition: border-color 150ms ease;
+}
+.gensitelink:focus {
+	border-color: #2563EB;
+	box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.gensite_desc {
+	font-family: Manrope;
+	font-size: 12px;
+	color: #64748B;
+}
+
+.gensite_nowrap {
+	white-space: nowrap;
+}
+
+/* ── Solo button ────────────────────────────────── */
+.solobutton {
+	min-width: 100px;
+	background-color: #FFFFFF;
+	border: 1px solid #CBD5E1;
+	border-radius: 8px;
+	padding: 8px 14px;
+	font-family: Manrope;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+.solobutton:hover {
+	background-color: #EFF6FF;
+	border-color: #2563EB;
+	color: #2563EB;
+	cursor: pointer;
+	border-radius: 8px;
+	padding: 8px 14px;
+}
+.solobutton[disabled]:hover {
+	cursor: default;
+	color: #94A3B8;
+	background-color: #F1F5F9;
+	border: 1px solid #E2E8F0;
+	border-radius: 8px;
+	padding: 8px 14px;
+}
+.solobutton:active {
+	opacity: 0.8;
+}
+
+.solobutton-edit {
+	font-family: Manrope;
+	background: #FFFFFF;
+}
+.solobutton-edit:focus {
+	font-family: Manrope;
+	border: 1px solid #CBD5E1;
+}
+
+/* ── jQuery UI button overrides ─────────────────── */
+.ui-icon {
+	zoom: 150%;
+	color: #2563EB;
+}
+
+.ui-button {
+	font-family: Manrope !important;
+	font-size: 13px !important;
+	background: #FFFFFF !important;
+	border: 1px solid #CBD5E1 !important;
+	border-radius: 7px !important;
+	color: #0F172A !important;
+	padding: 5px 10px !important;
+	transition: background 150ms ease, border-color 150ms ease, color 150ms ease !important;
+}
+.ui-button:hover {
+	background: #EFF6FF !important;
+	border-color: #2563EB !important;
+	color: #2563EB !important;
+}
+.ui-button:active,
+.ui-button.ui-state-active {
+	background: #DBEAFE !important;
+	border-color: #1D4ED8 !important;
+	color: #1D4ED8 !important;
+	opacity: 0.9 !important;
+}
+.ui-widget {
+	font-family: Manrope !important;
+}
+.ui-widget-content {
+	border: 1px solid #E2E8F0 !important;
+	background: #FFFFFF !important;
+}

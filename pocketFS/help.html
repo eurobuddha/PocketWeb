@@ -1,0 +1,206 @@
+<html>
+
+<head>
+	<title>MiniFS</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Load the main MDS JS lib -->
+	<script type="text/javascript" src="mds.js"></script>
+	
+	<!-- And the ICON for the page -->
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+	
+	<!-- JS -->
+	<script type="text/javascript" src="./js/sql.js"></script>
+	<script type="text/javascript" src="./js/auth.js"></script>
+	<script type="text/javascript" src="./js/gui.js"></script>
+	<script type="text/javascript" src="./js/purify.min.js"></script>
+	<script type="text/javascript" src="./js/txns.js"></script>
+		
+	<!--  JQUERY CSS + JS -->
+	<link rel="stylesheet" href="./js/jquery/jquery-ui-1.14.1/jquery-ui.css">
+	<link rel="stylesheet" href="./js/jquery/jquery-ui-1.14.1/jquery-ui.icon-font.css">
+	<script type="text/javascript" src="./js/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="./js/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+	
+	<!-- Load the CSS Style sheet -->
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+
+<body>
+
+<center>
+	
+	<div class="titlebar" onclick="showTitleOnAndroid();">
+		<table width=100% border=0>
+			<tr>
+				<td><img height=45 src="minifs.png"></td>
+				<td style="text-align:left;font-size:26px;width:100%">&nbsp;<b>MiniFS</b></td>
+				
+				<td class='topicdate' nowrap>
+					<button id="button-help">Help</button>
+					<button id="button-search">Search</button>
+					<button id="button-home">Home</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br>
+
+
+<div class=blueborder>
+<div class="help-section">
+
+	<h2>What is MiniFS?</h2>
+	<p>
+		MiniFS lets you publish small ZIP files across the Minima network as regular transactions.
+		Each file gets a permanent <b>Mx.. address</b> — like a web address, but on-chain.
+		Anyone running MiniFS can find and open your files, and <b>MiniWEB</b> can browse them as websites.
+	</p>
+
+	<div class="help-facts">
+		<div class="help-fact"><strong>50k max</strong>ZIP format only</div>
+		<div class="help-fact"><strong>Permanent address</strong>Only you can update it</div>
+		<div class="help-fact"><strong>Decentralised</strong>No servers, lives on-chain</div>
+	</div>
+
+</div>
+</div>
+
+<br>
+
+<div class=blueborder>
+<div class="help-section">
+
+	<h2>Getting Started</h2>
+
+	<h3>1 — Create a File</h3>
+	<ol>
+		<li>From the home screen tap <b>New MiniFS File</b></li>
+		<li>A unique Mx.. address is automatically generated for you</li>
+		<li>Write a description — this is how others will discover your file</li>
+		<li>Tap <b>Load ZIP File</b> and choose your ZIP (max 50k)</li>
+		<li>Tap <b>Create MiniFS File</b> — the file is saved locally and marked unpublished</li>
+	</ol>
+
+	<h3>2 — Publish to the Network</h3>
+	<ol>
+		<li>From the home screen tap <b>Publish All</b></li>
+		<li>Confirm — each file needs 1 on-chain transaction</li>
+		<li>Once the transaction confirms, your file is live on the Minima network</li>
+		<li>To release a new version, edit the file and publish again — the Mx.. address stays the same</li>
+	</ol>
+
+	<h3>3 — Search &amp; Browse</h3>
+	<ol>
+		<li>Tap <b>Search</b> in the top bar to find files by description or Mx.. address</li>
+		<li>Tap <b>Browse</b> on any result to open it in <b>MiniWEB</b></li>
+		<li>If a file isn't found locally, MiniFS automatically requests it from your Maxima contacts — or broadcasts an on-chain request if needed</li>
+	</ol>
+
+	<div class="help-note">
+		<b>Tip:</b> Having Maxima Contacts improves file discovery. Files can be sent peer-to-peer over Maxima before falling back to an on-chain request.
+	</div>
+
+</div>
+</div>
+
+<br>
+
+<div class=blueborder>
+<div class="help-section">
+
+	<h2>For Developers</h2>
+	<p>
+		Other MiniDAPPs can load and search files in MiniFS using the <b>MDS API</b>.
+		Call <code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:12px;">MDS.api.call("minifs", ...)</code> with one of the supported actions below.
+	</p>
+
+	<h3>Supported Operations</h3>
+	<table class="api-table">
+		<tr>
+			<td>LOAD</td>
+			<td>Load a file packet by its Mx.. address. If not found locally, a network request is triggered automatically.</td>
+		</tr>
+		<tr>
+			<td>SEARCH</td>
+			<td>Search all locally known files by description text. Returns a list of matching file packets.</td>
+		</tr>
+	</table>
+
+	<h3>Example</h3>
+	<textarea readonly id="jumpscript" class="help-code" spellcheck="false"></textarea>
+
+	<br><br>
+
+	<h3>ZIP Extraction</h3>
+	<p>Once you have the file packet data, use these two libraries to extract the ZIP contents into the MDS file system:</p>
+	<div class="help-downloads">
+		<a href="./js/ziputil.js" download>ziputil.js</a>
+		<a href="./js/jszip.min.js" download>jszip.min.js</a>
+	</div>
+	<p style="margin-top:10px;">
+		<code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:12px;">extractZIP(zipdata, mdsfolder, callback)</code>
+		— include both files and call this function with the hex ZIP data from the file packet.
+	</p>
+
+	<div class="help-note">
+		<b>MiniWEB</b> uses exactly this system to browse MiniFS files as websites.
+	</div>
+
+</div>
+</div>
+
+
+</center>
+
+<script type="text/javascript">
+
+	//Set up the buttons..
+	$(document).ready(function() {
+		startupButtons();
+	});
+
+jumpscript.value="\n//Example script to run an MDS API call on MiniFS"+
+"\n<script type=\"text/javascript\">\n"+
+"\n"+
+"    //Create the API call object\n"+
+"    var apicall    = {};\n"+
+"    apicall.action = \"LOAD\";\n"+
+"    apicall.data   = \"Mx200GC1JWNV8CCYYSVZN90TY279423ZA1TH04\";\n"+
+"\n"+
+"    //Now call the MiniFS minidapp with is this data\n"+
+"    MDS.api.call(\"minifs\",JSON.stringify(apicall),function(resp){\n"+
+"        \n"+	
+"        //Was the MiniDAPP found\n"+
+"        if(resp.status){\n"+
+"\n"+
+"            //Convert the returned string to JSON Object\n"+
+"            var minifs = JSON.parse(resp.data);\n"+
+"\n"+
+"            //You now have the response! - do what you want\n"+
+"            MDS.log(JSON.stringify(minifs));\n"+
+"\n"+
+"            //Did we find the file (or did we request it..)\n"+
+"            if(minifs.found){\n"+
+"                extractZIP(minifs.filepacket.data.file, \"folder\", function(){});\n"+
+"            }\n"+
+"        }\n"+
+"    });\n"+
+"\n"+
+"<\/script>";
+	
+	//Main message handler..
+	MDS.init(function(msg){
+		
+		//Do initialisation
+		if(msg.event == "inited"){}
+	});
+
+</script>
+
+</body>
+
+</html>
