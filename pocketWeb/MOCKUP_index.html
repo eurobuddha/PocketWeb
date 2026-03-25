@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>pocketWeb — Home Mockup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #111113;
+    color: #e0e0e0;
+  }
+
+  /* ── Top nav ─────────────────────────────────── */
+  .topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #18181b;
+    border-bottom: 1px solid #27272a;
+  }
+
+  .topnav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topnav-brand img {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+  }
+  .topnav-brand span {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    color: #f0f0f0;
+  }
+
+  .topnav-links {
+    display: flex;
+    gap: 4px;
+  }
+  .topnav-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #a0a0a0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .topnav-btn:hover {
+    background: #27272a;
+    color: #e0e0e0;
+  }
+  .topnav-btn.active {
+    background: #27272a;
+    color: #fff;
+  }
+
+  /* ── Hero / Search ────────────────────────────── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 40px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #5b8def 0%, #a78bfa 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: #71717a;
+    margin-bottom: 32px;
+  }
+
+  .search-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    color: #555;
+  }
+  .search-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 48px 0 42px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    background: #1e1e21;
+    color: #e0e0e0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .search-input::placeholder {
+    color: #555;
+  }
+  .search-input:focus {
+    border-color: #5b8def;
+    box-shadow: 0 0 0 3px rgba(91,141,239,0.12);
+  }
+  .search-go {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #5b8def;
+    color: #fff;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 120ms ease;
+  }
+  .search-go:hover {
+    background: #4a7be0;
+  }
+
+  /* ── Bookmarks grid ───────────────────────────── */
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #52525b;
+    margin-bottom: 16px;
+  }
+
+  .bookmarks-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+
+  .bookmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  .bookmark-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+    border-radius: 10px;
+    background: #1e1e21;
+    border: 1px solid #27272a;
+    cursor: pointer;
+    transition: background 120ms ease, border-color 120ms ease, transform 80ms ease;
+    text-decoration: none;
+  }
+  .bookmark-tile:hover {
+    background: #27272a;
+    border-color: #3f3f46;
+    transform: translateY(-1px);
+  }
+
+  .tile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .tile-label {
+    font-size: 12px;
+    color: #a1a1aa;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ── Search results (below, shown when searching) */
+  .results-section {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+  }
+
+  .result-card {
+    padding: 14px 16px;
+    background: #1e1e21;
+    border: 1px solid #27272a;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: border-color 120ms ease;
+  }
+  .result-card:hover {
+    border-color: #3f3f46;
+  }
+
+  .result-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #5b8def;
+    margin-bottom: 4px;
+    font-family: 'DM Mono', 'DM Sans', monospace;
+  }
+  .result-desc {
+    font-size: 13px;
+    color: #a1a1aa;
+    margin-bottom: 10px;
+  }
+  .result-actions {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+  }
+  .result-btn {
+    padding: 5px 12px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: transparent;
+    color: #a0a0a0;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 120ms ease;
+  }
+  .result-btn:hover {
+    background: #27272a;
+    color: #e0e0e0;
+    border-color: #555;
+  }
+  .result-btn.primary {
+    background: #5b8def;
+    border-color: #5b8def;
+    color: #fff;
+  }
+  .result-btn.primary:hover {
+    background: #4a7be0;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══ TOP NAV ═══ -->
+<div class="topnav">
+  <div class="topnav-brand">
+    <!-- placeholder for browser.png icon -->
+    <img src="browser.png" height="28" alt="pocketWeb"/>
+    <span>pocketWeb</span>
+  </div>
+
+  <div class="topnav-links">
+    <button class="topnav-btn active">Home</button>
+    <button class="topnav-btn">My Site</button>
+    <button class="topnav-btn">Dev</button>
+    <button class="topnav-btn">Help</button>
+  </div>
+</div>
+
+<!-- ═══ HERO + SEARCH ═══ -->
+<div class="hero">
+  <div class="hero-title">pocketWeb</div>
+  <div class="hero-sub">Browse the decentralized web</div>
+
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+    </svg>
+    <input class="search-input" type="text" placeholder="Enter Mx address or search MiniFS...">
+    <button class="search-go">Go</button>
+  </div>
+</div>
+
+<!-- ═══ BOOKMARKS ═══ -->
+<div class="bookmarks-section">
+  <div class="section-label">Bookmarks</div>
+  <div class="bookmarks-grid">
+
+    <a class="bookmark-tile">
+      <div class="tile-icon" style="background:#e05d44;">S</div>
+      <div class="tile-label">Spartacus Blog</div>
+    </a>
+
+    <a class="bookmark-tile">
+      <div class="tile-icon" style="background:#48b884;">M</div>
+      <div class="tile-label">Minima News</div>
+    </a>
+
+    <a class="bookmark-tile">
+      <div class="tile-icon" style="background:#a855f7;">D</div>
+      <div class="tile-label">DeFi Dashboard</div>
+    </a>
+
+    <a class="bookmark-tile">
+      <div class="tile-icon" style="background:#f59e0b;">P</div>
+      <div class="tile-label">Pixel Art Gallery</div>
+    </a>
+
+  </div>
+</div>
+
+<!-- ═══ SEARCH RESULTS (shown after searching) ═══ -->
+<div class="results-section">
+  <div class="section-label">Search Results</div>
+
+  <div class="result-card">
+    <div class="result-name">Mx200GC1JWNV8CCYYSVZN90TY279423ZA1TH04</div>
+    <div class="result-desc">Spartacus's Personal Blog — thoughts on decentralization and freedom</div>
+    <div class="result-actions">
+      <button class="result-btn">Download</button>
+      <button class="result-btn">Copy</button>
+      <button class="result-btn primary">Browse</button>
+    </div>
+  </div>
+
+  <div class="result-card">
+    <div class="result-name">Mx200GUKPEZ0HANY6G22R8PJ53MFM8503RSNVP</div>
+    <div class="result-desc">Minima Community News — latest updates from the network</div>
+    <div class="result-actions">
+      <button class="result-btn">Download</button>
+      <button class="result-btn">Copy</button>
+      <button class="result-btn primary">Browse</button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
