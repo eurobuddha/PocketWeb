@@ -1,0 +1,55 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>The Blockchain — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">The Blockchain</h1>
+<p style="color:var(--dm);margin-bottom:24px">How Minima structures its chain for mobile-scale pruning</p>
+
+<h2>Structure</h2>
+<p>The Minima blockchain has two parts:</p>
+<ul>
+<li><strong>TxPoW Tree</strong> — the most recent ~1024 blocks, kept in full</li>
+<li><strong>Cascading Chain</strong> — an unbroken chain of "Super Block" headers proving cumulative Proof-of-Work without storing every block</li>
+</ul>
+<p>The root of the TxPoW Tree connects to the tip of the Cascading Chain.</p>
+
+<h2>The Cascading Chain</h2>
+<p>This is Minima's solution to <strong>proving chain weight without keeping all blocks</strong>. Key properties:</p>
+<ul>
+<li><strong>32 levels</strong> (0-31), maximum 128 blocks per level</li>
+<li>Each level is <strong>2x harder</strong> than the previous — grows logarithmically</li>
+<li>A "Super Block" is any block that by chance exceeds the difficulty of its level</li>
+<li>Block weight at level L = base_weight &times; 2<sup>L</sup></li>
+</ul>
+
+<h3>Expected Block Times</h3>
+<table>
+<tr><th>Level</th><th>Difficulty</th><th>Avg Time</th></tr>
+<tr><td>0</td><td>1x (block difficulty)</td><td>50 seconds</td></tr>
+<tr><td>1</td><td>2x</td><td>100 seconds</td></tr>
+<tr><td>2</td><td>4x</td><td>~3.3 minutes</td></tr>
+<tr><td>4</td><td>16x</td><td>~13 minutes</td></tr>
+<tr><td>10</td><td>1,024x</td><td>~14 hours</td></tr>
+<tr><td>20</td><td>~1M x</td><td>~1.6 years</td></tr>
+</table>
+
+<h2>Cascade Updates</h2>
+<p>Every 100 blocks, the cascade is updated:</p>
+<ol>
+<li>The first 100 blocks from the main chain are added to the cascade</li>
+<li>Working backwards, blocks that don't meet the next level's difficulty are pruned</li>
+<li>CoinProofs for unspent coins are preserved in the new root's MMR Set</li>
+<li>The remaining ~1024 blocks stay unpruned on the main chain</li>
+</ol>
+
+<h2>Super Parents</h2>
+<p>Every block header contains references to its parent at <strong>every existing Super level</strong> in the cascade. This creates an immutable link structure connecting all Super Blocks across all levels — ensuring the cascade is unbroken and independently verifiable.</p>
+
+</div></div>
+
+<div class="footer"><a href="learn.html">&larr; Core Concepts</a><a href="consensus.html">Consensus &rarr;</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

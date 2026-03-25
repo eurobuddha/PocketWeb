@@ -1,0 +1,34 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Minima Dev Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>⚡</span> Minima Dev Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
+
+<div class="hero">
+<div class="hero-badge"><span class="hero-dot"></span> Developer Documentation</div>
+<h1>Build on Minima</h1>
+<p>Smart contracts, MiniDapps, node setup, and user guides — everything you need to develop on Minima.</p>
+<div class="node-bar"><div class="node-stat"><div class="node-val" id="s-block">—</div><div class="node-lbl">Block</div></div><div class="node-stat"><div class="node-val" id="s-ver">—</div><div class="node-lbl">Version</div></div></div>
+</div>
+
+<div class="sec">
+<div class="sec-t">Developer Resources</div>
+<div class="sec-sub">Jump into the topic you need</div>
+<div class="card-grid">
+<a class="card" href="scripting.html"><h3>KISS VM Scripting</h3><p>Turing Complete smart contracts — UTxO scripts, token scripts, contract patterns</p></a>
+<a class="card" href="minidapp.html"><h3>MiniDapp Development</h3><p>Build, package, and install decentralized apps with HTML/CSS/JS</p></a>
+<a class="card" href="node.html"><h3>Run a Node</h3><p>Android, Mac, Docker, CLI — get your Minima node running on any platform</p></a>
+<a class="card" href="guides.html"><h3>User Guides</h3><p>Seed phrase security, wallet backup, node recovery, cold storage</p></a>
+<a class="card" href="usecases.html"><h3>Use Cases</h3><p>Enterprise, DePIN, developer, and individual applications of Minima</p></a>
+<a class="card" href="faq.html"><h3>FAQ</h3><p>Common questions about building and running on Minima</p></a>
+</div>
+<div class="info">For core protocol documentation (UTxO, TxPoW, Cascading Chain, Tokenomics), search PocketFS for <strong>"Minima Docs"</strong></div>
+</div>
+
+<div class="footer"><a href="https://minima.global" target="_blank">Minima</a><a href="https://docs.minima.global" target="_blank">Full Docs</a><a href="https://github.com/minima-global" target="_blank">GitHub</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
+
+<script type="text/javascript">
+miniweb_Init();
+MDS.init(function(msg){if(msg.event==="inited"){MDS.cmd("status",function(r){try{var c=r.response;document.getElementById("s-block").textContent=c.chain?c.chain.block:"—";document.getElementById("s-ver").textContent=c.version||"—"}catch(e){}});}});
+</script></body></html>

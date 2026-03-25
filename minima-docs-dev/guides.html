@@ -1,0 +1,60 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>User Guides — Minima Dev Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>⚡</span> Minima Dev Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">User Guides</h1>
+<p style="color:var(--dm);margin-bottom:24px">Essential guides for securing and managing your node</p>
+
+<h2>Secure Your Seed Phrase</h2>
+<p>Your seed phrase is the <strong>master backup</strong> for your entire wallet. If you lose your device, the seed phrase is the only way to recover your coins.</p>
+
+<h3>Finding Your Seed Phrase</h3>
+<ul>
+<li><strong>GUI:</strong> Security MiniDapp → Manage Seed Phrase → Show Seed Phrase</li>
+<li><strong>CLI:</strong> Run the <code>vault</code> command in the terminal</li>
+</ul>
+
+<h3>Best Practices</h3>
+<ul>
+<li>Write it on <strong>paper or a metal plate</strong> — never screenshot or copy/paste on a connected device</li>
+<li>Make <strong>2 copies</strong> stored in separate physical locations</li>
+<li>Give one copy to a <strong>trusted relative</strong> for disaster recovery</li>
+<li>Never store it digitally — no photos, no cloud, no notes apps</li>
+</ul>
+
+<h2>Lock Your Wallet</h2>
+<p>Set a password in the Security MiniDapp to encrypt your private keys. Without a password, anyone with device access can spend your coins.</p>
+
+<h2>Backup Your Node</h2>
+<p>Regular backups protect against device failure. Use the Security MiniDapp to create encrypted backups that can be restored on a new device.</p>
+<div class="info">A backup is different from a seed phrase. Backups include your MiniDapp data, bookmarks, and settings. The seed phrase only recovers your coins.</div>
+
+<h2>Node Recovery Options</h2>
+<table>
+<tr><th>Method</th><th>What It Recovers</th></tr>
+<tr><td><strong>Restore Backup</strong></td><td>Everything — coins, MiniDapps, settings, contacts</td></tr>
+<tr><td><strong>Import Seed Phrase</strong></td><td>Coins only — fresh node with your wallet</td></tr>
+<tr><td><strong>Chain Re-sync (QuickSync)</strong></td><td>Fixes sync issues — re-downloads chain from peers</td></tr>
+</table>
+
+<h2>Create a Safe</h2>
+<p>For large amounts, create a <strong>Safe</strong> — a separate seed phrase and key set on the same node. This isolates high-value coins from daily-use keys.</p>
+
+<h2>Cold Storage</h2>
+<p>For maximum security, sign transactions offline:</p>
+<ol>
+<li>Run one node <strong>offline</strong> (air-gapped) — this holds your keys</li>
+<li>Run one node <strong>online</strong> — this broadcasts transactions</li>
+<li>Construct the transaction on the online node</li>
+<li>Transfer to the offline node (USB stick) to sign</li>
+<li>Transfer signed transaction back to the online node to broadcast</li>
+</ol>
+
+</div></div>
+
+<div class="footer"><a href="node.html">&larr; Run Node</a><a href="faq.html">FAQ &rarr;</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

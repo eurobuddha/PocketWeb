@@ -1,0 +1,32 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>FAQ — Minima Dev Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>⚡</span> Minima Dev Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Frequently Asked Questions</h1>
+<p style="color:var(--dm);margin-bottom:24px">Common questions about developing on Minima</p>
+</div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>What languages do I need to build a MiniDapp?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">Standard web technologies: HTML, CSS, and JavaScript. React is also supported. No special framework required — if you can build a website, you can build a MiniDapp.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>Do I need my own server?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">No. MiniDapps run directly on the user's Minima node. There is no central server, no database to manage, no hosting to pay for. Each user runs their own instance.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>How do I test my MiniDapp?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">Start a local Minima node (CLI or Docker), install your MiniDapp via the Hub, and test at https://127.0.0.1:9003. For scripting, use the terminal to run commands directly. You can start a private testnet with 1 billion coins from genesis for safe testing.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>What is the difference between KISS VM and Solidity?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">KISS VM is UTxO-based (like Bitcoin Script but Turing Complete), while Solidity is account-based. In KISS VM, every coin carries its own script — the script answers one question: can this coin be spent in this transaction? State is per-coin, not global.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>Can MiniDapps communicate with each other?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">Yes. Use MDS.api.call("dappname", data, callback) to call another MiniDapp's API directly. Use MDS.comms.broadcast() to send messages to all installed MiniDapps. PocketWeb and PocketFS use this exact mechanism.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>How do custom tokens work?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">Run 'tokencreate name:MYTOKEN amount:1000 decimals:4' in the terminal. Tokens are native to the protocol — no smart contract deployment needed. NFTs are tokens with 0 decimals (indivisible). Each token gets a unique TokenID.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>Is Minima really quantum resistant?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">Minima uses the Winternitz One-Time Signature Scheme with SHA3-256 hashing — both considered quantum-resistant. Unlike ECDSA (Bitcoin/Ethereum), these cannot be broken by Shor's quantum algorithm. Each key is used only once for maximum security.</div></div></div>
+
+<div class="acc-item"><button class="acc-q" onclick="this.parentElement.classList.toggle('open')"><span>What are Magic Numbers?</span><span class="arr">▾</span></button><div class="acc-a"><div class="acc-a-in">Four adaptive network parameters (max TxPoW size, max script operations, max transactions per block, min PoW work) that adjust over time via weighted consensus. This future-proofs the network as hardware improves — no hard forks needed.</div></div></div>
+
+</div>
+
+<div class="footer"><a href="usecases.html">&larr; Use Cases</a><a href="index.html">Home</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

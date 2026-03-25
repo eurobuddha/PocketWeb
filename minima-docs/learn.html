@@ -1,0 +1,49 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Core Concepts — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Core Concepts</h1>
+<p style="color:var(--dm);margin-bottom:24px">The fundamental building blocks of the Minima protocol</p>
+
+<h2>UTxO Model</h2>
+<p>Minima uses the <strong>Unspent Transaction Output</strong> model, like Bitcoin. Each Transaction Output is a specific amount of Minima with a unique Coin ID. Coins must be spent in whole — change is returned as a new UTxO.</p>
+<p>The blockchain tracks all UTxOs in the network. The sum of all UTxO values equals at most 1 billion Minima. Transactions consume one or more UTxOs as inputs and create new UTxOs as outputs.</p>
+<p><strong>Example:</strong> Bob sends 30 Minima to Alice using a 50 Minima UTxO. Two new outputs are created: 30 to Alice and 20 returned to Bob as change.</p>
+
+<h2>Transaction Proof-of-Work (TxPoW)</h2>
+<p>Unlike Bitcoin where dedicated miners do all the work, Minima requires <strong>every user to mine their own transactions</strong>. This involves ~1 second of hashing before a transaction can be broadcast.</p>
+<ul>
+<li>There are <strong>no block rewards</strong> and no fee collection — the reward is simply being able to send your transaction</li>
+<li>Transactions are held in TxPoW units which propagate across the network</li>
+<li>A TxPoW unit becomes a block if it <strong>by chance</strong> meets the block difficulty target</li>
+<li>This ensures all users contribute to chain construction — not just industrial miners</li>
+</ul>
+
+<h2>The Burn</h2>
+<p>The Burn is a small fee incurred when sending transactions during high demand. This fee is <strong>permanently destroyed</strong> — removed from Minima's hard-capped supply, making Minima deflationary.</p>
+<p>The Burn serves three purposes:</p>
+<ul>
+<li><strong>Incentive to propagate:</strong> All users benefit as coins become more scarce</li>
+<li><strong>Transaction ordering:</strong> Higher burn = higher priority (like gas fees)</li>
+<li><strong>Spam prevention:</strong> DoS attacks become expensive; the system self-regulates</li>
+</ul>
+
+<h2>MMR Database</h2>
+<p>To keep the chain small enough for mobile, old blocks are pruned. But we still need to prove coins exist. The <strong>Merkle Mountain Range (MMR)</strong> solves this.</p>
+<ul>
+<li>Each coin is stored as a leaf node in a Merkle hash-sum tree</li>
+<li>A compact proof path from leaf to peak proves any coin exists, even after its block is pruned</li>
+<li>Users only keep MMR data for <strong>their own coins</strong> — tiny compared to the full network</li>
+<li>Everyone stores the MMR peaks and root to verify proofs from others</li>
+<li>When spending, users present an up-to-date proof that their coin is unspent</li>
+</ul>
+<div class="info">This is what makes Minima viable on mobile — you don't need hundreds of gigabytes of chain history.</div>
+
+</div></div>
+
+<div class="footer"><a href="index.html">Home</a><a href="blockchain.html">Blockchain &rarr;</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

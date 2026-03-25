@@ -1,0 +1,69 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Run a Node — Minima Dev Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>⚡</span> Minima Dev Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Run a Node</h1>
+<p style="color:var(--dm);margin-bottom:24px">Get Minima running on any platform</p>
+
+<h2>Android</h2>
+<ol>
+<li>Install from <strong>Google Play Store</strong> (or download APK from GitHub)</li>
+<li>Allow battery optimisation exemption for background operation</li>
+<li>Enable auto-update in Play Store settings</li>
+<li>Write down your seed phrase immediately</li>
+</ol>
+<div class="info"><strong>Huawei/Redmi/ZTE:</strong> Disable "Manage Automatically" in battery settings. <strong>OPPO:</strong> Keep background apps under 5.</div>
+<p><strong>Desktop Connect:</strong> Access your phone node from a computer on the same WiFi via Settings → Desktop Connect.</p>
+
+<h2>Mac</h2>
+<ol>
+<li>Install <strong>Open Web Start</strong> (Intel: macos-x64, M1/M2: macos-aarch64)</li>
+<li>Download JNLP file from <strong>spartacusrex.com</strong></li>
+<li>Create desktop shortcut (Make Alias) and set to launch on startup</li>
+<li>Set password via Settings → Advanced params → <code>-mdspassword YOUR_PASSWORD</code></li>
+</ol>
+<div class="info">Always shut down Minima before shutting down your Mac to prevent database corruption.</div>
+
+<h2>Docker</h2>
+<pre>docker run -d --name minima \
+  -e minima_mdspassword=YOUR_PASSWORD \
+  -e minima_desktop=true \
+  -v minima-data:/home/minima/data \
+  -p 9001-9003:9001-9003 \
+  --restart unless-stopped \
+  minimaglobal/minima:latest</pre>
+
+<p><strong>Auto-update with Watchtower:</strong></p>
+<pre>docker run -d --name watchtower \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  containrrr/watchtower \
+  --interval 28800 minima</pre>
+
+<p>Login at <code>https://localhost:9003</code> with your password.</p>
+
+<h2>CLI (Any Platform)</h2>
+<p>Requires Java installed:</p>
+<pre>java -jar minima.jar \
+  -data .minima \
+  -mdsenable \
+  -mdspassword YOUR_PASSWORD</pre>
+
+<p>Connect to the network:</p>
+<pre>peers action:addpeers peerslist:megammr.minima.global:9001</pre>
+
+<h2>First Steps After Install</h2>
+<ol>
+<li><strong>Join the network</strong> — your node syncs automatically</li>
+<li><strong>Lock your wallet</strong> — set a password in the Security MiniDapp</li>
+<li><strong>Write down your seed phrase</strong> — this is your backup (see <a href="guides.html">Guides</a>)</li>
+<li><strong>Set your profile</strong> — optional, for Maxima contacts</li>
+</ol>
+
+</div></div>
+
+<div class="footer"><a href="minidapp.html">&larr; MiniDapps</a><a href="guides.html">Guides &rarr;</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

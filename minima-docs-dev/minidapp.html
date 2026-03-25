@@ -1,0 +1,75 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>MiniDapp Development — Minima Dev Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>⚡</span> Minima Dev Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">MiniDapp Development</h1>
+<p style="color:var(--dm);margin-bottom:24px">Build decentralized apps with standard web technologies</p>
+
+<h2>What is a MiniDapp?</h2>
+<p>A MiniDapp is a decentralized web application that runs on a Minima node. Built with <strong>HTML, CSS, and JavaScript</strong> — no special framework required. Every MiniDapp gets sandboxed access to the blockchain via the MDS API.</p>
+
+<h2>Structure</h2>
+<pre>my-minidapp/
+├── dapp.conf       ← metadata (name, version, icon)
+├── favicon.ico     ← app icon
+├── index.html      ← main page
+├── style.css       ← styles
+├── service.js      ← background service (optional)
+└── mds.js          ← MDS library</pre>
+
+<h2>dapp.conf</h2>
+<pre>{
+  "name": "MyApp",
+  "version": "1.0.0",
+  "description": "What this app does",
+  "icon": "favicon.ico"
+}</pre>
+
+<h2>MDS API</h2>
+<p>Initialize MDS in every page:</p>
+<pre>MDS.init(function(msg) {
+  if (msg.event == "inited") {
+    // MDS is ready — run commands here
+  }
+});</pre>
+
+<h3>Key Functions</h3>
+<table>
+<tr><th>Function</th><th>Purpose</th></tr>
+<tr><td><code>MDS.cmd(command, cb)</code></td><td>Run blockchain commands (balance, send, status)</td></tr>
+<tr><td><code>MDS.sql(query, cb)</code></td><td>Private H2 SQL database per MiniDapp</td></tr>
+<tr><td><code>MDS.file.save/load</code></td><td>File storage (text or binary)</td></tr>
+<tr><td><code>MDS.keypair.set/get</code></td><td>Key-value settings storage</td></tr>
+<tr><td><code>MDS.api.call(dapp, data, cb)</code></td><td>Call another MiniDapp's API</td></tr>
+<tr><td><code>MDS.comms.broadcast</code></td><td>Send messages to all MiniDapps</td></tr>
+<tr><td><code>MDS.net.GET/POST</code></td><td>HTTP requests</td></tr>
+</table>
+
+<h3>Events</h3>
+<ul>
+<li><code>inited</code> — MDS ready</li>
+<li><code>NEWBLOCK</code> — new block added to chain</li>
+<li><code>NEWBALANCE</code> — user balance changed</li>
+<li><code>MINING</code> — mining event</li>
+</ul>
+
+<h2>Packaging & Installing</h2>
+<p>Zip the folder contents (not the folder itself):</p>
+<pre>cd my-minidapp
+zip -r ../myapp.mds.zip .</pre>
+
+<p><strong>Install on mobile:</strong> Send zip to device → open Minima app → tap + → select file.</p>
+<p><strong>Install on desktop:</strong> MiniDapp Hub → click + → select zip. Or via CLI:</p>
+<pre>mds action:install file:/path/to/myapp.mds.zip</pre>
+
+<h2>MiniDapp Hub</h2>
+<p>Access all installed MiniDapps at <code>https://127.0.0.1:9003</code>. MDS must be enabled (start with <code>-mdsenable</code> flag). Uses self-signed SSL certificates.</p>
+
+</div></div>
+
+<div class="footer"><a href="scripting.html">&larr; KISS VM</a><a href="node.html">Run Node &rarr;</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

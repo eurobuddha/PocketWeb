@@ -1,0 +1,64 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>KISS VM — Minima Dev Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>⚡</span> Minima Dev Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">KISS VM Scripting</h1>
+<p style="color:var(--dm);margin-bottom:24px">Minima's Turing Complete smart contract language</p>
+
+<h2>Overview</h2>
+<p>KISS VM (Keep It Simple Scripting) is Minima's scripting language. Unlike Ethereum's account model, Minima is <strong>UTxO-based</strong> — every coin carries a script that must return <code>TRUE</code> to be spent. Default is <code>FALSE</code>.</p>
+
+<h3>Limits</h3>
+<table>
+<tr><th>Parameter</th><th>Limit</th></tr>
+<tr><td>Max instructions</td><td>1,024</td></tr>
+<tr><td>Max stack depth</td><td>64</td></tr>
+<tr><td>Max function params</td><td>32</td></tr>
+<tr><td>Max string/HEX size</td><td>64 KB</td></tr>
+</table>
+
+<h2>Basic Scripts</h2>
+<h3>Anyone Can Spend</h3>
+<pre>RETURN TRUE</pre>
+
+<h3>Only Owner Can Spend</h3>
+<pre>RETURN SIGNEDBY(0x<publickey>)</pre>
+
+<h3>Time Lock</h3>
+<pre>IF @BLOCK GT 1000 THEN
+  RETURN SIGNEDBY(0x<key>)
+ENDIF</pre>
+
+<h3>Multi-Sig (2 of 2)</h3>
+<pre>RETURN SIGNEDBY(0x<key1>) AND SIGNEDBY(0x<key2>)</pre>
+
+<h2>Contract Types</h2>
+<ul>
+<li><strong>Basic Signed:</strong> Only the key holder can spend</li>
+<li><strong>Time Lock:</strong> Coins locked until a certain block height</li>
+<li><strong>Multi-Sig:</strong> Multiple signatures required (M-of-N)</li>
+<li><strong>Hashed Time Lock (HTLC):</strong> Cross-chain atomic swaps</li>
+<li><strong>Exchange:</strong> Trustless token swaps</li>
+<li><strong>MAST:</strong> Merkelized scripts for complex conditional logic</li>
+<li><strong>FlashCash:</strong> Instant micro-payments</li>
+</ul>
+
+<h2>State Variables</h2>
+<p>Scripts can read state variables stored in the MMR Proof DB. These are <strong>transactional</strong> (not global like Ethereum) — each coin carries its own state in ports 0-255.</p>
+<pre>LET owner = STATE(0)
+RETURN SIGNEDBY(owner)</pre>
+
+<h2>Token Scripts</h2>
+<p>Every token has its own script (separate from the coin script). Both must return <code>TRUE</code> for a valid spend. Default token script is <code>RETURN TRUE</code>.</p>
+<pre>tokencreate name:MYTOKEN amount:1000 decimals:4 script:"RETURN SIGNEDBY(0x<key>)"</pre>
+
+<div class="info">Scripts are case-sensitive. SHA2-256 is available for cross-chain hash locks. Contracts are inherently Layer 2 compatible.</div>
+
+</div></div>
+
+<div class="footer"><a href="index.html">&larr; Home</a><a href="minidapp.html">MiniDapps &rarr;</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

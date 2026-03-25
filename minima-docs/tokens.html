@@ -1,0 +1,64 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Tokens & Tokenomics — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Tokens & Tokenomics</h1>
+<p style="color:var(--dm);margin-bottom:24px">Minima's coin supply and native token system</p>
+
+<h2>Tokenomics</h2>
+<p><strong>1 billion</strong> Minima coins — hard-capped, deflationary via The Burn. All coins were minted at the Token Generation Event (Q1 2023).</p>
+
+<table>
+<tr><th>Category</th><th>Allocation</th></tr>
+<tr><td>Ecosystem Growth</td><td>34.6%</td></tr>
+<tr><td>Team & Advisors</td><td>15.7%</td></tr>
+<tr><td>Public Rewards</td><td>15.0%</td></tr>
+<tr><td>Seed Round</td><td>14.1%</td></tr>
+<tr><td>Private Round 1</td><td>10.7%</td></tr>
+<tr><td>Private Seed</td><td>7.5%</td></tr>
+<tr><td>Private Round 2</td><td>1.2%</td></tr>
+<tr><td>TGE / ICO</td><td>1.2%</td></tr>
+</table>
+
+<p>12.5% (125M) wrapped as ERC-20 <strong>$WMINIMA</strong> on Ethereum. Full supply unlocks over 6 years. Circulating supply was reduced 55% vs. pre-TGE plan at 18 months.</p>
+
+<h3>Maximize</h3>
+<p>A non-custodial MiniDapp that lets users earn yield on native Minima by locking coins for set periods — reducing circulating supply while rewarding long-term holders.</p>
+
+<h2>Coloured Coins</h2>
+<p>Custom tokens and NFTs are supported <strong>natively</strong> on Minima — no smart contract deployment needed.</p>
+
+<h3>How It Works</h3>
+<p>A tiny fraction of Minima is "coloured" to represent a new token. The coloured amount determines the total supply based on a scale factor:</p>
+<ul>
+<li>Minima uses 44 decimal places internally</li>
+<li>Colouring 1&times;10<sup>-33</sup> Minima creates 1,000 tokens with 8 decimal places</li>
+<li>Each token gets a globally unique <strong>TokenID</strong> (hash)</li>
+</ul>
+
+<h3>Token Properties</h3>
+<table>
+<tr><th>Property</th><th>Description</th></tr>
+<tr><td>TokenID</td><td>Unique hash identifier</td></tr>
+<tr><td>Name</td><td>String or JSON metadata (name, description, icon URL)</td></tr>
+<tr><td>Total Supply</td><td>Set at creation, immutable</td></tr>
+<tr><td>Decimals</td><td>0 for NFTs (indivisible), up to 44</td></tr>
+<tr><td>Script</td><td>Optional spending rules (default: RETURN TRUE)</td></tr>
+</table>
+
+<h3>NFTs</h3>
+<p>An NFT is simply a custom token with <strong>0 decimal places</strong> — it's indivisible and must be spent whole, exactly like a physical collectible.</p>
+
+<h3>Creating Tokens</h3>
+<pre>tokencreate name:MYTOKEN amount:1000 decimals:4</pre>
+<p>With JSON metadata:</p>
+<pre>tokencreate name:{"name":"MyNFT","description":"A unique item"} amount:1 decimals:0</pre>
+
+</div></div>
+
+<div class="footer"><a href="network.html">&larr; Network</a><a href="glossary.html">Glossary &rarr;</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

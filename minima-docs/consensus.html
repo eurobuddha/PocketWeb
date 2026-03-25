@@ -1,0 +1,57 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Mining & Consensus — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Mining & Consensus</h1>
+<p style="color:var(--dm);margin-bottom:24px">How Minima achieves consensus without dedicated miners</p>
+
+<h2>Magic Numbers</h2>
+<p>Four adaptive network parameters that future-proof Minima as devices improve:</p>
+<table>
+<tr><th>Parameter</th><th>Default</th></tr>
+<tr><td>MaxTxPoWSize</td><td>64 KB per TxPoW unit</td></tr>
+<tr><td>MaxKISSVMOps</td><td>1,024 script operations</td></tr>
+<tr><td>MaxTxnPerBlock</td><td>256 transactions</td></tr>
+<tr><td>MinTxPoWWork</td><td>1M hashes/second</td></tr>
+</table>
+<p>Recalculated every block via a <strong>16383:1 weighted average</strong>. The entire network must agree on a new value — convergence takes ~50 days.</p>
+
+<h2>Difficulty</h2>
+<p>Target Value = Max Value / Difficulty Value. The lower the target, the harder it is to achieve.</p>
+<ul>
+<li><strong>Transaction difficulty:</strong> ~1 second of work per device (minimum 1M hashes)</li>
+<li><strong>Block difficulty:</strong> adjusts by max 10% up/down to maintain 50-second intervals</li>
+<li><strong>Super block difficulty:</strong> each cascade level is 2x harder than the previous</li>
+</ul>
+
+<h2>TxPoW Construction</h2>
+<p>When you send a transaction, your node builds a TxPoW unit in 10 steps:</p>
+<ol>
+<li>Set block height, timestamp, main transaction & witness</li>
+<li>Set cascade Super Parents from the current tip</li>
+<li>Set transaction difficulty target</li>
+<li>Calculate chain speed and adjust block difficulty</li>
+<li>Sort mempool transactions by burn amount (highest first)</li>
+<li>Validate mempool transactions (size, difficulty, MMR proofs, scripts)</li>
+<li>Add valid transactions to the TxPoW body (up to 256)</li>
+<li>Calculate hashes for main and burn transactions</li>
+<li>Construct updated MMR with new coin proofs</li>
+<li>Add MMR root hash and total value to header</li>
+</ol>
+
+<h2>Mining</h2>
+<p>After construction, the TxPoW header is hashed repeatedly with an incrementing nonce until the hash falls below the transaction target. If it also falls below the <strong>block target</strong> (by chance), the TxPoW becomes a block.</p>
+<div class="info">Nodes don't aim for block difficulty — they only check after mining. Blocks are a lucky byproduct of transaction mining.</div>
+
+<h2>GHOST Protocol</h2>
+<p>Minima uses <strong>Greedy Heaviest Observed SubTree</strong> to select the main chain. Unlike "longest chain" rules, GHOST considers total Proof-of-Work weight across all branches — making it more resilient to attack and enabling faster block times.</p>
+<p>After receiving any TxPoW unit, the node recalculates all branch weights and selects the heaviest as the main chain. Transactions on orphaned branches return to the mempool.</p>
+
+</div></div>
+
+<div class="footer"><a href="blockchain.html">&larr; Blockchain</a><a href="keys.html">Keys &rarr;</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

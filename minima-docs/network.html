@@ -1,0 +1,49 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Network Overview — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Network Overview</h1>
+<p style="color:var(--dm);margin-bottom:24px">Four layers powering a truly decentralized network</p>
+
+<h2>Layer 1 — Minima</h2>
+<p><strong>On-chain value transfer.</strong> All transactions are processed by all nodes (flood-fill). Every node collectively comes to consensus on the blockchain state. This is the trust layer — where users initiate relationships and settle disputes.</p>
+
+<h2>Maxima — Information Layer</h2>
+<p><strong>Off-chain information transfer.</strong> Point-to-point encrypted messaging running over the Minima peer network. Every Minima node is also a Maxima node.</p>
+<ul>
+<li>End-to-end encrypted using each user's Maxima public key</li>
+<li>No additional infrastructure — your node is your messaging endpoint</li>
+<li>Free to use, with ~1 second TxPoW to prevent spam</li>
+<li>Enables censorship-resistant messaging apps and P2P data exchange</li>
+<li>Used by MiniFS to fetch files from peers before falling back to on-chain requests</li>
+</ul>
+
+<h2>Layer 2 — Omnia</h2>
+<p><strong>Off-chain value transfer.</strong> Fast, cheap, and scalable payments via bi-directional payment channels using <strong>ELTOO</strong> technology (more advanced than Bitcoin's Lightning).</p>
+<ul>
+<li>Users set up channels on Layer 1, then transact off-chain indefinitely</li>
+<li>Supports smart contract sequences with subsets of users and coins</li>
+<li>Hash Time-Locked Contracts (HTLCs) enable payment routing</li>
+<li>Settle on Layer 1 whenever needed</li>
+<li><strong>Essentially unlimited transactions per second</strong></li>
+</ul>
+
+<h2>Layer 3 — MiniDapps</h2>
+<p><strong>Web3 applications.</strong> Decentralized apps built with HTML, CSS, and JavaScript that combine all lower layers:</p>
+<ul>
+<li>Value transfer via Minima (Layer 1) and Omnia (Layer 2)</li>
+<li>Information transfer via Maxima</li>
+<li>Smart contracts via KISS VM (Turing Complete)</li>
+<li>Front-end uses standard web technologies — accessible to any web developer</li>
+<li>Packaged as <code>.mds.zip</code> files and installed directly on your node</li>
+</ul>
+<div class="info">You are reading this page inside a MiniDapp right now — PocketWeb is a Layer 3 application browsing content stored on Layer 1.</div>
+
+</div></div>
+
+<div class="footer"><a href="keys.html">&larr; Keys</a><a href="tokens.html">Tokens &rarr;</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

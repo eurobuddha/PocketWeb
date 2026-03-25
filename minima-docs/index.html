@@ -1,0 +1,45 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="hero">
+<div class="hero-badge"><span class="hero-dot"></span> Official Documentation</div>
+<h1>Minima Documentation</h1>
+<p>The only blockchain lightweight enough to run entirely on mobile — decentralized, quantum-resistant, and secured by every device on the network.</p>
+<div class="node-bar"><div class="node-stat"><div class="node-val" id="s-block">—</div><div class="node-lbl">Block</div></div><div class="node-stat"><div class="node-val" id="s-ver">—</div><div class="node-lbl">Version</div></div></div>
+</div>
+
+<div class="sec">
+<div class="sec-t">Core Features</div>
+<div class="sec-sub">What makes Minima unique</div>
+<div class="card-grid">
+<a class="card" href="learn.html"><h3>UTxO & TxPoW</h3><p>Bitcoin-style transaction model where every user mines their own transactions</p></a>
+<a class="card" href="blockchain.html"><h3>Cascading Chain</h3><p>Logarithmic pruning keeps the chain small enough for mobile devices</p></a>
+<a class="card" href="consensus.html"><h3>GHOST Consensus</h3><p>Heaviest-chain selection with adaptive difficulty and 50-second blocks</p></a>
+<a class="card" href="keys.html"><h3>Quantum Secure</h3><p>Winternitz signatures with SHA3-256 — resistant to quantum attacks</p></a>
+<a class="card" href="network.html"><h3>4-Layer Network</h3><p>Minima + Maxima + Omnia + MiniDapps — value, data, speed, apps</p></a>
+<a class="card" href="tokens.html"><h3>Native Tokens & NFTs</h3><p>1 billion hard-capped supply, custom tokens via coloured coins</p></a>
+</div>
+</div>
+
+<div class="sec sec-alt"><div class="sec-in">
+<div class="sec-t">Who is Minima for?</div>
+<div class="sec-sub">Creating value for four groups</div>
+<div class="card-grid">
+<div class="card"><h3>Enterprises</h3><p>Deploy lightweight nodes that scale with users. Reduce infrastructure costs. No specialised hardware.</p></div>
+<div class="card"><h3>DePIN Projects</h3><p>Access a large decentralised P2P network. Deploy on mobile and IoT. Quick proof-of-concept.</p></div>
+<div class="card"><h3>Developers</h3><p>Run a full node locally. Build MiniDapps with HTML/CSS/JS. Instant private testnet.</p></div>
+<div class="card"><h3>Individuals</h3><p>Trustless P2P payments. Tokenise real-world assets. Participate in block construction.</p></div>
+</div>
+<div class="info">Developer guides, scripting tutorials, and node setup — search PocketFS for <strong>"Minima Docs Dev"</strong></div>
+</div></div>
+
+<div class="footer"><a href="https://minima.global" target="_blank">Minima</a><a href="https://docs.minima.global" target="_blank">Full Docs</a><a href="https://github.com/minima-global" target="_blank">GitHub</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+
+<script type="text/javascript">
+miniweb_Init();
+MDS.init(function(msg){if(msg.event==="inited"){MDS.cmd("status",function(r){try{var c=r.response;document.getElementById("s-block").textContent=c.chain?c.chain.block:"—";document.getElementById("s-ver").textContent=c.version||"—"}catch(e){}});}});
+</script></body></html>

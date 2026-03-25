@@ -1,0 +1,53 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Glossary — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Glossary</h1>
+<p style="color:var(--dm);margin-bottom:24px">Key terms used throughout Minima</p>
+
+<h3>The Burn</h3><p>A transaction fee that is permanently destroyed, making Minima deflationary. Higher burn = higher transaction priority.</p>
+
+<h3>Cascading Chain</h3><p>An unbroken chain of Super Block headers that records cumulative Proof-of-Work without storing every block. Enables heavy pruning.</p>
+
+<h3>Coin ID</h3><p>A unique identifier for each UTxO (unspent transaction output) in the network.</p>
+
+<h3>Coloured Coins</h3><p>Custom tokens and NFTs created by "colouring" a tiny fraction of Minima. Native to the protocol — no smart contract needed.</p>
+
+<h3>GHOST</h3><p>Greedy Heaviest Observed SubTree — Minima's chain selection rule. Picks the branch with the most cumulative Proof-of-Work, not just the longest.</p>
+
+<h3>KISS VM</h3><p>Keep It Simple Scripting — Minima's Turing Complete scripting language for smart contracts. Every coin carries a script that must return TRUE to be spent.</p>
+
+<h3>Magic Numbers</h3><p>Four adaptive network parameters (MaxTxPoWSize, MaxKISSVMOps, MaxTxnPerBlock, MinTxPoWWork) that adjust over time as the network evolves.</p>
+
+<h3>Maxima</h3><p>Minima's encrypted peer-to-peer messaging layer. Every node is a Maxima node. Enables off-chain data exchange.</p>
+
+<h3>MiniDapp</h3><p>A decentralized application built with HTML/CSS/JS that runs on a Minima node. Packaged as .mds.zip files.</p>
+
+<h3>MDS</h3><p>MiniDapp System — the application runtime that provides sandboxed access to blockchain commands, SQL databases, file storage, and inter-MiniDapp communication.</p>
+
+<h3>MMR</h3><p>Merkle Mountain Range — an append-only tree structure used to prove coin existence after chain pruning. Users keep only proofs for their own coins.</p>
+
+<h3>NFT</h3><p>A coloured coin with 0 decimal places — indivisible, representing a unique asset.</p>
+
+<h3>Omnia</h3><p>Minima's Layer 2 scaling solution using ELTOO-based payment channels. Enables essentially unlimited transactions per second off-chain.</p>
+
+<h3>P2SH</h3><p>Pay-to-Script-Hash — all Minima addresses are the hash of a script. The script determines spending conditions.</p>
+
+<h3>Pulse</h3><p>A periodic proof-of-work contribution that keeps nodes in sync with the network, even when not sending transactions.</p>
+
+<h3>Super Block</h3><p>A block whose hash exceeds the difficulty of its cascade level by a factor of 2. Stored in the Cascading Chain as proof of cumulative work.</p>
+
+<h3>TxPoW</h3><p>Transaction Proof-of-Work — every user mines their own transaction (~1 second of hashing). No dedicated miners, no block rewards.</p>
+
+<h3>UTxO</h3><p>Unspent Transaction Output — the fundamental unit of value in Minima (same model as Bitcoin). Must be spent in whole.</p>
+
+<h3>Winternitz</h3><p>One-Time Signature Scheme used by Minima. Hash-based and quantum-resistant. Combined with MMR trees to allow multiple signatures per root key.</p>
+
+</div></div>
+
+<div class="footer"><a href="tokens.html">&larr; Tokens</a><a href="index.html">Home</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>

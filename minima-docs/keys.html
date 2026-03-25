@@ -1,0 +1,46 @@
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Keys & Signatures — Minima Docs</title>
+<script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
+
+<div class="nav"><div class="nav-brand"><span>📘</span> Minima Docs</div>
+<div class="nav-links"><a href="index.html">Home</a><a href="learn.html">Learn</a><a href="blockchain.html">Chain</a><a href="network.html">Network</a><a href="tokens.html">Tokens</a><a href="glossary.html">Glossary</a></div></div>
+
+<div class="sec"><div class="prose">
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Keys & Signatures</h1>
+<p style="color:var(--dm);margin-bottom:24px">Quantum-resistant cryptography in Minima</p>
+
+<h2>Winternitz One-Time Signature Scheme</h2>
+<p>Minima uses <strong>WOTSS</strong> — a hash-based signature scheme considered <strong>quantum-resistant</strong>. Unlike ECDSA (used in Bitcoin/Ethereum), Winternitz signatures cannot be broken by Shor's quantum algorithm.</p>
+<p>The hash function is <strong>SHA3-256</strong>, also quantum-resistant. Each key pair can only be used once securely — reuse increases the risk of the private key being deduced.</p>
+
+<h2>Merkle Signature Scheme</h2>
+<p>To get multiple uses from a single public key, Minima combines Winternitz with <strong>MMR hash trees</strong>. Many one-time key pairs are stored as leaf nodes, with the tree root serving as a reusable public key.</p>
+
+<h2>Tree of Trees</h2>
+<p>A single tree of 64 keys would only allow 64 signatures. Minima scales this with a <strong>3-level tree of trees</strong>:</p>
+<ul>
+<li><strong>Level 1:</strong> 64 keys — each signs the root of a Level 2 tree</li>
+<li><strong>Level 2:</strong> 64 trees &times; 64 keys — each signs the root of a Level 3 tree</li>
+<li><strong>Level 3:</strong> 64&sup2; trees &times; 64 keys — these sign actual transactions</li>
+</ul>
+<p>Total: <strong>64&sup3; = 262,144 one-time-use keys</strong> per root public key.</p>
+<p>The root public key is computed efficiently from just the Level 1 tree. Lower-level trees are generated on demand.</p>
+
+<h2>Addresses</h2>
+<p>All Minima addresses are <strong>Pay-to-Script-Hash (P2SH)</strong>. Every address is the hash of a script. The default script is:</p>
+<pre>RETURN SIGNEDBY(RootPublicKey)</pre>
+<p>This means only the private key holder can spend coins at that address.</p>
+
+<h2>Transaction Signatures</h2>
+<p>A full signature includes:</p>
+<ol>
+<li>MMR proof path from root to a Level 1 key + parent-child signature connecting Level 1→2</li>
+<li>MMR proof path in Level 2 tree + parent-child signature connecting Level 2→3</li>
+<li>MMR proof path in Level 3 tree + <strong>the actual transaction signature</strong></li>
+</ol>
+<p>Any node can verify the full chain from transaction signature → root public key.</p>
+
+</div></div>
+
+<div class="footer"><a href="consensus.html">&larr; Consensus</a><a href="network.html">Network &rarr;</a><br><br>Minima Documentation &middot; Published on PocketFS</div>
+<script>miniweb_Init();MDS.init(function(msg){});</script></body></html>
