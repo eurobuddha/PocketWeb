@@ -1,0 +1,158 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>miniMerch — Sell on Minima</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav">
+  <div class="nav-brand">
+    <span class="icon">🛒</span>
+    <span>miniMerch</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    <span>Live on Minima</span>
+  </div>
+
+  <h1>Sell anything on the<br>Minima blockchain</h1>
+
+  <p>
+    Create your own decentralized shop. Accept crypto payments.
+    No platform fees. No middlemen. Your store, your rules.
+  </p>
+
+  <a href="features.html" class="hero-cta">
+    🛒 Learn More
+  </a>
+
+  <!-- Live node data -->
+  <div class="node-bar">
+    <div class="node-stat">
+      <div class="node-val" id="stat-block">—</div>
+      <div class="node-label">Block</div>
+    </div>
+    <div class="node-stat">
+      <div class="node-val" id="stat-ver">—</div>
+      <div class="node-label">Node</div>
+    </div>
+  </div>
+</div>
+
+<!-- How It Works -->
+<div class="section">
+  <div class="section-title">How It Works</div>
+  <div class="section-sub">Three steps to your decentralized shop</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>Download miniMerch Studio</h3>
+        <p>Get the desktop app for macOS or Windows. Fill in your shop details visually — no coding needed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Configure Your Shop</h3>
+        <p>Add products with images, descriptions and prices. Set shipping options. Choose your payment currency.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Start Selling</h3>
+        <p>Click "Generate Shop" — it installs directly to your node. Share your link and receive encrypted orders.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features preview -->
+<div class="section section-alt">
+  <div class="section-inner">
+    <div class="section-title">Why miniMerch?</div>
+    <div class="section-sub">Everything you need to run a decentralized store</div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>Customer delivery addresses are encrypted end-to-end. Only you can read them.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💳</div>
+        <h3>Crypto Payments</h3>
+        <p>Accept MxUSD stablecoin or Minima directly. No payment processor needed.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌐</div>
+        <h3>Truly Decentralized</h3>
+        <p>Your shop runs on your node. No servers to hack, no company to shut you down.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💰</div>
+        <h3>No Fees</h3>
+        <p>No monthly fees, no transaction fees from us. Just standard crypto network fees.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Ready to sell?</h2>
+  <p>Download miniMerch Studio and build your shop in minutes</p>
+  <div class="btn-row">
+    <a href="features.html" class="btn btn-gold">See All Features</a>
+    <a href="faq.html" class="btn btn-outline">Read the FAQ</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <a href="https://minima.global" target="_blank">Minima</a>
+  <a href="https://docs.minima.global" target="_blank">Docs</a>
+  <a href="https://github.com/eurobuddha/miniMerch" target="_blank">GitHub</a>
+  <br><br>
+  miniMerch &copy; 2025 &middot; Built on Minima &middot; Published on PocketFS
+</div>
+
+<script type="text/javascript">
+  miniweb_Init();
+  MDS.init(function(msg) {
+    if (msg.event === "inited") {
+      MDS.cmd("status", function(resp) {
+        try {
+          var r = resp.response;
+          var block = r.chain ? r.chain.block : "—";
+          var ver = r.version ? r.version : "—";
+          document.getElementById("stat-block").textContent = block;
+          document.getElementById("stat-ver").textContent = ver;
+        } catch(e) {}
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

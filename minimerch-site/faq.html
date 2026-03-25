@@ -1,0 +1,130 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — miniMerch</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav">
+  <div class="nav-brand">
+    <span class="icon">🛒</span>
+    <span>miniMerch</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Frequently Asked Questions</div>
+  <div class="section-sub">Common questions about miniMerch</div>
+
+  <div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>What is Minima?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Minima is a Layer-1 blockchain that runs completely on-device. Unlike other blockchains that require powerful servers, Minima nodes can run on phones, IoT devices, or desktop computers. This makes it perfect for truly decentralized applications like miniMerch.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>Do I need to run a node 24/7?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        For selling with miniMerch: Yes, your node needs to be online to receive orders. However, Minima's mobile app runs efficiently in the background with minimal battery drain. For buying: No, you just need a node running when you place an order.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>What can I sell with miniMerch?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Anything legal! miniMerch supports physical goods (with postal delivery), digital products (with email/URL delivery), and services. You set the shipping options, prices, and product details.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>How does payment work?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Customers can pay with MxUSD (a Minima-native stablecoin) or Minima. Payments go directly to your address — no intermediary, no payment processor, no escrow.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>Is my shop really decentralized?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Yes! Unlike Shopify or other platforms where your store can be deleted by the company, your miniMerch shop is tied to your Minima node. As long as you run a node, your shop exists. There's no company that can shut you down.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>What does the buyer see?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Buyers see a clean shop MiniDapp with your product images, descriptions, and prices. Multi-product shops show all items in a grid. Buyers can add multiple items to a cart and pay in one transaction. Delivery addresses are encrypted — only you can read them.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span>How do I get miniMerch Studio?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        Download it from GitHub. It's available for macOS and Windows. The Studio app is a visual shop builder — no coding or terminal needed. Fill in your details, add products, click Generate, and your shop installs directly to your node.
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Ready to sell?</h2>
+  <p>Download miniMerch Studio and build your shop in minutes</p>
+  <div class="btn-row">
+    <a href="https://github.com/eurobuddha/miniMerch/releases" target="_blank" class="btn btn-gold">Download Studio</a>
+    <a href="index.html" class="btn btn-outline">Back to Home</a>
+  </div>
+</div>
+
+<div class="footer">
+  <a href="https://minima.global" target="_blank">Minima</a>
+  <a href="https://docs.minima.global" target="_blank">Docs</a>
+  <a href="https://github.com/eurobuddha/miniMerch" target="_blank">GitHub</a>
+  <br><br>
+  miniMerch &copy; 2025 &middot; Built on Minima &middot; Published on PocketFS
+</div>
+
+<script type="text/javascript">
+  miniweb_Init();
+  MDS.init(function(msg) {});
+</script>
+
+</body>
+</html>
