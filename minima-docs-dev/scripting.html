@@ -10,7 +10,15 @@
 <p style="color:var(--dm);margin-bottom:24px">Minima's Turing Complete smart contract language</p>
 
 <h2>Overview</h2>
-<p>KISS VM (Keep It Simple Scripting) is Minima's scripting language. Unlike Ethereum's account model, Minima is <strong>UTxO-based</strong> — every coin carries a script that must return <code>TRUE</code> to be spent. Default is <code>FALSE</code>.</p>
+<p>Minima has its own Turing Complete scripting language for creating Smart Contracts — <strong>KISS VM</strong> (Keep It Simple Scripting).</p>
+<p>Minima, like Bitcoin, uses the UTxO model so writing smart contracts is quite different to writing them on an account-based model like Ethereum. Every UTxO (coin) is associated with a script which can either return <strong>TRUE</strong> or <strong>FALSE</strong> when used in a transaction. The default is return FALSE, so all scripts must explicitly return TRUE for the transaction to be valid.</p>
+<p>A <strong>"contract"</strong> is the script that locks the funds in a coin — the two terms are interchangeable.</p>
+
+<h3>Default Script</h3>
+<pre>RETURN SIGNEDBY(0xFFEE67F7C..)</pre>
+<p>Where <code>0xFFEE67F7C..</code> is the public key of the owner. This script only returns TRUE when the transaction is signed by the coin's owner.</p>
+
+<div class="info">KISS VM supports SHA2-256 to allow cross-chain hash lock contracts with legacy chains. Contracts are inherently compatible with Layer 2.</div>
 
 <h3>Limits</h3>
 <table>
@@ -19,44 +27,56 @@
 <tr><td>Max stack depth</td><td>64</td></tr>
 <tr><td>Max function params</td><td>32</td></tr>
 <tr><td>Max string/HEX size</td><td>64 KB</td></tr>
+<tr><td>Max bit shift</td><td>256</td></tr>
 </table>
+<p>Scripts are <strong>case sensitive</strong>. Users track coins at their own addresses and any coins referencing their keys in STATE or PREVSTATE.</p>
 
-<h2>Basic Scripts</h2>
-<h3>Anyone Can Spend</h3>
-<pre>RETURN TRUE</pre>
+<h2>State Variables</h2>
+<p>The addition of <strong>state variables</strong> in the MMR Proof DB allows for complex scripts with knowledge of their past. Minima uses a simple state mechanic for <strong>transactional history</strong> rather than a global state for ALL transactions (like Ethereum).</p>
+<p>Each coin carries its own state in ports 0-255:</p>
+<pre>LET owner = STATE(0)
+RETURN SIGNEDBY(owner)</pre>
 
-<h3>Only Owner Can Spend</h3>
+<h2>Contract Types</h2>
+
+<h3>Basic Signed</h3>
 <pre>RETURN SIGNEDBY(0x<publickey>)</pre>
+<p>Only the key holder can spend the coin.</p>
 
 <h3>Time Lock</h3>
 <pre>IF @BLOCK GT 1000 THEN
   RETURN SIGNEDBY(0x<key>)
 ENDIF</pre>
+<p>Coin is locked until block 1000, then only the key holder can spend.</p>
 
 <h3>Multi-Sig (2 of 2)</h3>
 <pre>RETURN SIGNEDBY(0x<key1>) AND SIGNEDBY(0x<key2>)</pre>
 
-<h2>Contract Types</h2>
-<ul>
-<li><strong>Basic Signed:</strong> Only the key holder can spend</li>
-<li><strong>Time Lock:</strong> Coins locked until a certain block height</li>
-<li><strong>Multi-Sig:</strong> Multiple signatures required (M-of-N)</li>
-<li><strong>Hashed Time Lock (HTLC):</strong> Cross-chain atomic swaps</li>
-<li><strong>Exchange:</strong> Trustless token swaps</li>
-<li><strong>MAST:</strong> Merkelized scripts for complex conditional logic</li>
-<li><strong>FlashCash:</strong> Instant micro-payments</li>
-</ul>
+<h3>M-of-N Multi-Sig (2 of 3)</h3>
+<pre>LET sigs = SIGNEDBY(0x<k1>) + SIGNEDBY(0x<k2>) + SIGNEDBY(0x<k3>)
+RETURN sigs GTE 2</pre>
 
-<h2>State Variables</h2>
-<p>Scripts can read state variables stored in the MMR Proof DB. These are <strong>transactional</strong> (not global like Ethereum) — each coin carries its own state in ports 0-255.</p>
-<pre>LET owner = STATE(0)
-RETURN SIGNEDBY(owner)</pre>
+<h3>Hashed Time Lock Contract (HTLC)</h3>
+<p>Used for cross-chain atomic swaps. The recipient can claim with a preimage, or the sender reclaims after a timeout:</p>
+<pre>IF SIGNEDBY(0x<recipient>) AND SHA2(STATE(0)) EQ 0x<hash> THEN
+  RETURN TRUE
+ELSEIF @BLOCK GT 5000 AND SIGNEDBY(0x<sender>) THEN
+  RETURN TRUE
+ENDIF</pre>
+
+<h3>Exchange Contract</h3>
+<p>Trustless token swap — both parties must be present in the same transaction.</p>
+
+<h3>FlashCash</h3>
+<p>Instant micro-payments using pre-signed transactions.</p>
+
+<h3>MAST (Merkelized Abstract Syntax Trees)</h3>
+<p>Complex conditional logic where only the executed branch is revealed on-chain, keeping unused branches private.</p>
 
 <h2>Token Scripts</h2>
-<p>Every token has its own script (separate from the coin script). Both must return <code>TRUE</code> for a valid spend. Default token script is <code>RETURN TRUE</code>.</p>
+<p>Each token has a <strong>separate script</strong> that must also return TRUE when attempting to spend a UTxO. A token by default has <code>RETURN TRUE</code> as its script. This structure is added to any transaction using that token so every user can verify the token details.</p>
+<p><strong>Both the coin address script AND the token script must return TRUE</strong> for a valid spend.</p>
 <pre>tokencreate name:MYTOKEN amount:1000 decimals:4 script:"RETURN SIGNEDBY(0x<key>)"</pre>
-
-<div class="info">Scripts are case-sensitive. SHA2-256 is available for cross-chain hash locks. Contracts are inherently Layer 2 compatible.</div>
 
 </div></div>
 

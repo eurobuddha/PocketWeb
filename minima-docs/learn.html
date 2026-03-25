@@ -10,38 +10,33 @@
 <p style="color:var(--dm);margin-bottom:24px">The fundamental building blocks of the Minima protocol</p>
 
 <h2>UTxO Model</h2>
-<p>Minima uses the <strong>Unspent Transaction Output</strong> model, like Bitcoin. Each Transaction Output is a specific amount of Minima with a unique Coin ID. Coins must be spent in whole — change is returned as a new UTxO.</p>
-<p>The blockchain tracks all UTxOs in the network. The sum of all UTxO values equals at most 1 billion Minima. Transactions consume one or more UTxOs as inputs and create new UTxOs as outputs.</p>
-<p><strong>Example:</strong> Bob sends 30 Minima to Alice using a 50 Minima UTxO. Two new outputs are created: 30 to Alice and 20 returned to Bob as change.</p>
+<p>Minima uses the <strong>UTxO (Unspent Transaction Output) Model</strong>, like Bitcoin. A Transaction Output is a specific amount of Minima, identifiable through a unique ID called a Coin ID. Each Transaction Output can be considered analogous to a physical coin in that they can represent different amounts of currency and must be spent in whole.</p>
+<p>The Minima blockchain keeps track of the UTxO set on the network and who can spend them. The UTxO set circulating in the network fluctuates as users spend coins and create new ones as outputs from transactions. The sum of the value of all the UTxOs in the network will equal at most 1 billion Minima. One or more UTxOs are used as inputs into transactions and one or more new UTxOs will be created as outputs.</p>
+<p><strong>Example:</strong> Bob sends 30 Minima to Alice. A UTxO worth 50 Minima is used as an input and two new UTxOs are created as outputs — one worth 30 Minima which is sent to Alice and one of 20 Minima which is returned to Bob as change. Just like change is received when physical coins are spent.</p>
 
 <h2>Transaction Proof-of-Work (TxPoW)</h2>
-<p>Unlike Bitcoin where dedicated miners do all the work, Minima requires <strong>every user to mine their own transactions</strong>. This involves ~1 second of hashing before a transaction can be broadcast.</p>
-<ul>
-<li>There are <strong>no block rewards</strong> and no fee collection — the reward is simply being able to send your transaction</li>
-<li>Transactions are held in TxPoW units which propagate across the network</li>
-<li>A TxPoW unit becomes a block if it <strong>by chance</strong> meets the block difficulty target</li>
-<li>This ensures all users contribute to chain construction — not just industrial miners</li>
-</ul>
+<p>Minima requires users to provide work, in the form of hashing, to mine their own transactions — this is <strong>TxPoW</strong>.</p>
+<p>Once a user has contributed a small amount of work (~1 second of hashing) they have contributed enough for their transaction to be sent around the network.</p>
+<div class="info">There are no financial rewards for mining your transactions — no block rewards and no collection of fees. The reward is simply being able to broadcast a valid transaction to the network.</div>
+<p>Transactions are held in <strong>TxPoW units</strong>, which are propagated around the network and may or may not become blocks. TxPoW units contain a user's transaction and the hashes of other unconfirmed transactions known to the user's node. TxPoW units become blocks if they, by chance, meet the level of difficulty required to become a block.</p>
+<p>This ensures that <strong>all users can contribute</strong> to the construction of the chain — in contrast to Bitcoin where users rely on dedicated miners with specific hardware to provide PoW and propagate their transactions on their behalf.</p>
 
 <h2>The Burn</h2>
-<p>The Burn is a small fee incurred when sending transactions during high demand. This fee is <strong>permanently destroyed</strong> — removed from Minima's hard-capped supply, making Minima deflationary.</p>
-<p>The Burn serves three purposes:</p>
+<p>The Burn is a small cost (fee) which is incurred when sending transactions on the Minima network during times of high demand. This cost, denominated in Minima, is <strong>burned</strong> — permanently removed from Minima's hard-capped supply, making Minima a deflationary currency as the overall circulating supply slowly decreases over time.</p>
+<p>The Burn serves multiple purposes:</p>
 <ul>
-<li><strong>Incentive to propagate:</strong> All users benefit as coins become more scarce</li>
-<li><strong>Transaction ordering:</strong> Higher burn = higher priority (like gas fees)</li>
-<li><strong>Spam prevention:</strong> DoS attacks become expensive; the system self-regulates</li>
+<li><strong>A strong incentive to propagate and process a transaction:</strong> All users in the network benefit from the decrease in supply as remaining coins become more scarce and therefore more valuable.</li>
+<li><strong>A method for ordering transactions and regulating on-chain traffic:</strong> Similar to the fee model on other blockchains, the burn serves as a selection method for deciding which unconfirmed transactions will be added to a block. The higher the burn amount, the more likely a transaction is added to a block.</li>
+<li><strong>A mechanism for spam prevention:</strong> Making Denial-of-Service attacks expensive. The burn may be high during periods of heavy traffic or spam and, as it rises, traffic will decrease, self-regulating the system. The burn can be nil or very low when traffic is at manageable levels as the total amount is not important, only the relative burn amount in comparison to other transactions.</li>
 </ul>
 
-<h2>MMR Database</h2>
-<p>To keep the chain small enough for mobile, old blocks are pruned. But we still need to prove coins exist. The <strong>Merkle Mountain Range (MMR)</strong> solves this.</p>
-<ul>
-<li>Each coin is stored as a leaf node in a Merkle hash-sum tree</li>
-<li>A compact proof path from leaf to peak proves any coin exists, even after its block is pruned</li>
-<li>Users only keep MMR data for <strong>their own coins</strong> — tiny compared to the full network</li>
-<li>Everyone stores the MMR peaks and root to verify proofs from others</li>
-<li>When spending, users present an up-to-date proof that their coin is unspent</li>
-</ul>
-<div class="info">This is what makes Minima viable on mobile — you don't need hundreds of gigabytes of chain history.</div>
+<h2>MMR (Merkle Mountain Range) Database</h2>
+<p>To ensure that all users of the network can contribute to the construction of the chain, the chain needs to be <strong>small enough to run on a mobile device</strong>. This would not be possible if the entire history of the chain was required — that would be too much overhead for a mobile device. Therefore the blockchain must be constantly reduced in size. This is known as <strong>pruning</strong>.</p>
+<p>The impact of pruning means that the full transaction history of the chain is not kept, therefore a storage mechanism is required to keep track of coins that were created in blocks that have since been pruned. This is the role of the <strong>MMR database</strong>.</p>
+<p>Users must keep track of their spent and unspent coins independently of the chain. Each coin is stored as a leaf node in a tree structure (a Merkle hash-sum tree). Then, using a collection of nodes in this tree, a <strong>proof path</strong> can be created from the coin to a peak of the tree, proving the existence of a coin even if the block that created it has been pruned.</p>
+<p>All users only keep the parts of the MMR tree required to create the proofs for <strong>their own coins</strong> — a tiny amount of data compared to all the coins in the network. Users are also required to store the peaks and the root of the tree so that they can validate a Coin Proof presented to them by another user.</p>
+<p>When a user wishes to spend their coins, they must provide the up-to-date, valid proof that it is unspent. Any other node in the network can verify this proof by calculating the peaks and root hash of the MMR tree from the proof and ensuring it matches their own values.</p>
+<div class="info">This is what makes Minima viable on mobile — you don't need hundreds of gigabytes of chain history. Your node only stores proofs for your own coins.</div>
 
 </div></div>
 

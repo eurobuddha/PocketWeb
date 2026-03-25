@@ -7,56 +7,71 @@
 
 <div class="sec"><div class="prose">
 <h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Tokens & Tokenomics</h1>
-<p style="color:var(--dm);margin-bottom:24px">Minima's coin supply and native token system</p>
+<p style="color:var(--dm);margin-bottom:24px">Minima's coin supply, custom tokens, and NFTs</p>
 
 <h2>Tokenomics</h2>
-<p><strong>1 billion</strong> Minima coins — hard-capped, deflationary via The Burn. All coins were minted at the Token Generation Event (Q1 2023).</p>
+<p>Minima has a <strong>hard-capped supply of 1 billion coins</strong> that will slowly reduce over time as a result of The Burn. All coins were minted at the Token Generation Event (TGE) in Q1 2023.</p>
+<p>100% of native Minima (1,000,000,000 $MINIMA coins) were minted at the TGE. 12.5% of these coins are wrapped on the Ethereum blockchain as ERC-20 tokens (125,000,000 $WMINIMA coins), enabling trading on exchanges ahead of native CEX integration. Wrapped Minima can always be exchanged 1:1 with native Minima via the Minima Treasury.</p>
 
+<h3>Allocation</h3>
 <table>
-<tr><th>Category</th><th>Allocation</th></tr>
-<tr><td>Ecosystem Growth</td><td>34.6%</td></tr>
-<tr><td>Team & Advisors</td><td>15.7%</td></tr>
-<tr><td>Public Rewards</td><td>15.0%</td></tr>
-<tr><td>Seed Round</td><td>14.1%</td></tr>
-<tr><td>Private Round 1</td><td>10.7%</td></tr>
-<tr><td>Private Seed</td><td>7.5%</td></tr>
-<tr><td>Private Round 2</td><td>1.2%</td></tr>
-<tr><td>TGE / ICO</td><td>1.2%</td></tr>
+<tr><th>Category</th><th>% of Total</th><th>Details</th></tr>
+<tr><td>Ecosystem Growth</td><td>34.6%</td><td>Marketing, business development, grants, network incentives. Linear unlock over 72 months.</td></tr>
+<tr><td>Team & Advisors</td><td>15.7%</td><td>3-month cliff, then linear over 36 months.</td></tr>
+<tr><td>Public Rewards</td><td>15.0%</td><td>Node incentive programme. 50% at TGE, 50% over 72 months.</td></tr>
+<tr><td>Seed Round</td><td>14.1%</td><td>180 participants in 2019 at $0.02. 25% TGE, 5%/month.</td></tr>
+<tr><td>Private Round 1</td><td>10.7%</td><td>2021 at $0.06. 18% TGE, then graduated monthly unlock.</td></tr>
+<tr><td>Private Seed</td><td>7.5%</td><td>2020 at $0.01. 10% TGE, linear over 27 months.</td></tr>
+<tr><td>Private Round 2</td><td>1.2%</td><td>2022 at $0.20. 50% TGE, 5%/month.</td></tr>
+<tr><td>TGE / ICO</td><td>1.2%</td><td>March 2023 at $0.21. 100% at TGE.</td></tr>
 </table>
 
-<p>12.5% (125M) wrapped as ERC-20 <strong>$WMINIMA</strong> on Ethereum. Full supply unlocks over 6 years. Circulating supply was reduced 55% vs. pre-TGE plan at 18 months.</p>
+<h3>Circulating Supply</h3>
+<p>Post-TGE tokenomics significantly reduced circulating supply — <strong>55% reduction</strong> at 18 months vs. the original plan. Full supply unlocks over 6 years post-TGE. At 2 years: 43% circulating. At 3 years: 62%. At 6 years: 100%.</p>
 
 <h3>Maximize</h3>
-<p>A non-custodial MiniDapp that lets users earn yield on native Minima by locking coins for set periods — reducing circulating supply while rewarding long-term holders.</p>
+<p>Users can earn yield on native Minima via the <strong>Maximize MiniDapp</strong> — a fully collateralised, non-custodial lockup. Yield is paid in native Minima to participants who lock their holdings for set periods, encouraging long-term node running and reducing circulating supply.</p>
 
-<h2>Coloured Coins</h2>
-<p>Custom tokens and NFTs are supported <strong>natively</strong> on Minima — no smart contract deployment needed.</p>
+<h3>Grants & Bounties</h3>
+<p>Grants are available for building novel use cases on Minima, awarded to developers and entrepreneurs. Bug bounties are available for critical bugs reported via Discord.</p>
 
-<h3>How It Works</h3>
-<p>A tiny fraction of Minima is "coloured" to represent a new token. The coloured amount determines the total supply based on a scale factor:</p>
+<h2>Coin Utility</h2>
+<p>The Minima coin is required to use the network in a purposeful way. Main drivers:</p>
 <ul>
-<li>Minima uses 44 decimal places internally</li>
-<li>Colouring 1&times;10<sup>-33</sup> Minima creates 1,000 tokens with 8 decimal places</li>
-<li>Each token gets a globally unique <strong>TokenID</strong> (hash)</li>
+<li><strong>Store of Value:</strong> Hard-capped, deflationary via The Burn, PoW-secured. Cannot be inflated like fiat.</li>
+<li><strong>Medium of Exchange:</strong> All users running nodes can transact directly, peer-to-peer, anywhere, anytime.</li>
+<li><strong>The Burn:</strong> Transaction fees are permanently destroyed, making the currency more scarce over time.</li>
+<li><strong>Tokenisation:</strong> Minima is required to create custom tokens and NFTs, which inherit the same security as the base chain.</li>
+<li><strong>MiniDapp Usage:</strong> Payments, DeFi, DEXs, DAOs, gaming, voting, social media, funding — unlimited applications.</li>
+<li><strong>Partnerships:</strong> Enterprise and DePIN integrations increase credibility and demand for the network.</li>
 </ul>
 
-<h3>Token Properties</h3>
+<h2>Coloured Coins</h2>
+<p>Minima is the native coin for the Minima blockchain. Each UTxO is defined as a coin and therefore can be worth any amount. Minima supports <strong>custom tokens (including NFTs) natively</strong>. Tokens are "Coloured Coins" — tiny fractions of Minima which represent the supply of a custom token or NFT.</p>
+
+<h3>Token Attributes</h3>
 <table>
-<tr><th>Property</th><th>Description</th></tr>
-<tr><td>TokenID</td><td>Unique hash identifier</td></tr>
-<tr><td>Name</td><td>String or JSON metadata (name, description, icon URL)</td></tr>
-<tr><td>Total Supply</td><td>Set at creation, immutable</td></tr>
-<tr><td>Decimals</td><td>0 for NFTs (indivisible), up to 44</td></tr>
-<tr><td>Script</td><td>Optional spending rules (default: RETURN TRUE)</td></tr>
+<tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>TokenID</td><td>Created by hashing the CoinID and total amount. Globally unique.</td></tr>
+<tr><td>Name</td><td>A string or full JSON with name, description, icon URL, etc.</td></tr>
+<tr><td>CoinID</td><td>The CoinID used when creating the token initially.</td></tr>
+<tr><td>Total</td><td>The total number of these tokens. Immutable after creation.</td></tr>
+<tr><td>Decimals</td><td>Number of decimal places. 0 for NFTs (indivisible).</td></tr>
+<tr><td>Script</td><td>Optional token script. Default is <code>RETURN TRUE</code>.</td></tr>
+<tr><td>Total Amount</td><td>The total Minima coloured to represent this token.</td></tr>
+<tr><td>Scale</td><td>The scale factor between Minima amount and token supply.</td></tr>
 </table>
 
+<p>Since Minima uses <strong>44 decimal places</strong>, if you colour 1×10<sup>-33</sup> Minima, that creates 1,000 tokens with 8 decimal places (scale = 36).</p>
+
 <h3>NFTs</h3>
-<p>An NFT is simply a custom token with <strong>0 decimal places</strong> — it's indivisible and must be spent whole, exactly like a physical collectible.</p>
+<p>NFTs are simply custom tokens with <strong>0 decimal places</strong> — they can only be spent whole, exactly like a physical collectible. They inherit the full security of the Minima blockchain.</p>
 
 <h3>Creating Tokens</h3>
 <pre>tokencreate name:MYTOKEN amount:1000 decimals:4</pre>
 <p>With JSON metadata:</p>
-<pre>tokencreate name:{"name":"MyNFT","description":"A unique item"} amount:1 decimals:0</pre>
+<pre>tokencreate name:{"name":"MyNFT","description":"A unique item","icon":"https://..."} amount:1 decimals:0</pre>
+<div class="info">Custom tokens can be transferred with the same <code>send</code> command as Minima — just add <code>tokenid:0xFF...</code> to specify the token.</div>
 
 </div></div>
 

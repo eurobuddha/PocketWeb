@@ -9,45 +9,56 @@
 <h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">The Blockchain</h1>
 <p style="color:var(--dm);margin-bottom:24px">How Minima structures its chain for mobile-scale pruning</p>
 
-<h2>Structure</h2>
-<p>The Minima blockchain has two parts:</p>
+<h2>Overview</h2>
+<p>The Minima blockchain is structured to be compact and "lightweight" — it is heavily pruned to meet the requirement of running on mobile devices. The chain itself is a TxPoW Tree containing TxBlocks.</p>
+<p>The blockchain has two parts:</p>
 <ul>
-<li><strong>TxPoW Tree</strong> — the most recent ~1024 blocks, kept in full</li>
-<li><strong>Cascading Chain</strong> — an unbroken chain of "Super Block" headers proving cumulative Proof-of-Work without storing every block</li>
+<li><strong>TxPoW Tree</strong> — the main blockchain consisting of the most recent TxBlocks (approximately 1024 blocks kept in full)</li>
+<li><strong>Cascading Chain</strong> — an unbroken chain of the headers of "Super Blocks", designed to record and prove, in an immutable way, the total cumulative Proof-of-Work input into the network without having to keep a record of all individual blocks</li>
 </ul>
-<p>The root of the TxPoW Tree connects to the tip of the Cascading Chain.</p>
+<p>The root of the TxPoW Tree always remains connected to the tip of the Cascading Chain. Blocks are added to the Cascading Chain on a periodic basis.</p>
+
+<h2>TxPoW Tree</h2>
+<p>The TxPoW tree is the main blockchain with a <strong>root</strong> (start), <strong>tip</strong> (end), <strong>blocks</strong> (tree nodes) and <strong>length</strong> (number of blocks).</p>
+<p>Branching can occur if multiple blocks with the same height are found simultaneously. Branching is a natural occurrence due to network latency and will resolve over time as a heavier branch continues to be built on.</p>
+<p>Each TxPoW Tree Node contains: the TxBlock itself, an MMR Set (constructed from the TxBlock), an array of all coins (spent and unspent), and an array of MMR entry numbers for coins relevant to the local user.</p>
 
 <h2>The Cascading Chain</h2>
-<p>This is Minima's solution to <strong>proving chain weight without keeping all blocks</strong>. Key properties:</p>
+<p>The Cascading Chain records and proves the total cumulative Proof-of-Work input into the network without keeping all individual blocks. By identifying multiple levels of difficulty above the required block difficulty, "Super Blocks" emerge which provide orders of magnitude more PoW than typical blocks.</p>
+
+<h3>Key Properties</h3>
 <ul>
-<li><strong>32 levels</strong> (0-31), maximum 128 blocks per level</li>
-<li>Each level is <strong>2x harder</strong> than the previous — grows logarithmically</li>
-<li>A "Super Block" is any block that by chance exceeds the difficulty of its level</li>
-<li>Block weight at level L = base_weight &times; 2<sup>L</sup></li>
+<li><strong>32 levels</strong> (0-31), with a maximum of <strong>128 blocks at each level</strong></li>
+<li>Grows <strong>logarithmically</strong> — each level is twice as difficult as the previous</li>
+<li>Over time, the cumulative weight recorded tends towards what would have existed had no blocks been pruned</li>
+<li>The chain is <strong>unbroken</strong> — each block references its previous super parent block</li>
+<li>Updated every <strong>100 block intervals</strong></li>
 </ul>
 
-<h3>Expected Block Times</h3>
+<h3>Super Block Times</h3>
 <table>
-<tr><th>Level</th><th>Difficulty</th><th>Avg Time</th></tr>
-<tr><td>0</td><td>1x (block difficulty)</td><td>50 seconds</td></tr>
-<tr><td>1</td><td>2x</td><td>100 seconds</td></tr>
-<tr><td>2</td><td>4x</td><td>~3.3 minutes</td></tr>
-<tr><td>4</td><td>16x</td><td>~13 minutes</td></tr>
-<tr><td>10</td><td>1,024x</td><td>~14 hours</td></tr>
-<tr><td>20</td><td>~1M x</td><td>~1.6 years</td></tr>
+<tr><th>Level</th><th>Difficulty vs L0</th><th>Average Time</th><th>Equivalent L0 Blocks</th></tr>
+<tr><td>0</td><td>1x</td><td>50 seconds</td><td>1</td></tr>
+<tr><td>1</td><td>2x</td><td>100 seconds</td><td>2</td></tr>
+<tr><td>2</td><td>4x</td><td>200 seconds</td><td>4</td></tr>
+<tr><td>4</td><td>16x</td><td>~13 minutes</td><td>16</td></tr>
+<tr><td>10</td><td>1,024x</td><td>~14 hours</td><td>1,024</td></tr>
+<tr><td>20</td><td>~1,048,576x</td><td>~1.6 years</td><td>1,048,576</td></tr>
 </table>
-
-<h2>Cascade Updates</h2>
-<p>Every 100 blocks, the cascade is updated:</p>
-<ol>
-<li>The first 100 blocks from the main chain are added to the cascade</li>
-<li>Working backwards, blocks that don't meet the next level's difficulty are pruned</li>
-<li>CoinProofs for unspent coins are preserved in the new root's MMR Set</li>
-<li>The remaining ~1024 blocks stay unpruned on the main chain</li>
-</ol>
+<p>Block weight at level L = base weight × 2<sup>L</sup>. One Level 4 Super Block provides the PoW equivalent of sixteen Level 0 blocks.</p>
 
 <h2>Super Parents</h2>
-<p>Every block header contains references to its parent at <strong>every existing Super level</strong> in the cascade. This creates an immutable link structure connecting all Super Blocks across all levels — ensuring the cascade is unbroken and independently verifiable.</p>
+<p>Every block header contains references to a parent at <strong>every existing Super level</strong> in the cascade. When there are multiple blocks at a Super level, a new block only references the most recent one. This creates an immutable link structure ensuring the cascade is unbroken and independently verifiable.</p>
+
+<h2>Cascade Update Process</h2>
+<p>Once the main chain reaches 1124 blocks (1024 + 100), the cascading process begins:</p>
+<ol>
+<li><strong>Level 0:</strong> The first 100 blocks from the main chain are added to Level 0 in the new cascade. 28 Level 0 blocks from the previous cascade fill the remaining 128 spaces.</li>
+<li><strong>Level 1:</strong> After 128 blocks fill Level 0, remaining blocks are only kept if they meet Level 1 difficulty or above.</li>
+<li><strong>Level 2+:</strong> The process continues — each level filters for progressively harder Super Blocks.</li>
+<li>The 101st block becomes the new root of the TxPoW Tree. Before pruning, its MMR Set is updated with CoinProofs for all unspent coins from the pruned blocks.</li>
+</ol>
+<p>The result: a new Cascading Chain plus the most recent <strong>1024 blocks kept in full</strong> on the main chain. CoinProofs are never lost.</p>
 
 </div></div>
 
