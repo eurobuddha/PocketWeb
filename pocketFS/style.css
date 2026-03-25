@@ -6,21 +6,59 @@
 body {
 	font-family: Manrope, system-ui, sans-serif;
 	margin: 0;
-	padding: 16px;
+	padding: 0;
 	background: #111113;
 	color: #e0e0e0;
 }
 
 .titlebar {
 	width: 100%;
-	max-width: 840px;
-	min-width: 360px;
-	height: 50px;
+	max-width: none;
+	min-width: 0;
+	height: auto;
 	text-align: left;
-	border: 1px solid #27272a;
-	border-radius: 10px;
+	border: none;
+	border-bottom: 1px solid #27272a;
+	border-radius: 0;
 	background: #18181b;
 }
+
+.topnav-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+	max-width: 900px;
+	margin: 0 auto;
+}
+.topnav-brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.topnav-brand img { border-radius: 6px; }
+.topnav-brand span { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; color: #f0f0f0; }
+.topnav-links { display: flex; gap: 4px; }
+.topnav-links .ui-button,
+.topnav-links .ui-button.ui-button-icon-only {
+	background: transparent !important;
+	border: none !important;
+	border-radius: 6px !important;
+	color: #a0a0a0 !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	padding: 6px 14px !important;
+	box-shadow: none !important;
+	width: auto !important;
+	text-indent: 0 !important;
+	white-space: nowrap !important;
+}
+.topnav-links .ui-button:hover { background: #27272a !important; color: #e0e0e0 !important; }
+.topnav-links .ui-button .ui-icon,
+.topnav-links .ui-button .ui-button-icon { display: none !important; }
+
+/* Content padding since body padding is 0 for full-width titlebar */
+center { padding: 16px; }
 
 .filepacketview {
 	width: 100%;
