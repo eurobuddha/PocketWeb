@@ -23,12 +23,37 @@
 <a class="card" href="usecases.html"><h3>Use Cases</h3><p>Enterprise, DePIN, developer, and individual applications of Minima</p></a>
 <a class="card" href="faq.html"><h3>FAQ</h3><p>Common questions about building and running on Minima</p></a>
 </div>
-<div class="info">For core protocol documentation (UTxO, TxPoW, Cascading Chain, Tokenomics), search PocketFS for <strong>"Minima Docs"</strong></div>
+<div class="info" id="sister-box">
+<strong>📘 Core Protocol Docs</strong> — UTxO, TxPoW, Cascading Chain, Tokenomics, Keys, Network layers<br><br>
+<span id="sister-saved" style="display:none"><a href="#" id="sister-go" style="font-size:13px;font-weight:600">Jump to Core Docs →</a></span>
+<span id="sister-input"><input id="sister-addr" class="searchfield" style="width:70%;font-size:12px" placeholder="Paste Mx address of Minima Docs site">
+<button onclick="saveSister()" class="btn btn-blue" style="font-size:11px;padding:5px 12px;margin-left:4px">Save &amp; Go</button></span>
+</div>
 </div>
 
 <div class="footer"><a href="https://minima.global" target="_blank">Minima</a><a href="https://docs.minima.global" target="_blank">Full Docs</a><a href="https://github.com/minima-global" target="_blank">GitHub</a><br><br>Minima Dev Documentation &middot; Published on PocketFS</div>
 
 <script type="text/javascript">
+function jump(domain){ miniweb_JumpToURL("miniweb://"+domain); }
+
+function saveSister(){
+	var addr = document.getElementById("sister-addr").value.trim();
+	if(addr !== ""){
+		MDS.keypair.set("devdocs_sister", addr, function(){ jump(addr); });
+	}
+}
+
 miniweb_Init();
-MDS.init(function(msg){if(msg.event==="inited"){MDS.cmd("status",function(r){try{var c=r.response;document.getElementById("s-block").textContent=c.chain?c.chain.block:"—";document.getElementById("s-ver").textContent=c.version||"—"}catch(e){}});}});
+MDS.init(function(msg){
+	if(msg.event==="inited"){
+		MDS.cmd("status",function(r){try{var c=r.response;document.getElementById("s-block").textContent=c.chain?c.chain.block:"—";document.getElementById("s-ver").textContent=c.version||"—"}catch(e){}});
+		MDS.keypair.get("devdocs_sister",function(res){
+			if(res.status && res.value){
+				document.getElementById("sister-saved").style.display="inline";
+				document.getElementById("sister-input").style.display="none";
+				document.getElementById("sister-go").onclick=function(){jump(res.value);return false;};
+			}
+		});
+	}
+});
 </script></body></html>
