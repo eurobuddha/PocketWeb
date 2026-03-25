@@ -19,7 +19,40 @@
 <div class="info"><strong>Huawei/Redmi/ZTE:</strong> Disable "Manage Automatically" in battery settings. <strong>OPPO:</strong> Keep background apps under 5.</div>
 <p><strong>Desktop Connect:</strong> Access your phone node from a computer on the same WiFi via Settings → Desktop Connect.</p>
 
-<h2>Mac</h2>
+<h2>Java JAR (Easiest Desktop Method)</h2>
+<p>The simplest way to run Minima on any desktop. Just need <strong>Java</strong> installed and the <code>minima.jar</code> file.</p>
+
+<h3>Mac / Linux (Terminal)</h3>
+<pre>java -jar minima.jar -data ~/.minima -mdsenable -mdspassword YOUR_PASSWORD</pre>
+
+<h3>Windows (Command Prompt)</h3>
+<pre>java -jar minima.jar -data %USERPROFILE%\.minima -mdsenable -mdspassword YOUR_PASSWORD</pre>
+
+<p>Then connect to the network:</p>
+<pre>peers action:addpeers peerslist:megammr.minima.global:9001</pre>
+
+<p>Access the MiniDapp Hub at <code>https://127.0.0.1:9003</code></p>
+
+<h3>Common Startup Parameters</h3>
+<table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-data [path]</code></td><td>Where to store node data</td></tr>
+<tr><td><code>-mdsenable</code></td><td>Enable the MiniDapp System</td></tr>
+<tr><td><code>-mdspassword [pass]</code></td><td>Set the MDS login password</td></tr>
+<tr><td><code>-rpcenable</code></td><td>Enable RPC interface on port 9002</td></tr>
+<tr><td><code>-clean</code></td><td>Wipe data and start fresh</td></tr>
+<tr><td><code>-port [num]</code></td><td>Set base port (default 9001)</td></tr>
+<tr><td><code>-connect [ip:port]</code></td><td>Connect directly to a specific peer</td></tr>
+<tr><td><code>-archive</code></td><td>Run as an archive node (keep full history)</td></tr>
+</table>
+
+<h3>Running in Background</h3>
+<p><strong>Mac/Linux:</strong></p>
+<pre>nohup java -jar minima.jar -data ~/.minima -mdsenable -mdspassword YOUR_PASSWORD &amp;</pre>
+<p><strong>Windows:</strong> Use <code>javaw</code> instead of <code>java</code> to run without a console window:</p>
+<pre>javaw -jar minima.jar -data %USERPROFILE%\.minima -mdsenable -mdspassword YOUR_PASSWORD</pre>
+
+<h2>Mac (Open Web Start)</h2>
 <ol>
 <li>Install <strong>Open Web Start</strong> (Intel: macos-x64, M1/M2: macos-aarch64)</li>
 <li>Download JNLP file from <strong>spartacusrex.com</strong></li>
@@ -44,16 +77,6 @@
   --interval 28800 minima</pre>
 
 <p>Login at <code>https://localhost:9003</code> with your password.</p>
-
-<h2>CLI (Any Platform)</h2>
-<p>Requires Java installed:</p>
-<pre>java -jar minima.jar \
-  -data .minima \
-  -mdsenable \
-  -mdspassword YOUR_PASSWORD</pre>
-
-<p>Connect to the network:</p>
-<pre>peers action:addpeers peerslist:megammr.minima.global:9001</pre>
 
 <h2>First Steps After Install</h2>
 <ol>
