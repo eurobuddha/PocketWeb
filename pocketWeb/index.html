@@ -30,46 +30,41 @@
 
 <body>
 
-<center>
-
-	<div class="titlebar" onclick="showTitleOnAndroid();">
-		<table width=100% border=0>
-			<tr>
-				<td><img height=45 src="browser.png"></td>
-				<td style="text-align:left;font-size:26px;width:100%">&nbsp;<b>MiniWEB</b></td>
-				
-				<td class='topicdate' nowrap>
-					<button id="button-help">Help</button>
-					<button id="button-mysite">My Site</button>
-					<button id="button-dev">Developer Mode</button>
-					<button id="button-home">Home</button>
-				</td>
-			</tr>
-		</table>
+<!-- ═══ TOP NAV ═══ -->
+<div class="titlebar" onclick="showTitleOnAndroid();">
+	<div class="topnav-inner">
+		<div class="topnav-brand">
+			<img height=28 src="browser.png">
+			<span>pocketWeb</span>
+		</div>
+		<div class="topnav-links">
+			<button id="button-home">Home</button>
+			<button id="button-mysite">My Site</button>
+			<button id="button-dev">Dev</button>
+			<button id="button-help">Help</button>
+		</div>
 	</div>
-	<br>
-	
-	<div class=blueborder style="text-align:center;">
-	
-	<br><br>
-	Jump to a bookmark :<br><br>
-	<select id=bookmarkbar class="searchfield" style="width:300" onchange="bookmkchange();"></select>
-	
-	<br><br><br><br>
-	Search through your files..
-	<br><br>
+</div>
 
-	<input class=searchfield type="text" id="searchfield" size=44><br>
-	<br>
-	<button id=searchweb onclick="search();">Search</button><br>
-	<br>
-	
+<!-- ═══ HERO + SEARCH ═══ -->
+<div class="hero">
+	<div class="hero-title">pocketWeb</div>
+	<div class="hero-sub">Browse the decentralized web</div>
+	<div class="search-wrap">
+		<input class=searchfield type="text" id="searchfield" placeholder="Enter Mx address or search MiniFS...">
+		<button id=searchweb onclick="search();">Search</button>
 	</div>
-	<br>
-	
-	<div id=mywebpackets></div>
-	
-</center>
+</div>
+
+<!-- ═══ BOOKMARKS ═══ -->
+<div class="bookmarks-section">
+	<div class="section-label">Bookmarks</div>
+	<div id="bookmarkgrid" class="bookmarks-grid"></div>
+	<select id=bookmarkbar class="searchfield" style="display:none" onchange="bookmkchange();"></select>
+</div>
+
+<!-- ═══ SEARCH RESULTS ═══ -->
+<div id=mywebpackets class="results-section"></div>
 
 <script type="text/javascript">
 	
@@ -94,30 +89,47 @@
 		location.href="browse.html?uid="+MDS.minidappuid+"&mxsite="+mxsite;
 	}
 	
+	var TILE_COLORS = ["#5b8def","#e05d44","#48b884","#a855f7","#f59e0b","#ec4899","#14b8a6","#f97316"];
+
 	function loadBookmarks(){
-		
-		//Clear thge bookmarks
+
+		//Clear the bookmarks
 		bookmarkbar.innerHTML = "";
-		
+		bookmarkgrid.innerHTML = "";
+
 		//Load from SQL
 		getAllBookmarks(function(rows){
-			
+
 			var opt 		= document.createElement("option");
 			opt.value		= "";
-		   	opt.innerHTML 	= "Choose : "; // whatever property it has
-		   	
-		   // then append it to the select element
+		   	opt.innerHTML 	= "Choose : ";
+
 		   bookmarkbar.appendChild(opt);
-		   	
-			//Now add to the select
+
 			var len = rows.length;
 			for(var i=0;i<len;i++){
 				var opt 		= document.createElement("option");
 				opt.value		= rows[i].BOOKMARK;
-			   	opt.innerHTML 	= rows[i].NAME; // whatever property it has
-	
-			   // then append it to the select element
-			   bookmarkbar.appendChild(opt);	
+			   	opt.innerHTML 	= rows[i].NAME;
+			   bookmarkbar.appendChild(opt);
+
+			   //Also create a visual tile
+			   var name  = rows[i].NAME;
+			   var value = rows[i].BOOKMARK;
+			   var color = TILE_COLORS[i % TILE_COLORS.length];
+			   var letter = name.charAt(0).toUpperCase();
+
+			   var tile = document.createElement("a");
+			   tile.className = "bookmark-tile";
+			   tile.setAttribute("data-bookmark", value);
+			   tile.onclick = (function(v){ return function(){ openBrowser(v); }; })(value);
+			   tile.innerHTML = '<div class="tile-icon" style="background:'+color+'">'+letter+'</div>'
+			                  + '<div class="tile-label">'+name+'</div>';
+			   bookmarkgrid.appendChild(tile);
+			}
+
+			if(len == 0){
+				bookmarkgrid.innerHTML = '<div style="color:#52525b;font-size:13px;">No bookmarks yet</div>';
 			}
 		});
 	}
@@ -161,7 +173,7 @@
 				api.data 	= filename;
 				
 				//Send it to MiniWEB
-				MDS.api.call("minifs",JSON.stringify(api),function(resp){
+				MDS.api.call("pocketfs",JSON.stringify(api),function(resp){
 					if(resp.status){
 						
 						//What was sent..
@@ -224,7 +236,7 @@
 			api.data 	= text;
 			
 			//Send it to MiniWEB
-			MDS.api.call("minifs",JSON.stringify(api),function(resp){
+			MDS.api.call("pocketfs",JSON.stringify(api),function(resp){
 				
 				//Call wqas replied to ?
 				if(resp.status){
@@ -286,7 +298,7 @@
 		
 		}else if(msg.event == "MDSCOMMS"){
 			
-			if(msg.data.public && msg.data.minidapp.toLowerCase() == "minifs"){
+			if(msg.data.public && msg.data.minidapp.toLowerCase() == "pocketfs"){
 				MDS.log(JSON.stringify(msg));
 				
 				try{
