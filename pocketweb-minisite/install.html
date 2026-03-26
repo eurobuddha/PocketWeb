@@ -1,0 +1,121 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install — PocketWeb</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>miniweb_Init();</script>
+
+<nav class="nav">
+  <div class="nav-brand"><span>🕸️</span> <span>PocketWeb</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="install.html" class="active">Install</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+</nav>
+
+<section class="hero" style="padding-bottom:32px;">
+  <h1 style="font-size:32px;">Install Guide</h1>
+  <p>Get PocketFS + PocketWeb running on your Minima node.</p>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Step 1: Run a Minima Node</h2>
+  <p class="section-sub">You need a Minima node first. Choose your platform.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">&#128241;</div>
+      <div>
+        <h3>Mobile (Android)</h3>
+        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android" target="_blank">Google Play Store</a> (or APK from <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub</a>). Open it — your node starts automatically and runs in the background. Allow battery optimisation exemption for reliable operation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">&#128187;</div>
+      <div>
+        <h3>Desktop (Command Line)</h3>
+
+        <p><strong>Pre-requisites:</strong></p>
+        <p>1. Check you have Java installed:</p>
+        <div class="code-block">java -version</div>
+        <p style="font-size:13px; color:var(--dim);">If not installed, download from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.</p>
+
+        <p style="margin-top:12px;">2. Download the latest <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
+
+        <p style="margin-top:16px;"><strong>Start your node:</strong></p>
+        <p>Create a folder, copy minima.jar into it, open your terminal, <code>cd</code> into that folder, and run:</p>
+        <div class="code-block">java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD</div>
+        <p style="font-size:13px; color:var(--dim);">Replace <strong>INSERTPASSWORD</strong> with your own password.</p>
+
+        <p style="margin-top:12px;">Login to your MiniDapp Hub at <strong>https://127.0.0.1:9003</strong> using the password you set.</p>
+        <p style="margin-top:8px; font-size:13px; color:var(--dim);"><em>Note: Closing the terminal stops Minima. Create a startup script to run it automatically.</em></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Secure Your Node</h3>
+  <p>After starting your node, <strong>immediately</strong> write down your seed phrase:</p>
+  <div class="steps" style="margin-top:12px;">
+    <div class="step"><div class="step-num">1</div><div><p>Open the <strong>Security</strong> MiniDapp → <strong>Manage Seed Phrase</strong> → <strong>Show Seed Phrase</strong></p></div></div>
+    <div class="step"><div class="step-num">2</div><div><p>Write it on paper or a metal plate. Make 2 copies. Store in separate locations. <strong>Never</strong> screenshot or copy/paste on a connected device.</p></div></div>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Using the MiniDapp Hub</h3>
+  <p>All MiniDapps start with <strong>READ</strong> permission — transactions must be approved via the Pending MiniDapp. To give a trusted MiniDapp <strong>WRITE</strong> access: right-click (or long press on mobile) → <strong>Write mode</strong> → <strong>Confirm</strong>.</p>
+  <p style="font-size:13px; color:var(--dim); margin-top:6px;"><em>Lock your wallet with a password before giving any MiniDapp WRITE permission.</em></p>
+</section>
+
+<section class="section-alt">
+  <div class="section-inner" style="padding:56px 20px;">
+    <h2 class="section-title">Step 2: Download the MiniDapps</h2>
+    <p class="section-sub">Grab both ZIP files from the latest release.</p>
+    <div class="btn-row" style="margin-bottom:20px;">
+      <a href="https://github.com/eurobuddha/PocketWeb/releases/tag/v0.3.0" class="btn btn-gold">Download from GitHub</a>
+    </div>
+    <p style="font-size:13px; color:var(--dim); text-align:center;">
+      You need two files:<br>
+      <strong style="color:var(--heading);">pocketFS-0.3.0.mds.zip</strong> &amp;
+      <strong style="color:var(--heading);">pocketWeb-0.3.0.mds.zip</strong>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Step 3: Install on Your Node</h2>
+  <p class="section-sub">Install both MiniDapps via the MiniDapp Hub.</p>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><h3>Open the MiniDapp Hub</h3><p><strong>Mobile:</strong> Open the Minima app and tap the MiniDapp hub icon.<br><strong>Desktop:</strong> Go to <strong>https://127.0.0.1:9003</strong> in your browser.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><h3>Install PocketFS first</h3><p>Tap the <strong>+</strong> button, select <strong>pocketFS-0.3.0.mds.zip</strong>, and confirm. PocketFS must be installed first — PocketWeb depends on it.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div><h3>Install PocketWeb</h3><p>Tap <strong>+</strong> again, select <strong>pocketWeb-0.3.0.mds.zip</strong>, and confirm. You're done!</p></div></div>
+    <div class="step"><div class="step-num">4</div><div><h3>Start browsing</h3><p>Open PocketWeb from the MiniDapp Hub. Search for MiniSites or use the built-in Site Generator to publish your own.</p></div></div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Need help?</h2>
+  <p>Check the FAQ or open an issue on GitHub.</p>
+  <div class="btn-row">
+    <a href="faq.html" class="btn btn-gold">FAQ</a>
+    <a href="https://github.com/eurobuddha/PocketWeb/issues" class="btn btn-outline">GitHub Issues</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <a href="https://minima.global">Minima.global</a>
+  <a href="https://github.com/eurobuddha/PocketWeb">GitHub</a>
+  <a href="faq.html">FAQ</a>
+  <br><br>PocketWeb &copy; 2025 &middot; Built on Minima
+</footer>
+
+<script>MDS.init(function(msg){});</script>
+</body>
+</html>

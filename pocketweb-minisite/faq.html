@@ -1,0 +1,89 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — PocketWeb</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>miniweb_Init();</script>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <svg viewBox="0 0 512 512" fill="none"><rect width="512" height="512" rx="80" fill="white"/><path d="M 90 80 L 422 80 Q 435 80 435 93 L 435 300 Q 435 400 256 440 Q 77 400 77 300 L 77 93 Q 77 80 90 80 Z" stroke="black" stroke-width="22" fill="none" stroke-linejoin="round"/><line x1="77" y1="145" x2="435" y2="145" stroke="black" stroke-width="22"/><line x1="230" y1="112" x2="282" y2="112" stroke="black" stroke-width="14" stroke-linecap="round"/></svg>
+    <span>PocketWeb</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="install.html">Install</a>
+    <a href="faq.html" class="active">FAQ</a>
+  </div>
+</nav>
+
+<section class="hero" style="padding-bottom:32px;">
+  <h1 style="font-size:32px;">FAQ</h1>
+  <p>Everything you need to know about the Linternet.</p>
+</section>
+
+<section class="section">
+  <h2 class="section-title">General</h2>
+  <p class="section-sub">The basics.</p>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is PocketWeb? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">PocketWeb is a decentralized web browser that runs as a MiniDapp on the Minima blockchain. It lets you browse MiniSites — small websites published on-chain via PocketFS. No servers, no hosting, no gatekeepers.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is PocketFS? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">PocketFS is the storage layer. It publishes small ZIP files (up to 50 KB) as transactions on the Minima blockchain. Each file gets a permanent Mx address that only the owner can update. PocketWeb reads from PocketFS.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is Minima? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Minima is a Layer-1 blockchain designed to run on every device — phones, laptops, IoT. Every user runs a complete node, making it the most decentralized blockchain in existence. PocketWeb and PocketFS are MiniDapps that run on your Minima node.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why "the Linternet"? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Pocket lint — it's always there, it's everywhere, and you can't get rid of it. Just like content on PocketWeb. Once published on the blockchain, it's permanent. The Linternet is the web that sticks around. No fluff.</div></div></div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <h2 class="section-title">Publishing</h2>
+  <p class="section-sub">Creating and sharing content.</p>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What can I publish? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Any static website — HTML, CSS, JavaScript, and images — as long as the ZIP file is under 50 KB. That's enough for personal sites, blogs, landing pages, documentation, and lightweight web apps. Shared libraries (jQuery, fonts) are available on every node so you don't need to bundle them.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need to know how to code? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">No. PocketWeb has a built-in Personal Site Generator. Pick a title, write some content, choose colours and fonts, and publish — all through a visual interface. For more advanced sites, you can write HTML directly.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I update my site after publishing? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Yes. Your site keeps the same permanent Mx address. Upload a new version in PocketFS, increment the version number, and republish. Everyone browsing your site will get the update.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do people find my site? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Two ways: by searching in PocketWeb (matches against your site's description) or by sharing your site's Mx address directly. Sites also spread automatically through the Minima peer network via Maxima contacts.</div></div></div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <h2 class="section-title">Technical</h2>
+  <p class="section-sub">Under the hood.</p>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need to run a node 24/7? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Your node should be running to publish and browse. On mobile, the Minima app runs in the background. On desktop, you run the Java JAR as a process. Your published content is always available on-chain regardless.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is it really free? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Publishing requires a tiny Minima transaction fee (fractions of a cent). Browsing is completely free. No hosting fees, no subscriptions, no platform cuts. Ever.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can MiniSites run JavaScript? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Yes. MiniSites support full HTML, CSS, and JavaScript. They can also access the Minima blockchain in read-only mode via the MDS API — querying balances, reading transactions, and interacting with other MiniDapps.</div></div></div>
+
+  <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can sites link to each other? <span class="arrow">&#9660;</span></button><div class="faq-a"><div class="faq-a-inner">Yes. MiniSites can link to other MiniSites and load shared resources from the common library. It's a real interconnected web — just decentralized.</div></div></div>
+</section>
+
+<div class="cta-banner">
+  <h2>Still have questions?</h2>
+  <p>Visit pocketweb.uk or join the Minima community.</p>
+  <div class="btn-row">
+    <a href="https://pocketweb.uk" class="btn btn-gold">pocketweb.uk</a>
+    <a href="https://minima.global" class="btn btn-outline">Minima.global</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <a href="https://minima.global">Minima.global</a>
+  <a href="https://pocketweb.uk">pocketweb.uk</a>
+  <a href="faq.html">FAQ</a>
+  <br><br>
+  PocketWeb &copy; 2025 &middot; Built on Minima &middot; Published on PocketFS
+</footer>
+
+</body>
+</html>
