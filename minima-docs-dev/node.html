@@ -1,4 +1,4 @@
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Run a Node — Minima Dev Docs</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Getting Started — Minima Dev Docs</title>
 <script type="text/javascript" src="../../miniweb/mds.js"></script><script type="text/javascript" src="../../miniweb/miniweb.js"></script>
 <link rel="stylesheet" href="../../miniweb/fonts/fonts.css"><link rel="stylesheet" href="style.css"></head><body>
 
@@ -6,8 +6,8 @@
 <div class="nav-links"><a href="index.html">Home</a><a href="scripting.html">KISS VM</a><a href="minidapp.html">MiniDapps</a><a href="node.html">Run Node</a><a href="guides.html">Guides</a><a href="faq.html">FAQ</a></div></div>
 
 <div class="sec"><div class="prose">
-<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Run a Node</h1>
-<p style="color:var(--dm);margin-bottom:24px">Get Minima running on any platform</p>
+<h1 style="font-size:24px;color:var(--hd);margin-bottom:6px">Getting Started</h1>
+<p style="color:var(--dm);margin-bottom:24px">Run a node, secure it, and start using MiniDapps</p>
 
 <h2>Android</h2>
 <ol>
@@ -19,47 +19,124 @@
 <div class="info"><strong>Huawei/Redmi/ZTE:</strong> Disable "Manage Automatically" in battery settings. <strong>OPPO:</strong> Keep background apps under 5.</div>
 <p><strong>Desktop Connect:</strong> Access your phone node from a computer on the same WiFi via Settings → Desktop Connect.</p>
 
-<h2>Java JAR (Easiest Desktop Method)</h2>
-<p>The simplest way to run Minima on any desktop. Just need <strong>Java</strong> installed and the <code>minima.jar</code> file.</p>
+<h2>Desktop Command Line</h2>
 
-<h3>Mac / Linux (Terminal)</h3>
-<pre>java -jar minima.jar -data ~/.minima -mdsenable -mdspassword YOUR_PASSWORD</pre>
+<div class="info">Closing the terminal window or turning off your computer will stop Minima running. It is recommended to create a batch file (Windows) or bash script (Mac/Linux) to start Minima at startup.</div>
 
-<h3>Windows (Command Prompt)</h3>
-<pre>java -jar minima.jar -data %USERPROFILE%\.minima -mdsenable -mdspassword YOUR_PASSWORD</pre>
+<h3>Pre-requisites</h3>
 
-<p>Then connect to the network:</p>
-<pre>peers action:addpeers peerslist:megammr.minima.global:9001</pre>
+<p><strong>1. Check you have Java installed</strong></p>
+<p>To run Minima, you need Java installed. Check by running:</p>
+<pre>java -version</pre>
+<p>If you don't have Java, download it from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.</p>
 
-<p>Access the MiniDapp Hub at <code>https://127.0.0.1:9003</code></p>
+<p><strong>2. Download the latest minima.jar</strong></p>
+<p>Download the latest version from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
 
-<h3>Common Startup Parameters</h3>
-<table>
-<tr><th>Parameter</th><th>Description</th></tr>
-<tr><td><code>-data [path]</code></td><td>Where to store node data</td></tr>
-<tr><td><code>-mdsenable</code></td><td>Enable the MiniDapp System</td></tr>
-<tr><td><code>-mdspassword [pass]</code></td><td>Set the MDS login password</td></tr>
-<tr><td><code>-rpcenable</code></td><td>Enable RPC interface on port 9002</td></tr>
-<tr><td><code>-clean</code></td><td>Wipe data and start fresh</td></tr>
-<tr><td><code>-port [num]</code></td><td>Set base port (default 9001)</td></tr>
-<tr><td><code>-connect [ip:port]</code></td><td>Connect directly to a specific peer</td></tr>
-<tr><td><code>-archive</code></td><td>Run as an archive node (keep full history)</td></tr>
-</table>
+<h3>Start a new Minima node</h3>
 
-<h3>Running in Background</h3>
-<p><strong>Mac/Linux:</strong></p>
-<pre>nohup java -jar minima.jar -data ~/.minima -mdsenable -mdspassword YOUR_PASSWORD &amp;</pre>
-<p><strong>Windows:</strong> Use <code>javaw</code> instead of <code>java</code> to run without a console window:</p>
-<pre>javaw -jar minima.jar -data %USERPROFILE%\.minima -mdsenable -mdspassword YOUR_PASSWORD</pre>
-
-<h2>Mac (Open Web Start)</h2>
 <ol>
-<li>Install <strong>Open Web Start</strong> (Intel: macos-x64, M1/M2: macos-aarch64)</li>
-<li>Download JNLP file from <strong>spartacusrex.com</strong></li>
-<li>Create desktop shortcut (Make Alias) and set to launch on startup</li>
-<li>Set password via Settings → Advanced params → <code>-mdspassword YOUR_PASSWORD</code></li>
+<li>Create a new folder and copy the <code>minima.jar</code> into that folder. We will run everything from there.</li>
+<li>Open your command line interface / Terminal</li>
+<li>Copy the path to the folder and <code>cd</code> into it:</li>
 </ol>
-<div class="info">Always shut down Minima before shutting down your Mac to prevent database corruption.</div>
+
+<p><strong>Windows:</strong></p>
+<pre>cd C:\Users\Bob\MyMinimaFolder\</pre>
+
+<p><strong>Mac/Linux:</strong></p>
+<pre>cd ~/MyMinimaFolder/</pre>
+
+<div class="info"><strong>Tip:</strong> To avoid typing the folder path, drag and drop the folder into the command line window.</div>
+
+<p>Enter the following to start Minima with the MiniDapp System enabled. Replace <code>INSERTPASSWORD</code> with your own password:</p>
+
+<pre>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD</pre>
+
+<p>Minima will start and automatically join the network. You should see the Minima ASCII logo and logs running in your terminal.</p>
+
+<p><strong>CLI only (no MiniDapps):</strong></p>
+<p>Mac:</p>
+<pre>sudo java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001</pre>
+<p>Windows:</p>
+<pre>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001</pre>
+
+<h3>Login to your node</h3>
+<p>Go to <code>https://127.0.0.1:9003/</code> in your web browser. You may have to proceed past the security warning, since Minima uses self-signed certificates.</p>
+<p>Enter the password you set as your <code>-mdspassword</code> when starting the node.</p>
+
+<div class="info"><strong>Custom Ports:</strong> 9003 is the default port for accessing the MiniDapp System. If running on custom ports, use your custom base port + 2. E.g. if you started on port 8001, use <code>https://127.0.0.1:8003/</code></div>
+
+<div class="info"><strong>Forgot your password?</strong> Return to the terminal where the Minima logs are running and type <code>mds</code> to check your password.</div>
+
+<h2>Secure Your Node</h2>
+
+<p>Keeping your wallet secure involves:</p>
+<ul>
+<li>Keeping the device your node is running on secure</li>
+<li>Writing down your seed phrase <strong>immediately after starting your node</strong></li>
+<li>Locking your node with a password</li>
+<li>Backing up your node</li>
+</ul>
+
+<p>Your seed phrase is required to restore your wallet if you lose access to your node and do not have a backup.</p>
+
+<h3>How to find your seed phrase</h3>
+
+<p><strong>Security MiniDapp:</strong></p>
+<ol>
+<li>Open the <strong>Security</strong> MiniDapp and ensure your node is not locked</li>
+<li>Select <strong>Manage Seed Phrase</strong></li>
+<li>Select <strong>Show Seed Phrase</strong></li>
+<li>Grab a pen and paper and write down your Seed Phrase in the order specified</li>
+</ol>
+
+<p><strong>Command Line:</strong></p>
+<p>You can also view your seed phrase by running the <code>vault</code> command from the Minima Terminal, RPC client or Docker CLI.</p>
+
+<h3>Seed Phrase Best Practices</h3>
+<ul>
+<li><strong>DON'T</strong> take a screenshot of your seed phrase</li>
+<li><strong>DON'T</strong> copy and paste your seed phrase to/from a device connected to the internet</li>
+<li><strong>DO</strong> write it on paper or use a metal plate to record it</li>
+<li><strong>DO</strong> make 2 copies and store them in separate locations</li>
+<li><strong>DO</strong> give one copy to a trusted relative</li>
+<li>For large amounts, consider <strong>cold storage</strong> — signing transactions offline using one offline node and one online node</li>
+</ul>
+
+<h2>Using the MiniDapp Hub</h2>
+
+<p>By default, all MiniDapps are given <strong>READ</strong> permission. Any transactions or sensitive commands triggered from READ apps must be approved from the <strong>Pending</strong> MiniDapp.</p>
+
+<p>MiniDapps with <strong>WRITE</strong> permission can transact or run any command without asking for your approval.</p>
+
+<div class="info"><strong>Warning:</strong> Before giving a MiniDapp WRITE permissions, ensure your wallet is locked with a password. Only give WRITE permission to MiniDapps that you trust.</div>
+
+<h3>Changing MiniDapp permissions</h3>
+<ol>
+<li>Right click on a MiniDapp (or long press on mobile)</li>
+<li>Select <strong>Write mode</strong> (or Read mode)</li>
+<li>Click <strong>Confirm</strong></li>
+</ol>
+
+<h2>How to Update Your Node</h2>
+<ol>
+<li>Type <code>quit</code> into the terminal where the Minima logs are running</li>
+<li>Download the latest version of Minima from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub releases page</a> and replace the existing <code>minima.jar</code> with the new version</li>
+<li>Restart Minima using the same command as above</li>
+</ol>
+
+<div class="info"><strong>Warning:</strong> DO NOT use <code>-clean</code> when simply restarting your node — it will wipe your coins. Only use <code>-clean</code> if you want a completely fresh install.</div>
+
+<h2>How to Remove Your Node</h2>
+
+<div class="info"><strong>Warning:</strong> Removing a node without taking a backup will result in losing access to your coins. Only remove a node if you have taken a backup or written down your 24-word seed phrase.</div>
+
+<ol>
+<li>Type <code>quit</code> into the terminal where the Minima logs are running</li>
+<li>Delete the <code>minima.jar</code> file you downloaded</li>
+<li>Remove the Minima database files located in your home directory (the <code>.minima</code> folder) or the directory you specified with <code>-data</code>. You may need to show hidden files.</li>
+</ol>
 
 <h2>Docker</h2>
 <pre>docker run -d --name minima \
@@ -77,14 +154,6 @@
   --interval 28800 minima</pre>
 
 <p>Login at <code>https://localhost:9003</code> with your password.</p>
-
-<h2>First Steps After Install</h2>
-<ol>
-<li><strong>Join the network</strong> — your node syncs automatically</li>
-<li><strong>Lock your wallet</strong> — set a password in the Security MiniDapp</li>
-<li><strong>Write down your seed phrase</strong> — this is your backup (see <a href="guides.html">Guides</a>)</li>
-<li><strong>Set your profile</strong> — optional, for Maxima contacts</li>
-</ol>
 
 </div></div>
 

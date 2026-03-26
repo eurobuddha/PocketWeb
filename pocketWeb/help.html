@@ -50,127 +50,114 @@
 <br>
 		
 <div class=blueborder>
+<div style="padding:16">
 
-<div style="padding:8">
-<h2>Help</h2>
+<h2>Getting Started</h2>
 
-<b>MiniWEB</b> allows you to browse files published over <b>MiniFS</b> .. we call these <b>MiniSites</b>!<br>
+<h3>What is pocketWeb?</h3>
+<b>pocketWeb</b> lets you browse websites published on the Minima blockchain via <b>PocketFS</b>. We call these <b>MiniSites</b>.<br>
 <br>
-<b>MiniSites</b> can link to each other - just like the regular Internet<br>
-<br>
-You can jump to a new site or load data from other sites - for images, text, raw data etc..<br>
-<br>
-They also have access to the <b>MDS</b> system - in READ mode only.<br>
-<br>
-This allows the more complicated sites to act as full MiniDAPPs / Applications<br>
-<br>
-You can bookmark your favourite sites and they will be updated in the background when a new version is published<br>
-<br>
-If you would like to create a simple site just jump straight to the <b>Personal Site Generator</b> from the top menu<br>
-<br>
-It's very simple and easy and designed so that anyone can do it!<br>
-<Br>
-If you are a little more advanced and understand HTML / JS / CSS then you can build a complete website from scratch.<br>
-<br>
+MiniSites can link to each other — just like the regular internet. They have access to <b>MDS</b> in READ mode, allowing them to act as full decentralized applications. You can bookmark your favourites and they update automatically when a new version is published.<br>
 <br>
 
+<h2>Pre-requisites</h2>
 
-<h2>Technical</h2>
-
-This section is aimed at developers who wish to get the most out of the MiniWEB system<br>
-<br> 
-MiniWEB sites have access to a <b>shared folder</b> that contains useful reusable libs, icons, images and fonts.<br>
+<b>1. Check you have Java installed</b><br>
 <br>
-This way, for instance, you can include mds.js without needing to add it to your <b>minisite</b> and take up precious space - 
-remember that each MiniFS file is 50k size max.<br>
+To run Minima, you need Java installed on your system. Check by running:<br>
 <br>
-Each minisite can of course be made up of multiple MiniFS files..<br>
+<code>java -version</code><br>
 <br>
-Currently you have access to :<br>
+If you don't have Java, download it from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.<br>
 <br>
-<table>
-	<tr><td class=edittableident>miniweb.js</td><td>The MiniWEB lib that allows page navigation</td></tr>
-	<tr><td class=edittableident>mds.js</td><td>The standard mds.js lib for accessing MDS functions</td></tr>
-	<tr><td class=edittableident>decimal.js</td><td>Full precision JS mathematics lib</td></tr>
-	<tr><td class=edittableident>Manrope-Regular.ttf</td><td>The default Minima font - Manrope</td></tr>
-	<tr><td class=edittableident>JQuery</td><td>You have access to the full 3.7.1 JQuery library</td></tr>
-	<tr><td class=edittableident>JQuery-UI</td><td>JQuery-UI library which also has a nice icon set</td></tr>
-	<tr><td class=edittableident>Fonts</td><td>A folder of varied fonts</td></tr>
-	<tr><td class=edittableident>Icons</td><td>A collection of SVG icons</td></tr>
-	<tr><td class=edittableident>Images</td><td>A folder of generic wallpaper images</td></tr>
-</table>
+<b>2. Download the latest minima.jar</b><br>
 <br>
-You can browse the files to see exactly what is available - in the <b>./root/miniweb/</b> folder of this MiniDAPP.<br>
-<br>
-You can pick and choose the libs and images you want.<br>
-<br>
-From the root page of your minisite you would access them like so :<br>
+Download the latest version from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.<br>
 <br>
 
-<code>
-<b>
-&ltscript type="text/javascript" src="../../miniweb/libs/miniweb.js"&gt&lt/script&gt<br>
-&ltscript type="text/javascript" src="../../miniweb/libs/mds.js"&gt&lt/script&gt<br>
-&ltscript type="text/javascript" src="../../miniweb/libs/decimal.js"&gt&lt/script&gt<br>
-</b>
-</code>
+<h2>Start a New Minima Node</h2>
+
+<ol>
+<li>Create a new folder and copy the <b>minima.jar</b> into that folder</li>
+<li>Open your command line interface / Terminal</li>
+<li>Navigate to the folder:<br><br>
+<b>Windows:</b><br>
+<code>cd C:\Users\Bob\MyMinimaFolder\</code><br><br>
+<b>Mac/Linux:</b><br>
+<code>cd ~/MyMinimaFolder/</code><br><br>
+<i>Tip: drag and drop the folder into the terminal to avoid typing the path.</i><br><br>
+</li>
+<li>Enter the following to start Minima with the MiniDapp System enabled. Replace <b>INSERTPASSWORD</b> with your own:<br><br>
+<code>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD</code><br><br>
+</li>
+</ol>
+
+Minima will start and automatically join the network. You should see the Minima ASCII logo and logs running.<br>
+<br>
+<b>Closing the terminal window will stop Minima.</b> It is recommended to create a batch file (Windows) or bash script (Mac/Linux) to start Minima at startup.<br>
+<br>
+<b>Login to your node:</b> Go to <code>https://127.0.0.1:9003/</code> in your browser. You may need to proceed past a security warning (Minima uses self-signed certificates). Enter the password you set as your <code>-mdspassword</code>.<br>
+<br>
+<i>Custom Ports: 9003 is the default. If running on custom ports, use your base port + 2. E.g. port 8001 → https://127.0.0.1:8003/</i><br>
+<br>
+<i>Forgot your password? Type <code>mds</code> in the terminal where the Minima logs are running.</i><br>
 <br>
 
-And the JQuery modules are : <br>
+<h2>Secure Your Node</h2>
+
+Keeping your wallet secure involves:<br>
 <br>
-<code>
-<b>
-&ltlink rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css"&gt<br>
-&ltlink rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.icon-font.css"&gt<br>
-&ltscript type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"&gt&lt/script&gt<br>
-&ltscript type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"&gt&lt/script&gt<br>
-</b>
-</code>
+<ul>
+<li>Keeping the device your node is running on secure</li>
+<li>Writing down your seed phrase <b>immediately after starting your node</b></li>
+<li>Locking your node with a password</li>
+<li>Backing up your node</li>
+</ul>
 <br>
-And the Manrope font can be found at :<br>
-<br>
-<code>
-<b>../../miniweb/fonts/Manrope-Regular.ttf</b>
-</code><br>
+Your seed phrase is required to restore your wallet if you lose access to your node and do not have a backup.<br>
 <br>
 
-
-The <b>MiniWEB</b> functions that you have access to are..<br>
+<b>Finding your seed phrase:</b><br>
 <br>
-<code>
-
-/* Initialise the miniweb system - do this on EVERY page so your site functions correctly */<br>
-<b>miniweb_Init();</b><br>
+<b>Security MiniDapp:</b><br>
+<ol>
+<li>Open the <b>Security</b> MiniDapp and ensure your node is not locked</li>
+<li>Select <b>Manage Seed Phrase</b></li>
+<li>Select <b>Show Seed Phrase</b></li>
+<li>Grab a pen and paper and write down your Seed Phrase in the correct order</li>
+</ol>
 <br>
-/* Allows you to jump to a miniweb site  - the MiniDAPP UID is automagically added */<br>
-<b>miniweb_JumpToURL(minifile,callback);</b><br>
-<br>
-/* Get the raw Byte data of the file as a Data URI */<br>
-<b>miniweb_GetDataURI(minifile,callback);</b><br>
-</code>
-
+<b>Command Line:</b> Run the <code>vault</code> command from the Minima Terminal, RPC client or Docker CLI.<br>
 <br>
 
-<h3>Creating a MiniSite</h3>
+<b>Seed Phrase Best Practices:</b><br>
+<ul>
+<li><b>DON'T</b> take a screenshot of your seed phrase</li>
+<li><b>DON'T</b> copy and paste your seed phrase to/from a device connected to the internet</li>
+<li><b>DO</b> write it on paper or use a metal plate to record it</li>
+<li><b>DO</b> make 2 copies and store them in separate locations</li>
+<li><b>DO</b> give one copy to a trusted relative</li>
+<li>For large amounts, consider cold storage — signing transactions offline using one offline node and one online node</li>
+</ul>
+<br>
 
-You can download any site you have and use that as a template.<br>
+<h2>Using the MiniDapp Hub</h2>
+
+By default, all MiniDapps are given <b>READ</b> permission. Any transactions or sensitive commands triggered from READ apps must be approved from the <b>Pending</b> MiniDapp.<br>
 <br>
-Currently - I install the smallest site I can.. and then edit it directly from the installed folder of the minidapp.<br>
+MiniDapps with <b>WRITE</b> permission can transact or run any command without asking for your approval.<br>
 <br>
-This is the MiniWEB minidapp folder <i>.minima/1.0/mds/web/0x123435..</i> in the <i>./root/mxsites/</i> folder<br>
+<b>Warning:</b> Before giving a MiniDapp WRITE permissions, ensure your wallet is locked with a password. Only give WRITE permission to MiniDapps that you trust.<br>
 <br>
-In future we hope to have a nice MiniSite editor that you can use.<br>
-<br>
-<b>NB</b> .. activate <b>Developer Mode</b> - you can do this from the menu at the top - which will keep your working version.<br>
-<br>
-Here is a complete HTML page example..<br>
-<br>
-Create this page.. zip it up (from the <i>root</i> folder - like a MiniDAPP).. publish it on MiniFS.. and then browse it on MiniWEB..<br>
-<br>
-..Good Luck!<br>
+
+<b>Changing MiniDapp permissions:</b><br>
+<ol>
+<li>Right click on a MiniDapp (or long press on mobile)</li>
+<li>Select <b>Write mode</b> (or Read mode)</li>
+<li>Click <b>Confirm</b></li>
+</ol>
 
 </div>
-
 </div>
 
 <br>
