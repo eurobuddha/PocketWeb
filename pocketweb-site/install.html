@@ -29,30 +29,17 @@
 
 <section class="section">
   <h2 class="section-title">Step 1: Run a Minima Node</h2>
-  <p class="section-sub">You need a Minima node first. Choose your platform.</p>
+  <p class="section-sub">One command installs everything. Pick your platform.</p>
 
-  <!-- Android -->
   <div class="steps">
-    <div class="step">
-      <div class="step-num">📱</div>
-      <div>
-        <h3>Android</h3>
-        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android" target="_blank">Google Play Store</a> (or APK from <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub</a>). Open it — your node starts automatically and runs in the background.</p>
-        <p style="font-size:13px; color:var(--dim); margin-top:6px;">Allow battery optimisation exemption for reliable operation. On first launch, write down your seed phrase immediately (Security → Manage Seed Phrase).</p>
-      </div>
-    </div>
-
-    <!-- macOS -->
+    <!-- Mac -->
     <div class="step">
       <div class="step-num">🍎</div>
       <div>
-        <h3>macOS</h3>
-        <p>1. Install Java if you don't have it:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">brew install openjdk</div>
-        <p>2. Download <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
-        <p>3. Open <strong>Terminal</strong>, create a folder and start:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">mkdir ~/minima && cd ~/minima<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
-        <p>4. Open <strong>https://127.0.0.1:9003</strong> in your browser (proceed past the SSL warning). Log in with your password.</p>
+        <h3>Mac</h3>
+        <p>Open <strong>Terminal</strong> and paste this:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; position:relative; font-family:monospace; font-size:13px; color:var(--text); overflow-x:auto; cursor:pointer;" onclick="copyCmd(this)" title="Click to copy">curl -sL https://raw.githubusercontent.com/eurobuddha/minima-installer/main/setup-minima.command | bash</div>
+        <p style="font-size:13px; color:var(--dim);">Installs Java and everything else automatically. A setup wizard opens in your browser.</p>
       </div>
     </div>
 
@@ -61,80 +48,33 @@
       <div class="step-num">🪟</div>
       <div>
         <h3>Windows</h3>
-        <p>1. Install Java from <a href="https://www.java.com/en/download/" target="_blank">java.com</a> or <a href="https://adoptium.net/" target="_blank">Adoptium</a>. Verify with:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">java -version</div>
-        <p>2. Download <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
-        <p>3. Create a folder (e.g. <code>C:\minima</code>), copy minima.jar into it. Open <strong>Command Prompt</strong>, then:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">cd C:\minima<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
-        <p>4. Open <strong>https://127.0.0.1:9003</strong> in your browser. Log in with your password.</p>
+        <p>Open <strong>Command Prompt</strong> and paste this:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; position:relative; font-family:monospace; font-size:13px; color:var(--text); overflow-x:auto; cursor:pointer;" onclick="copyCmd(this)" title="Click to copy">curl -o %TEMP%\setup-minima.bat https://raw.githubusercontent.com/eurobuddha/minima-installer/main/setup-minima.bat && %TEMP%\setup-minima.bat</div>
+        <p style="font-size:13px; color:var(--dim);">Installs Java and everything else automatically. A setup wizard opens in your browser.</p>
       </div>
     </div>
 
-    <!-- Linux -->
+    <!-- Android -->
     <div class="step">
-      <div class="step-num">🐧</div>
+      <div class="step-num">📱</div>
       <div>
-        <h3>Linux</h3>
-        <p>1. Install Java:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;"># Ubuntu/Debian<br>sudo apt install default-jre<br><br># CentOS/RHEL<br>sudo yum install java-17-openjdk</div>
-        <p>2. Download and start:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">mkdir ~/minima && cd ~/minima<br>curl -L -o minima.jar https://github.com/minima-global/Minima/releases/latest/download/minima.jar<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
-        <p>3. Open <strong>https://127.0.0.1:9003</strong> in your browser. Log in with your password.</p>
-      </div>
-    </div>
-
-    <!-- Terminal with tmux -->
-    <div class="step">
-      <div class="step-num">⌨️</div>
-      <div>
-        <h3>Terminal with tmux (Keep It Running)</h3>
-        <p>On any platform, closing the terminal stops Minima. Use <strong>tmux</strong> to keep it running in the background.</p>
-        <p style="margin-top:8px;">1. Install tmux:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;"># Mac<br>brew install tmux<br><br># Ubuntu/Debian<br>sudo apt install tmux<br><br># CentOS/RHEL<br>sudo yum install tmux</div>
-        <p>2. Create a tmux session and start Minima inside it:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">tmux new -s minima<br>cd ~/minima<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
-        <p>3. Detach from tmux (Minima keeps running): press <strong>Ctrl+B</strong>, then <strong>D</strong></p>
-        <p>4. Re-attach later: <code>tmux attach -t minima</code></p>
-        <p style="font-size:13px; color:var(--dim); margin-top:8px;"><strong>tmux cheat sheet:</strong> Create: <code>tmux new -s minima</code> · Detach: <code>Ctrl+B, D</code> · Re-attach: <code>tmux attach -t minima</code> · List: <code>tmux ls</code> · Kill: <code>tmux kill-session -t minima</code></p>
+        <h3>Android</h3>
+        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android" target="_blank">Google Play Store</a>. Open it — your node starts automatically.</p>
       </div>
     </div>
   </div>
 
-  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Common Startup Parameters</h3>
-  <p>All platforms use the same <code>java -jar minima.jar</code> command with these key parameters:</p>
-  <div style="overflow-x:auto; margin:10px 0;">
-    <table style="width:100%; border-collapse:collapse; font-size:12px;">
-      <tr><th style="text-align:left; padding:6px 8px; border-bottom:2px solid var(--border); color:var(--heading);">Parameter</th><th style="text-align:left; padding:6px 8px; border-bottom:2px solid var(--border); color:var(--heading);">Description</th></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-data [folder]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Config folder. Default: <code>.minima</code> in home dir.</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-port [port]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Base port (uses +4 range). Default: 9001. MDS = base+2.</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdsenable</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Enable the MiniDapp Hub (required for PocketWeb).</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdspassword [pw]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">MDS login password.</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-server</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Accept incoming connections (for VPS/server).</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-daemon</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">No stdin input (for background services).</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-archive</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Run as Archive node (stores full chain).</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-clean</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);"><strong>CAREFUL!</strong> Wipes all data. Fresh start only.</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-rpcenable</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Enable RPC for external integrations.</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-help</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Print all available parameters.</td></tr>
-    </table>
-  </div>
-
-  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Secure Your Node</h3>
-  <p>After starting your node, <strong>immediately</strong> write down your seed phrase:</p>
-  <div class="steps" style="margin-top:12px;">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div><p>Open the <strong>Security</strong> MiniDapp → <strong>Manage Seed Phrase</strong> → <strong>Show Seed Phrase</strong></p></div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div><p>Write it on paper or a metal plate. Make 2 copies. Store in separate locations. <strong>Never</strong> screenshot or copy/paste on a connected device.</p></div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Using the MiniDapp Hub</h3>
-  <p>All MiniDapps start with <strong>READ</strong> permission — transactions must be approved via the Pending MiniDapp. To give a trusted MiniDapp <strong>WRITE</strong> access (no approval needed): right-click the MiniDapp (or long press on mobile) → select <strong>Write mode</strong> → <strong>Confirm</strong>.</p>
-  <p style="font-size:13px; color:var(--dim); margin-top:6px;"><em>Lock your wallet with a password before giving any MiniDapp WRITE permission.</em></p>
+  <p style="font-size:13px; color:var(--dim); margin-top:16px;">After your node is running, write down your seed phrase: open the <strong>Security</strong> MiniDapp and back it up immediately.</p>
 </section>
+
+<script>
+function copyCmd(el) {
+  navigator.clipboard.writeText(el.textContent.trim());
+  var orig = el.style.borderColor;
+  el.style.borderColor = 'var(--accent)';
+  setTimeout(function() { el.style.borderColor = orig; }, 1000);
+}
+</script>
 
 <section class="section-alt">
   <div class="section-inner" style="padding:56px 20px;">
@@ -142,13 +82,13 @@
     <p class="section-sub">Grab both ZIP files from the latest release.</p>
 
     <div class="btn-row" style="margin-bottom:20px;">
-      <a href="https://github.com/eurobuddha/PocketWeb/releases/tag/v0.3.0" class="btn btn-gold">Download from GitHub</a>
+      <a href="https://github.com/eurobuddha/PocketWeb/releases/latest" class="btn btn-gold">Download from GitHub</a>
     </div>
 
     <p style="font-size:13px; color:var(--dim); text-align:center;">
       You need two files:<br>
-      <strong style="color:var(--heading);">pocketFS-0.3.0.mds.zip</strong> &amp;
-      <strong style="color:var(--heading);">pocketWeb-0.3.0.mds.zip</strong>
+      <strong style="color:var(--heading);">pocketFS</strong> &amp;
+      <strong style="color:var(--heading);">pocketWeb</strong> .mds.zip files
     </p>
   </div>
 </section>
@@ -170,14 +110,14 @@
       <div class="step-num">2</div>
       <div>
         <h3>Install PocketFS first</h3>
-        <p>Tap the <strong>+</strong> button, select <strong>pocketFS-0.3.0.mds.zip</strong>, and confirm. PocketFS must be installed first — PocketWeb depends on it.</p>
+        <p>Tap the <strong>+</strong> button, select the <strong>pocketFS</strong> .mds.zip file, and confirm. PocketFS must be installed first — PocketWeb depends on it.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">3</div>
       <div>
         <h3>Install PocketWeb</h3>
-        <p>Tap <strong>+</strong> again, select <strong>pocketWeb-0.3.0.mds.zip</strong>, and confirm. You're done!</p>
+        <p>Tap <strong>+</strong> again, select the <strong>pocketWeb</strong> .mds.zip file, and confirm. You're done!</p>
       </div>
     </div>
     <div class="step">
