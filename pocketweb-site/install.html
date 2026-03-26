@@ -35,23 +35,54 @@
     <div class="step">
       <div class="step-num">&#128241;</div>
       <div>
-        <h3>Mobile (Android / iOS)</h3>
-        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android">Play Store</a> or <a href="https://apps.apple.com/app/minima-global/id6448930774">App Store</a>. Open it — your node starts automatically and runs in the background.</p>
+        <h3>Mobile (Android)</h3>
+        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android">Google Play Store</a> (or APK from <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub</a>). Open it — your node starts automatically and runs in the background. Allow battery optimisation exemption for reliable operation.</p>
       </div>
     </div>
     <div class="step">
       <div class="step-num">&#128187;</div>
       <div>
-        <h3>Desktop (Java JAR)</h3>
-        <p>Make sure you have <a href="https://adoptium.net/">Java 11+</a> installed. Then download and run the Minima JAR:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin-top:10px; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
-          curl -O https://downloads.minima.global/jar/minima.jar<br>
-          java -jar minima.jar -mdsenable -mds
+        <h3>Desktop (Command Line)</h3>
+
+        <p><strong>Pre-requisites:</strong></p>
+        <p>1. Check you have Java installed:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
+          java -version
         </div>
-        <p style="margin-top:8px;">Your MiniDapp Hub will be at <strong>https://127.0.0.1:9003</strong></p>
+        <p style="font-size:13px; color:var(--dim);">If not installed, download from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.</p>
+
+        <p style="margin-top:12px;">2. Download the latest <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
+
+        <p style="margin-top:16px;"><strong>Start your node:</strong></p>
+        <p>Create a folder, copy minima.jar into it, open your terminal/command prompt, <code>cd</code> into that folder, and run:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
+          java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD
+        </div>
+        <p style="font-size:13px; color:var(--dim);">Replace <strong>INSERTPASSWORD</strong> with your own password.</p>
+
+        <p style="margin-top:12px;">Minima will start and automatically join the network. Login to your MiniDapp Hub at <strong>https://127.0.0.1:9003</strong> using the password you set.</p>
+
+        <p style="margin-top:8px; font-size:13px; color:var(--dim);"><em>Note: Closing the terminal stops Minima. Create a startup script to run it automatically.</em></p>
       </div>
     </div>
   </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Secure Your Node</h3>
+  <p>After starting your node, <strong>immediately</strong> write down your seed phrase:</p>
+  <div class="steps" style="margin-top:12px;">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div><p>Open the <strong>Security</strong> MiniDapp → <strong>Manage Seed Phrase</strong> → <strong>Show Seed Phrase</strong></p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div><p>Write it on paper or a metal plate. Make 2 copies. Store in separate locations. <strong>Never</strong> screenshot or copy/paste on a connected device.</p></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Using the MiniDapp Hub</h3>
+  <p>All MiniDapps start with <strong>READ</strong> permission — transactions must be approved via the Pending MiniDapp. To give a trusted MiniDapp <strong>WRITE</strong> access (no approval needed): right-click the MiniDapp (or long press on mobile) → select <strong>Write mode</strong> → <strong>Confirm</strong>.</p>
+  <p style="font-size:13px; color:var(--dim); margin-top:6px;"><em>Lock your wallet with a password before giving any MiniDapp WRITE permission.</em></p>
 </section>
 
 <section class="section-alt">
