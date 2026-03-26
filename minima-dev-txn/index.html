@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Index</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">💸 Dev: Transactions</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Index</a>
+    <a href="simple.html">Simple</a>
+    <a href="tokens.html">Tokens</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Index</h1>
+<hr>
+<p>title: Transaction Basics</p>
+<p>description: Learn how to construct a simple transaction</p>
+<p>tag: development</p>
+<hr>
+<p>At its core Minima keeps track of Coins. That's all it does. Not users, not balances, <strong>coins</strong>.</p>
+<h2>Coins</h2>
+<p>A coin says - <em>"You can spend me if you can unlock the script conditions, and when you spend me, you can send the funds in full to other coins".</em> This is a <strong>transaction</strong>.</p>
+<p>Each coin has an <strong>amount</strong>, <strong>address</strong>, <strong>token id</strong> and <strong>coin id</strong>. The coin address is the <strong>hash of the script</strong>.</p>
+<p>You create a coin when you send funds to a script address, and it can be spent - in full - if the script returns TRUE when run.</p>
+<p>Users only keep track of coins that are relevant to them, and provide an MMR (Merkle Mountain Range) proof of their validity when they spend them.</p>
+<p>You can think of a coin as some unit of Smart Value controlled by a Smart Contract (i.e. a script).</p>
+<p>A <strong>‘contract’</strong> is the script that locks the funds in a coin and is interchangeable with the word 'script'.</p>
+<h2>Transactions</h2>
+<p>A transaction reallocates value from some coins to other coins.</p>
+<p>A transaction in Minima is a set of <strong>input coins</strong>, a set of <strong>output coins</strong> and a <strong>state variable list from 0-255</strong>. An analogue logic gate - Smart Circuitry.</p>
+<p>A transaction can be <strong>signed</strong> by 1 or more <strong>public keys</strong> (signatures can even be added as state variables if you want oracle style contracts).</p>
+<h2>State Variables</h2>
+<p>A set of 0-255 state variables can be provided with a transaction which can optionally be stored in the output coins of the transaction in an MMR database.</p>
+<p>This means a coin can remember the state of the previous transaction it was in. This way, sequences, counters and far more interesting scripts can be achieved.</p>
+<p>These can be referenced in scripts using the PREVSTATE command allowing for a basic memory mechanic.</p>
+<h2>Burning Minima</h2>
+<p>A transaction can 'burn' Minima, when the <strong>sum of the outputs is less than the sum of the inputs</strong>, and this is how the ordering of transactions in the mempool is achieved. This is how precedence is given to transactions. You burn more, you are added sooner, as the coins that are left in the system will be proportionally more. That's the incentive to add them first.</p>
+<p>Unlike other chains - these burnt coins are NOT given to the User who finds the block - which happens randomly when they are mining TxPoW transactions. This is important as it removes the incentive to mine for profit and ergo - centralise consensus.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

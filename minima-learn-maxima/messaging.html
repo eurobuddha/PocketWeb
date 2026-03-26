@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Messaging</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">💬 Maxima & MiniDapps</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="messaging.html" class="active">Messaging</a>
+    <a href="mls.html">Mls</a>
+    <a href="faq.html">Faq</a>
+    <a href="minidapps.html">Minidapps</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Messaging</h1>
+<hr>
+<p>title: Messaging</p>
+<p>description: Maxima Messaging is a way to send messages to other devices on the network.</p>
+<p>tag: learn</p>
+<hr>
+<h2>Maxima Hosts</h2>
+<p>Each user has a set of Maxima hosts which facilitate the relaying of messages to the user.</p>
+<p>Maxima hosts are randomly selected server nodes a user has previously connected to.</p>
+<p>At any given time, only one Maxima host is responsible for forwarding a user’s encrypted message.</p>
+<p>You can see your Maxima hosts, including the one you are currently connected to, with the <code>maxima action:hosts</code> command from the Minima Terminal.</p>
+<p>The host you are connected to determines the ip:port shown in your contact address.</p>
+<p><strong>Example Contact Address</strong></p>
+<pre><code>MxG18HGG6FJ038614Y8CW46US6G20810K0070CD00Z83282G60G1JP0Y8WHVT0JJPGJ01YAQPCEU3PWF51V5J5UKA4RBHYUZFYTTH98KYHZ1K6MF3V6D30DCDD
+YAH34AJ1PZ4GWHCW7SEDQ0HQ9R4TU2G7NS8N816V13ERQ532PYWK9Z732RBZ7KFCQCENAMAJP9V7EH3R06493T25U9PY7HJAS0Z311WA6K24P0BZ82NTQNY2BQ
+TB5VUJRV6QYVK1060800712NCHC@187.220.305.194:9001</code></pre>
+<p>[Diagram]</p>
+<h2>Sending Messages</h2>
+<p>Sending a message over Maxima has the following steps:</p>
+<ol><li><strong>Connection</strong> - The user exchanges contact details with a friend and (optionally) adds them as a Maxima contact.</li></ol>
+<ol><li><strong>Create & Sign Message</strong> - The sender creates a message either via a Minima MiniDapp or using Terminal commands. On sending the message, the message is signed with the sender's Maxima private key, generating a signature for the message.</li></ol>
+<ol><li><strong>Encryption & Work</strong> - the Maxima data package containing the public key of the sender, the message and the signature is encrypted. Sending a message has no monetary cost, but it must be paid for in ‘work’. A TxPoW unit is created, mined and sent to the recipient’s Maxima host with the signed, encrypted message.</li></ol>
+<ol><li><strong>Send: Sender to Host</strong> - the signed, encrypted message and mined TxPoW unit is sent to the recipient's Maxima host who checks whether the TxPoW is valid and the minimum amount of ‘work’ has been completed.</li></ol>
+<ol><li><strong>Send: Host to Recipient</strong> - If the TxPoW is valid and the minimum amount of ‘work’ has been completed, the message will be forwarded to the recipient, else it is discarded (off-chain process).</li></ol>
+<ol><li><strong>Block propagation</strong> - If the TxPoW unit is a block, it will be propagated to ALL nodes for processing, otherwise the TxPoW unit will be discarded (on-chain).</li></ol>
+<div class="callout"><strong>Note</strong><br>All Maxima messages are encrypted end-to-end using asymmetric RSA encryption.
+<p>Messages can only be decrypted and read by the recipient, other nodes involved</p>
+<p>in the relaying of the message cannot read the data.</div></p>
+<p>[Diagram]</p>
+<p><strong>Orange</strong>: A Maxima process<br/></p>
+<p><strong>Blue</strong>: A Minima process</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

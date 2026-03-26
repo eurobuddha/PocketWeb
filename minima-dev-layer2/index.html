@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Uni-directional Channel</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚡ Dev: Layer 2 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Uni-directional Channel</a>
+    <a href="bidirectional.html">Bi-directional Payments</a>
+    <a href="eltoo.html">ELTOO Channel</a>
+    <a href="eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+    <a href="eltoo-float.html">ELTOO Floating Coin</a>
+    <a href="eltoo-full.html">Full ELTOO Sequence</a>
+    <a href="state-chains.html">State Chains</a>
+    <a href="coinflip.html">Coin flip V2</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Uni-directional Channel</h1>
+<p>I want to pay someone 1 Minima a day, everyday, for 30 days. How could I do this without using normal on chain transactions?</p>
+<p>Well - one way could be:</p>
+<ol><li>Ask the recipient for their address</li><li>On day 1 create a valid signed transaction paying them 1 Minima - but don't post it on chain. Just give it to them.</li><li>On day 2 create another valid signed transaction paying them 2 Minima - but don't post it on chain. Just give it to them. They discard the old transaction, and keep the newer one paying them more..</li><li>Keep doing this for 30 days</li><li>On the last day the recipient posts the last transaction and collects their 30 Minima.</li></ol>
+<p>There we go, 30 transactions, off chain, with only one transaction actually going on chain at the end of our financial relationship.</p>
+<p>BUT - although this _seems_ to work, an element of 'Trust' is required. The recipient can check the transaction is valid when they get it - but there is nothing to stop me spending the coins I use in the transactions, late at night on the 29th day, thus invalidating their transaction. I effectively run off with my money. And now the transaction they have is worthless - as they can't post it. The coins are spent.</p>
+<p>If they are a friend, someone I know, I would not do this - wouldn't do it anyway.. BUT can we remove the element of Trust altogether so that I can't do that ? Of course we can.. and we use a trick we learnt earlier with our TimeLock and MultiSig contracts.</p>
+<p>Here is the timelock multisig contract we could use:</p>
+<p>My Public Key is: <code>0xMyKey</code></p>
+<p>Their Public Key is: <code>0xTheirKey</code></p>
+<pre><code>IF @COINAGE GT (35*1728) AND SIGNEDBY(0xMyKey) THEN RETURN TRUE ENDIF RETURN MULTISIG(2 0xMyKey 0xTheirKey)</code></pre>
+<ol><li>Create this MultiSig contract with the recipient, with a time lock - that allows me to collect the funds in 35 days. ( There are 1728 blocks in a day )</li><li>I send 30 Minima to that address. I have now locked those coins up for ~35 days and the only other way of accessing them is if BOTH of us sign.</li><li>On day 1 create a valid transaction spending this 30 Minima coin and send 1 Minima to the recipient and the remaining 29 Minima back to me. I sign it. Then give this partially signed transaction to the recipient. They sign it - but <strong>DON'T</strong> give it back to me. They now have a valid fully signed transaction that they can post at any time and collect 1 Minima.</li><li>On day 2 create a valid transaction spending this 30 Minima coin and send 2 Minima to the recipient and the remaining 28 Minima back to me. I sign it. Then give this partially signed transaction to the recipient. They sign it - but <strong>DON'T</strong> give it back to me. They now have a valid fully signed transaction that they can post at any time and collect 2 Minima.</li><li>Keep doing this for 30 days.</li><li>On the last day the recipient posts the latest valid transaction and collects 30 Minima.</li></ol>
+<p>Now - we have a system where I cannot spend the funds before the recipient collects his money. This is trustless and secure. If the recipient doesn't collect the funds within 35 days then I can collect the money and send the 30 Minima back to myself. This is why the timelock has to be more than 30 days.</p>
+<p>Even better - 1 transaction per day is used as a convenience. I could be paying him by the hour or by the minute.</p>
+<p>None of this is posted on chain until the final transaction so we are only limited by the speed at which we can create newly signed transactions and swap them. You could even do real time payments by the second.</p>
+<p>One way payments have their uses, but far more useful, are two way.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

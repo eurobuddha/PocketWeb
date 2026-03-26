@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Recovery</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔒 Security & Recovery</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="safe.html">Safe</a>
+    <a href="backup.html">Backup</a>
+    <a href="recovery.html" class="active">Recovery</a>
+    <a href="resync.html">Resync</a>
+    <a href="restore.html">Restoring your backup</a>
+    <a href="import-seed.html">Import Seed</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Recovery</h1>
+<hr>
+<p>title: Recovery Options</p>
+<p>description: Learn how to use advanced Maxima options</p>
+<p>tag: user-guides</p>
+<hr>
+<p>If you still have access to your wallet (i.e. your seed phrase is correct) but it is not in sync with the latest block, you should perform a <strong>chain re-sync</strong> only.</p>
+<p>If you have lost access to your node completely, you can either <strong>restore a backup</strong> that you took previously, or <strong>restore from seed phrase</strong>.</p>
+<h2>Chain resync</h2>
+<p>If you <strong>still have access to your wallet</strong> (i.e. your seed phrase is correct) but it is not in sync with the latest block, you should perform a <a href="/docs/user-guides/node-recovery/chain-resync"><strong>chain re-sync</strong></a>. This will put you on the correct chain with your latest wallet balance.</p>
+<p>The most common reason for a chain re-sync is if your node has been offline for too long and it cannot catch up with the chain automatically</p>
+<p>You will need:</p>
+<ul><li>a recent archive file, exported from an archive node, or</li><li>the IP address of a Mega node</li></ul>
+<h2>Restore from backup</h2>
+<p>To <a href="/docs/user-guides/node-recovery/restore-backup"><strong>restore a backup</strong></a> that you have previously taken to a new or existing device, you will need:</p>
+<ul><li>A backup of your node that you took previously,</li></ul>
+<p>and, if the backup is older than 1 week</p>
+<ul><li>a recent archive file, exported from an archive node, or</li><li>the IP address of a Mega node</li></ul>
+<p>to ensure the backup is properly restored to the chain tip.</p>
+<h2>Restore from Seed Phrase</h2>
+<p>Alternatively, you can <a href="/docs/user-guides/node-recovery/import-seed-phrase"><strong>import your seed phrase</strong></a> if you do not have a backup. Your wallet will be recovered from the 24 word seed phrase you provide. This should only be used as a last resort.</p>
+<p>You will need:</p>
+<ul><li>Your 24 word seed phrase,</li></ul>
+<p>and,</p>
+<ul><li>a recent archive file, exported from an archive node, or</li><li>the IP address of a Mega node</li></ul>
+<p>All the above processes can be found in the Security MiniDapp.</p>
+<p>!<a href="/img/app/security.png">security</a></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

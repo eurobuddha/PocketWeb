@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Complex Multisig</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔗 Dev: Layer 1 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Basic signed contract</a>
+    <a href="timelock.html">Time Lock Contract</a>
+    <a href="multisig.html">Multisig Contract</a>
+    <a href="mofn.html">Mofn</a>
+    <a href="complex-multisig.html" class="active">Complex Multisig</a>
+    <a href="slowcash.html">Slow Cash</a>
+    <a href="htlc.html">Hashed Timelock Contract</a>
+    <a href="exchange.html">Exchange Contract</a>
+    <a href="flashcash.html">Flash Cash</a>
+    <a href="multisig-multicoin.html">Multisig Multicoin</a>
+    <a href="mast.html">MAST Contracts</a>
+    <a href="vault.html">The Vault</a>
+    <a href="coinflip.html">Coin Flip</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Complex Multisig</h1>
+<hr>
+<p>title: Complex Multisig</p>
+<p>description: Learn how to create a complex multisig contract on Minima</p>
+<p>tag: development</p>
+<hr>
+<p>The previous example has 2 signatures and 2 parties. But you can use a more complex script to give more power to the users.</p>
+<p>You could use 2 keys for one party, and 1 key for the second. 1 of the keys is cold and buried in the ground. 1 of the keys is hot - on your computer. And the second party is a co-signer.</p>
+<p>Something like:</p>
+<pre><code>IF SIGNEDBY ( 0xColdKey) THEN RETURN TRUE
+ELSEIF SIGNEDBY( 0xHotKey ) AND SIGNEDBY( 0x2ndKey) THEN RETURN TRUE
+ENDIF</code></pre>
+<p>Why? This contract says: If you sign with the cold key ( the ROOT key ) you can spend me. Otherwise both you and the co-signer must sign.</p>
+<p>You could make a bank or trusted person a cosigner, and so to access the funds a hacker would need to hack BOTH of you. Just one of you is not enough.</p>
+<p>Much more secure. The cold key is NEVER on a connected computer unless one of you is hacked, and then you use that to move the funds - in an emergency.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

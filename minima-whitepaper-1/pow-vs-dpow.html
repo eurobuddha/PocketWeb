@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PoW vs Distributed PoW</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📄 Whitepaper (1/2)</div>
+  <div class="nav-links">
+    <a href="index.html">Introduction</a>
+    <a href="txpow.html">Tx-PoW</a>
+    <a href="maxima.html">Maxima</a>
+    <a href="pulse-network.html">The Pulse Network</a>
+    <a href="pow-vs-dpow.html" class="active">PoW vs Distributed PoW</a>
+    <a href="hashcash-burn.html">HashCash and Burn</a>
+    <a href="energy.html">Energy</a>
+    <a href="cascading-chain.html">A Cascading Chain</a>
+  </div>
+</div>
+<div class="prose">
+<h1>PoW vs Distributed PoW</h1>
+<p>Hash-rate does <strong>not</strong> equal security.</p>
+<p>Since if this were the case, 1 miner with infinite hash-rate, would imply a secure network. It’s not. It’s called PayPal (a completely centralized payment gateway . No resistance to censorship attacks at all.</p>
+<p>What matters is the distribution of hash-rate. This is self-evident when we consider the dreaded 51% attack.</p>
+<p>PoW blockchains are always fearful of a 51% attack. This is an attack where some person or group has access to over 50% of the hash-rate and as such can reverse transactions, hold the chain to ransom with empty blocks, or censor transactions, by creating a longer valid chain with more PoW. In miner-centric PoW networks, miners are paid to acquire hash-rate. It is guaranteed that a small group of miners can create a 51% cartel. Trust is not the issue. Miners have strong incentives to play by the rules and not attack the chain, for fear of losing income. Coercion is by far the more likely attack. Governmental coercion at a state level.</p>
+<p>Minima, a distributed PoW blockchain, does not incentivise the acquisition of hash power, since there is no financial reward for finding a block and no advantages to doing more work than necessary. There is no small group or cartel of users that will have anywhere near 1% of the total hash-rate, let alone 51%. Hence coordinating this attack becomes very expensive as there is no use for the hardware required other than to attack the network, no mining rewards to recoup the initial investment. The cost of an attack must be less than the potential gains after all.</p>
+<p>There is, of course, a caveat to the Distributed PoW Model. You need a lot of users.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

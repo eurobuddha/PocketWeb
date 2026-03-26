@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Archive</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🏗️ Server & MEG Setup</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="vps-docker.html">Vps Docker</a>
+    <a href="vps-service.html">Vps Service</a>
+    <a href="archive.html" class="active">Archive</a>
+    <a href="mega.html">Mega</a>
+    <a href="web-wallet.html">Web Wallet</a>
+    <a href="meg.html">Meg</a>
+    <a href="meg-setup.html">Meg Setup</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Archive</h1>
+<hr>
+<p>title: Run an Archive Node</p>
+<p>description: Learn how to run an Archive Node</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>Unlike a standard full node, an archive node does not prune older blocks, storing all block headers and coin proofs from the moment it was started. Full transaction details are still pruned after two months.</p>
+<p>To learn more about the functionality of Archive nodes, see <a href="/docs/run-a-node/node-types#archive-node">Node Types.</a></p>
+<h2>System requirements</h2>
+<p>Anyone can run an archive node from a desktop or server.</p>
+<p>The following assumes that only Minima is running on the server, you should consider increasing the RAM and storage depending on the requirements for other software you install e.g. virus protection etc</p>
+<ul><li><strong>Processing</strong>: 2 CPU</li><li><strong>Memory</strong>: 4GB RAM</li><li><strong>Storage</strong>: 5GB storage</li></ul>
+<h2>Ports</h2>
+<p>If running an archive node on a desktop, no port forwarding is required.</p>
+<p>If running a public archive node on a server, open inbound connections on port 9001 (or the main custom Minima port you have chosen).</p>
+<h2>How to start an Archive node</h2>
+<h3>Start an Archive node</h3>
+<p>Choose your platform of choice and follow the guidance for starting a standard full node, adding the <code>-archive</code> parameter when starting the node.</p>
+<div class="callout"><strong>Info</strong><br>If you have an existing node that you wish to change to an archive node, ensure you have first written down your seed phrase. We also recommend taking a backup of your existing node. Then quit your node from the Terminal and restart the same node, adding in the -archive parameter on the start up line.</div>
+<p>Examples:</p>
+<div class="tab"><h4>Windows/Mac (JNLP)</h4>If using the Minima launcher (JNLP) on Windows or Mac, 
+<ol><li>Go to the <strong>Settings</strong> tab and ensure the checkbox is ticked for "Use Custom Startup Params"</li><li>In the box below, enter <code>-archive</code> onto the end of any other custom parameters used, ensuring there is a space between them.</li><li>Close the dialog box to shut Minima down</li><li>Restart the Minima launcher</div></li></ol>
+<div class="tab"><h4>Command Line</h4>1. Create a new folder and copy the minima.jar into that folder. We will run everything from there.
+<ol><li>Open your command line interface/Terminal </li><li>Copy the path to the folder and from the command line, <code>cd</code> into that folder</li></ol>
+<pre><code>cd C:\Users\Bob\MyMinimaFolder\</code></pre>
+<div class="callout"><strong>Tip</strong><br>To avoid typing in the folder path, drag and drop the folder into the command line window.</div>
+<ol><li>Enter the following into the command line window to start Minima</li></ol>
+<pre><code>java -jar minima.jar -archive -data .minima -mdsenable -mdspassword INSERTPASSWORD</code></pre>
+<div class="callout"><strong>Info</strong><br>If you used the `-data` parameter to specify a data folder when starting your
+<p>existing node, you must make sure you start the archive node using the same</p>
+<p>data folder you chose originally.</div></div></p>
+<div class="tab"><h4>Docker</h4>To start a Minima archive node container, add the `-e minima_archive=true` environment variable to the start up command.
+<p>Desktop example:</p>
+<pre><code>docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -e minima_archive=true -v ~/minimadockerarchive:/home/minima/data -p 7001-7003:9001-9003 --restart unless-stopped --name minimaarchive minimaglobal/minima:latest</code></pre>
+<p>If you originally started your node without the <code>-e minima_archive=true</code> environment variable, you can either:</p>
+<ul><li>start a new separate container for your archive node,</li><li>backup your existing node, the restore it to a new archive container you create,</li><li>backup your existing node, then stop and remove your existing Minima container and start a new Minima container including -e minima_archive=true, using the SAME data folder as your old node e.g. minimadocker9001 or minimadocker8001</div></li></ul>
+<h3>Optionally re-sync to the Genesis block</h3>
+<p>When you start an archive node, you will start storing the archive data from that point onwards. To run an archive node that stores all blocks since the Genesis block by doing a chain re-sync from another archive node that already has all blocks.</p>
+<div class="callout"><strong>Info</strong><br>An archive node can only be used to re-sync users who created their nodes
+<p>after your archive node was created. If you wish to be able to recover any</p>
+<p>Minima user, you must perform a chain re-sync from an archive node that holds</p>
+<p>the entire blockchain since genesis.</div></p>
+<h3>Check your archive data</h3>
+<p>From the Terminal MiniDapp or Docker CLI, you can check the integrity of your archive data by running the command:</p>
+<p>This checks your archive data for missing or broken blocks and tells you the first block you can sync users from. If there is an error, you will need to re-sync from another archive node.</p>
+<pre><code>archive action:integrity</code></pre>
+<p>Example output:</p>
+<pre><code>{
+  "command": "archive",
+  "params": {
+    "action": "integrity"
+  },
+  "status": true,
+  "pending": false,
+  "response": {
+    "message": "Archive integrity check completed",
+    "start": 1,
+    "blocks": 6443,
+    "cascade": true,
+    "errors": 0,
+    "recommend": "Your ArchiveDB is correct and has no errors."
+  }
+}</code></pre>
+<p>{/* ## Use cases</p>
+<p>Archive nodes can be for personal use or public use.</p>
+<h4>Personal Archive Node</h4>
+<p>A user running a node on a mobile device may choose to run an Archive node locally on their laptop/desktop at home in case they lose their phone and do not have a valid backup of their node stored elsewhere. In this case, the user would always have the latest proofs for their coins on their own Archive node and they can recover their phone wallet to a new device without relying on any other Minima user.</p>
+<h4>Public Archive Node</h4>
+<p>A user can choose to run an archive node for the purpose of helping other Minima users recover their wallet. By exporting their archive data to a file, another user can import the archive file and recover their wallet. If the archive node is on a server with a static external IP address, other users can also use the ip:port of the archive node to recover their wallet by remotely connecting to the archive node. */}</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

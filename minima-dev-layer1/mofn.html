@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mofn</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔗 Dev: Layer 1 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Basic signed contract</a>
+    <a href="timelock.html">Time Lock Contract</a>
+    <a href="multisig.html">Multisig Contract</a>
+    <a href="mofn.html" class="active">Mofn</a>
+    <a href="complex-multisig.html">Complex Multisig</a>
+    <a href="slowcash.html">Slow Cash</a>
+    <a href="htlc.html">Hashed Timelock Contract</a>
+    <a href="exchange.html">Exchange Contract</a>
+    <a href="flashcash.html">Flash Cash</a>
+    <a href="multisig-multicoin.html">Multisig Multicoin</a>
+    <a href="mast.html">MAST Contracts</a>
+    <a href="vault.html">The Vault</a>
+    <a href="coinflip.html">Coin Flip</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Mofn</h1>
+<hr>
+<p>title: M of N Multisig</p>
+<p>description: Learn how to create a M of N multisig contract on Minima</p>
+<p>tag: development</p>
+<hr>
+<p>An M of N signature is a threshold signature. It requires a certain number of people in a pool to sign. Minima has a function just for that. So if you need 2 of 3 to sign..</p>
+<p>You can use..</p>
+<pre><code>RETURN MULTISIG ( 2 0xFirstKey 0x2ndKey 0x3rdKey )</code></pre>
+<p>In fact our first 2 of 2 multisig could have just been</p>
+<pre><code>RETURN MULTISIG ( 2 0xFirstKey 0x2ndKey )</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

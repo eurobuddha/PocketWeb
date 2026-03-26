@@ -1,0 +1,240 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vestr</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📝 Dev: Smart Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="token-scripts.html">Token Scripts</a>
+    <a href="kissvm.html">Kissvm</a>
+    <a href="pruning.html">Pruning</a>
+    <a href="future-cash.html">Future Cash</a>
+    <a href="vestr.html" class="active">Vestr</a>
+    <a href="streamr.html">Streamr</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Vestr</h1>
+<h2>About</h2>
+<p>Vestr is a smart contract that releases coins to a wallet in equal amounts at specified time intervals e.g. daily, weekly, monthly over a set period of time - a vesting contract.</p>
+<h2>Use Cases</h2>
+<ul><li><strong>Vesting contracts for investors</strong> - to lock away <strong>investor coins</strong> according to a vesting schedule, to be released equally over a certain time period.</li><li><strong>Pocket money</strong> - to lock away a set amount of coins, releasing them at a predefined schedule.</li><li><strong>Proof of inaccessibility</strong> - to lock away project funds to prove they are only released at certain intervals. (This is known as TVL, this increases a project&apos;s liability)</li></ul>
+<h2>Smart Contract</h2>
+<p>Below is the Vestr smart contract. The hash of this script is the address that coins can be sent to, along with defined state variables, to create the vesting contract.</p>
+<p><code>@</code> Represents a global variable</p>
+<p><code>PREVSTATE</code> represents the state variables stored in the coin that is locked in the Vestr contract</p>
+<p><code>STATE</code> represents a state variable given at the time the transaction is constructed</p>
+<pre><code>LET unlockaddress = PREVSTATE(0) // withdrawing address of contract
+  LET totallockedamount = PREVSTATE(1) // the original total amount locked
+  LET startblock = PREVSTATE(2) // the starting block of the contract
+  LET finalblock = PREVSTATE(3) // the final block of the contract
+  LET minblockwait = PREVSTATE(4) // the minimum block time we must wait between each collection
+
+  ASSERT SAMESTATE(0 8) // Ensure that all state variables are the same transaction to transaction
+
+  ASSERT PREVSTATE(199) EQ STATE(199) // Make sure that state variables 199 -&gt; 199 are the same
+
+  // If current block time greater than the final then allow collection for all
+  IF @BLOCK GTE finalblock THEN
+    IF VERIFYOUT (@INPUT unlockaddress @AMOUNT @TOKENID false) THEN RETURN TRUE ENDIF
+  ENDIF
+
+  // If current block less than the starting block then reject execution
+  IF @BLOCK LT startblock THEN RETURN FALSE ENDIF
+
+  // If the coin's age is less than the minimum block time wait then reject execution
+  IF @COINAGE LT minblockwait THEN RETURN FALSE ENDIF
+
+	// calculate the total duration of the contract
+  LET totalduration = finalblock - startblock
+
+  // If the total duration is less than zero then that means the contract has finished
+  // now allow them to collect the full amount
+  IF totalduration LTE 0 THEN
+    LET blockamount = @AMOUNT
+  ELSE
+  // otherwise make it so they can collect a partial according to the duration
+    LET blockamount = SIGDIG(2 (totallockedamount / totalduration))
+  ENDIF
+
+  // We use SIGDIG(2 (amount)) which returns us the amount to 2 significant digits
+  // this will evade mis-calculations and ignores the less significant digits
+  // in the total amount they can collect
+  // this is done because sometimes as they are constructing the contract
+  // the block time recorded in this contract vs real time changes
+  // and so this will error the contract
+
+  // Let's calculate how much they can collect on this block
+  LET owedamounttime = @BLOCK - startblock
+  LET owedamountminima = owedamounttime * blockamount
+  LET alreadycollected = totallockedamount - @AMOUNT
+  LET cancollect = SIGDIG(2 (owedamountminima - alreadycollected))
+
+  // If the cancollect amount is less than 0 then reject
+  IF cancollect LTE 0 THEN RETURN FALSE ENDIF
+
+  // If the cancollect is greater than the coin amount then let them collect all
+  IF cancollect GT @AMOUNT THEN LET cancollect = @AMOUNT ENDIF
+
+  // Let's verify all the outputs are valid
+  LET payout = GETOUTAMT(@INPUT)
+
+  IF GETOUTADDR(@INPUT) NEQ unlockaddress THEN RETURN FALSE ENDIF //If the output coin is not being sent to the unlock address, return FALSE
+  IF GETOUTTOK(@INPUT) NEQ @TOKENID THEN RETURN FALSE ENDIF //If the output coin does not match the tokenid of the input, return FALSE
+  IF payout GT cancollect THEN RETURN FALSE ENDIF //If the amount to payout is greater than the amount available to collect, return FALSE
+  IF GETOUTKEEPSTATE(@INPUT) NEQ FALSE THEN RETURN FALSE ENDIF //If the output coin does not have a storestate value of FALSE, return FALSE
+
+  LET change = @AMOUNT - payout
+
+  // If there is no change then ignore check
+  IF change LTE 0 THEN RETURN TRUE ENDIF
+
+  // Now verify that the opposing output is true
+  RETURN VERIFYOUT(@INPUT+1 @ADDRESS change @TOKENID TRUE)</code></pre>
+<h2>State Variables</h2>
+<p>The following state variables must be provided with the transaction</p>
+<div class="tw"><table>
+<tr><th>State Variable</th><th>Description</th></tr>
+<tr><td>0</td><td>Collector’s address</td></tr>
+<tr><td>1</td><td>Locking up amount</td></tr>
+<tr><td>2</td><td>Start contract block height</td></tr>
+<tr><td>3</td><td>End contract block height</td></tr>
+<tr><td>4</td><td>Minimum time user must wait between collections (Blocks)</td></tr>
+<tr><td>5</td><td>Current time (unix)</td></tr>
+<tr><td>6</td><td>Starting block (unix)</td></tr>
+<tr><td>7</td><td>Grace period (unix) (This is state variable 4 but in unix)</td></tr>
+<tr><td>8</td><td>End block (unix)</td></tr>
+<tr><td>199</td><td>Unique Identifier for Contract</td></tr>
+</table></div>
+<h2>Contract Address</h2>
+<p>0x address: <code>0x3C432D5099AB27EA901079EF54D9A97AB4DB3BD1CFFF670296C31B7C83C1C8BE</code> <br/></p>
+<p>Mx address: <code>MxG081S8CMY16DB4VY9043PTTADJABQMJDJNKEFVTJG55M33DU87GE8NQKDQ4CM</code></p>
+<h2>Calculations</h2>
+<pre><code>// This is a smart contract script written just to use the
+// checkMaths Minima command to do the calculation for us using KISSVM Math
+// This will ensure precision
+
+  LET totallockedamount=PREVSTATE(1)
+  LET startblock=PREVSTATE(2)
+  LET finalblock=PREVSTATE(3)
+  LET minblockwait=PREVSTATE(4)
+  LET mustwaitblocks="0"
+  LET mustwait= (@BLOCK - @COINAGE) GT "0" AND minblockwait GT (@BLOCK - @COINAGE)
+  LET contractexpired = @BLOCK GTE finalblock
+  IF mustwait EQ TRUE THEN LET mustwaitblocks=minblockwait - (@BLOCK - @COINAGE) ENDIF
+
+  LET coinsage=@COINAGE
+  LET cliffed=@BLOCK LT startblock
+  LET totalduration=finalblock-startblock
+  IF totalduration LTE 0 THEN LET blockamount=@AMOUNT ELSE LET blockamount=SIGDIG(2 (totallockedamount/totalduration)) ENDIF
+  LET owedamounttime=@BLOCK-startblock
+  LET owedamountminima=owedamounttime*blockamount
+  LET alreadycollected=totallockedamount-@AMOUNT
+  LET cancollect=SIGDIG(2 (owedamountminima - alreadycollected))
+  IF cancollect GT @AMOUNT THEN LET cancollect=@AMOUNT ENDIF
+  LET change=@AMOUNT-cancollect LET totalsum = change + cancollect LET totalinput = @AMOUNT
+
+  IF contractexpired EQ TRUE THEN LET mustwait=FALSE ENDIF
+  IF contractexpired EQ TRUE THEN LET cancollect=@AMOUNT ENDIF</code></pre>
+<p>We then use the <code>runscript</code> method to calculate this for us, this <strong>only</strong> runs the calculation</p>
+<pre><code>// you add the script we mentioned above, the previous state variables (stored in the coin) as if it was the actual coin, and we add the globals that the contract requires, e.g @BLOCK
+// This contract requires globals: @AMOUNT, @BLOCK, @COINAGE
+runscript script:"theAboveScript" prevstate:addAllPreviousState globals:addAllGlobals</code></pre>
+<h2>Sending coins to the contract</h2>
+<p>To send coins to the Vestr contract, we can use the <code>send</code> command, providing the following parameters:</p>
+<ul><li><code>debug:false</code> - debug logs off</li><li><code>password:</code> - the node password if locked</li><li><code>amount:</code> - the total amount to send to the Vestr contract</li><li><code>address:</code> - the Vestr contract address</li><li><code>tokenid:</code> - the tokenid of the token being sent to the contract. Default 0x00 for Minima</li><li><code>state:</code> - list of state variables as defined above</li><li><code>burn:</code> - optional amount of Minima to burn</li></ul>
+<pre><code>send debug:false
+password:
+amount:
+address:
+tokenid:
+state:{"0":"address","1":"amount","2":"startContractBlockHeight", "3":"endContractBlockHeight","4":"minimumTimeUserMustWaitToCollectAgain","5":"currenttime","6":"startblockunixtime","7":"graceperiodunix","8":"endblockunixtime", "199":"contractuid"
+burn:</code></pre>
+<h2>Example</h2>
+<p>Example coin locked in Vestr contract</p>
+<pre><code>{
+  "coinid": "0x8102204B758D6B3FBD755B3B599042FB78D34936F0D0F22FD380719033A42CFD",
+  "amount": "450",
+  "address": "0x3C432D5099AB27EA901079EF54D9A97AB4DB3BD1CFFF670296C31B7C83C1C8BE",
+  "miniaddress": "MxG081S8CMY16DB4VY9043PTTADJABQMJDJNKEFVTJG55M33DU87GE8NQKDQ4CM",
+  "tokenid": "0x00",
+  "token": null,
+  "storestate": true,
+  "state": [
+    {
+      "port": 0,
+      "type": 1,
+      "data": "0x73555898D7E4DD6C1B45864A61C952DB3F05FBA300BDDB381A2F219E999F7061"
+    },
+    {
+      "port": 1,
+      "type": 2,
+      "data": "450"
+    },
+    {
+      "port": 2,
+      "type": 2,
+      "data": "507343"
+    },
+    {
+      "port": 3,
+      "type": 2,
+      "data": "2373583"
+    },
+    {
+      "port": 4,
+      "type": 2,
+      "data": "311040"
+    },
+    {
+      "port": 5,
+      "type": 2,
+      "data": "1698927118376"
+    },
+    {
+      "port": 6,
+      "type": 2,
+      "data": "1698927118376"
+    },
+    {
+      "port": 7,
+      "type": 2,
+      "data": "4320"
+    },
+    {
+      "port": 8,
+      "type": 2,
+      "data": "1793621518376"
+    },
+    {
+      "port": 199,
+      "type": 1,
+      "data": "0x155E60B2D962F22EBC578742C80BA4BD144B4C676FAA05738AF239A802C63DF2"
+    }
+  ],
+  "spent": false,
+  "mmrentry": "444191",
+  "created": "507345"
+}</code></pre>
+<h2>Source code</h2>
+<p>https://github.com/minima-global/vestr/</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

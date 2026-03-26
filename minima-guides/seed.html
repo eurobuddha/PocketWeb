@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Seed</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📋 User Guides</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="login.html">Login</a>
+    <a href="join.html">Join</a>
+    <a href="seed.html" class="active">Seed</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="status.html">Status</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Seed</h1>
+<hr>
+<p>title: Secure your seed phrase</p>
+<p>description: Learn how to secure your seedphrase</p>
+<p>icon: Lock</p>
+<p>tag: user-guides</p>
+<hr>
+<p>Keeping your wallet secure involves:</p>
+<ul><li>Keeping the device your node is running on secure.</li><li>Writing down your seed phrase <strong>immediately after starting your node.</strong></li><li>Locking your node with a password. See <a href="/docs/user-guides/security/lock-your-wallet">Locking your node</a>.</li><li>Backing up your node. See <a href="/docs/user-guides/security/backup-your-wallet">Backing up your node</a>.</li></ul>
+<p>Your seed phrase will be required to restore your wallet if you lose access to your node and do not have a backup. It can be found in the Security MiniDapp.</p>
+<h2>How to find your seed phrase</h2>
+<div class="tab"><h4>Security MiniDapp</h4>![Security](/img/app/security.png)
+<ol><li>Open the <strong>Security</strong> MiniDapp and ensure your node is not locked</li><li>Select <strong>Manage Seed Phrase</strong></li><li>Select <strong>Show Seed Phrase</strong></li><li>Grab a pen and paper and write down your Seed Phrase in the order specified</div></li></ol>
+<div class="tab"><h4>Command Line</h4>It is also possible to view your seed phrase by running the `vault` command from the Minima Terminal, RPC client or Docker CLI.</div>
+<div class="callout"><strong>Store your seed phrase securely</strong><br>**Write down your seed phrase carefully, in the _correct order_ and store it
+<p>in a safe place offline.**</div></p>
+<div class="callout"><strong>Note</strong><br>- **DON'T** take a screenshot of your seed phrase 2.
+<ul><li><strong>DON'T</strong> copy and paste your seed phrase to/from a mobile or computer which is connected to the internet</li><li><strong>DO</strong> use a metal plate to record your seed phrase and store it somewhere safe</li><li><strong>DO</strong> Make 2 copies of your seed phrase and give one to a trusted relative or store in a second location</li><li>For large amounts, consider signing your transactions offline. To do this you will need to run a node on an offline device and one node on an online device. See <a href="docs/user-guides/advanced/cold-storage">Cold Storage Solution</a>.</div></li></ul>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quantum Secure</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📄 Whitepaper (2/2)</div>
+  <div class="nav-links">
+    <a href="index.html">Storage-less MMR UTXO</a>
+    <a href="smart-contracts.html">Smart Contracts, Tokens and Transactions</a>
+    <a href="quantum.html" class="active">Quantum Secure</a>
+    <a href="block-size.html">Block Size</a>
+    <a href="block-speed.html">Block Speed</a>
+    <a href="consensus-forks.html">Consensus, Forks and Immutable Protocols</a>
+    <a href="conclusion.html">Conclusion</a>
+    <a href="thanks.html">Special thanks to</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Quantum Secure</h1>
+<p>Quantum security is not an issue right now. But it will be in the future. If you want to remove the need for protocol developers because the protocol is advanced enough to take care of itself, and should not require any Hard Forks ever (there are no Soft Forks on Minima as all users are also miners), you need to use Quantum Secure algorithms.</p>
+<p>Minima uses the SHA3-256 hash algorithm for Tx-PoW mining, block and transaction hashes, proof chains, and signing or verifying data. All of the cryptographic security of Minima is provided by hash functions. The scripting language supports SHA2-256 to allow cross-chain hash lock contracts with legacy chains. The signing algorithm is the Winternitz One Time Signature scheme (WOTS). You can build hash trees of valid public keys, and process them in MiniScript, so that you can sign multiple times with the same root public key – the Merkle Signature Scheme <a href="/docs/core/minimawhitepaper/specialthanksto">13</a>.</p>
+<p>Quantum security comes at a price. The signatures are at least 10-20x as big as ECDSA, used in Bitcoin. A one time use WOTS is 400-800 bytes. Minima signatures are certainly large when compared to normal Bitcoin transactions, but they are not kept forever since almost all data is eventually pruned, so although a bandwidth issue, they are only a temporary storage overhead.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

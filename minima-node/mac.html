@@ -1,51 +1,29 @@
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mac — Run a Node</title>
-  <script type="text/javascript" src="../../miniweb/mds.js"></script>
-  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
-  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
-  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mac</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="layout">
-<div class="sidebar">
-<div class="sidebar-title">🖥️ Run a Node</div>
-<a class="sidebar-link" href="index.html">Index</a>
-<a class="sidebar-link" href="node-types.html">Node Types</a>
-<a class="sidebar-link" href="firewall-rules.html">Firewall Rules</a>
-<a class="sidebar-link" href="startup-parameters.html">Startup Parameters</a>
-<div class="sidebar-group">Full Node</div>
-<a class="sidebar-link" href="android.html">Android</a>
-<a class="sidebar-link" href="windows.html">Windows</a>
-<a class="sidebar-link active" href="mac.html">Mac</a>
-<a class="sidebar-link" href="docker-desktop.html">Docker Desktop</a>
-<a class="sidebar-link" href="linux-vps-docker.html">Linux Vps Docker</a>
-<a class="sidebar-link" href="linux-vps-service.html">Linux Vps Service</a>
-<a class="sidebar-link" href="desktop-cli.html">Desktop Cli</a>
-<div class="sidebar-group">Archive Node</div>
-<a class="sidebar-link" href="archive-node.html">Archive Node</a>
-<div class="sidebar-group">Mega Node</div>
-<a class="sidebar-link" href="mega-node.html">Mega Node</a>
-<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
-<div class="sidebar-group">Minima E-Gateway (MEG)</div>
-<a class="sidebar-link" href="meg-about.html">Meg About</a>
-<a class="sidebar-link" href="meg-setup.html">Meg Setup</a>
-<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
-<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
-<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
-<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
-<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+<div class="nav">
+  <div class="nav-brand">🖥️ Run a Node</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="types.html">Types</a>
+    <a href="firewall.html">Firewall</a>
+    <a href="params.html">Params</a>
+    <a href="android.html">Android</a>
+    <a href="windows.html">Windows</a>
+    <a href="mac.html" class="active">Mac</a>
+    <a href="cli.html">Cli</a>
+  </div>
 </div>
-
-<div class="main-content">
-  <div class="prose">
-    <h1>Mac</h1>
-    <hr>
+<div class="prose">
+<h1>Mac</h1>
+<hr>
 <p>title: Mac</p>
 <p>description: Run a Minima node on Mac</p>
 <p>tag: run-a-node</p>
@@ -68,7 +46,6 @@
 <p>Set Minima to start automatically when your PC starts by referring to this <a href="https://support.apple.com/en-gb/guide/mac-help/mh15189/14.0/mac/14.0">guide</a>.</p>
 <h3>Set your password</h3>
 <p>Set your own password - on the Settings tab, use the <code>-mdspassword</code> parameter in the <strong>Advanced params</strong> section.</p>
-<p>[Image]</p>
 <div class="callout"><strong>Password</strong><br>Enter a password over 12 characters using `a-z, A-Z, 0-9, !@#=?+<>,.-_ '()/ `characters only and without spaces, then close the window and restart the app for this to take effect.</div>
 <p>Once restarted, select Launch MinimaOS to access your node and login with your password.</p>
 <p>Congratulations on starting your node!</p>
@@ -80,22 +57,18 @@
 <p>Please see the essential <a href="#first-steps">first steps</a> to complete now your node is running.</p>
 <h2>First steps</h2>
 <p>The first time you install Minima, you will need to <strong>connect to the network</strong> and <strong>write down your seed phrase.</strong></p>
-<div class="cards-grid">
+<div class="cards">
 </div>
 
-  </div>
-  <div class="doc-footer">
-    <a href="https://minima.global" target="_blank">Minima</a>
-    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
-    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
-    <br><br>
-    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
-  </div>
 </div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
 </div>
-<script>
-  miniweb_Init();
-  MDS.init(function(msg){});
-</script>
-</body>
-</html>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

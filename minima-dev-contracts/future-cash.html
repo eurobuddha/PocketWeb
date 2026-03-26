@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Future Cash</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📝 Dev: Smart Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="token-scripts.html">Token Scripts</a>
+    <a href="kissvm.html">Kissvm</a>
+    <a href="pruning.html">Pruning</a>
+    <a href="future-cash.html" class="active">Future Cash</a>
+    <a href="vestr.html">Vestr</a>
+    <a href="streamr.html">Streamr</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Future Cash</h1>
+<hr>
+<p>title: Future Cash</p>
+<p>description: Learn about the Future Cash smart contract</p>
+<p>tag: development</p>
+<hr>
+<h2>About</h2>
+<p>Future cash is a simple <strong>time-lock</strong> contract.</p>
+<p>The Future Cash smart contract holds Minima, custom tokens, or NFTs until a certain block height, after which only the recipient is able to claim the tokens from the contract.</p>
+<p>The recipient is the wallet owner that will be able to claim the tokens once the specified block height has passed. This can be different to the user who initially sent the funds to the contract.</p>
+<h2>Use Cases</h2>
+<ul><li><strong>Savings</strong> - to lock away <strong>your own</strong> funds, preventing you from spending them until your chosen date.</li><li><strong>Savings for others</strong> - to lock away savings for <strong>others</strong> e.g. kids, only allowing access once a certain amount of time has passed.</li><li><strong>Proof of inaccessibility</strong> - Lock away project funds to prove they are inaccessible for a certain amount of time.</li></ul>
+<h2>Smart Contract</h2>
+<p>This contract will return <code>TRUE</code> if 2 conditions are met when attempting to spend this coin in a transaction:</p>
+<ol><li>The current block is greater than or equal to state variable <code>1</code> of the locked coin - <code>PREVSTATE(1)</code> <strong>OR</strong> the age of the locked coin (in blocks) is greater than or equal to state variable <code>4</code> of the locked coin - <code>PREVSTATE(4)</code>.</li></ol>
+<p><strong>AND</strong></p>
+<ol><li>The input and output coins at the equivalent index of the transaction - <code>VERIFYOUT</code> - have the same values for <code>PREVSTATE(2)</code> (owner's address), amount, and tokenid. This ensures that the coin is being sent in whole from the contract to its rightful owner. <code>FALSE</code> indicates that the coin state - the PREVSTATEs - are not stored in the coins that are created from the transaction.</li></ol>
+<pre><code>RETURN (@BLOCK GTE PREVSTATE(1) OR @COINAGE GTE PREVSTATE(4)) AND VERIFYOUT(@INPUT PREVSTATE(2) @AMOUNT @TOKENID FALSE)</code></pre>
+<h2>Globals & State Variables used</h2>
+<p><code>@</code> Represents a global variable</p>
+<p><code>STATE</code> represents a state variable given at the time the transaction is constructed. Once the transaction has confirmed and the coins are locked in the contract, the state variables are stored in the coin and become the <code>PREVSTATE</code> values.</p>
+<div class="tw"><table>
+<tr><th>State Variable</th><th>Description</th></tr>
+<tr><td>1</td><td>The end block height. After this block, the funds will be available to claim from the contract</td></tr>
+<tr><td>2</td><td>The owner's 0x wallet address</td></tr>
+<tr><td>3</td><td>Contract end time in milli chosen by the user who locked the funds (i.e. sent the funds to the contract)</td></tr>
+<tr><td>4</td><td>How many blocks are required to have passed before they become available to claim (calculated).</td></tr>
+</table></div>
+<pre><code>@BLOCK - The current block height at the time the transaction is attempted
+PREVSTATE(1) - The end block height. After this block, the funds will be available to claim from the contract
+
+@COINAGE - How many blocks deep is the coin
+PREVSTATE(4) - How many blocks are required to have passed before they become available to claim.
+
+@INPUT - Input number of the coin in the transaction
+PREVSTATE(2) - The owner's 0x wallet address
+@AMOUNT - Amount of the coin being used as an input to the transaction
+@TOKENID - TokenID of the coin being used as an input to the transaction
+
+PREVSTATE(3) - Contract end time in milli chosen by the user who locked the funds (i.e. sent the funds to the contract)</code></pre>
+<h2>Contract address</h2>
+<p>The hash of the contract is:</p>
+<p>0x address: <code>0xEA8823992AB3CEBBA855D68006F0D05B0C4838FE55885375837D90F98954FA13</code><br/></p>
+<p>Mx address: <code>MxG087AH0HPWAYJPQTQGYEMG03F1K2R1H43HVWYH19NB0RTW3SZWY7Q2F79810N</code></p>
+<p>This can be verified by running</p>
+<p>Sending Minima or custom tokens to this address will lock them in the Future Cash smart contract and will be unsendable until all contract conditions are met.</p>
+<h2>Sending coins to the contract</h2>
+<p>To send coins to the Future Cash contract, we can use the <code>send</code> command, providing the following parameters:</p>
+<ul><li><code>password:</code> - the node password if locked</li><li><code>amount:</code> - the total amount to send to the Future cash contract</li><li><code>address:</code> - the Future Cash contract address</li><li><code>tokenid:</code> - the tokenid of the token being sent to the contract. Default 0x00 for Minima</li><li><code>state:</code> - list of state variables as defined above</li><li><code>burn:</code> - optional amount of Minima to burn with the transaction</li></ul>
+<pre><code>send password:
+amount:
+address:
+tokenid:
+state:
+burn:</code></pre>
+<h3>Example</h3>
+<p>Example send command to lock a coin in the Future cash contract</p>
+<pre><code>send amount:2
+address:MxG087AH0HPWAYJPQTQGYEMG03F1K2R1H43HVWYH19NB0RTW3SZWY7Q2F79810N
+state:{"1":"696347","2":"0x3DC92CD49CA6513AFF6180E49F287B0C8CDF78076CDF05FE6E00E66EFF6CA479","3":"1708390800000","4":"535"}</code></pre>
+<p>Example coin locked in Future cash contract</p>
+<pre><code>"coinid":"0xC67DB6138B578FF734D6D68CC7D6C97F7F17A5B96E4D00215390B54F93F5CF8B",
+"amount":"2",
+"address":"0xEA8823992AB3CEBBA855D68006F0D05B0C4838FE55885375837D90F98954FA13",
+  "miniaddress":"MxG087AH0HPWAYJPQTQGYEMG03F1K2R1H43HVWYH19NB0RTW3SZWY7Q2F79810N",
+    "tokenid":"0x00",
+    "token":null,
+    "storestate":true,
+    "state":[{
+      "port":1,
+      "type":2,
+      "data":"696347"
+    },
+    {
+      "port":2,
+      "type":1,
+      "data":"0x3DC92CD49CA6513AFF6180E49F287B0C8CDF78076CDF05FE6E00E66EFF6CA479"
+    },
+    {
+      "port":3,
+      "type":2,
+      "data":"1708390800000"
+    },
+    {
+      "port":4,
+      "type":2,
+      "data":"535"
+    }],
+    "spent":false,
+    "mmrentry":"512828",
+    "created":"695816"
+  },</code></pre>
+<h2>Manually collecting coins</h2>
+<p>To manually collect coins from the contract, you can construct a transaction using the correct coinid, amount and output address found in the coin's state variables.</p>
+<p>Note that the funds can be collected on behalf of the recipient, provided the transaction is created from a Mega MMR node. Otherwise it can only be claimed by the intended recipient of the Future Cash funds.</p>
+<p>The following example shows how to manually collect the example coin above from the Future Cash contract.</p>
+<ol><li>Create a transaction with your chosen id</li></ol>
+<pre><code>txncreate id:claimfc</code></pre>
+<ol><li>Add the coin as an input </li></ol>
+<p>If claiming on behalf of the recipient, this MUST be done from a megammr node, as a standard full node won't have the coin proof.</p>
+<pre><code>txninput id:collectfc coinid:0xC67DB6138B578FF734D6D68CC7D6C97F7F17A5B96E4D00215390B54F93F5CF8B</code></pre>
+<ol><li>Add an output to the recipient's address for the amount of the coin, as provided in the state variable 2 of the coin</li></ol>
+<pre><code>txnoutput id:collectfc address:0x3DC92CD49CA6513AFF6180E49F287B0C8CDF78076CDF05FE6E00E66EFF6CA479 amount:2 tokenid:0x00 storestate:false</code></pre>
+<ol><li>Add the coin proof to the transaction</li></ol>
+<pre><code>txnbasics id:collectfc</code></pre>
+<ol><li>Post and mine the transaction </li></ol>
+<pre><code>txnpost id:collectfc mine:true</code></pre>
+<p>The transaction will now be mined and posted and the funds will be transferred to the recipient's address.</p>
+<h2>Source code</h2>
+<p>https://github.com/minima-global/fcash</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

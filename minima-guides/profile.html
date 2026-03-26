@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Profile</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📋 User Guides</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="login.html">Login</a>
+    <a href="join.html">Join</a>
+    <a href="seed.html">Seed</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="status.html">Status</a>
+    <a href="profile.html" class="active">Profile</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Profile</h1>
+<hr>
+<p>title: Set your profile</p>
+<p>description: Learn how to set your Minima profile</p>
+<p>tag: user-guides</p>
+<hr>
+<p>Maxima allows you to communicate with friends and family and other Minima node runners, peer-to-peer. Simply set up your profile add some contacts to get started.</p>
+<p>There are several MiniDapps that use Maxima:</p>
+<ol><li>MaxContacts: Set your profile and add, remove and manage your contacts.</li><li>MaxSolo: A one to one chat application</li><li>Chatter: A decentralised social media platform</li></ol>
+<h2>Setting your Maxima Profile</h2>
+<p>Your Maxima Profile is the name that your Maxima contacts will see once you are connected with eachother. It will be shown when posting messages in MaxSolo or Chatter.</p>
+<ol><li>Open the <strong>MaxContacts</strong> MiniDapp</li><li>Go to the <strong>Profile</strong> page and select <strong>Edit Display Name</strong></li></ol>
+<ol><li>Set your display name which will be seen by your contacts</li></ol>
+<p>That's it!</p>
+<h3>Setting your Maxima Profile (Terminal)</h3>
+<p>You can also set your profile using the following command:</p>
+<pre><code>maxima action:setname name:Alice</code></pre>
+<p>Example output:</p>
+<pre><code>"command":"maxima",
+  "params":{
+  "action":"setname",
+  "name":"Alice"
+  },
+  "status":true,
+  "response":{
+  "name":"Alice"
+  }
+}</code></pre>
+<h2>Next Steps</h2>
+  <div class="cards">
+</div>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

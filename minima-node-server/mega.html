@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mega</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🏗️ Server & MEG Setup</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="vps-docker.html">Vps Docker</a>
+    <a href="vps-service.html">Vps Service</a>
+    <a href="archive.html">Archive</a>
+    <a href="mega.html" class="active">Mega</a>
+    <a href="web-wallet.html">Web Wallet</a>
+    <a href="meg.html">Meg</a>
+    <a href="meg-setup.html">Meg Setup</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Mega</h1>
+<hr>
+<p>title: Run a Mega Node</p>
+<p>description: Learn how to run a Mega Node</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>A Mega node is similar to an Archive node in that that it can recover any Minima user that has lost access to their node or requires a re-sync to the chain.</p>
+<p>A Mega node does not also have to be an archive node although the two can be run together on the same node.</p>
+<p>What does it do?</p>
+<p>A Mega node stores <code>all unspent</code> coins with their proofs, this differs to a standard node which only stores the coins (and proofs) that are relevant to the user.</p>
+<h2>System requirements</h2>
+<p>The following requirements are separate to any specs required for non Minima related processes.</p>
+<ul><li><strong>Processing</strong>: 4 CPU</li><li><strong>Memory</strong>: 8-16GB RAM</li><li><strong>Storage</strong>: 50GB storage</li></ul>
+<p>We do not recommend running a Mega node from an Android device as the RAM consumption is considerably higher than a standard node.</p>
+<p>The Mega node must be online constantly to remain in sync with the chain. Downtime of less than 24 hours is acceptable.</p>
+<h2>Ports</h2>
+<p>If running an archive node on a desktop, no port forwarding is required.</p>
+<p>If running a public archive node on a server, open inbound connections on port 9001 (or the main custom Minima port you have chosen).</p>
+<h2>How to start a Mega node</h2>
+<h3>Start (or update) a node</h3>
+<p>Start (or update) a node in the same way as as a normal node, adding the <code>-megammr</code> startup parameter. See examples below.</p>
+<div class="tab"><h4>Terminal</h4>1. Create a new folder and copy the minima.jar into that folder. We will run everything from there.
+<ol><li>Open your command line interface/terminal</li><li>Copy the path to the folder and from the command line, <code>cd</code> into that folder</li></ol>
+<pre><code>cd C:\Users\Bob\MyMinimaFolder\</code></pre>
+<div class="callout"><strong>Tip</strong><br>To avoid typing in the folder path, drag and drop the folder into the command line window.</div>
+<ol><li>Enter the following into the command line window to start Minima</li></ol>
+<p>Set your password for the MiniDapp system by replacing <code>INSERTPASSWORD</code> with your own.</p>
+<pre><code>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -megammr -mdsenable -mdspassword INSERTPASSWORD</code></pre>
+<div class="tab"><h4>JNLP</h4>1. Start a node as per the Run a Node section for Windows or Mac.
+<ol><li>Once running, on the Settings tab, under Advanced Params, tick the "Use custom parameters" box</li><li>Enter <code>-megammr</code></li><li>Close the window and restart the node by relaunching the JNLP</div></li></ol>
+<div class="tab"><h4>Docker</h4>Start a node as per the Run a Node section for Docker desktop or Linux VPS (Docker). However, when starting the container, add the following environment variable to the start up command:
+<p><code>-e minima_megammr=true</code></p>
+<p>If you already have other Minima containers running, you can start a separate Mega node by changing the port</p>
+<p>e.g. <code>-p 6001-6003:9001-9003</code></p>
+<pre><code>docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -e minima_megammr=true -v C:\Users\INSERTUSERNAME\megaminimadocker:/home/minima/data -p 9001-9003:9001-9003 --restart unless-stopped --name megaminima minimaglobal/minima:latest</code></pre>
+<div class="tab"><h4>Mac/Linux</h4>```bash
+<p>docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -e minima_megammr=true -v ~/megaminimadocker:/home/minima/data -p 9001-9003:9001-9003 --restart unless-stopped --name megaminima minimaglobal/minima:latest</p>
+<pre><code>### Join the network
+
+Once the node is running, you will need to join the Peer-to-Peer network, enter the following command from the Minima terminal/RPC client:
+
+`peers action:addpeers peerslist:https://spartacusrex.com/minimapeers.txt`
+
+Alternatively use your own list of peers.
+
+You should see the response below, wait a few moments to receive the initial blockchain download.</code></pre>
+<p>{</p>
+<p>"command": "peers",</p>
+<p>"params": {</p>
+<p>"action": "addpeers",</p>
+<p>"peerslist": "https://spartacusrex.com/minimapeers.txt"</p>
+<p>},</p>
+<p>"status": true,</p>
+<p>"pending": false,</p>
+<p>"response": {</p>
+<p>"message": "Peers added to checking queue.."</p>
+<p>}</p>
+<p>}</p>
+<pre><code>### Chain sync or import historical data
+
+A Mega node should be backfilled with the chain history so that the node has a complete database of all the coins since the blockchain started.
+
+Import a MegaMMR `.mmr` file, generated no longer than 1 week ago, from another Mega node runner by running the following command from the Minima Terminal, RPC Client or Terminal MiniDapp.
+
+Daily .mmr exports can be found [here](https://spartacusrex.com/megaarchive/).</code></pre>
+<p>megammr action:import file:[PathToFile]/megammr.mmr</p>
+<pre><code>Alternatively, you can [Chain resync](/docs/user-guides/node-recovery/chain-resync) the Mega node from an Archive node,
+
+
+
+  
+
+
+## Relevant User Guides
+
+ &lt;div class="cards"&gt;
+  
+ &lt;/div&gt;</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

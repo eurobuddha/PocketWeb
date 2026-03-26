@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Using Typescript</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚡ Dev: Getting Started</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="testnet-single.html">Testnet Single</a>
+    <a href="testnet-multi.html">Testnet Multi</a>
+    <a href="cli.html">Minidapp CLI</a>
+    <a href="typescript.html" class="active">Using Typescript</a>
+    <a href="commands.html">Commands</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Using Typescript</h1>
+<p>The Minima MDS (MiniDapp System) Library is a TypeScript implementation of the MDS interface for building MiniDapps. This library can be used when building frontend application</p>
+<h2>Getting Started</h2>
+<p>Setup the MDS in your project using your preferred package manager.</p>
+<div class="tab"><h4>npm</h4>```bash
+<p>npm install @minima-global/mds</p>
+<pre><code>&lt;div class="tab"&gt;&lt;h4&gt;yarn&lt;/h4&gt;```bash
+    yarn add @minima-global/mds</code></pre>
+<div class="tab"><h4>pnpm</h4>```bash
+<p>pnpm add @minima-global/mds</p>
+<pre><code>&lt;div class="tab"&gt;&lt;h4&gt;bun&lt;/h4&gt;```bash
+    bun add @minima-global/mds</code></pre>
+<h2>Usage</h2>
+<p>The <code>MDS.init()</code> function is used to initialize the MDS library and handle events from the MDS.</p>
+<p>You get access to the <code>event</code> and <code>data</code> parameters which you can use to respond to events from the MDS.</p>
+<pre><code>MDS.init(async ({ event, data }) =&gt; {
+  // Handle events from the MDS
+})</code></pre>
+<p>You can check the <code>event</code> parameter to determine which event has been triggered and handle the event accordingly.</p>
+<pre><code>MDS.init(async ({ event, data }) =&gt; {
+  if (event === MinimaEvents.INITED) {
+    console.log("MDS Initialized and ready 🚀")
+  }
+})</code></pre>
+<p>All Minima CLI commands are available as methods on the <code>MDS.cmd</code> object. To see the full list of commands available see the <a href="/docs/development/terminal-commands">Terminal Commands</a> page.</p>
+<p>You can use the <code>MDS.cmd</code> object to send commands and get access to the response by either using the <code>await</code> keyword or by passing a callback function.</p>
+<pre><code>// using async/await
+MDS.init(async ({ event, data }) =&gt; {
+  if (event === MinimaEvents.INITED) {
+    const command = await MDS.cmd.block() // [!code highlight]
+    console.log(command.response.block) // [!code highlight]
+  }
+})
+
+// using callback
+MDS.init(({ event, data }) =&gt; {
+  if (event === MinimaEvents.INITED) {
+    MDS.cmd.block((data) =&gt; { // [!code highlight]
+      console.log(data.response.block) // [!code highlight]
+    }) // [!code highlight]
+  }
+})</code></pre>
+<p>The <code>params</code> object is used to pass type safe parameters to the command.</p>
+<pre><code>const MX_ADDRESS = "MxG086K6127VBG29AW0RUF0F1QGZZ0J3M3ZFYF4FWZMR1R49Y7ZPVR9V7916PGN" // [!code highlight]
+
+MDS.init(async ({ event, data }) =&gt; {
+  if (event === MinimaEvents.INITED) {
+    const command = await MDS.cmd.send({ // [!code highlight]
+      params: { // [!code highlight]
+        address: MX_ADDRESS, // [!code highlight]
+        amount: 100 // [!code highlight]
+      } // [!code highlight]
+    }) // [!code highlight]
+  }
+})</code></pre>
+<h2>Types</h2>
+<p>To import the types for a command you can use the following syntax:</p>
+<pre><code></code></pre>
+<p>Example of the <code>MDS.cmd.block()</code> return types:</p>
+<pre><code>const command = await MDS.cmd.block()
+
+// command is typed as :
+type Command = MDSResponse
+
+// command.response is typed as :
+type Response = Block</code></pre>
+<p>All responses from the MDS are typed using the <code>MDSResponse</code> type and include the following properties:</p>
+<ul><li><code>command</code>: The command that was sent to the MDS.</li><li><code>params</code>: The parameters that were sent to the command.</li><li><code>pending</code>: Whether the command is pending.</li><li><code>status</code>: Whether the command was successful.</li><li><code>error</code>: An error message if the command failed.</li><li><code>pendinguid</code>: The pending UID if the command is pending.</li><li><code>response</code>: The response data for the command.</li></ul>
+<p>Where the <code>response</code> property is inferred from the command that was sent.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

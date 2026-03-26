@@ -1,53 +1,27 @@
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glossary — Minima Knowledge</title>
-  <script type="text/javascript" src="../../miniweb/mds.js"></script>
-  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
-  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
-  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
-  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Glossary</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="layout">
-<div class="sidebar">
-<div class="sidebar-title">🧠 Minima Knowledge</div>
-<a class="sidebar-link" href="index.html">Index</a>
-<a class="sidebar-link" href="network-overview.html">Network Overview</a>
-<a class="sidebar-link active" href="glossary.html">Glossary</a>
-<div class="sidebar-group">Minima</div>
-<a class="sidebar-link" href="transactions.html">Transactions</a>
-<a class="sidebar-link" href="mmr-database.html">MMR Database</a>
-<a class="sidebar-link" href="txpow.html">TxPoW Units & Blocks</a>
-<a class="sidebar-link" href="the-blockchain.html">The Blockchain</a>
-<a class="sidebar-link" href="mining-consensus.html">Mining Consensus</a>
-<a class="sidebar-link" href="coloured-coins.html">Coloured Coins</a>
-<a class="sidebar-link" href="keys-signatures.html">Keys Signatures</a>
-<a class="sidebar-link" href="quantum-security.html">Quantum Security</a>
-<div class="sidebar-group">Smart Contracts</div>
-<a class="sidebar-link" href="scripting.html">Scripting</a>
-<div class="sidebar-group">Maxima</div>
-<a class="sidebar-link" href="maxima-about.html">Maxima About</a>
-<a class="sidebar-link" href="maxima-contacts.html">Maxima Contacts</a>
-<a class="sidebar-link" href="maxima-messaging.html">Maxima Messaging</a>
-<a class="sidebar-link" href="maxima-mls.html">Maxima Mls</a>
-<a class="sidebar-link" href="maxima-faq.html">Maxima Faq</a>
-<div class="sidebar-group">MiniDapps</div>
-<a class="sidebar-link" href="minidapps-about.html">Minidapps About</a>
-<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
-<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
-<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
-<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
-<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+<div class="nav">
+  <div class="nav-brand">🧠 Knowledge Base</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="network.html">Network</a>
+    <a href="glossary.html" class="active">Glossary</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="tokens.html">Coloured Coins</a>
+    <a href="quantum.html">Quantum</a>
+  </div>
 </div>
-
-<div class="main-content">
-  <div class="prose">
-    <h1>Glossary</h1>
-    <hr>
+<div class="prose">
+<h1>Glossary</h1>
+<hr>
 <p>title: Glossary</p>
 <p>description: Minima Glossary</p>
 <p>icon: Book</p>
@@ -266,19 +240,15 @@
 <p>Zero-Knowledge-Proofs are a cryptographic method used to prove that something is known without revealing the underlying information directly.</p>
 <p>When using them you can basically prove that you know a secret to another party, without revealing the secret itself. The method dates back to the 80s and has since found its way into cryptocurrencies, with Zcash being the first one to deploy it, enabling private transactions.</p>
 
-  </div>
-  <div class="doc-footer">
-    <a href="https://minima.global" target="_blank">Minima</a>
-    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
-    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
-    <br><br>
-    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
-  </div>
 </div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
 </div>
-<script>
-  miniweb_Init();
-  MDS.init(function(msg){});
-</script>
-</body>
-</html>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

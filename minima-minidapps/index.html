@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Index</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🧩 MiniDapps & Maxima</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Index</a>
+    <a href="approve.html">Approve</a>
+    <a href="manage.html">Manage</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="advanced.html">Advanced</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Index</h1>
+<hr>
+<p>title: MiniDapp Permissions</p>
+<p>description: Learn how to set your MiniDapp permissions</p>
+<p>tag: user-guides</p>
+<hr>
+<p>By default, all MiniDapps will be given <strong>READ</strong> permission. Any transactions or sensitive commands triggered from read apps must be <a href="/docs/user-guides/mds/approve-transactions">approved</a> from the Pending MiniDapp.</p>
+<p>MiniDapps with <strong>WRITE</strong> permission can transact or run any command without asking for your approval.</p>
+<p>Before giving a MiniDapp WRITE permissions, ensure your [wallet is</p>
+<p>locked](/docs/user-guides/security/lock-your-wallet) with a password. **You should only</p>
+<p>give WRITE permission to MiniDapps that you trust.**</p>
+<p>To change the permissions for a MiniDapp:</p>
+<ol><li>Right click on a MiniDapp (or long press on mobile)</li><li>Select <strong>Write mode</strong> (or Read mode)</li></ol>
+<p>!<a href="/img/runanode/mds_updateperms.png">MDS</a></p>
+<ol><li>Click <strong>Confirm</strong></li></ol>
+<p>!<a href="/img/runanode/mds_writeaccess.png">MDS</a></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

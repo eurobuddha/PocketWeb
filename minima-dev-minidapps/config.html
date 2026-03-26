@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Config</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📱 Dev: MiniDapps</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="config.html" class="active">Config</a>
+    <a href="mds-js.html">Mds Js</a>
+    <a href="events.html">Events</a>
+    <a href="service.html">Service</a>
+    <a href="browser.html">Browser</a>
+    <a href="stores.html">MiniDapp Stores </a>
+  </div>
+</div>
+<div class="prose">
+<h1>Config</h1>
+<hr>
+<p>title: Config File</p>
+<p>description: MiniDapps are applications that run on top of Minima and Maxima.</p>
+<p>tag: development</p>
+<hr>
+<p>The <strong>dapp.conf</strong> file is the configuration file for your MiniDapp and is where the MiniDapp metadata is provided in JSON format which will be required by the MiniDapp Hub later.</p>
+<p>Metadata options:</p>
+<ul><li><strong>name</strong>: name of your MiniDapp</li><li><strong>icon</strong>: name of icon file (located in the same folder)</li><li><strong>version</strong>: MiniDapp version number</li><li><strong>description</strong>: MiniDapp description</li><li><strong>browser</strong>: internal or external (for mobile interface), depending on whether your MiniDapp should be launched within the app or in an external browser</li></ul>
+<p><strong>Example</strong></p>
+<pre><code>{
+"name":"Hello World",
+"icon" :"favicon.ico",
+"version" : "1.0",
+"description": "My Hello World MiniDapp",
+"browser": "internal"
+}</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

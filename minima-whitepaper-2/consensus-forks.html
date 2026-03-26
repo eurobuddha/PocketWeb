@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Consensus, Forks and Immutable Protocols</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📄 Whitepaper (2/2)</div>
+  <div class="nav-links">
+    <a href="index.html">Storage-less MMR UTXO</a>
+    <a href="smart-contracts.html">Smart Contracts, Tokens and Transactions</a>
+    <a href="quantum.html">Quantum Secure</a>
+    <a href="block-size.html">Block Size</a>
+    <a href="block-speed.html">Block Speed</a>
+    <a href="consensus-forks.html" class="active">Consensus, Forks and Immutable Protocols</a>
+    <a href="conclusion.html">Conclusion</a>
+    <a href="thanks.html">Special thanks to</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Consensus, Forks and Immutable Protocols</h1>
+<p>In decentralized blockchain systems all full users need to agree on the rules. If there is no agreement on the rules there can be no consensus on the ordering and eventual outcome of actions. Current blockchain systems have 2 types of consensus changes available. This is because there are 2 types of ‘full’ user. The first helps in the construction and validation of the chain - Complete nodes (the miners). The second only helps in the validation of the chain - Full nodes (the validators). We ignore Wallet users, by far the largest group on these chains (unlike Minima), who neither validate nor construct, and are simply swept along, whether they agree or not.</p>
+<p>A soft fork is when the Complete nodes change the rules in ways that are still valid to the Full nodes. A soft-fork is a reduction in the chains’ abilities. All Full nodes still see a valid block, just with a reduced solution space. Permanent censorship of a transaction or address is a soft-fork, since only those involved in the construction of the chain have any say. On fixed block size blockchains, a reduction in block size is a soft fork, as it still appears valid to all the Full nodes, just a smaller block. A hard fork is when all nodes need to agree to an increase in capabilities, adding an ability that was not there before. On fixed block size blockchains, an increase in the block size requires everyone to agree, as it is invalid to Full nodes given the old rules, that specified a lower maximum block size. Adding a new function or feature is a hard fork. Upgrading or fundamentally changing the protocol is a hard fork.</p>
+<p>Soft forks are much easier to implement than hard forks since only a majority of the much smaller group of Complete nodes needs to agree. Soft forks can be imposed. The Complete nodes do not need the Full nodes’ permission. Hard forks are much harder to implement. The larger the network the harder it gets. A decentralized protocol can only grow in adoption once it has stopped being updated, since it is impossible to update once deployed at scale. This is why the ossification of truly decentralized protocols occurs.</p>
+<p>On Minima :</p>
+<ul><li>Everyone runs a Complete node.</li><li>Everyone is involved in the construction and validation of the chain.</li><li>Everyone needs to agree on everything because everyone is involved in everything.</li><li>There are no soft forks, only hard forks. </li></ul>
+<p>The Minima Protocol is complete from inception, containing all the scaling and functionality it will ever have or need. No soft forks allowed. No hard forks required - ever. No limit on the size of the network that can use it. POP3, SMTP, UDP and TCP/IP are examples of ossified global decentralized protocols. They don't change. That's the point. That’s why they are the back-bone of the Internet.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

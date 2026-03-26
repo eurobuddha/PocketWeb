@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Basic</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🎓 Dev: MiniDapp Tutorials</div>
+  <div class="nav-links">
+    <a href="index.html">MiniDapp Hub</a>
+    <a href="basic.html" class="active">Basic</a>
+    <a href="interactive.html">Interactive</a>
+    <a href="react.html">React</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Basic</h1>
+<hr>
+<p>title: Basic MiniDapp</p>
+<p>description: Learn how to create a basic MiniDapp</p>
+<p>tag: development</p>
+<hr>
+<p>In this section, we walk through how to create a very simple MiniDapp that does not interact with the Minima blockchain.</p>
+<p>You will learn how to:</p>
+<ol><li>Create the MiniDapp config file</li><li>Give your MiniDapp an icon</li><li>Create a basic interface for your MiniDapp</li><li>Package your MiniDapp to load to your MiniDapp Hub</li><li>Install your MiniDapp on your node on Minima</li></ol>
+<h2>Config file</h2>
+<p>The first step is to create a folder that your MiniDapp will live in. Call it <code>helloworld</code>.</p>
+<p>In your code editor, create a new file called <code>dapp.conf</code> and save it into your helloworld folder.</p>
+<p>The dapp.conf file is the configuration file for your MiniDapp and is where we provide the MiniDapp metadata in JSON format which will be required by the MiniDapp Hub later.</p>
+<p>Following the HelloWorld example, your dapp.conf file should look something like this:</p>
+<pre><code>{
+  "name": "Hello World",
+  "icon": "favicon.ico",
+  "version": "1.0",
+  "description": "My Hello World MiniDapp"
+}</code></pre>
+<p>Save it. That&apos;s your config file done!</p>
+<h2>Icon</h2>
+<p>To include an icon for your MiniDapp, save an image as <code>favicon.ico</code> and add it to your <code>helloworld</code> folder with your <code>dapp.conf</code> file.</p>
+<p>Your folder should now contain 2 files</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li></ol>
+<p>Your config file and icon used will determine what is visible when your MiniDapp is loaded into the MiniDapp Hub, as shown below.</p>
+<p>!<a href="/img/runanode/mds_pendingicon.png">Accessing the MiniDapp Hub</a></p>
+<h2>Basic interface for your MiniDapp</h2>
+<p>Next, we will create a simple webpage which will be the homepage of your MiniDapp.</p>
+<p>Create and open an <code>index.html</code> file.</p>
+<p>Copy and paste the following code, or alternatively, create your own basic html page.</p>
+<p>If you are comfortable with CSS styling you can also go ahead and create a .CSS file for your html file.</p>
+<pre><code>&lt;html&gt;
+
+&lt;head&gt;
+	&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+	&lt;title&gt;Hello World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body style="font-family:manrope;"&gt;
+	&lt;h1&gt;Hello World!&lt;/h1&gt;
+
+	&lt;p&gt;This is my first MiniDapp!&lt;/p&gt;
+
+	&lt;h3&gt;Welcome to complete decentralization&lt;/h3&gt;
+	&lt;p&gt;
+	Minima is a cooperative network that enables everyone to freely connect and prosper.&lt;br&gt;&lt;/br&gt;
+	Click &lt;a href="https://minima.global"&gt;here&lt;/a&gt; to go to the Minima website.
+	&lt;/p&gt;
+
+	&lt;h3&gt;Next Steps&lt;/h3&gt;
+	&lt;p&gt;
+		Next, you will learn how to create a MiniDapp that interacts with the Minima Blockchain.
+	&lt;/p&gt;
+	&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+<p>Save it.</p>
+<p>Your folder should now contain 3 files.</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li><li>index.html</li></ol>
+<p>If you also created a CSS file, add that to your <code>helloworld</code> folder.</p>
+<p>Next, we will see how the MiniDapp looks when installed onto a Minima node.</p>
+<h2>Packaging your MiniDapp</h2>
+<p>We now have a complete helloworld folder containing:</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li><li>index.html</li><li>styling.css (optional)</li></ol>
+<p>Zip up the contents of this folder (not the folder itself)</p>
+<p>!<a href="/img/buildonminima/zipup.png">Accessing the MiniDapp Hub</a></p>
+<p>Name the folder as <code>helloworld.mds.zip</code> or if you are using a zip library through your cli run <code>zip -r helloworld.mds.zip</code>.</p>
+<h2>Installing your MiniDapp</h2>
+<p>The final stage is to install the MiniDapp onto your node.</p>
+<h3>Installing onto a mobile device</h3>
+<p>To install the MiniDapp on your phone:</p>
+<ol><li>Send the zip file to your mobile device (via email or other method)</li><li>Download the MiniDapp zip file to your mobile device</li><li>Open the Minima App</li><li>From the Home page, click the + button</li><li>Find the MiniDapp in your mobile’s file explorer (most likely the Downloads folder)</li><li>Select the MiniDapp, the MiniDapp will install on your node</li><li>Click on your MiniDapp to open it</li></ol>
+<p><strong>Congratulations! You have created your first MiniDapp!</strong></p>
+<h3>Installing onto a desktop node</h3>
+<ol><li>Login to your MiniDapp Hub and click on the <code>+</code> in the top right</li><li>Select your <code>helloworld.mds.zip</code> MiniDapp</li><li>Click on <strong>Install</strong>, then return to the Hub</li></ol>
+<p>Alternatively, to install from the command line:</p>
+<ol><li>Run the command <code>mds action:install file:helloworld.mds.zip</code> from the Minima Command Line (including the path with the file if required.)</li></ol>
+<p>Example</p>
+<pre><code>mds action:install file:C:\Users\Downloads\HelloWorld.mds.zip
+
+# Output
+Minima @ 06/07/2022 12:49:44 [233.9 MB] : unzipping package into C:\Users\minima\mds\web\0xCFAB5D98C98CED060F5FDD235CDA27AF
+{
+  "command":"mds",
+  "params":{
+    "action":"install",
+    "file":"C:\\Users\\Downloads\\HelloWorld.mds.zip"
+  },
+  "status":true,
+  "response":{
+    "installed":{
+      "uid":"0xCFAB5D98C98CED060F5FDD235CDA27AF",
+      "conf":{
+        "name":"Hello World",
+        "icon":"favicon.ico",
+        "version":"1.0",
+        "description":"My Hello World MiniDapp",
+        "browser":"internal"
+      }
+    }
+  }</code></pre>
+<ol><li>Login to your MiniDapp Hub</li><li>Click on your MiniDapp to open it</li></ol>
+<p><strong>Congratulations! You have created your first MiniDapp!</strong></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

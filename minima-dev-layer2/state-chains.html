@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>State Chains</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚡ Dev: Layer 2 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Uni-directional Channel</a>
+    <a href="bidirectional.html">Bi-directional Payments</a>
+    <a href="eltoo.html">ELTOO Channel</a>
+    <a href="eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+    <a href="eltoo-float.html">ELTOO Floating Coin</a>
+    <a href="eltoo-full.html">Full ELTOO Sequence</a>
+    <a href="state-chains.html" class="active">State Chains</a>
+    <a href="coinflip.html">Coin flip V2</a>
+  </div>
+</div>
+<div class="prose">
+<h1>State Chains</h1>
+<p>State Chains are similar to a normal ELTOO channel with a couple of differences.</p>
+<ol><li>The State Chain is run by a single entity, and it is the co-signer of any ELTOO Channel, with an additional User.</li></ol>
+<ol><li>When the User wishes to give the Coin, which is in the ELTOO channel, to someone, they give them the Private Key of the Public Key that is used as one half of the MultiSig. A new Update and Settlement transaction is created that pays out the coin to the NEW user - a new address.</li></ol>
+<ol><li>You can only give the WHOLE coin to another user. This works well for NFTs.</li></ol>
+<ol><li>So every settlement transaction simply assigns the funds to a different new address controlled by the current owner.</li></ol>
+<ol><li>When a User is given the coin the old user signs a chain of transfers. So that there is a 'State Chain' that defines who had and who was given the Coin.</li></ol>
+<ol><li>This means any previous User + the State Chain entity can in theory write themselves a new update and settlement and take the funds - so trust is required in the state chain entity.</li></ol>
+<ol><li>Neither the State Chain entity nor the User ever have BOTH the keys required to update the channel.</li></ol>
+<ol><li>It is impossible to take the Coin without it being known. Since the State Chain defines who should have it. So any attempt to steal the funds is 'known'.</li></ol>
+<ol><li>The State Chain entity does not need to know 'who' the coin is being given to. All it promises is to create a new Update and Settlement transaction when the current owner wishes it - by signing with a public key, and that a new owner can be set with a</li></ol>
+<p>new public key when the current owner wishes it.</p>
+<p>Yes - the trust assumptions are different to a normal ELTOO transaction - but what is really powerful about State Chains is that unlike a normal ELTOO channel - users can be onboarded onto this Layer 2 protocol WITHOUT having to do an on chain transaction.</p>
+<p>What you are doing is sending the 'coin' itself (or NFT) to layer 2 and then any user can be involved, since all you do is share the Private Key.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

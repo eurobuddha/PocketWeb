@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Firewall</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🖥️ Run a Node</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="types.html">Types</a>
+    <a href="firewall.html" class="active">Firewall</a>
+    <a href="params.html">Params</a>
+    <a href="android.html">Android</a>
+    <a href="windows.html">Windows</a>
+    <a href="mac.html">Mac</a>
+    <a href="cli.html">Cli</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Firewall</h1>
+<hr>
+<p>title: Firewall Rules</p>
+<p>description: Learn about the port and firewall requirements for running a Minima node</p>
+<p>icon: MonitorCog</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>The following information is for Server and Desktop users.</p>
+<p>{/*</p>
+<h2>Minimum hardware requirement</h2>
+<p>The following requirements are separate to any specs required for non Minima related processes. GPU is not necessary.</p>
+<h3>Standard full node</h3>
+<div class="callout"><strong>Minidapps</strong><br>High MiniDapp usage may require higher availability of Storage</div>
+<ul><li>Processing: 2 CPU</li><li>Memory: 2GB RAM</li><li>Storage: 2GB storage</li></ul>
+<div class="callout"><strong>Docker</strong><br>Processing, memory and storage require 4 CPU, 4GB RAM and 4GB storage if using
+<p>Docker.</div></p>
+<h3>Archive node</h3>
+<ul><li>Processing: 2 CPU (4 CPU if using Docker)</li><li>Memory: 4GB RAM</li><li>Storage: 5GB storage</li></ul>
+<div class="callout"><strong>Storage</strong><br>Minimum requirements for storage may change over time.</div>
+<h3>Mega node</h3>
+<ul><li>Processing: 2 CPU</li><li>Memory: 8GB RAM</li><li>Storage: 5GB storage</li></ul>
+<div class="callout"><strong>Android</strong><br>We do not recommend running a Mega node from an Android device as the RAM
+<p>consumption is considerably higher than a standard node.</div></p>
+<p>The Mega node must be online constantly to remain in sync with the chain. Downtime of less than 24 hours is acceptable. */}</p>
+<h2>Ports used</h2>
+<p>By default, Minima reserves ports <code>9001-9005</code>, although an alternate 5-port range can be chosen by specifying a different main port on start up e.g. 8001.   If specifying a different main port, the port range used will be the next consecutive 4 ports. e.g 8001-8005.</p>
+<pre><code>java -jar minima.jar -port 8001</code></pre>
+<ul><li><strong>9001 TCP (main port):</strong> The main Minima port, for peer-to-peer communication over Minima and Maxima</li><li><strong>9002 TCP (or main port +1):</strong> Not currently used</li><li><strong>9003 TCP (or main port +2):</strong> MiniDapp System (MDS) Web Server</li><li><strong>9004 TCP (or main port +3):</strong> No longer used after v 1.0.37</li><li><strong>9005 TCP (or main port +4):</strong> JSON-RPC over HTTP</li></ul>
+<h2>Relaying</h2>
+<p>To ensure your node faciliates the relaying of transactions and blocks across the network, you should allow inbound connections to the server on port 9001 (or other main port you have chosen). Relay nodes are the backbone of the Minima peer-to-peer network. If your inbound connection is closed, your node will still function but will only make outgoing connections and will not act as a relay node.</p>
+<p>Desktop nodes can contribute to relaying transactions and blocks by setting up port forwarding on port 9001, however this is not usually recommended for home networks.</p>
+<h2>Recommended Firewall settings (VPS users)</h2>
+<div class="callout"><strong>Docker</strong><br>If using Docker to run your node on a VPS, you must not rely on UFW as your
+<p>firewall, Docker will overwrite UFW firewall rules. You must use your VPS</p>
+<p>provider's firewall manager.</div></p>
+<p>After configuring your firewall, you should check they are enforced as expected.</p>
+<h3>Ingress</h3>
+<p>All inbound connections should be denied by default.</p>
+<p><strong>22 tcp:</strong> allow all</p>
+<p>Allows ssh access to the server, optionally only allow this from your home IP address.</p>
+<p><strong>9001 tcp:</strong> allow all</p>
+<div class="callout"><strong>9001 - Relay nodes</strong><br>Allowing inbound connections on port 9001 will ensure your node acts as a
+<p>relay node. Relay nodes are the backbone of the Minima peer-to-peer network</p>
+<p>that faciliate the transmission of transactions and blocks across the network</p>
+<p>and support the network to scale. If your inbound connection is closed, your</p>
+<p>node will only make outgoing connections and will not act as a relay node.</div></p>
+<p><strong>9003 tcp:</strong></p>
+<ul><li>if enabling the MiniDapp system, <strong>allow only from your home IP address</strong></li><li>if running Minima on the command line only, <strong>deny inbound connections</strong></li></ul>
+<div class="callout"><strong>9003 - Minidapp port</strong><br>If your home IP is dynamic, you will need to maintain this firewall rule to
+<p>your latest IP. If you choose to allow inbound connections from anywhere, your</p>
+<p>login screen will be public facing, so your login password (mdspassword) must</p>
+<p>be long and secure, using a combination of lowercase, uppercase letters</p>
+<p>numbers and symbols.</div></p>
+<p><strong>9002 tcp (not in use):</strong> deny all</p>
+<p><strong>9004 tcp (not in use):</strong> deny all</p>
+<p><strong>9005 tcp (RPC port):</strong></p>
+<ul><li>deny all, or</li><li>if you want to <code>curl</code> into the node remotely, ensure this is <strong>only allowed inbound from your home IP address. You should only do this if you are an advanced user and understand the risks!</strong></li></ul>
+<p>Opening port 9005 is extremely risky as it exposes your node and seed phrase</p>
+<p>if you have not set a <a href="/docs/run-a-node/linux-vps-service#rpc-client-setup">secure password for RPC access</a>.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

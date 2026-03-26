@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Time Lock Contract</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔗 Dev: Layer 1 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Basic signed contract</a>
+    <a href="timelock.html" class="active">Time Lock Contract</a>
+    <a href="multisig.html">Multisig Contract</a>
+    <a href="mofn.html">Mofn</a>
+    <a href="complex-multisig.html">Complex Multisig</a>
+    <a href="slowcash.html">Slow Cash</a>
+    <a href="htlc.html">Hashed Timelock Contract</a>
+    <a href="exchange.html">Exchange Contract</a>
+    <a href="flashcash.html">Flash Cash</a>
+    <a href="multisig-multicoin.html">Multisig Multicoin</a>
+    <a href="mast.html">MAST Contracts</a>
+    <a href="vault.html">The Vault</a>
+    <a href="coinflip.html">Coin Flip</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Time Lock Contract</h1>
+<p>A time lock contract is a script that can only be spent after a certain amount of time - in this case a certain block - has passed.</p>
+<p>So the script for that would be: <code>RETURN (SIGNEDBY(0xFFEE67F7C..) AND @BLOCK GT 100)</code></p>
+<p>This script will return TRUE if the transaction is signed by the correct public key and the blocktime is over 100. The @ symbol represents ‘Global’ variables that are set automatically and represent variables related to the transaction itself, the coin, and the current state of the blockchain, that you can then access in your scripts.</p>
+<p><strong>Global Variables</strong></p>
+<div class="tw"><table>
+<tr><th>Variable</th><th>Description</th></tr>
+<tr><td><code>@BLOCK</code></td><td>The current block number</td></tr>
+<tr><td><code>@BLOCKMILLI</code></td><td>The current block time in milliseconds since Jan 1 1970</td></tr>
+<tr><td><code>@CREATED</code></td><td>The block this coin was created in</td></tr>
+<tr><td><code>@COINAGE</code></td><td>The difference in @BLOCK and @CREATED</td></tr>
+<tr><td><code>@INPUT</code></td><td>Input index of a coin used in the transaction. First input coin has an index of 0</td></tr>
+<tr><td><code>@COINID</code></td><td>The coinid</td></tr>
+<tr><td><code>@AMOUNT</code></td><td>The amount</td></tr>
+<tr><td><code>@ADDRESS</code></td><td>The address</td></tr>
+<tr><td><code>@TOKENID</code></td><td>The tokenid</td></tr>
+<tr><td><code>@SCRIPT</code></td><td>The script of this coin</td></tr>
+<tr><td><code>@TOTIN</code></td><td>The total number of input coins</td></tr>
+<tr><td><code>@TOTOUT</code></td><td>The total number of output coins</td></tr>
+</table></div>
+<p>You can test your scripts without sending them on chain using the ‘runscript‘ function. This allows you to set all the variables and globals as you see fit.</p>
+<pre><code>runscript script:"RETURN SIGNEDBY(0xFF) AND @BLOCK GT 100" globals:{"@BLOCK":"101"} signatures:["0xFF"]</code></pre>
+<p>You can use lowercase when entering the scripts and it will be ‘cleaned’ for you into the correct format.</p>
+<p>Now let's attempt another very useful contract, one that requires 2 signatures from different parties to be valid.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

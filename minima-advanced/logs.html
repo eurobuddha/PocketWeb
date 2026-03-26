@@ -1,0 +1,144 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Log messages</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚙️ Advanced & MySQL</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="logs.html" class="active">Log messages</a>
+    <a href="mysql.html">Mysql</a>
+    <a href="export-to.html">Export To</a>
+    <a href="export-from.html">Export From</a>
+    <a href="restore-mysql.html">Restore Mysql</a>
+    <a href="archive.html">Archive</a>
+    <a href="mega-wallet.html">Mega Wallet</a>
+    <a href="meg-api.html">Meg Api</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Log messages</h1>
+<p>The logs for your node are an audit of the recent events and processes occurring on your node.</p>
+<p>It is useful to understand some of the most commonly shown logs for troubleshooting purposes.</p>
+<p>Detailed logs can be turned on for scripts, mining, maxima, blocks, networking and ibd (initial blockchain download) using the <code>logs</code> command.</p>
+<p><strong>Example:</strong></p>
+<pre><code>logs scripts:true</code></pre>
+<h2>Minima connection logs </h2>
+<pre><code>Connected attempt success to ...</code></pre>
+<p><code>Details</code>: Your node has successfully connected to another node at the specified host:port.</p>
+<p><code>Log Level</code>: Info</p>
+<p><code>Action required?</code>: No</p>
+<pre><code>[+] Connected to the blockchain Initial Block Download received. size:x bytes blocks:x</code></pre>
+<p><code>Details</code>: Your node has received an IBD (Initial Blockchain Download) after connecting to another node. If your node is not up to date with the top block in the chain, you will receive the blocks your node is missing.</p>
+<p><code>Log Level</code>: Info</p>
+<p><code>Action required?</code>: No</p>
+<h2>Chain logs</h2>
+<pre><code>Your chain tip is up to date - no TxBlocks accepted - only FULL TxPoW</code></pre>
+<p><code>Details</code>: Your top block is up to date so your node does not need to accept archive blocks.</p>
+<p><code>Log Level</code>: Info</p>
+<p><code>Action required?</code>: No</p>
+<pre><code>Warning : Chain tip hasn't changed in 180 seconds 0x.. x</code></pre>
+<p><code>Details</code>: Your top block has not changed in 3 minutes. Top block txpowid and block number is provided.</p>
+<p><code>Log Level</code>: Info</p>
+<p><strong>Action required?:</strong> Maybe, although it is normal to see this message several times in a day.</p>
+<p><strong>Suggested action:</strong> Check to see if your node is showing other log messages that suggest you are not connected to the network, this could be a lot of disconnecting/could not connect messages. If so, check your internet connection and if running a node on a server, check that your firewall is not blocking connections on port 9001.</p>
+<pre><code>[!] No Crossover found whilst syncing with new node. They are on a different chain. Please check you are on the correct chain.. disconnecting from ...</code></pre>
+<p><code>Details:</code> No intersection of blocks was found with a new connection so either you or they are on the wrong chain. Your node will disconnect from them.</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> Maybe</p>
+<p><code>Suggested action:</code> Check to see if your node is showing other log messages that suggest you are on the wrong chain, e.g. CONNECTED TO HEAVIER CHAIN / failed block check / We are Too old to sync new user! / Invalid TxPoW Superparents</p>
+<pre><code>[!] CONNECTED TO HEAVIER CHAIN.. from ...</code></pre>
+<p><code>Details:</code> You connected to a node that in on a heavier chain. The client uid of the other node is provided.</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> Yes - if the message persists</p>
+<pre><code>[!] CONNECTED TO HEAVIER CHAIN.. from ...</code></pre>
+<p><code>Details:</code> You connected to a node that in on a heavier chain. The client uid of the other node is provided.</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> Yes - if the message persists</p>
+<p><code>Suggested action:</code> If the message persists, then attempt the following steps to re-sync your chain:</p>
+<ol><li>Restart your node and allow 10-15 minutes for your node to attempt to re-sync</li><li>If your node is too far behind the top block, you will need to perform a chain re-sync using an archive node or archive file. This can be done from the Security MiniDapp or using one of the following commands <code>archive action:import file:</code> / <code>reset archivefile: action:chainsync</code> / <code>archive action:resync host:</code></li></ol>
+<pre><code>We are Too old to sync new user! greetroot:x mytip:x</code></pre>
+<p><code>Details:</code> You connected to a new node but are too far behind so cannot provide any blocks to sync the user. The <code>greetroot</code> is the user's root block of their chain, <code>mytip</code> is your top block.</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> Yes - if the message persists</p>
+<p><code>Suggested action:</code> If the message persists, then attempt the following steps to re-sync your chain:</p>
+<ol><li>Restart your node and allow 10-15 minutes for your node to attempt to re-sync</li><li>If your node is too far behind the top block, you will need to perform a chain re-sync using an archive node or archive file. This can be done from the Security MiniDapp or using one of the following commands <code>archive action:import file:</code> / <code>reset archivefile: action:chainsync</code> / <code>archive action:resync host:</code></li></ol>
+<pre><code>[!] Failed block check @ x txpowid:x root:x tip:x</code></pre>
+<p><code>Details:</code> Your node could not complete the block check</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> Yes - if the message persists</p>
+<p><code>Suggested action:</code> If the message persists, then attempt the following steps to re-sync your chain:</p>
+<ol><li>Restart your node and allow 10-15 minutes for your node to attempt to re-sync</li><li>If your node is too far behind the top block, you will need to perform a chain re-sync using an archive node or archive file. This can be done from the Security MiniDapp or using one of the following commands <code>archive action:import file:</code> / <code>reset archivefile: action:chainsync</code> / <code>archive action:resync host:</code></li></ol>
+<pre><code>[!] Invalid TxPoW Super Parents</code></pre>
+<p><code>Details:</code> The TxPoW being validated does not have valid Super Parents in the cascade.</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> Yes - if the message persists, this suggests there is an error with your cascade.</p>
+<p><code>Suggested action:</code> If the message persists, then attempt the following steps to re-sync your chain:</p>
+<ol><li>Restart your node and allow 10-15 minutes for your node to attempt to re-sync</li><li>If your node is too far behind the top block, you will need to perform a chain re-sync using an archive node or archive file. This can be done from the Security MiniDapp or using one of the following commands <code>archive action:import file:</code> / <code>reset archivefile: action:chainsync</code> / <code>archive action:resync host:</code></li></ol>
+<pre><code>[!] Received IBD with cascade even though we have one.. from</code></pre>
+<p><code>Details:</code> You connected to a node which sent you a cascade</p>
+<p><code>Log Level:</code> Warning</p>
+<p><code>Action required?:</code> No</p>
+<h2>Maxima logs</h2>
+<pre><code>MAXIMA NEW connection : ...</code></pre>
+<p><code>Details:</code> You have connected to and added this node as a new Maxima Host.</p>
+<p><code>Level:</code> Info</p>
+<p><code>Action required?:</code> No</p>
+<pre><code>MAXIMA EXISTING connection
+MAXIMA EXISTING connection</code></pre>
+<p><code>Details:</code> You have connected to a node which is one of your existing Maxima Hosts.</p>
+<p><strong>Level:</strong> Info</p>
+<p><code>Action required?:</code> No</p>
+<pre><code>MAXIMA Check if connected : ...</code></pre>
+<p><code>Details:</code> Before sending a message to one of your Maxima hosts, the connection is checked.</p>
+<p><code>Level:</code> Info</p>
+<p><code>Action required?:</code> No</p>
+<pre><code>TIMED Maxima connect as no chain yet..</code></pre>
+<p><code>Details:</code> The node does not have any blocks yet so will not attempt to connect to a Maxima host. Will reattempt in 10 seconds.</p>
+<p><code>Level:</code> Info</p>
+<p><code>Action required?:</code> Maybe, if it persists.</p>
+<p><code>Suggested action:</code>  If the message persists, this suggests your node has no connections and has no chain. Check your internet connection and ensure your node is not running with the <code>-nop2p</code> or <code>-noconnect</code> parameter. If using a VPN, ensure the connection is not being blocked.</p>
+<pre><code>MAXIMA disconnecting from 185.103.110.69:9001 reconnecting to random host</code></pre>
+<p><code>Details:</code> A connection could not be established with the host and a new connection will be made.</p>
+<p><code>Level:</code> Info</p>
+<p><code>Action required?:</code> No</p>
+<h2>Script logs </h2>
+<pre><code>Script FAIL input:x ...</code></pre>
+<p><code>Details:</code> A transaction being validated contained a coin with a script that failed to return TRUE. The input coin index and failed script is provided.</p>
+<p><code>Level:</code> Error</p>
+<p><code>Action required?:</code> No, if the transaction is not yours. Yes, if you posted the transaction.</p>
+<p><code>Suggested action:</code> If the transaction is yours,</p>
+<ul><li>turn on additional logs for scripts by running <code>logs scripts:true</code> in the Terminal, then repost the same transaction to see which instruction caused the script to fail,</li><li>ensure that the conditions specified for spending the coin in the contract have been met. The transaction will not complete and will need to be reposted.</li></ul>
+<pre><code>Token Script FAIL input:x ...</code></pre>
+<p><code>Details:</code> A transaction being validated contained a custom token with a token script that failed to return TRUE. The input coin index and failed script is provided.</p>
+<p><code>Level:</code> Error</p>
+<p><code>Action required?:</code> <strong>No</strong> - if the transaction is not yours. <strong>Yes</strong> - if you posted the transaction.</p>
+<p><code>Suggested action:</code> If the transaction is yours,</p>
+<ul><li>turn on additional logs for scripts by running <code>logs scripts:true</code> in the Terminal, then repost the same transaction to see which instruction caused the script to fail,</li><li>ensure that the conditions specified for spending the custom token in the contract have been met. The transaction will not complete and will need to be reposted.</li></ul>
+<pre><code>Error Monotonic TxPoW failed script check from Client: ... \</code></pre>
+<p><code>Details:</code> Your node received a txpow that contained a monotonic transaction with a script that failed to return TRUE. The client uid and txpowid is provided. If a monotonic transaction fails, it will always fail as it does not depend on any varying state e.g. block time. The txpow will not be forwarded to peer nodes.</p>
+<p><code>Level:</code> Error</p>
+<p><code>Action required?:</code> No</p>
+<pre><code>NON-Monotonic TxPoW failed script check from Client ...</code></pre>
+<p><code>Details:</code> Your node received a txpow that contained a non-monotonic transaction with a script that failed to return TRUE. The client uid and txpowid is provided. The validity of non-monotonic transactions depends on varying conditions e.g. block time, so may pass successfully at a later point in time. The txpow will not be forwarded to peer nodes.</p>
+<p><code>Level:</code> Error</p>
+<p><code>Action required?:</code> No</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

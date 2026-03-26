@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Join</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📋 User Guides</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="login.html">Login</a>
+    <a href="join.html" class="active">Join</a>
+    <a href="seed.html">Seed</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="status.html">Status</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Join</h1>
+<hr>
+<p>title: Join the network</p>
+<p>description: Learn how to join the Minima network</p>
+<p>icon: Network</p>
+<p>tag: user-guides</p>
+<hr>
+<p>To achieve Minima's vision of complete decentralisation, there are no centralised servers that control access to the network. Therefore, when running a node for the first time, you will need one or more connections to join the network.</p>
+<p>To get a list of connections, use one of the following methods:</p>
+<ul><li>ask another node runner to <a href="#sharing-connections">share their connections</a> with you</li><li>enter <code>/minimapeers</code> into any channel in our <a href="https://discord.com/invite/minimaglobal">Discord server</a></li><li>Google search for <strong>minimapeers.txt</strong></li><li>use a public URL that returns a list of Minima peers, for example https://minima.global/minimapeers.txt</li></ul>
+<p><strong>This is a one off task, only required when starting a node for the first time.</strong></p>
+<div class="callout"><strong>Restoring a backup</strong><br>If you are restoring a backup to a new node, select "I'll do this later" and
+<p>continue to restore your backup using the Security MiniDapp.</div></p>
+<h2>Adding connections</h2>
+<p>Connections (or 'peers') are simply other nodes that can share the blockchain with new users, enabling them to join the network.</p>
+<p><strong>To add connections for the first time:</strong></p>
+<p>Settings</p>
+<p>From the Home screen, go to <strong>Settings</strong>.</p>
+<p>!<a href="/img/runanode/settingsicon.png">settings</a></p>
+<p>Add connections</p>
+<p>Select <strong>Add connections</strong>.</p>
+<img
+<p>src="/img/runanode/addconnectionssetting.png"</p>
+<p>alt="add connections"</p>
+<p>width="500"</p>
+<p>height="500"</p>
+<p>/></p>
+<p>Enter connections</p>
+<p>Paste the list or URL into the box and select <strong>Add connections</strong></p>
+<img
+<p>src="/img/runanode/addconnections2.png"</p>
+<p>alt="connections"</p>
+<p>width="500"</p>
+<p>height="500"</p>
+<p>/></p>
+<p>Check your block number</p>
+<p>Exit the Settings and wait a few minutes for the block number to appear in the top right</p>
+<img
+<p>src="/img/runanode/blocknum.png"</p>
+<p>alt="block number"</p>
+<p>width="500"</p>
+<p>height="500"</p>
+<p>/></p>
+<p>That's it! You are now connected to the network!</p>
+<p>Once you have joined the network, ensure you <a href="/docs/user-guides/secure-your-seedphrase">write down your seed phrase</a>.</p>
+<h2>Sharing connections</h2>
+<p>To help a new user join the network, share your connection list with them.</p>
+<p>Settings</p>
+<p>From the Home screen, go to <strong>Settings</strong>.</p>
+<p>!<a href="/img/runanode/settingsicon.png">settings</a></p>
+<p>Share Connections</p>
+<p>From there select <strong>Share connections</strong>.</p>
+<img
+<p>src="/img/runanode/connectionssetting.png"</p>
+<p>alt="share connections"</p>
+<p>width="500"</p>
+<p>height="500"</p>
+<p>/></p>
+<p>Share the connections</p>
+<p>Select <strong>Copy</strong> to copy the list of connections. You can then send the list to a new node runner.</p>
+<img
+<p>src="/img/runanode/shareconnections.png"</p>
+<p>alt="share connections"</p>
+<p>width="500"</p>
+<p>height="500"</p>
+<p>/></p>
+<h2>Add/Share via the Terminal</h2>
+<p>Alternatively, you can add or share connections using the Terminal</p>
+<p><strong>To add connections:</strong></p>
+<pre><code>peers action:addpeers peerslist:[IP:PORT],[IP:PORT],[IP:PORT] ...</code></pre>
+<p><strong>To share connections:</strong></p>
+<pre><code>peers action:list max:10</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

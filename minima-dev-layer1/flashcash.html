@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Flash Cash</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔗 Dev: Layer 1 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Basic signed contract</a>
+    <a href="timelock.html">Time Lock Contract</a>
+    <a href="multisig.html">Multisig Contract</a>
+    <a href="mofn.html">Mofn</a>
+    <a href="complex-multisig.html">Complex Multisig</a>
+    <a href="slowcash.html">Slow Cash</a>
+    <a href="htlc.html">Hashed Timelock Contract</a>
+    <a href="exchange.html">Exchange Contract</a>
+    <a href="flashcash.html" class="active">Flash Cash</a>
+    <a href="multisig-multicoin.html">Multisig Multicoin</a>
+    <a href="mast.html">MAST Contracts</a>
+    <a href="vault.html">The Vault</a>
+    <a href="coinflip.html">Coin Flip</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Flash Cash</h1>
+<p>Flash loans - where you borrow a coin for a single transaction - allow for many arbitrage possibilities..</p>
+<p>If you want to allow people to use your coins as a flash loan..</p>
+<p>How about sending your funds to this address:</p>
+<pre><code>IF SIGNEDBY( PREVSTATE(1) ) THEN RETURN TRUE ENDIF
+ASSERT SAMESTATE ( 1 1 )
+RETURN VERIFYOUT( @INPUT @ADDRESS @AMOUNT*1.01 @TOKENID TRUE )</code></pre>
+<p>Again this is a generic contract, so users can spot them on chain - it doesn&apos;t have to be of course you could specify your public key - and have a unique address - but defeats the point as you want users to know this address.</p>
+<p>When sending funds to this contract, place your public key as state variable 1..</p>
+<p><strong>This says:</strong></p>
+<p>The owner - <code>PREVSTATE(1)</code> - can cancel at any time..</p>
+<p>Or you can spend this coin if you send the same Tokens / Minima to the same address with 1% more.. ( AND make sure state 1 == prevstate 1 )</p>
+<p>Simple.</p>
+<p>You could even specify the 1% increase as a state variable ( <code>@AMOUNT*PREVSTATE(2)</code> ), to make it 0.1% or whatever you would like. Coupled with the exchange contracts, users can borrow coins when they see an opportunity and use them to construct a transaction, as long as they give you back all your coins + 1%, in the same transaction.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

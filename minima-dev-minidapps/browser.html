@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Browser</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📱 Dev: MiniDapps</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="config.html">Config</a>
+    <a href="mds-js.html">Mds Js</a>
+    <a href="events.html">Events</a>
+    <a href="service.html">Service</a>
+    <a href="browser.html" class="active">Browser</a>
+    <a href="stores.html">MiniDapp Stores </a>
+  </div>
+</div>
+<div class="prose">
+<h1>Browser</h1>
+<hr>
+<p>title: MiniBrowser</p>
+<p>description: The Mini Browser is a web browser that is built into the Minima wallet.</p>
+<p>tag: development</p>
+<hr>
+<p>The Android MiniBrowser is the web browser that runs internally on the Minima Android app.</p>
+<p>It is a custom built browser that allows users to use MiniDapps without having to leave the app to open an external browser window such as Chrome.</p>
+<p>Using the MiniBrowser prevents users from needing to bypass the self-signed certificate warning however it does not contain the full breadth of functionality that comes with an external browser.</p>
+<p>The MiniBrowser javascript interface contains the following functions that can be called from your MiniDapp:</p>
+<h2>Show title bar</h2>
+<pre><code>showTitleBar()</code></pre>
+<p>Show the title bar to allow the user to refresh the page, view the console logs or open the MiniDapp in an external browser.</p>
+<p>This is normally hooked up to the MiniDapp's top bar so that tapping at the top of the screen brings up the title bar.</p>
+<h2>Blob download</h2>
+<pre><code>blobDownload(String zMdsfile, String zHexData)</code></pre>
+<p>Due to limitations of the Minima Browser, you cannot download blob files via an anchor tag.</p>
+<p>To get around this issue, you can convert your file contents into hex data by using <code>MDS.util.base64ToHex</code> and then <code>Android.blobDownload('fileName', hexData);</code></p>
+<h2>Share text</h2>
+<pre><code>shareText(String zText)</code></pre>
+<p>Displays Androids native share menu and allows you to share any text that is passed in as an argument.</p>
+<h2>Share file</h2>
+<pre><code>shareFile(String zFilePath, String zMimeType)</code></pre>
+<p>This will display Androids native share menu with the attached file (filepath must be specified). This is useful for attaching a file to an email for sharing.</p>
+<p>Example:</p>
+<pre><code>if ((window as any).navigator.userAgent.includes('Minima Browser')) {
+return Android.shareFile(saveLocation, '/');
+}</code></pre>
+<p>Where saveLocation is the absolute path of the file on the operating system. This will pop up with the share options for other apps on the phone.</p>
+<h2>Disable default content menu</h2>
+<pre><code>disableDefaultContextMenu()</code></pre>
+<p>Disables the context menu (hold screen menu). This can be useful if the user needs to tap and hold the screen for some action instead of invoking Android's context menu.</p>
+<h2>Enable default content menu</h2>
+<pre><code>enableDefaultContextMenu()</code></pre>
+<p>Enables the context menu (hold screen menu).</p>
+<h2>Open external brower</h2>
+<pre><code>openExternalBrowser(String zUrl, String zTarget)</code></pre>
+<p>This will open the app in the default external browser.</p>
+<h2>Close Window</h2>
+<pre><code>closeWindow()</code></pre>
+<p>A MiniDapp can call this function to close the window and return back to the previous window, in most cases this will be the MiniHUB.</p>
+<h2>Shutdown Minima</h2>
+<pre><code>shutdownMinima()</code></pre>
+<p>Gracefully shutdown Minima to ensure all databases are shutdown correctly.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

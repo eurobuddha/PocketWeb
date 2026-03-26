@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Exchange Contract</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔗 Dev: Layer 1 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Basic signed contract</a>
+    <a href="timelock.html">Time Lock Contract</a>
+    <a href="multisig.html">Multisig Contract</a>
+    <a href="mofn.html">Mofn</a>
+    <a href="complex-multisig.html">Complex Multisig</a>
+    <a href="slowcash.html">Slow Cash</a>
+    <a href="htlc.html">Hashed Timelock Contract</a>
+    <a href="exchange.html" class="active">Exchange Contract</a>
+    <a href="flashcash.html">Flash Cash</a>
+    <a href="multisig-multicoin.html">Multisig Multicoin</a>
+    <a href="mast.html">MAST Contracts</a>
+    <a href="vault.html">The Vault</a>
+    <a href="coinflip.html">Coin Flip</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Exchange Contract</h1>
+<p>Lets create a simple Layer 1 exchange contract for Minima and some tokens. Minima allows you to create tokens very easily - and tokens can have their own script. When sending a token the address script AND token script must return TRUE.</p>
+<p>For now let’s first create a simple token</p>
+<pre><code>tokencreate name:mytoken amount:1000</code></pre>
+<p>This will create a token with a globally unique tokenid.</p>
+<p>Use <code>balance</code> and you will see it there.</p>
+<p>Now create yourself a <code>newaddress</code>, we will use the public key and address.</p>
+<p>Use your key from before (or create a new one).. what does this script do..</p>
+<pre><code>IF SIGNEDBY(0xTheOwnerPublicKey) THEN RETURN TRUE ENDIF RETURN VERIFYOUT( @INPUT 0xYouAddress 10 0x00 TRUE )</code></pre>
+<p>This contract says, the owner can cancel at any time, by signing with their key OR you can spend it if you send 10 Minima <code>( tokenid 0x00 )</code> to <code>0xYourAddress</code> at the opposite output in the transaction.</p>
+<p><code>ASSERT</code> will do nothing if the expression is TRUE but RETURN FALSE if the expression is FALSE.</p>
+<p><code>VERIFYOUT</code> checks that an output exists of a certain address , amount and tokenid - at a certain position, and if you are keeping the state.</p>
+<p>By using <code>@INPUT</code> you know the opposite output must be the desired one and multiple exchange contracts can take place in a single transaction.</p>
+<p>You would need to add this as a script as before. But it’s not so useful as it is specific to you..</p>
+<p>A better contract would be..</p>
+<pre><code>IF SIGNEDBY( PREVSTATE(0) ) THEN RETURN TRUE ENDIF
+ASSERT VERIFYOUT( @INPUT PREVSTATE(1) PREVSTATE(2) PREVSTATE(3) TRUE ) RETURN TRUE</code></pre>
+<p>This contract is generic, the values would be entered as state variables in the initial transaction, you can set state variables in <code>send</code>, when you send some tokens/ Minima to the address, and it allows you to specify how much of what token you want sent to a specific address.</p>
+<p>You can find it's address with:</p>
+<pre><code>scripts action:clean script:"IF SIGNEDBY( PREVSTATE(0) THEN RETURN TRUE ENDIF ASSERT VERIFYOUT( @INPUT PREVSTATE(1) PREVSTATE(2) PREVSTATE(3) TRUE ) RETURN TRUE"</code></pre>
+<p>In this case this is:</p>
+<pre><code>0xBB696A834B6FD91F62A28C9BDCF3754C77F03AFFFEE4EBA3A7485FDC8FD2F3C9</code></pre>
+<p>You can easily send funds with the state variables using the send function.</p>
+<pre><code>send amount:1 address:0x39AC9C96DBC9E4A108E6EBB795003A53F11258BC47EECF0C03275C500CB8DDA1 state:{"0":"0xOwnerKey","1":"0xOwnerAddress","2":"0xDesiredAmount","3":"0xDesiredToken"}</code></pre>
+<p><code>clean</code> takes your script and formats it correctly for use on Minima. You can use lowercase and spaces and these will all be removed / fixed.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MiniDapp Hub</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🎓 Dev: MiniDapp Tutorials</div>
+  <div class="nav-links">
+    <a href="index.html" class="active">MiniDapp Hub</a>
+    <a href="basic.html">Basic</a>
+    <a href="interactive.html">Interactive</a>
+    <a href="react.html">React</a>
+  </div>
+</div>
+<div class="prose">
+<h1>MiniDapp Hub</h1>
+<p>The MiniDapp hub is where you will access all the MiniDapps you have installed on your node.</p>
+<p>!<a href="/img/runanode/mds_hub.png">MDS</a></p>
+<p>To access your node&apos;s MiniDapps, the MiniDapp System (mds) must be enabled. To check whether it is enabled, run the <code>mds</code> command in the Minima Command Line Interface (CLI).</p>
+<p>You should see a password for logging into your MiniDapp hub, if the password value is null, mds is disabled and you should stop your node and restart it with the <code>-mdsenable</code> flag (or <code>-e minima_mdsenable=true</code> if using Docker).</p>
+<p>Example</p>
+<pre><code>mds
+
+# Output
+{
+  "command":"mds",
+  "status":true,
+  "pending":false,
+  "response":{
+    "password":"H8NW-7NZ9-TV63",
+    "minidapps":[...</code></pre>
+<p>Each node runner has access to their MiniDapp hub via https://127.0.0.1:9003 (or <a href="https://localhost:9003">https://localhost:9003</a>).</p>
+<p>Or if accessing on a remote server, <a href="https://YourServerIP:9003">https://YourServerIP:9003</a>.</p>
+<p>If running your node on a mobile device, you can interact with your node from a Desktop on the same WiFi as the mobile, to find the URL and password you need, go to the <strong>Settings > Desktop Connect</strong> section in the Android app.</p>
+<p>Minima uses self-signed certificates. For this reason you may be shown a</p>
+<p>security certificate warning when accessing Minima, to which you can click on</p>
+<p><strong>Advanced</strong>, then <strong>Proceed</strong>. This may be different depending on the browser</p>
+<p>and OS you are using.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

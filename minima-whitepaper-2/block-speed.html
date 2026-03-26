@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Block Speed</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📄 Whitepaper (2/2)</div>
+  <div class="nav-links">
+    <a href="index.html">Storage-less MMR UTXO</a>
+    <a href="smart-contracts.html">Smart Contracts, Tokens and Transactions</a>
+    <a href="quantum.html">Quantum Secure</a>
+    <a href="block-size.html">Block Size</a>
+    <a href="block-speed.html" class="active">Block Speed</a>
+    <a href="consensus-forks.html">Consensus, Forks and Immutable Protocols</a>
+    <a href="conclusion.html">Conclusion</a>
+    <a href="thanks.html">Special thanks to</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Block Speed</h1>
+<p>The security of a transaction is not improved by a faster block speed, since the amount of security is a function of the cumulative PoW of the parent blocks (hash-rates being equal 1 BTC block is worth 4 LTC blocks, since LTC runs 4x faster). A faster chain does increase the granularity of information[[6]](/docs/core/minimawhitepaper/specialthanksto) and allows a user to know sooner when their transaction is secure enough. The longer you wait, the more secure.</p>
+<p>If the block speed is too fast you risk ‘decoherence’, when the chain cannot keep up with itself as too many blocks are found and multiple conflicting branches emerge, but if the block speed is too slow you ignore the benefits of higher information granularity.</p>
+<p>Block speed can be much faster on a GHOST[[7]](/docs/core/minimawhitepaper/specialthanksto) chain and so Minima is aiming for a 50 second block time[[6]](/docs/core/minimawhitepaper/specialthanksto).</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

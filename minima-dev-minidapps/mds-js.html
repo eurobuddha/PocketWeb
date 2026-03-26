@@ -1,0 +1,181 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mds Js</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📱 Dev: MiniDapps</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="config.html">Config</a>
+    <a href="mds-js.html" class="active">Mds Js</a>
+    <a href="events.html">Events</a>
+    <a href="service.html">Service</a>
+    <a href="browser.html">Browser</a>
+    <a href="stores.html">MiniDapp Stores </a>
+  </div>
+</div>
+<div class="prose">
+<h1>Mds Js</h1>
+<hr>
+<p>title: mds.js Library</p>
+<p>description: mds.js is a JavaScript library for building MiniDapps</p>
+<p>tag: development</p>
+<hr>
+<p>The MiniDapp System library mds.js provides access to an MDS object that enables useful functionality when building MiniDapps.</p>
+<p>The latest mds.js can be downloaded from GitHub <a href="https://github.com/minima-global/Minima/blob/master/mds/mds.js">here</a>.</p>
+<p>The following functions exist on the MDS object.</p>
+<h2>General functions</h2>
+<h3>init</h3>
+<p>Minima Startup - with the callback function used for all Minima messages</p>
+<pre><code>init : function(callback)</code></pre>
+<p>Before being able to use the Minima API and run any commands, <code>MDS.init</code> must be run.</p>
+<p><code>MDS.init</code> takes one parameter, the callback function which returns a response object in JSON format.</p>
+<p>That would look something like this:</p>
+<pre><code>MDS.init(function(event){});</code></pre>
+<h3>log</h3>
+<p>Log some data with a timestamp in a consistent manner to the console.</p>
+<pre><code>log : function(output)</code></pre>
+<p><code>log</code> is a simple helper function that will output to the browser's console a time stamped message of your choice. This is useful for debugging.</p>
+<p><strong>Example:</strong></p>
+<pre><code>MDS.log("this is a time stamped message");</code></pre>
+<h3>notify</h3>
+<p>Notify the User - on Phone it pops up in status bar. On desktop appears in Logs.</p>
+<pre><code>notify : function(output)</code></pre>
+<h3>notifycancel</h3>
+<p>Cancel this MiniDAPPs notification</p>
+<pre><code>notifycancel : function()</code></pre>
+<h3>cmd</h3>
+<p>Runs a function on the Minima Command Line - takes the same format as Minima</p>
+<p>Minima Terminal commands can be executed within JavaScript functions.</p>
+<p><code>MDS.cmd</code> takes two parameters, the name of the command to run and the callback function which returns a response object in JSON format.</p>
+<pre><code>MDS.cmd(minimaCommand,callback)</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code>MDS.cmd("balance", function(res){
+console.log(res);
+});</code></pre>
+<pre><code>{
+  "command":"balance",
+  "status":true,
+  "response":[{
+    "token":"Minima",
+    "tokenid":"0x00",
+    "confirmed":"0",
+    "unconfirmed":"1000000000",
+    "sendable":"0",
+    "coins":"1",
+    "total":"1000000000"
+  }]
+}</code></pre>
+<p>For the full list of terminal commands, run <code>help</code> from the Minima Command Line, or see <a href="/docs/development/terminal-commands">Terminal commands</a>.</p>
+<h3>sql</h3>
+<p>Runs a SQL command on this MiniDAPPs SQL Database.</p>
+<pre><code>sql : function(command, callback)</code></pre>
+<p>An instance of a MySQL database is available for every MiniDapp.  You can create tables, insert, delete and query as you would any database using <code>MDS.sql</code>.</p>
+<p>Under the hood is the H2 Java database engine, where you can do normal CRUD operations as you would.  There may be some minor differences between MySQL and MySQL with H2.  Read more <a href="https://www.h2database.com/html/main.html">here</a>.</p>
+<p><code>MDS.sql</code> takes two parameters, the query string and a callback function.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>MDS.sql(sqlQuery, callback);</code></pre>
+<pre><code>MDS.sql("CREATE TABLE IF NOT EXISTS CUSTOMTABLE values(...)", function(res));</code></pre>
+<pre><code>MDS.sql("INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...)", function(res));</code></pre>
+<pre><code>MDS.sql("CREATE TABLE IF NOT EXISTS MESSAGES...", function(res));</code></pre>
+<h3>dapplink</h3>
+<p>Get a link to a different Dapp. READ dapps can only get READ DAPPS. WRITE can get all dapps.</p>
+<pre><code>dapplink : function(dappname, callback)</code></pre>
+<h2>Network functions</h2>
+<h3>net.GET</h3>
+<p>Make a GET request</p>
+<pre><code>GET : function(url, callback)</code></pre>
+<h3>net.POST</h3>
+<p>Make a POST request</p>
+<pre><code>POST : function(url, data, callback)</code></pre>
+<h2>Keypair functions</h2>
+<p>Simple GET and SET key value pairs that are saved persistently.</p>
+<h3>get</h3>
+<p>GET a value</p>
+<pre><code>get : function(key, callback)</code></pre>
+<h3>set</h3>
+<p>SET a value</p>
+<pre><code>set : function(key, value, callback)</code></pre>
+<h2>Comms functions</h2>
+<p>Send a message to ALL minidapps or JUST your own service.js</p>
+<h3>comms.broadcast</h3>
+<p>PUBLIC message broadcast to ALL (callback is optional)</p>
+<pre><code>broadcast : function(msg, callback)</code></pre>
+<h3>comms.solo</h3>
+<p>PRIVATE message send just to this MiniDAPP (callback is optional)</p>
+<pre><code>solo : function(msg, callback)</code></pre>
+<h2>File functions</h2>
+<h3>file.list</h3>
+<p>List file in a folder .. start at</p>
+<pre><code>list : function(folder, callback)</code></pre>
+<h3>file.save</h3>
+<p>Save text - can be text, a JSON in string format or hex encoded data</p>
+<pre><code>save : function(filename, text, callback)</code></pre>
+<h3>file.savebinary</h3>
+<p>Save Binary Data - supply as a HEX string</p>
+<pre><code>savebinary : function(filename, hexdata, callback)</code></pre>
+<h3>file.load</h3>
+<p>Load text - can be text, a JSON in string format or hex encoded data</p>
+<pre><code>load : function(filename, callback)</code></pre>
+<h3>file.loadbinary </h3>
+<p>Load Binary data - returns the HEX data</p>
+<pre><code>loadbinary : function(filename, callback)</code></pre>
+<h3>file.delete</h3>
+<p>Delete a file</p>
+<pre><code>delete : function(filename, callback)</code></pre>
+<h3>file.getpath</h3>
+<p>Get the full path - if you want to run a command on the file / import a txn / unsigned txn etc</p>
+<pre><code>getpath : function(filename, callback)</code></pre>
+<h3>file.makedir</h3>
+<p>Make a directory</p>
+<pre><code>makedir : function(filename, callback)</code></pre>
+<h3>file.copy</h3>
+<p>Copy a file</p>
+<pre><code>copy : function(filename, newfilename, callback)</code></pre>
+<h3>file.move</h3>
+<p>Move a file</p>
+<pre><code>move : function(filename, newfilename, callback)</code></pre>
+<h3>file.download</h3>
+<p>Download a File from the InterWeb - Will be put in Downloads folder</p>
+<pre><code>download : function(url, callback)</code></pre>
+<h3>file.copytoweb</h3>
+<p>Copy a file to your web folder for users to download instead of getting the blob.</p>
+<pre><code>copytoweb : function(file, webfile, callback)</code></pre>
+<h2>Form functions</h2>
+<p>Handles form submissions. Function for GET parameters.</p>
+<h3>form.getParams</h3>
+<p>Return the GET parameter by scraping the location. Allows you to retrieve parameters from your url.</p>
+<pre><code>getParams : function(parameterName)</code></pre>
+<h2>Utility functions</h2>
+<h3>util.hexToBase64</h3>
+<p>Convert HEX to Base 64 - removes the 0x if necessary</p>
+<pre><code>hexToBase64(hexstring)</code></pre>
+<h3>util.base64ToHex</h3>
+<p>Convert Base64 to HEX</p>
+<pre><code>base64ToHex(str)</code></pre>
+<h3>util.base64ToArrayBuffer</h3>
+<p>Convert Base64 to a Uint8Array - useful for Blobs</p>
+<pre><code>base64ToArrayBuffer(base64)</code></pre>
+<h3>util.getStateVariable</h3>
+<p>Return a state variable given the coin</p>
+<pre><code>getStateVariable(coin,port)</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Resync</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔒 Security & Recovery</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="safe.html">Safe</a>
+    <a href="backup.html">Backup</a>
+    <a href="recovery.html">Recovery</a>
+    <a href="resync.html" class="active">Resync</a>
+    <a href="restore.html">Restoring your backup</a>
+    <a href="import-seed.html">Import Seed</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Resync</h1>
+<hr>
+<p>title: Chain Resync</p>
+<p>description: Learn how to resync your chain</p>
+<p>tag: user-guides</p>
+<hr>
+<p>A chain re-sync ensures your node is on the correct top block and restores the wallet to the latest state.</p>
+<div class="callout"><strong>Transaction History</strong><br>Transaction history will be deleted so you may wish to download this from the
+<p>Wallet MiniDapp before proceeding.</div></p>
+<div class="callout"><strong>Unlock Node before syncing</strong><br>Before running a Quick Sync, you much ensure that your node is unlocked.</div>
+<h2>QuickSync method</h2>
+<div class="tab"><h4>Security MiniDapp</h4>![dappmenu](/img/app/security.png)
+<ol><li>Login to your MiniHub and open the Security MiniDapp</li><li>Select <strong>Restore node</strong></li><li>Select <strong>QuickSync</strong></li><li>Enter the IP:port of a Mega node. If you do not have one, you can use the example IP provided, megammr.minima.global:9001</li><li>Select <strong>Restore</strong></li><li>Wait for the sync to complete, this should only take a few moments. The node will shutdown when complete</li><li>Restart the node for the re-sync to take effect. Then allow a few minutes for the node to connect to the network</li></ol>
+<p>You will then be on the correct top block.</div></p>
+<div class="tab"><h4>Terminal</h4>1. Access the Minima Terminal via the MiniDapp, Docker CLI, Command Line or RPC Client
+<ol><li>Enter the following command, then press Enter</li></ol>
+<p>Example</p>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001</code></pre>
+<p>The re-sync will begin, this should only take a few moments.</p>
+<ol><li>Check the logs to see when the process is complete. The node will shutdown automatically.</li></ol>
+<ol><li>Restart the node for the re-sync to take effect. Then allow a few minutes for the node to connect to the network.</li></ol>
+<p>You will then be on the correct top block.</p>
+<p>For further help using the <code>megammrsync</code> command, use <code>help command:megammrsync</code> from the Terminal.</div></p>
+<h2>Legacy method (using an Archive file)</h2>
+<p>If your device is connected to Microsoft Onedrive, iCloud or another app which</p>
+<p>automatically syncs locally changed files to the cloud, please pause syncing</p>
+<p>for the duration of your node recovery process as they can interfere.</p>
+<ol><li>Open the Security MiniDapp</li><li>Select <strong>Archive reset</strong></li><li>Select <strong>Chain re-sync</strong></li><li>Select a recent internal archive file or upload a new one. If you do not have one, you can visit our <a href="https://discord.com/invite/minimaglobal">Discord server</a> or go to https://spartacusrex.com/archive and download the latest file.</li></ol>
+<div class="callout"><strong>Info</strong><br>For a successful re-sync to the latest block, you must use an archive file
+<p>from within the last week.</div></p>
+<ol><li>Select <strong>Continue</strong></li><li>Wait for the restore to finish, this can take a long time. <strong>Please be patient and do not attempt to use any other MiniDapps whilst this is in progress.</strong></li><li>Restart the node for the re-sync to take effect. Please allow a few minutes for the node to connect to the network.</li></ol>
+<p>Once complete, you will be on the correct top block.</p>
+<h3>From the Terminal (advanced)</h3>
+<ol><li>From an existing node that is out of sync with the latest tip block, login to Minima</li><li>Open the Terminal MiniDapp</li><li>Use one the following commands depending on whether you wish to re-sync from an archive file or a host, WITHOUT providing your 24 word seed phrase.</li></ol>
+<p><strong>Example using an archive file (recommended):</strong></p>
+<pre><code>archive action:import file:archive-export.gzip</code></pre>
+<p><strong>Example using an host</strong></p>
+<pre><code>archive action:resync file:xx.xxx.xx.xx:9001</code></pre>
+<ol><li>Press Enter</li><li>The re-sync will begin, please be patient</li><li>Check the logs to see when the process is complete</li><li>Once complete, restart Minima - you may have to accept the security warning again</li></ol>
+<p>Once complete, you will be on the correct top block.</p>
+<p>For further help using the <code>archive</code> command, use <code>help command:archive</code> from the Terminal.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

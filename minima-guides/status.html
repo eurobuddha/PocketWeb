@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Status</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📋 User Guides</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="login.html">Login</a>
+    <a href="join.html">Join</a>
+    <a href="seed.html">Seed</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="status.html" class="active">Status</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Status</h1>
+<hr>
+<p>title: Check your node status</p>
+<p>description: Learn how to check the status of your Minima node</p>
+<p>tag: user-guides</p>
+<hr>
+<p>From time to time you should check on the status of your node to ensure it continues to run smoothly.</p>
+<p>There are several best practices you can follow to ensure your node runs smoothly:</p>
+<ul><li>Ensure your node is connected to the internet as much as possible</li><li>Ensure you have sufficient storage and memory available</li><li>Shut down (quit) your node before turning off your device</li></ul>
+<p>From the Home screen, you can check your top block number in the top right corner, if there is a warning symbol indicating that your node is not in sync with the latest block, allow some time for the node to catch up automatically before attempting to chain resync.</p>
+<h2>Node health</h2>
+<div class="tab"><h4>Health MiniDapp</h4><img src="/img/app/health.png" alt="Health" width={130} height={130} />
+<p>From the <strong>Health</strong> MiniDapp, you can check:</p>
+<ol><li>The version number of Minima running</li><li>The latest block number and time</li><li>The full status of the node</div></li></ol>
+<div class="tab"><h4>CLI only</h4>The `status` command will show details of your node including version, last block and chain details.
+<ol><li>Type <code>status</code> into the command line/Terminal</li><li>Check <code>block</code> and <code>time</code>, this is your tip block and the <code>time</code> of that block, time should be within a few minutes of the current time.</li></ol>
+<div class="callout"><strong>Checking your node is in sync</strong><br>Having a recent block time is not a guarantee that you are on the right chain.
+<p>Consider cross checking your latest block with another node or checking the samechain response of your Maxima Contacts by running the maxcontacts command.</p>
+<p>If the time shown is significantly behind, you should restart your node to resync to the chain. If it doesn't catch up automatically, youu may need to perform a chain resync from an Archive node.</div></p>
+<p><strong>Other useful commands:</strong></p>
+<ul><li><code>network</code> - See the other nodes you are connected to</li><li><code>help</code> - show all commands</div></li></ul>
+<h2>Logs</h2>
+<img src="/img/app/logsicon.png" alt="Logs" width={130} height={130} />
+<p>The Logs MiniDapp will give you an indication of the most recent processes, connections and activities occurring on your node.</p>
+<p>If you experience unexpected behaviour from your node, check the logs for additional information or error messages.</p>
+<p>Please see the <a href="/docs/user-guides/advanced/log-messages">logs</a> page for explanations about common log messages.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

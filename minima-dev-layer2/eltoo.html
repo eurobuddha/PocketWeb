@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ELTOO Channel</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚡ Dev: Layer 2 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Uni-directional Channel</a>
+    <a href="bidirectional.html">Bi-directional Payments</a>
+    <a href="eltoo.html" class="active">ELTOO Channel</a>
+    <a href="eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+    <a href="eltoo-float.html">ELTOO Floating Coin</a>
+    <a href="eltoo-full.html">Full ELTOO Sequence</a>
+    <a href="state-chains.html">State Chains</a>
+    <a href="coinflip.html">Coin flip V2</a>
+  </div>
+</div>
+<div class="prose">
+<h1>ELTOO Channel</h1>
+<p>You should read the ELTOO whitepaper, which I reference in the Minima whitepaper, before diving in here.</p>
+<p>Essentially what ELTOO does is allow you to have a sequence number, which we will store as a state variable, and then a special contract that can be run as long as it has a higher sequence number (but not allow lower older sequence numbers).</p>
+<p>Each phase has 2 possible transactions that can be executed, an <strong>update transaction</strong> that moves you onto the next number in the sequence - the next phase - and a <strong>settlement transaction</strong> that ends the sequence and pays out.</p>
+<p>First let's make sure we have all the components required.</p>
+<ol><li>We need to be able to create a transaction with a coin that has not been posted on chain yet.</li><li>We need a 'floating coin' that can be attached to multiple different existing coins as long as it has the same address, amount and tokenid - but different coinid.</li></ol>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

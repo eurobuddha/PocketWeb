@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Scripting</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⛓️ Blockchain & Mining</div>
+  <div class="nav-links">
+    <a href="index.html">TxPoW Units & Blocks</a>
+    <a href="blockchain.html">The Blockchain</a>
+    <a href="mining.html">Mining</a>
+    <a href="mmr.html">MMR Database</a>
+    <a href="keys.html">Keys</a>
+    <a href="scripting.html" class="active">Scripting</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Scripting</h1>
+<hr>
+<p>title: Scripting</p>
+<p>description: Learn about  Minima Scripting</p>
+<p>tag: learn</p>
+<hr>
+<p>Minima has its own, Turing Complete, scripting language for creating Smart Contracts - <strong>KISS VM</strong>.</p>
+<p>Minima, like Bitcoin, uses the <a href="/docs/learn/#utxo-model">UTxO model</a> so writing smart contracts on Minima is quite different to writing them on an Account based model like Ethereum.</p>
+<p>Every UTxO (coin) is associated with a Minima script i.e. contract which can either return <strong>TRUE</strong> or <strong>FALSE</strong> when used in a transaction. The default is return FALSE, so all scripts must explicitly return TRUE for the transaction to be valid.</p>
+<p>A <strong>‘contract’</strong> is the script that locks the funds in a coin and is interchangeable with the word script.</p>
+<p>The default script for a coin is</p>
+<pre><code>RETURN SIGNEDBY(0xFFEE67F7C..)</code></pre>
+<p>where <code>0xFFEE67F7C..</code> is the public key of the owner of the coin.</p>
+<p>This default script will only return TRUE when a transaction attempting to spend this coin has been signed by the coin's owner.</p>
+<div class="callout"><strong>Tip</strong><br>The KISS VM scripting language supports SHA2-256 to allow cross-chain hash lock contracts with legacy chains.
+<p>Contracts are inherently compatible with Layer 2.</div></p>
+<p>The addition of the <strong>state variables</strong> in the MMR Proof DB, allow for complex scripts with knowledge of their past to be created. Minima uses a simple state mechanic for transactional history rather than a global state for ALL transactions.</p>
+<p>Each user tracks the coins to an address they possess and all coins that have a public key or address they possess in the STATE or PREVSTATE.</p>
+<h2>Types of contracts</h2>
+<p>Some of the types of contracts possible:</p>
+<ul><li>Basic Signed </li><li>Time Lock </li><li>Multi-sig </li><li>Complex multi-sig </li><li>M of N multi-sig </li><li>Hashed Time Lock (including cross-chain)</li><li>Exchange</li><li>FlashCash</li><li>MAST </li></ul>
+<h2>Token Scripts</h2>
+<p>Each token has a separate script that must also return TRUE when attempting to spend a UTxO.</p>
+<p>A token by default has RETURN TRUE as its script. This token structure is added to any transaction wishing to use that token so every user can know how many, what scripts, name etc of the Token is correct and valid.</p>
+<p><strong>Both the coin address script and the token script must return TRUE.</strong></p>
+<p>For details about the KISS VM scripting language, see the <a href="/docs/development/contracts-basics">Build</a> section.</p>
+<h2>Further Reading</h2>
+  <div class="cards">
+  </div>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

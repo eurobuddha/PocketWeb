@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Backup</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🔒 Security & Recovery</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="safe.html">Safe</a>
+    <a href="backup.html" class="active">Backup</a>
+    <a href="recovery.html">Recovery</a>
+    <a href="resync.html">Resync</a>
+    <a href="restore.html">Restoring your backup</a>
+    <a href="import-seed.html">Import Seed</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Backup</h1>
+<hr>
+<p>title: Backup your wallet</p>
+<p>description: Learn how to backup your Minima wallet</p>
+<p>tag: user-guides</p>
+<hr>
+<p>Using a backup is the fastest and most convenient way to restore your wallet if you lose access to your node.</p>
+<p><strong>If you lose your device and do not have a valid backup, you will need to restore your wallet by <a href="/docs/user-guides/node-recovery/import-seed-phrase">importing your seed phrase</a>.</strong></p>
+<p>If your node is not locked, your backups will contain your unencrypted seed</p>
+<p>phrase. Backups of unlocked nodes must be kept as safe as your seed phrase!</p>
+<p>If your node is locked, your seed phrase will remain encrypted in the backup file.</p>
+<p>!<a href="/img/app/security.png">Security</a></p>
+<h2>Take a backup</h2>
+<ol><li>Open the <strong>Security</strong> MiniDapp and select <strong>Backup node</strong>.</li><li>Set a <strong>password</strong> for the backup that will be required if you need to restore it.</li><li>A backup file will be created and you will be prompted to download and <strong>choose a location</strong> to save it.</li></ol>
+<div class="callout"><strong>Note</strong><br>Your password will be required if you restore this backup at a later date, **it cannot be changed or recovered** so you must remember it!
+<p>Once you have saved your backup file, we recommend you store it off the device.</div></p>
+<h2>Enable auto backups</h2>
+<ol><li>Open the <strong>Security</strong> MiniDapp and select <strong>Backup node</strong></li><li>Enable auto backups</li><li>Set a password for the auto backups. You must remember or write down this password as it cannot be recovered once set.</li></ol>
+<p>Backups will be taken every 24 hours. The latest 14 backups will be kept on the node. You should periodically download these backups and store them on a different device to your node.</p>
+<h3>Points to remember</h3>
+<ul><li>Take regular backups</li><li>Consider locking your node before taking a backup - when restoring the backup, the node will remain locked</li><li>The password used to lock the node can be different to the password used for a backup</li><li>Regularly download your backups and store them on a different device to your node</li></ul>
+<h2>Using commands</h2>
+<h3>To take a backup</h3>
+<pre><code>backup password:(optional) file:(optional) auto:(optional)</code></pre>
+<div class="tw"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>password</code></td><td>The password to encrypt the backup file with</td></tr>
+<tr><td><code>file</code></td><td>The name of the backup file to create</td></tr>
+<tr><td><code>auto</code></td><td>Set to <code>true</code> to enable auto backups every 24 hours</td></tr>
+</table></div>
+<div class="callout"><strong>Note</strong><br>Setting `auto:true` will backup your node every 24 hours however these backups
+<p>cannot be password protected so we recommend locking your node first. To</p>
+<p>password protect your auto backups, you must use the Security minidapp.</div></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

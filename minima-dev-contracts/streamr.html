@@ -1,0 +1,360 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Streamr</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📝 Dev: Smart Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="token-scripts.html">Token Scripts</a>
+    <a href="kissvm.html">Kissvm</a>
+    <a href="pruning.html">Pruning</a>
+    <a href="future-cash.html">Future Cash</a>
+    <a href="vestr.html">Vestr</a>
+    <a href="streamr.html" class="active">Streamr</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Streamr</h1>
+<hr>
+<p>title: Streamr Integration</p>
+<p>description: Learn how to integrate Streamr into a MiniDapp</p>
+<p>tag: development</p>
+<hr>
+<h2>About Streamr</h2>
+<p>Streamr is a cryptographically secure, open‑source, and decentralized network, capable of streaming any live media or real‑time data at scale.</p>
+<h2>Streamr Minidapp Tutorial </h2>
+<p>In this tutorial we will be building a <strong>Streamr Publisher</strong> <strong>MiniDapp</strong> that will publish the peerlist from the minima node to the <strong>Streamr</strong> service and create a <strong>Subscriber MiniDapp</strong> that will subscribe to the stream to retrieve the peerlist. The publisher app will run as a background service on your own Minima node whilst the subscriber app can be distributed to anyone. Before you follow this tutorial, we heavily advise that you check out <strong>Streamr</strong> over at https://streamr.network/ to learn more about their network.</p>
+<p>Before we can begin, you will need the following things set up:</p>
+<ul><li>NPM v8 or greater</li><li>NodeJS 18.13.x or greater (version 20 and later ideally)</li><li>A small amount of <code>MATIC</code> to pay for gas on Polygon mainnet</li><li>A running Minima node</li></ul>
+<h3>Setting up a Streamr node</h3>
+<hr>
+<p>Setting up a <strong>Streamr</strong> node will allow our  <code>service.js</code> file in our <strong>Publisher MiniDapp</strong> to communicate with <strong>Streamr</strong> via HTTP to publish messages to our stream. The following section will setup a <strong>Streamr</strong> node using Node.js, but you can also set up a <strong>Streamr</strong> node with <strong>Docker</strong> as per the instructions from the page: https://docs.streamr.network/guides/how-to-run-streamr-node#the-streamr-node-docker-guide</p>
+<p>Let’s start by running the installation command via <code>NPM</code></p>
+<pre><code>npm install -g @streamr/node</code></pre>
+<p>Once it’s installed, run the following command to create a config json file</p>
+<pre><code>streamr-node-init</code></pre>
+<p>Follow the command prompts. Please ensure you pick the right network if you’re using <code>Polygon</code> or <code>Polygon Amoy</code> . In our examples, we will be using <code>Polygon</code>. Once you have reached the end, you should see a message that will display some information which include: <code>Congratulations, you've setup your Streamr node!</code> . If you do not see this visit the</p>
+<p><strong>Streamr</strong> node setup docs page here: https://docs.streamr.network/guides/how-to-run-streamr-node#the-streamr-node-npm-guide</p>
+<p>You can access the configuration file at anytime under the following path:</p>
+<pre><code>~/.streamr/config/default.json</code></pre>
+<p>We’re going to make a few edits before we run our node. We’ve removed API keys for now to make things easier to follow, please edit your config file so it should look like below:</p>
+<pre><code>{
+  "$schema": "&lt;https://schema.streamr.network/config-v3.schema.json&gt;",
+  "client": {
+    "auth": {
+      "privateKey": "YOUR PRIVATE KEY"
+    },
+    "environment": "polygon"
+  },
+  "plugins": {
+    "http": {}
+  }
+}</code></pre>
+<p>Once you have confirmed the json file, you can run your <strong>Streamr</strong> node by running the following command in the command line:</p>
+<pre><code>streamr-node ~/.streamr/config/default.json</code></pre>
+<p>You should see some logs print up which include the below, refer to <strong>Streamr</strong> docs if you see something else:</p>
+<pre><code>INFO [2024-09-13T13:52:03.391] (broker                   ): Start Streamr node version 101.1.2
+INFO [2024-09-13T13:52:03.394] (httpServer               ): Started HTTP server on port 7171</code></pre>
+<h3>Creating a Streamr stream</h3>
+<hr>
+<p>In order for us to publish data to a stream, we must first create a <strong>Streamr</strong> stream, to do this we’re going to write a simple script.</p>
+<p>First, we need to create a directory and cd into the directory by running the following command in the command line:</p>
+<pre><code>mkdir streamr-setup &amp;&amp; cd streamr-setup</code></pre>
+<p>Now lets initialise the <strong>Node.js</strong> project with <code>-y</code> to skip the input</p>
+<pre><code>npm init -y</code></pre>
+<p>Install the <code>streamr-sdk</code> as a dependency by running the following command in the command line:</p>
+<pre><code>npm i @streamr/sdk</code></pre>
+<p>Lets create a JavaScript file that will create the stream and return the id. Please note that the private key must be specified and the correct network. Please run this in the command line:</p>
+<pre><code>touch index.js &amp;&amp; nano index.js</code></pre>
+<p>Explanation: The script below is going to do the following things</p>
+<ul><li>Create the <strong>Streamr</strong> client</li><li>Create the <strong>Streamr</strong> stream</li><li>Grant public permissions to the <strong>Streamr</strong> stream so that anyone can subscribe to the stream.</li></ul>
+<p>Copy & paste the script below into the command line or open the script in a code editor and edit the following variables:</p>
+<p><code>STREAM_ID</code> - the id that you want to give to your stream</p>
+<p><code>PRIVATE_KEY</code> - your wallet private key</p>
+<p><code>ENVIRONMENT</code> - “polygon” or “polygon-amoy”</p>
+<pre><code>const Streamr = require("@streamr/sdk");
+const { StreamPermission } = require("@streamr/sdk");
+
+const STREAM_ID = "/minima/peers/example";
+const PRIVATE_KEY = "";
+const ENVIRONMENT = "polygon";
+
+const streamr = new Streamr({
+  auth: {
+    privateKey: PRIVATE_KEY,
+  },
+  environment: ENVIRONMENT
+});
+
+(async () =&gt; {
+  const stream = await streamr.getOrCreateStream({
+    id: STREAM_ID,
+  });
+
+  await stream.grantPermissions({
+    public: true,
+    permissions: [StreamPermission.SUBSCRIBE],
+  });
+
+  console.log("Keep note of this stream id, you will need it to publish and subscribe to the stream");
+  console.log(stream.id);
+  process.exit();
+})();</code></pre>
+<p>Now that the script is complete you can run the script using the following command in the command line:</p>
+<pre><code>node index.js</code></pre>
+<p>You will see an output like the following, take note of the id as this will be used later. The <strong>Streamr</strong> node setup is now complete and we can move on with the Minima’s side of development.</p>
+<pre><code>Your stream id is: 0x8f652892c780f063ee81288275c6fa860f024a9d/minima/peers/example</code></pre>
+<h3>Creating a Streamr Publisher service.js Minidapp</h3>
+<hr>
+<p>Creating a service.js MiniDapp is super simple. First we just need to create a <code>service.js</code> file in the root folder of the MiniDapp to load as a background service for the MiniDapp when it is installed.</p>
+<p>This tutorial will skip over the creation of the <strong>MiniDapp</strong> base.</p>
+<p>Before you continue, please check out the other tutorials in this section, or view the code mentioned in this tutorial on <strong>Github</strong> at the end of the tutorial.</p>
+<p>Now that you know how to set up a Minidapp, you can now <code>cd</code> into our <strong>Publisher</strong> <strong>MiniDapp</strong> directory and create & edit the <code>service.js</code> file with the following command in the command line:</p>
+<pre><code>cd ./streamr-publisher-minidapp &amp;&amp; touch service.js &amp;&amp; nano service.js</code></pre>
+<p>You will need to edit the <code>STREAM_ID</code> variable to the stream id that was generated earlier in the tutorial. You can leave the other variables if you have not changed the default port number that the <strong>Streamr</strong> node runs on. If you have allocated a custom port, edit the <code>STREAMR_NODE_HOST</code> variable.</p>
+<p>Look at the code comments in the code snippet below to understand what is happening in the <code>service.js</code> script.</p>
+<p>Also note:</p>
+<ul><li>The <code>Stream ID</code> must be encoded or else the URL will be treat slashes in our stream id as paths</li><li>We create a logs table so that we can show the results on the <code>service.js</code> client <strong>MiniDapp</strong></li><li><a href="http://mds.net.post/"><code>MDS.net.POST</code></a> currently only supports JSON objects as the body, so you must ensure that the data is a valid JSON object.</li></ul>
+<pre><code>var STREAM_ID = "0x8f652892c780f063ee81288275c6fa860f024a9d/minima/peers/dev";
+var ENCODED_STREAM_ID = encodeURIComponent(STREAM_ID);
+var STREAMR_NODE_HOST = "http://localhost:7171";
+
+var getPeers = function(callback) {
+  MDS.cmd("peers max:10", callback);
+}
+
+MDS.init(function(msg) {
+
+  // One time event that is triggered when MDS is initialised
+  if (msg.event === 'inited') {
+
+		MDS.log("Streamr Publisher Example - Started!");
+
+    // create logs table
+    MDS.sql("CREATE TABLE IF NOT EXISTS `logs` (`message` varchar(1024) NOT NULL, `status` smallint NOT NULL, `datetime` bigint NOT NULL)");
+  }
+
+  // get the peers when app initialised and every 10 seconds
+  if (msg.event === 'inited' || msg.event === 'MDS_TIMER_10SECONDS') {
+
+    getPeers(function (msg) {
+
+      // data must be a valid JSON object
+      var data = {
+        peersList: msg.response.peerslist,
+      };
+
+      // we need to stringify the json for the stream + logging
+      var dataAsString = JSON.stringify(data);
+
+      // Post request to the streamr node
+      MDS.net.POST(STREAMR_NODE_HOST + "/streams/" + ENCODED_STREAM_ID, dataAsString, function(response) {
+
+        // Log messages if the request was successful and unsuccessful
+        if (response.status) {
+          MDS.log("Streamr message was published successfully!");
+          MDS.sql("INSERT INTO `logs` VALUES ('" + dataAsString + "', 1, " + new Date().getTime() + ")");
+        } else {
+          MDS.log("Streamr message could not sent published!");
+          MDS.sql("INSERT INTO `logs` VALUES ('" + dataAsString + "', 0, " + new Date().getTime() + ")");
+        }
+      });
+    })
+  }
+})</code></pre>
+<blockquote>Note: Although service.js is just a javascript file, there are a few restrictions. Promises are currently not supported and there are a few reserved keywords that should be avoided such as class. Our script does not break these rules, but this tip may be helpful when customising the script or writing your own service.js files in the future.</blockquote>
+<blockquote></blockquote>
+<p>Next, let's create edit the client on our <strong>Publisher MiniDapp</strong> so that we can see when messages are published. Our <code>service.js</code> file writes to a logs sql table so that our client side can just query this data and display it. Open the <code>App.tsx</code> in the command line or your favourite code editor and add the following code. Look at the comments to see what we're doing.</p>
+<blockquote>You will need to run npm install date-fns as we're using date-fns to format the new to a human readable datetime string.</blockquote>
+<blockquote></blockquote>
+<pre><code>function App() {
+  const loaded = useRef(false)
+  const [logs, setLogs] = useState&lt;{ MESSAGE: string; STATUS: string; DATETIME: string }[] | null&gt;(null);
+
+  useEffect(() =&gt; {
+    if (!loaded.current) {
+      loaded.current = true
+
+      MDS.init((msg) =&gt; {
+
+        // When MDS is initialised or every 10 seconds, load the logs we have stored in sql
+        if (msg.event === 'inited' || msg.event === 'MDS_TIMER_10SECONDS') {
+          MDS.sql("SELECT * FROM `logs`", (response) =&gt; {
+
+            // Set the logs into state so that we can render the results
+            setLogs(response.rows.reverse());
+          })
+        }
+      })
+    }
+  }, [loaded]);
+
+  return (
+    &lt;div className="h-screen w-screen p-4"&gt;
+      &lt;div&gt;
+        &lt;h1 className="text-2xl mb-4"&gt;Publisher - Logs&lt;/h1&gt;
+        &lt;div&gt;
+          &lt;div className="relative overflow-x-auto"&gt;
+            &lt;table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"&gt;
+              &lt;thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"&gt;
+              &lt;tr&gt;
+                &lt;th scope="col" className="px-6 py-3"&gt;
+                  Status
+                &lt;/th&gt;
+                &lt;th scope="col" className="px-6 py-3"&gt;
+                  Message
+                &lt;/th&gt;
+                &lt;th scope="col" className="px-6 py-3"&gt;
+                  Datetime
+                &lt;/th&gt;
+              &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+              {logs &amp;&amp; logs.map((log) =&gt; (
+                &lt;tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"&gt;
+                  &lt;th className="px-6 py-4"&gt;
+                    {log.STATUS === "1" ?
+                      &lt;svg xmlns="&lt;http://www.w3.org/2000/svg&gt;" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                           className="w-5 h-5 stroke-emerald-500"&gt;
+                        &lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;
+                        &lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;
+                      &lt;/svg&gt; :
+                      &lt;svg xmlns="&lt;http://www.w3.org/2000/svg&gt;" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                           className="w-5 h-5 stroke-red-500"&gt;
+                        &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
+                        &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
+                        &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
+                      &lt;/svg&gt;}
+                  &lt;/th&gt;
+                  &lt;th scope="row" className="whitespace-break-spaces break-all px-6 py-4 font-medium text-gray-900 dark:text-white"&gt;
+                    {log.MESSAGE}
+                  &lt;/th&gt;
+                  &lt;td className="px-6 py-4"&gt;
+                    {format(new Date(Number(log.DATETIME)), "do 'of' MMMM, yyyy '@' h:mm:ss a")}
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              ))}
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default App</code></pre>
+<blockquote>React hooks are also available for Streamr, documentation can be found here: https://docs.streamr.network/guides/web-app-frameworks/#use-our-react-hooks. We have chosen to use the standard SDK so that the code is adaptable to any JavaScript frontend framework/library.</blockquote>
+<blockquote></blockquote>
+<p>Now that the <strong>Streamr Publisher Minidapp</strong> is completed, let's build and zip the project into a file so that we can install it via the <strong>MiniHub</strong> or the Minima command line. Once the MiniDapp is installed, uou should see the following messages in your Minima <strong>Terminal</strong>.</p>
+<pre><code>Minima @ 13/09/2024 14:45:32 [294.5 MB] : MDS_Streamr-server_0xC03A90BC9E32FD92E07525E0BE28D35E3B7BCBCD7D86AA1344E8B0F22E35465D &gt; Streamr Publisher Example - Started!
+Minima @ 13/09/2024 14:45:32 [294.5 MB] : MDS_Streamr-server_0xC03A90BC9E32FD92E07525E0BE28D35E3B7BCBCD7D86AA1344E8B0F22E35465D &gt; Streamr message was published successfully!</code></pre>
+<p>Open up the <em>Streamr Publisher MiniDapp</em> in <code>Minihub</code> and you will now see a table with all of the logs for each published message. If the status icon is green tick it means the messages were published successfully, otherwise the icon will be a red cross which means the message publishing failed.</p>
+<p>If you see errors, feel free to post a message in our <strong>dev channe</strong>l on <strong>Discord</strong> but when sharing any code  <strong>DO NOT expose your private key to anyone including members of the Minima or Streamr team</strong>.</p>
+<p>You can also see the live data feed for your <em>Streamr</em> stream by searching your stream id here and clicking the live data button on the top right: https://streamr.network/hub/streams?tab=all</p>
+<p>Now that's the <strong>Streamr Publisher MiniDapp</strong> completed! Next, will be creating the <strong>Streamr Subscriber MiniDapp</strong> that will subscribe to our published messages.</p>
+<h3>Creating a Streamr Subscriber <strong>MiniDapp</strong></h3>
+<hr>
+<p>For this section, we have assumed that you already know to build a <strong>MiniDapp</strong>. Create a new Minidapp for our Subscriber MiniDapp.</p>
+<p>First, let's <code>cd</code> into the <strong>MiniDapp</strong> directory and install <code>@streamr/sdk</code> via the command line.</p>
+<pre><code>cd ./streamr-subscriber-minidapp &amp;&amp; npm i @streamr/sdk</code></pre>
+<p>Open up the <code>App.tsx</code> and add the following code. Since our <strong>Streamr</strong> stream is public accessibly by anyone, we do not need to specify an private key.</p>
+<ul><li>Edit the <code>STREAM_ID</code> variable to the stream id that you generated earlier.</li><li>If you have using <code>Polygon Amoy</code> please change the <code>ENVIRONMENT</code> variable to <code>polygon amoy</code></li></ul>
+<pre><code>// The stream id that was generated in the first section
+const STREAM_ID = '0x8f652892c780f063ee81288275c6fa860f024a9d/minima/peers/dev'
+
+var ENVIRONMENT: EnvironmentId = "polygon";
+
+const streamrClient = new StreamrClient({
+  environment: ENVIRONMENT
+})
+
+function App() {
+  const loaded = useRef(false)
+  const [content, setContent] = useState&lt;string[]&gt;([]);
+
+  useEffect(() =&gt; {
+    if (!loaded.current) {
+      loaded.current = true
+
+      MDS.init((msg) =&gt; {
+        if (msg.event === 'inited') {
+          streamrClient.subscribe(STREAM_ID, (content) =&gt; {
+
+            console.log(content);
+
+            // store the content into the array while keeping the previous content stored
+            setContent(prevState =&gt; [...prevState, content as string]);
+          })
+        }
+      })
+    }
+  }, [loaded])
+
+  return (
+    &lt;div className="h-screen w-screen p-4"&gt;
+      &lt;div&gt;
+        &lt;h1 className="text-2xl mb-4"&gt;Subscriber - Logs&lt;/h1&gt;
+        &lt;div&gt;
+          &lt;div className="relative overflow-x-auto"&gt;
+            &lt;table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"&gt;
+              &lt;thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"&gt;
+              &lt;tr&gt;
+                &lt;th scope="col" className="px-6 py-3"&gt;
+                  Message
+                &lt;/th&gt;
+              &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+              {content.length === 0 &amp;&amp; (
+                &lt;tr className="bg-white dark:bg-gray-800"&gt;
+                  &lt;td colSpan={2} className="px-6 py-4"&gt;
+                    Waiting for content...
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              )}
+              {content.map((log) =&gt; (
+                &lt;tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"&gt;
+                  &lt;th scope="row"
+                      className="whitespace-break-spaces break-all px-6 py-4 font-medium text-gray-900 dark:text-white"&gt;
+                    {JSON.stringify(log)}
+                  &lt;/th&gt;
+                &lt;/tr&gt;
+              ))}
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default App</code></pre>
+<p>And that's the <strong>Subscriber MiniDapp</strong> done.</p>
+<p>Build and zip the Minidapp and install it via the <strong>Minihub</strong> or command line. Once it’s installed, open the <strong>Subscriber MiniDapp</strong> and you will see something like this if your <strong>Streamr Publisher MiniDapp</strong> is running from the previous section.</p>
+<p>And that’s it! You have successfully created a <strong>Publisher MiniDapp</strong> that can publish messages to <strong>Streamr</strong>, and a <strong>Subscriber MiniDapp</strong> that can subscribe to streams on <strong>Streamr</strong> network.</p>
+<p>We heavily recommend checking out the rest of tutorials and the <strong>Streamr</strong> docs - https://docs.streamr.network/ to learn more about <em>Streamr</em>.</p>
+<p>Check out all the code on Github <strong><a href="https://github.com/minima-global/streamr-minidapp-example/blob/main/README.md">here.</a></strong></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>React</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🎓 Dev: MiniDapp Tutorials</div>
+  <div class="nav-links">
+    <a href="index.html">MiniDapp Hub</a>
+    <a href="basic.html">Basic</a>
+    <a href="interactive.html">Interactive</a>
+    <a href="react.html" class="active">React</a>
+  </div>
+</div>
+<div class="prose">
+<h1>React</h1>
+<hr>
+<p>title: React MiniDapp</p>
+<p>description: Learn how to create a MiniDapp using React</p>
+<p>tag: development</p>
+<hr>
+<p>In this tutorial, we will build a MiniDapp using React.</p>
+<h2>Pre-requisites</h2>
+<ul><li>Node.js https://nodejs.org/en/download/</li><li>A Code Editor, we recommend Visual Studio code https://code.visualstudio.com/</li></ul>
+<p>Before we start, make sure you have a running Minima Node running. You can start your own single testnet node by following the instructions <a href="/docs/development/testnet-single">here</a>.</p>
+<h2>Getting Started</h2>
+<p>To get started, we will use the <code>create-minima-app</code> CLI to create a new project.</p>
+<pre><code>npx @minima-global/create-minima-app init</code></pre>
+<p>To streamline development you can enable RPC on you minima node and the cli will configure your new project automatically.</p>
+<p>To enable RPC on your node, run the following command in the Minima Terminal:</p>
+<pre><code>rpc enable:true</code></pre>
+<p>you can also enable RPC by passing the <code>-rpcenable</code> flag when starting your node.</p>
+<h2>Balance Tutorial</h2>
+<p>Let's dive into a short tutorial that will show you how to show the balance of your wallet in the app.</p>
+<p>Open <code>/src/routes/index.tsx</code>, this is the index file for the <code>/</code> route.</p>
+<p>We can start by cleaning up the file and remove all the code, replace it with the following:</p>
+<pre><code>export const Route = createFileRoute("/")({
+  component: Index,
+});
+
+function Index() {
+  return &lt;div&gt;Home&lt;/div&gt;;
+}</code></pre>
+<p>The first step is to create a new component folder inside the <code>src</code> folder, lets call it <code>components</code>.</p>
+<p>Inside the <code>components</code> folder, create a new file called <code>balance.tsx</code>.</p>
+<pre><code>export function Balance() {
+  return &lt;div&gt;Balance Tutorial&lt;/div&gt;;
+}</code></pre>
+<p>Now let's import this component into our <code>index.tsx</code>.</p>
+<p>We need to add <code>import Balance from '../components/balance';</code> and `<code> in the return, feel free to add any html you want alongside the </code>Balance` component.</p>
+<pre><code>export const Route = createFileRoute("/")({
+  component: Index,
+})
+
+function Index() {
+  return ;
+}</code></pre>
+<p>You should now see <code>Balance Tutorial</code> printed in the browser window.</p>
+<p>Now let's go back to the <code>src/compontents/balace.tsx</code> and add the following inside our function:</p>
+<pre><code>export function Balance() {
+  const getBalance = useCallback(async() =&gt; { // [!code highlight]
+    const balance = await MDS.cmd.balance(); // [!code highlight]
+      // [!code highlight]
+      console.log(balance.response); // [!code highlight]
+  }, []); // [!code highlight]
+
+  return &lt;div&gt;Balance Tutorial&lt;/div&gt;;
+}</code></pre>
+<p>We can imort <code>MDS</code> from <code>@minima-global/mds</code> this adds a typesafe version of <a href="/docs/development/using-typescript">MDS</a> to our project.</p>
+<p><code>useCallback</code> ensures the function is not re-run unless one of the dependencies change, you can read more about it in the React documentation: https://react.dev/reference/react/useCallback</p>
+<p>To run our function we need to add a <code>useEffect</code>, this is a function that is called when the component is rendered to the screen.</p>
+<pre><code>export function Balance() {
+  const getBalance = useCallback(async() =&gt; {
+    const balance = await MDS.cmd.balance();
+      console.log(balance.response);
+  }, []);
+
+  useEffect(() =&gt; {    // [!code highlight]
+    getBalance(); // [!code highlight]
+  }, [getBalance]); // [!code highlight]
+
+  return &lt;div&gt;Balance Tutorial&lt;/div&gt;;
+}</code></pre>
+<p>Now go to the browser and open the developer tools, open the <code>Console</code> tab and reload the page to refresh the logs. You should see an array being printed to the logs.</p>
+<pre><code>[
+  {
+    "coins": "1",
+    "confirmed": "100",
+    "sendable": "100",
+    "token": "Minima",
+    "tokenid": "0x00",
+    "total": "1000000000",
+    "unconfirmed": "0"
+  }
+]</code></pre>
+<p>Now we need to update our component so that we can store the balance for it to show up on the screen, we can use <code>useState</code> for this.</p>
+<pre><code>export function Balance() {
+  const [balance, setBalance] = useState&lt;string | undefined&gt;(""); // [!code highlight]
+
+  const getBalance = useCallback(async() =&gt; {
+    const balance = await MDS.cmd.balance();
+      console.log(balance.response);
+  }, []);
+
+  useEffect(() =&gt; {
+    getBalance();
+  }, [getBalance]);
+
+  return &lt;div&gt;Balance Tutorial&lt;/div&gt;;
+}</code></pre>
+<p><code>useState</code> allows us to create a value that will cause React to re-render when the value changes. <br/></p>
+<p>We can use <code>setBalance</code> in this case to change the value of <code>balance</code>.</p>
+<p>Now let's remove the <code>console.log</code> and use the setter that we have just created</p>
+<pre><code>export function Balance() {
+  const [balance, setBalance] = useState&lt;string | undefined&gt;("");
+
+   const getBalance = useCallback(async () =&gt; {
+     const balance = await MDS.cmd.balance();
+     if (balance.response) { // [!code highlight]
+       const minimaToken = balance.response.find((token) =&gt; token.token === "Minima"); // [!code highlight]
+         setBalance(minimaToken?.confirmed); // [!code highlight]
+     }
+   }, []);
+
+  useEffect(() =&gt; {
+    getBalance();
+  }, [getBalance]);
+
+  return &lt;div&gt;Balance Tutorial&lt;/div&gt;;
+}</code></pre>
+<p>Now we can use the balance state to print the value to the screen:</p>
+<pre><code>export function Balance() {
+  const [balance, setBalance] = useState&lt;string | undefined&gt;("");
+
+  const getBalance = useCallback(async () =&gt; {
+    const balance = await MDS.cmd.balance();
+    if (balance.response) {
+      const minimaToken = balance.response.find((token) =&gt; token.token === "Minima");
+      setBalance(minimaToken?.confirmed);
+    }
+  }, []);
+
+  useEffect(() =&gt; {
+    getBalance();
+  }, [getBalance]);
+
+  return (
+    &lt;div&gt; // [!code highlight]
+      Balance Tutorial &lt;br /&gt; Your confirmed balance is: {balance} // [!code highlight]
+    &lt;/div&gt; // [!code highlight]
+  );
+}</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

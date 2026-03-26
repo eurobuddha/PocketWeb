@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mega Wallet</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚙️ Advanced & MySQL</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="logs.html">Log messages</a>
+    <a href="mysql.html">Mysql</a>
+    <a href="export-to.html">Export To</a>
+    <a href="export-from.html">Export From</a>
+    <a href="restore-mysql.html">Restore Mysql</a>
+    <a href="archive.html">Archive</a>
+    <a href="mega-wallet.html" class="active">Mega Wallet</a>
+    <a href="meg-api.html">Meg Api</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Mega Wallet</h1>
+<hr>
+<p>title: Host a Web Wallet</p>
+<p>description: Learn how to run a Web Wallet</p>
+<p>tag: user-guides</p>
+<hr>
+<p>Users who are running a Mega node are able to set up a Web Wallet interface for users who are not able to run a node themselves.</p>
+<p>A Web Wallet can only be enabled on <a href="/docs/run-a-node/mega-node">Mega nodes</a> with the MiniDapp System (MDS) enabled.</p>
+<h2>What is a Web Wallet?</h2>
+<p>A Web Wallet allows any user to hold, send, and receive native Minima and other custom tokens or NFTs created on Minima, in a non-custodial wallet.</p>
+<p>On accessing a Web Wallet, the user can generate a secret key which they must write down and keep secure - this effectively acts as the seed phrase to their funds.</p>
+<p>Logging in with their secret, a user will be provided with a native Minima wallet address for their personal use.</p>
+<p>Users of a Web Wallet are able to login to any Web Wallet with their secret key, however we only recommend always using the same node from a trusted provider. Using the same Web Wallet every time also ensures the user's key uses are counted accurately.</p>
+<h2>How to start a Web Wallet</h2>
+<p>As a Mega node runner, you must first ensure that:</p>
+<ul><li>You have a Mega node running on a server with a public facing IP address</li><li>You have either performed a chain resync from an archive node, or imported a Mega MMR file from another Mega node runner. This is essential to ensure the node is tracking all available coins and to support any potential user of your Web Wallet.</li></ul>
+<p>To enable the Web Wallet, run the following command from the Terminal MiniDapp:</p>
+<pre><code>mds action:publicmds enable:true</code></pre>
+<p>You will then be required to accept the pending command from the Pending MiniDapp.</p>
+<p>Once enabled, navigate to https://yourserverIP:9003/publicmds/ to access your Web Wallet interface.</p>
+<h2>How to set a custom session ID </h2>
+<p>You can set your own Session ID for the Public MDS by adding the <code>-publicmdsuid</code> start up parameter to your Mega node.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Interactive</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🎓 Dev: MiniDapp Tutorials</div>
+  <div class="nav-links">
+    <a href="index.html">MiniDapp Hub</a>
+    <a href="basic.html">Basic</a>
+    <a href="interactive.html" class="active">Interactive</a>
+    <a href="react.html">React</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Interactive</h1>
+<hr>
+<p>title: Interactive MiniDapp</p>
+<p>description: Learn how to create an interactive MiniDapp</p>
+<p>tag: development</p>
+<hr>
+<p>In this tutorial, we will build a MiniDapp that interacts with Minima blockchain.</p>
+<div class="callout"><strong>Info</strong><br>This tutorial uses JavaScript to create a web application. If you are not
+<p>using JavaScript, you can still communicate with Minima using http to make</p>
+<p>secure RPC Get Requests. <br /></p>
+<p>You can see which Minima commands are available by typing <code>help</code> on your</p>
+<p>node’s CLI.</div></p>
+<p>Create a new folder for a new MiniDapp - <code>helloworld2</code>.</p>
+<p>Using your basic <code>helloworld</code> MiniDapp as a template, add the following files to your new folder, changing the name, version and description in the config file as you wish.</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li><li>index.html</li><li>styling.css (optional)</li></ol>
+<p>Next, we will go into how to use the MiniDapp System (MDS) and JavaScript to create a MiniDapp that interacts with the Minima blockchain.</p>
+<p>To learn about MDS.js, see <a href="/docs/development/minidapp-mdsjs">MDS JS Library</a>.</p>
+<h2>Using mds.js</h2>
+<p>To simplify development, a script is provided which gives you access to an MDS object that allows you to access useful properties which we will look at next.</p>
+<p>Download mds.js from GitHub <a href="https://raw.githubusercontent.com/minima-global/Minima/master/mds/mds.js">here</a>.</p>
+<p>Add the mds.js file to your <strong>helloworld2</strong> folder.</p>
+<p>Add the mds.js file as a script into the head of your <strong>index.html</strong> file to get access to the MDS object.</p>
+<p>It should look something like the below:</p>
+<pre><code>&lt;head&gt;
+  &lt;!--   The MINIMA MDS JavaScript Library --&gt;
+  &lt;script type="text/javascript" src="mds.js"&gt;&lt;/script&gt;
+  &lt;link rel="icon" type="image/x-icon" href="favicon.ico" /&gt;
+  &lt;title&gt;Hello World 2&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+<p>The example <strong>index.html</strong> file below provides a simple example of returning the latest block number from the node and querying the node's status, using the Minima <code>status</code> command.</p>
+<p>Copy and paste the code into your <strong>index.html</strong> file.</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;!--   The MINIMA MDS JavaScript Library --&gt;
+    &lt;script type="text/javascript" src="mds.js"&gt;&lt;/script&gt;
+    &lt;link rel="icon" type="image/x-icon" href="favicon.ico" /&gt;
+    &lt;title&gt;Hello World 2&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;style&gt;&lt;/style&gt;
+
+    &lt;h2&gt;Hello World!&lt;/h2&gt;
+    &lt;p&gt;Current Minima Block Height: &lt;span id="block-height"&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;Current Node Status: &lt;span id="node-status"&gt;&lt;/span&gt;&lt;/p&gt;
+
+    &lt;button onclick="runStatus();"&gt;CHECK STATUS&lt;/button&gt;
+
+    &lt;script type="text/javascript"&gt;
+      function runStatus() {
+        // run the Minima status command to return information about the node's current state
+        MDS.cmd("status", function (res) {
+          //if the response status is true
+          if (res.status) {
+            // 	convert the JSON object response to a string and format it
+            const nodeStatus = JSON.stringify(res.response, " ", "\t")
+
+            // show the response on the page
+            document.getElementById("node-status").innerText = nodeStatus
+
+            //if the response status is false
+          } else {
+            document.getElementById("node-status").innerText =
+              "Could not retrieve current node Status"
+          }
+        })
+      }
+
+      //Initialise web socket
+      MDS.init(function (msg) {
+        if (msg.event == "inited") {
+          // READY TO RUN CMDS!
+          // run the Minima status command to return information about the node's current state
+          MDS.cmd("status", function (res) {
+            if (res.status) {
+              // get the block number from the Status object returned
+              const blockHeight = res.response.chain.block
+
+              document.getElementById("block-height").innerText = blockHeight
+            }
+          })
+        } else if (msg.event == "NEWBLOCK") {
+          // the chain tip has changed
+        } else if (msg.event == "NEWBALANCE") {
+          // user's balance has changed
+        } else if (msg.event == "MINING") {
+          // mining has started or ended
+        } else if (msg.event == "MINIMALOG") {
+          // new Minima log message
+        } else {
+        }
+      })
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h2>Packaging your MiniDapp</h2>
+<p>We now have a complete helloworld2 folder containing:</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li><li>index.html</li><li>styling.css (optional)</li><li>mds.js</li></ol>
+<p>Zip up the contents of this folder (not the folder itself).</p>
+<p>Rename the folder to <strong>helloworld2.mds.zip</strong> or if you are using a zip library through your CLI run</p>
+<pre><code>zip -r helloworld2.mds.zip</code></pre>
+<h2>Installing your MiniDapp</h2>
+<p>Please refer to the <a href="/docs//development/basic-minidapp#installing-your-minidapp">Installing your MiniDapp</a> section.</p>
+<h2>MiniDapp Downloads</h2>
+<p>The <strong>HelloWorld2</strong> MiniDapp can also be downloaded from GitHub <a href="https://github.com/minima-global/innovation-challenge/tree/main/Resources">here</a></p>
+<p>Minima's official MiniDapps are installed by default when starting a node with the minidapp system enabled.</p>
+<h2>Next Steps</h2>
+<p>The most powerful MiniDapps will use Smart Contracts, written in Minima's scripting language. <br/></p>
+<p>Please follow the <a href="/docs/development/contracts-basics">Smart Contract Tutorial</a> to learn more about writing Scripts on Minima.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

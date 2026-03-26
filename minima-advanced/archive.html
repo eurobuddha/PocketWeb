@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Archive</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚙️ Advanced & MySQL</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="logs.html">Log messages</a>
+    <a href="mysql.html">Mysql</a>
+    <a href="export-to.html">Export To</a>
+    <a href="export-from.html">Export From</a>
+    <a href="restore-mysql.html">Restore Mysql</a>
+    <a href="archive.html" class="active">Archive</a>
+    <a href="mega-wallet.html">Mega Wallet</a>
+    <a href="meg-api.html">Meg Api</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Archive</h1>
+<hr>
+<p>title: Archive File Export</p>
+<p>description: Learn how to export your archive node to a file</p>
+<p>tag: user-guides</p>
+<hr>
+<p>If running an archive node, you can export your archive data to a file that can be used for recovering a node from the Security MiniDapp or using the <a href="/docs/development/terminal-commands#backup">reset</a> command to either chain re-sync, import seed phrase or restore a backup with chain re-sync.</p>
+<p>To export your archive data to a file:</p>
+<ol><li>Open the Security MiniDapp</li></ol>
+<p>!<a href="/img/app/security.png">security</a></p>
+<ol><li>Select <strong>Archive reset</strong></li><li>Select <strong>Archive export</strong>, then <strong>Export archive file</strong></li><li>Wait for the file to be generated</li></ol>
+<p>Once the file generation is complete you can download it to share with others. You can also <strong>Browse internal archives</strong> to download, share or use.</p>
+<p>Alternatively to export from the Terminal, run:</p>
+<pre><code>archive action:exportraw file:archiveexport-ddmmyy.raw.dat</code></pre>
+<div class="callout"><strong>Info</strong><br>An archive node can only be used to re-sync users who created their nodes
+<p>after your archive node was created. If you wish to be able to recover <em>any</em></p>
+<p>Minima user, you must perform a chain re-sync from an archive node that holds</p>
+<p>the entire blockchain since genesis.</div></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

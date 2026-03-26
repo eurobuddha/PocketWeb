@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Network</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">🧠 Knowledge Base</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="network.html" class="active">Network</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="transactions.html">Transactions</a>
+    <a href="tokens.html">Coloured Coins</a>
+    <a href="quantum.html">Quantum</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Network</h1>
+<hr>
+<p>title: Network Overview</p>
+<p>description: Learn about the Minima network</p>
+<p>icon: Layers</p>
+<p>tag: learn</p>
+<hr>
+<p>The Minima network consists of four distinct layers.</p>
+<p>Each layer contributes to Minima being a truly decentralized, censorship resistant, peer-to-peer network for value and information exchange.</p>
+<h2>Layer 1: Minima</h2>
+<p>**Value transfer<br /></p>
+<p>On-chain**</p>
+<p>Minima is the blockchain layer for value transfer. All transactions are processed by all nodes on the network. It is flood-fill. It uses the peer-to-peer network as its backbone for communication between nodes.</p>
+<p>[Diagram]</p>
+<p>The Minima blockchain is where all on-chain transactions are processed. Every node in the network collectively comes to consensus on the state of the blockchain so all transactions are accounted for.</p>
+<p>Users initiate their transacting relationships on Layer 1, prior to moving off-chain to use Layer 2 for faster and cheaper transactions. As the trust layer of the protocol, Layer 1 is also used for settling any disputes between users on Layer 2.</p>
+<h2>Maxima</h2>
+<p>**Information transfer<br /></p>
+<p>Off-chain**</p>
+<p>Maxima is the information transport layer running over the Minima network. <br/></p>
+<p>Communication is point-to-point so that messages can be sent, off-chain, to chosen connected peers.</p>
+<p>[Diagram]</p>
+<p>Maxima enables encrypted, peer-to-peer exchange of information between users on the Minima network.</p>
+<p>Maxima can be used to build censorship resistant messaging applications and will be used for sending data required for Layer 2 communication on Omnia.</p>
+<h2>Layer 2: Omnia</h2>
+<p>**Value transfer<br /></p>
+<p>Off-chain**</p>
+<p>Minima's Layer 2 - Omnia - is fast, cheap and scalable. It enables instant peer-to-peer payments by creating bi-directional payment channels between participants, using the latest Lightning technology - ELTOO. It is analogous to Bitcoin’s Lightning Network but more advanced.</p>
+<p>Minima can also support alternative scaling solutions such as state chains and side chains with the potential for further solutions in the future.</p>
+<p>[Diagram]</p>
+<p>Once users have set up their transacting relationship on Minima, they can perform <strong>all transactions off-chain</strong>, on Omnia. This is where the bulk of peer-to-peer exchange between users of the network takes place. It is <strong>affordable and fast</strong>, as each payment is not settled on the blockchain and transactions are only processed by the relevant users rather than the entire network, as occurs on Layer 1.</p>
+<p>Based on <strong>ELTOO</strong> technology, Omnia can do more than simple payments. It can do any smart contract sequence with a given subset of users and subset of coins. Using hash time locked contracts (HTLCs) and payment channels, users can keep a ‘tab’ of their unsettled balances indefinitely, until they wish to settle on Minima (Layer 1).<br/></p>
+<p><strong>Omnia unlocks the possibility of essentially unlimited transactions per second (TPS).</strong></p>
+<h2>Layer 3: MiniDapps</h2>
+<p><strong>Web3 Applications</strong></p>
+<p>MiniDapps are truly decentralised applications built using the functionality enabled by any/all components of the Minima network:</p>
+<ol><li>Value transfer on Minima</li><li>Information transfer on Maxima</li><li>Unlimited transaction per seconds on Omnia</li></ol>
+<p>[Diagram]</p>
+<p>MiniDapps are decentralized web applications combining the utility provided by Maxima, Minima and Omnia with Minima’s scripting language. The front-end for MiniDapps can be written using the widely known JavaScript, HTML and CSS.</p>
+<p>Minima’s KISS scripting language is Turing-Complete, allowing for powerful smart contract driven applications. Building a MiniDapp is accessible to any web developer.</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

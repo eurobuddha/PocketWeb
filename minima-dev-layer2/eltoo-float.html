@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ELTOO Floating Coin</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚡ Dev: Layer 2 Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Uni-directional Channel</a>
+    <a href="bidirectional.html">Bi-directional Payments</a>
+    <a href="eltoo.html">ELTOO Channel</a>
+    <a href="eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+    <a href="eltoo-float.html" class="active">ELTOO Floating Coin</a>
+    <a href="eltoo-full.html">Full ELTOO Sequence</a>
+    <a href="state-chains.html">State Chains</a>
+    <a href="coinflip.html">Coin flip V2</a>
+  </div>
+</div>
+<div class="prose">
+<h1>ELTOO Floating Coin</h1>
+<p>A floating coin is one that can be attached to any existing coin, as long as it has the same address, amount and tokenid, irrespective of the coinid.</p>
+<p>Use a previous address and send funds to it..</p>
+<pre><code>send amount:2 address:0x921FC56E2948CCC51DB46525E459F1DB7331C65CC0E830FBC0E63CF273C6B592</code></pre>
+<p>You will now have a coin that can be used as a floating input. Use <code>coins relevant:true</code> to see the details. <br/></p>
+<p>In the coin details <code>floating</code> will be set to true.</p>
+<p>Create a floating transaction that spends this coin..</p>
+<pre><code>txncreate id:floattxn</code></pre>
+<pre><code>txnoutput id:floattxn address:0xFF amount:2</code></pre>
+<p>And this is the special bit, when defining an input coin use the <code>floating</code> param. You could specify the coin using a coinid or with coindata (from a custom transaction) - but you can just specify the address, amount and tokenid, since it is a floating coin.</p>
+<pre><code>txninput id:floattxn floating:true amount:2 address:0x921FC56E2948CCC51DB46525E459F1DB7331C65CC0E830FBC0E63CF273C6B592</code></pre>
+<p>Now - you will see that in your custom transaction the coinid for that input is <code>0x01</code>. This means it is special. It is not specified. It does not matter which coin you use - as long as address, amount and tokenid are the same.</p>
+<p>Sign it to complete the transaction</p>
+<pre><code>txnsign id:floattxn publickey:auto</code></pre>
+<p>Infact let's SPEND the old coin and output it to the same address.</p>
+<p>In my <code>coins relevant:true</code> I have only 2 coins.. The 2 minima floating one and the big one (left over from the billion). Importantly the floating 2 Minima coin is the latest - so it will be picked up first.</p>
+<p>So - if you do (using the same address and amount)</p>
+<pre><code>send amount:2 address:0x09B9782AA11B0B1F3D658016E2FD1E120DC0619A7BCD4F4DA6A4D79F0C6A5783</code></pre>
+<p>It will spend that coin, and create another coin - with a different coinid, but with the same address, amount and tokenid, still floating.</p>
+<pre><code>coins relevant:true</code></pre>
+<p>This will show the new coin with different coinid.</p>
+<p>We can now post the floating transaction we made, with a coin that has already been spent, and it will still work as it uses the NEW coin we just created.</p>
+<pre><code>txnpost id:floattxn auto:true</code></pre>
+<p><strong>BOOM.</strong> You just spent a floating coin..</p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

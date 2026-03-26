@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Token Scripts</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">📝 Dev: Smart Contracts</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="token-scripts.html" class="active">Token Scripts</a>
+    <a href="kissvm.html">Kissvm</a>
+    <a href="pruning.html">Pruning</a>
+    <a href="future-cash.html">Future Cash</a>
+    <a href="vestr.html">Vestr</a>
+    <a href="streamr.html">Streamr</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Token Scripts</h1>
+<hr>
+<p>title: Token/NFT scripts</p>
+<p>description: Token/NFT scripts</p>
+<p>tag: development</p>
+<hr>
+<p>Each custom token or NFT has a separate script that must also return TRUE when attempting to spend a UTxO.</p>
+<p>Minima has a token address of <code>0x00</code> and a token script of <code>RETURN TRUE</code>.</p>
+<p>Custom tokens/NFTs by default have <strong>RETURN TRUE</strong> as their token script.</p>
+<p>This token structure is added to any transaction using that token so every user can check whether the token should be allowed to be spent.</p>
+<p>For instance this could be a script for a "make sure 1% is sent to this address for a charity" token:</p>
+<pre><code>RETURN VERIFYOUT(@INPUT CHARITY_ADDRESS @AMOUNT*0.01 @TOKENID)</code></pre>
+<p>or a counter mechanism that checks a counter has been incremented:</p>
+<pre><code>RETURN STATE(99) EQ INC(PREVSTATE(99))</code></pre>
+<p><strong>Both the Token script and coin address script must return TRUE for the transaction to be valid.</strong></p>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>

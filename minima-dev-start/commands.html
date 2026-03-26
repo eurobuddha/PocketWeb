@@ -1,0 +1,590 @@
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Commands</title>
+<script src="../../miniweb/mds.js"></script>
+<script src="../../miniweb/miniweb.js"></script>
+<link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="nav">
+  <div class="nav-brand">⚡ Dev: Getting Started</div>
+  <div class="nav-links">
+    <a href="index.html">Index</a>
+    <a href="testnet-single.html">Testnet Single</a>
+    <a href="testnet-multi.html">Testnet Multi</a>
+    <a href="cli.html">Minidapp CLI</a>
+    <a href="typescript.html">Using Typescript</a>
+    <a href="commands.html" class="active">Commands</a>
+  </div>
+</div>
+<div class="prose">
+<h1>Commands</h1>
+<hr>
+<p>title: Terminal Commands</p>
+<p>description: Terminal Commands</p>
+<p>tag: learn</p>
+<p>icon: Terminal</p>
+<hr>
+<p>Last updated: 17th July 2025</p>
+<p>The following commands can be run directly from a Minima Terminal. They can also be viewed by typing <code>help</code> into the Minima Terminal.</p>
+<p>For detailed help, use <code>help command:</code> followed by the command.</p>
+<p><code>;</code> can be used to chain multiple commands</p>
+<h2>General Commands</h2>
+<details><summary>balance</summary><div class="detail-body">`Show your total balance of Minima and tokens.`
+<p>Examples:</p>
+<pre><code>balance</code></pre>
+<pre><code>balance tokenid:0xFED5.. confirmations:10</code></pre>
+<pre><code>balance address:0xFF..</code></pre>
+<details><summary>block</summary><div class="detail-body">`Return the top block`
+<pre><code>block</code></pre>
+<p>Examples:</div></details></p>
+<details><summary>checkaddress</summary><div class="detail-body">`Check the validity of an address and whether it belongs to your node.`
+<p>Examples:</p>
+<pre><code>checkaddress address:0xFED...</code></pre>
+<details><summary>coincheck</summary><div class="detail-body">`Check a coin exists and is valid. Can only check unspent coins.`
+<p>Examples:</p>
+<pre><code>coincheck data:0x00000..</code></pre>
+<details><summary>coinexport</summary><div class="detail-body">`Export a coin including its MMR proof.`
+<p>A coin can then be imported and tracked on another node using the 'coinimport' command.</p>
+<p>This does not allow the spending of a coin - just the knowledge of its existence.</p>
+<p>Examples:</p>
+<pre><code>coinexport coinid:0xCD34..</code></pre>
+<details><summary>coinimport</summary><div class="detail-body">`Import a coin including its MMR proof.`
+<p>Optionally you can track the coin to add it to your relevant coins list and know when it becomes spent.</p>
+<p>Importing does not allow the spending of a coin - just the knowledge of its existence.</p>
+<p>Examples:</p>
+<pre><code>coinimport data:0x00000..</code></pre>
+<pre><code>coinimport data:0x00000.. track:true</code></pre>
+<details><summary>cointrack</summary><div class="detail-body">`Track or untrack a coin.`
+<p>Track a coin to keep its MMR proof up-to-date and know when it becomes spent. Stop tracking to remove it from your relevant coins list.</p>
+<p>Examples:</p>
+<pre><code>cointrack enable:true coinid:0xCD34..</code></pre>
+<details><summary>consolidate</summary><div class="detail-body">`Consolidate multiple coins (UTxOs) into one by sending them back to yourself.`
+<p>Must have at least 3 coins.</p>
+<p>Useful to prevent having many coins of tiny value and to manage the number of coins you are tracking. Optionally set the minimum coin age (in blocks), maximum number of coins, and maximum number of signatures for the transaction.</p>
+<p>Examples:</p>
+<pre><code>consolidate tokenid:0x00</code></pre>
+<pre><code>consolidate tokenid:0x00 coinage:10</code></pre>
+<pre><code>consolidate tokenid:0x00 maxcoins:5</code></pre>
+<pre><code>consolidate tokenid:0x00 coinage:10 maxcoins:8 burn:1</code></pre>
+<pre><code>consolidate tokenid:0x00 coinage:10 maxcoins:8 maxsigs:3 burn:1 dryrun:true</code></pre>
+<details><summary>getaddress</summary><div class="detail-body">`Returns an existing default Minima address to receive funds, use as a change address etc.`
+<p>Each address can be used securely 262144 (64^3) times.</p>
+<p>Then you can wipe the private keys from your online node using the 'vault' command.</p>
+<p>Examples:</p>
+<pre><code>getaddress</code></pre>
+<details><summary>hashtest</summary><div class="detail-body">`Check the speed of hashing of this device.`
+<p>Defaults to 1 million hashes.</p>
+<p>Returns the time taken in milliseconds and speed in megahashes/second.</p>
+<p>E.g. A speed of 0.5 MH/s indicates 500000 hashes per second.</p>
+<p>Examples:</p>
+<pre><code>hashtest</code></pre>
+<pre><code>hashtest amount:1000000</code></pre>
+<details><summary>history</summary><div class="detail-body">`Return all TxPoW relevant to you.`
+<p>Examples:</p>
+<pre><code>history max:20</code></pre>
+<pre><code>history max:20 offset:45</code></pre>
+<details><summary>keys</summary><div class="detail-body">`Get a list of all your public keys or create a new key.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>keys action:list</code></pre>
+<pre><code>keys action:checkkeys</code></pre>
+<pre><code>keys action:list publickey:0xFFEE56..</code></pre>
+<pre><code>keys action:new</code></pre>
+<details><summary>newaddress</summary><div class="detail-body">`Create a new address that will not be not used for anything else (not one of the 64 default change address).`
+<p>Can be used for a specific use case or for improved privacy.</p>
+<pre><code>newaddress</code></pre>
+<details><summary>printmmr</summary><div class="detail-body">`Print the MMR set of the tip block and the total number of entries in the MMR.`
+<p>Returns the tip block number, latest entrynumber and latest set of MMR entries.</p>
+<p>For each entry, details of its row, entry number, data and value of all new and updated MMR entries for the tip block.</p>
+<p>Row 1 represents the leaf nodes, entry 0 represents the first entry on a row.</p>
+<pre><code>printmmr</code></pre>
+<details><summary>printtree</summary><div class="detail-body">`Print a tree representation of the blockchain.`
+<p>Default depth 32 blocks, can be increased to see more of the txpow tree.</p>
+<p>Examples:</p>
+<pre><code>printtree</code></pre>
+<pre><code>printtree depth:500</code></pre>
+<pre><code>printtree cascade:true</code></pre>
+<details><summary>quit</summary><div class="detail-body">`Shutdown Minima safely. Ensure you have a backup before shutting down.`
+<p>Ensure you have a backup before shutting down.</p>
+<p>Examples:</p>
+<pre><code>quit</code></pre>
+<pre><code>quit compact:true</code></pre>
+<details><summary>seedrandom</summary><div class="detail-body">`Generate a random value, based on your SEED and a modifier.`
+<p>Examples:</p>
+<pre><code>seedrandom modifier:"Hello you"</code></pre>
+<details><summary>status</summary><div class="detail-body">`Show the general status for Minima and your node. Optionally clean the RAM.`
+<p>Prints details for general status, memory used, chain info, stored txpow units, network connections, p2p connections and traffic.</p>
+<p>Examples:</p>
+<pre><code>status</code></pre>
+<pre><code>status clean:true</code></pre>
+<details><summary>tokencreate</summary><div class="detail-body">`Create (mint) custom tokens or NFTs.`
+<p>You must have some sendable Minima in your wallet as tokens are 'colored coins', a fraction of 1 Minima.</p>
+<p>Examples:</p>
+<pre><code>tokencreate name:newtoken amount:1000000</code></pre>
+<pre><code>tokencreate amount:10 name:\{"name":"newcoin","link":"http:mysite.com","description":"A very cool token"}</code></pre>
+<pre><code>tokencreate name:mynft amount:10 decimals:0 webvalidate:https://www.mysite.com/nftvalidation.txt signtoken:0xFF.. burn:0.1</code></pre>
+<pre><code>tokencreate name:charitycoin amount:1000 script:"ASSERT VERIFYOUT(@TOTOUT-1 0xMyAddress 1 0x00 TRUE)"</code></pre>
+<details><summary>tokenvalidate</summary><div class="detail-body">`Validate the signature and webvalidate link in a token.`
+<p>Examples:</p>
+<pre><code>tokenvalidate tokenid:0xFED5..</code></pre>
+<details><summary>trace</summary><div class="detail-body">`Show the message stacks of the internal Minima Engine with optional filter string.`
+<p>Examples:</p>
+<pre><code>trace enable:true</code></pre>
+<pre><code>trace enable:true filter:MAIN</code></pre>
+<pre><code>trace enable:true filter:MINER</code></pre>
+<pre><code>trace enable:true filter:MDS</code></pre>
+<pre><code>trace enable:true filter:NOTIFYMANAGER</code></pre>
+<pre><code>trace enable:true filter:TXPOWPROCESSOR</code></pre>
+<pre><code>trace enable:false</code></pre>
+<h2>Backup</h2>
+<details><summary>archive</summary><div class="detail-body">`Perform a chain or seed re-sync from an archive node.`
+<p>A chain re-sync will put your node on the correct chain so you are in sync with the latest tip block.</p>
+<p>Use a chain re-sync if your node has been offline for too long and cannot catchup. Seed Phrase is not required.</p>
+<p>A seed re-sync will wipe the wallet and re-generate your keys from your seed phrase. Your coins will be restored.</p>
+<p>Only use a seed re-sync if you have lost your node and do not have a backup.</p>
+<p>You can also check the integrity of your archive db.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>archive action:resync host:auto</code></pre>
+<pre><code>archive action:resync host:89.98.89.98:8888 phrase:"YOUR 24 WORD SEED PHRASE"</code></pre>
+<pre><code>archive action:resync host:89.98.89.98:8888 phrase:"YOUR 24 WORD SEED PHRASE" keys:90 keyuses:2000</code></pre>
+<pre><code>archive action:integrity</code></pre>
+<pre><code>archive action:export file:archiveexport-ddmmyy.gzip</code></pre>
+<pre><code>archive action:import file:archiveexport-ddmmyy.gzip</code></pre>
+<pre><code>archive action:inspect file:archiveexport-ddmmyy.gzip</code></pre>
+<pre><code>archive action:addresscheck address:Mx..</code></pre>
+<details><summary>backup</summary><div class="detail-body">`Backup your node. Uses a timestamped name by default.`
+<p>Examples:</p>
+<pre><code>backup</code></pre>
+<pre><code>backup password:Longsecurepassword456</code></pre>
+<pre><code>backup password:Longsecurepassword456 confirm:Longsecurepassword456</code></pre>
+<pre><code>backup password:Longsecurepassword456 file:my-backup-01-Jan-22.bak maxhistory:100</code></pre>
+<pre><code>backup auto:true</code></pre>
+<details><summary>megammr (from v1.0.41)</summary><div class="detail-body">`View information about your MegaMMR. Export and Import complete MegaMMR data.`
+<p>You must be running with the -megammr start up parameter.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>megammr</code></pre>
+<pre><code>megammr action:info</code></pre>
+<pre><code>megammr action:export file:mmrfile.mmr</code></pre>
+<pre><code>megammr action:import file:mmrfile.mmr</code></pre>
+<details><summary>megammrsync (from v1.0.41)</summary><div class="detail-body">`Perform a quick chain sync, seed re-sync or restore a backup from a MegaMMR node. Fast.`
+<p>If you are on the wrong chain - all you need to provide is the 'host' to connect to.</p>
+<p>If you are on a fresh node, with different seed phrase, provide 'host' and 'phrase' to resync with that Wallet.</p>
+<p>You can load an old backup and resync to the chain tip aswell.</p>
+<p>The host you connect to MUST be running with -megammr.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>megammrsync action:mydetails</code></pre>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001</code></pre>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001 file:myoldbackup.bak password:backup_password</code></pre>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001 phrase:"YOUR 24 WORD SEED PHRASE" keyuses:2000</code></pre>
+<details><summary>mysql</summary><div class="detail-body">`Export the archive data of your node to a MySQL database.`
+<p>The MySQL archive export (in .dat or .gzip format) can be used to perform a chain re-sync to put users on the correct chain or a seed re-sync to restore access to lost funds, using the 24 word seed phrase.</p>
+<p>Query an address for its history of spent and unspent coins.</p>
+<p>Additionally export the MySQL db to a .dat or .gzip file for resyncing with 'reset' or 'archive' command.</p>
+<p>You can also create a coins db in MySQL to search for coins using SQL queries.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:info</code></pre>
+<pre><code>mysql host:dockermysql database:archivedb user:archiveuser password:archivepassword action:info</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:integrity</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:update</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:addresscheck address:MxG08..</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:resync</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:resync phrase:"24 WORDS HERE" keys:90 keyuses:2000</code></pre>
+<details><summary>mysqlcoins</summary><div class="detail-body">`Create and search a coins database from your MySQL Archive.`
+<p>Create a coins db from your mysql data and search it.</p>
+<p>Use the same database you already use for your TxBlocks. This creates a new table.</p>
+<p>You can then search for coins using SQL queries.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>mysqlcoins action:update maxcoins:100 host:127.0.0.1:3307 database:coinsdb user:myuser password:myuser</code></pre>
+<pre><code>mysqlcoins action:search where:"address='0x791E78C60652B0E19B8FE9EB035B122B261490C477FD76E38C0C928187076103'" host:127.0.0.1:3307 database:coinsdb user:myuser password:myuser</code></pre>
+<pre><code>mysqlcoins action:search query:"address='0x791E78C60652B0E19B8FE9EB035B122B261490C477FD76E38C0C928187076103' AND state LIKE '%0xFFEEDD%' LIMIT 10" host:127.0.0.1:3307 database:coinsdb user:myuser password:myuser</code></pre>
+<details><summary>reset</summary><div class="detail-body">`Reset your node in various ways.`
+<p>You MUST wait until all your original keys are created before this is allowed.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:chainsync</code></pre>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:seedsync keyuses:1000 phrase:"ENTER 24 WORDS HERE"</code></pre>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:restore file:backup-jul23.bak password:Longsecurepassword456</code></pre>
+<details><summary>restore</summary><div class="detail-body">`Restore your node from a backup.`
+<p>You MUST wait until all your original keys are created before this is allowed.</p>
+<p>Examples:</p>
+<pre><code>restore file:my-full-backup-01-Jan-22 password:Longsecurepassword456</code></pre>
+<details><summary>restoresync</summary><div class="detail-body">`Restore the entire system AND perform an archive chain sync. Use when the backup is old.`
+<p>The node will be restored and an archive chain sync will commence from the last block in the backup.</p>
+<p>You MUST wait until all your original keys are created before this is allowed.</p>
+<p>Examples:</p>
+<pre><code>restoresync file:my-full-backup-01-Jan-22 password:Longsecurepassword456  host:89.98.89.98:9001</code></pre>
+<pre><code>restoresync file:my-full-backup-01-Jan-22 password:Longsecurepassword456 keyuses:1000  host:89.98.89.98:9001</code></pre>
+<details><summary>vault</summary><div class="detail-body">`View, encrypt/decrypt or wipe/restore your seed phrase and private keys.`
+<div class="callout"><strong>Warning</strong><br>DO NOT SHARE YOUR SEED PHRASE WITH ANYONE.
+<p>BE CAREFUL. ENSURE YOU HAVE A BACKUP AND SECURE RECORD OF YOUR PASSPHRASE BEFORE LOCKING.</div></p>
+<p>You must have your passphrase to unlock your private keys.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>vault action:wipekeys seed:0xDD4E..</code></pre>
+<pre><code>vault action:restorekeys phrase:\"SPRAY LAMP..\"</code></pre>
+<pre><code>vault action:passwordlock password:your_password</code></pre>
+<pre><code>vault action:passwordlock password:your_password confirm:your_password</code></pre>
+<pre><code>vault action:passwordunlock password:your_password</code></pre>
+<h2>MiniDapp System</h2>
+<details><summary>mds</summary><div class="detail-body">`MiniDAPP System management.`
+<p>Install, update or uninstall MiniDapps and set their permissions to READ/WRITE. Default permission is READ.</p>
+<p>DO NOT give WRITE permissions to MiniDapps you do not trust!</p>
+<p>Accept/deny pending commands from MiniDapps with READ permissions.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>mds action:list</code></pre>
+<pre><code>mds action:install file:wallet_1.0.mds.zip</code></pre>
+<pre><code>mds action:install file:/Users/MyUser/Downloads/wallet_1.0.mds.zip trust:write</code></pre>
+<pre><code>mds action:update uid:0xABA3.. file:wallet_2.0.mds.zip</code></pre>
+<pre><code>mds action:uninstall uid:0xABA3..</code></pre>
+<pre><code>mds action:pending</code></pre>
+<pre><code>mds action:accept uid:0xCDF6..</code></pre>
+<pre><code>mds action:deny uid:0xCDF6..</code></pre>
+<pre><code>mds action:permission uid:0xABA3.. trust:write</code></pre>
+<details><summary>checkmode</summary><div class="detail-body">`Show if this MiniDAPP is READ or WRITE mode.`
+<p>Can be called from a MiniDapp to check whether it is in READ or WRITE mode.</p>
+<pre><code>checkmode</code></pre>
+<details><summary>checkpending</summary><div class="detail-body">`Show if a pending command UID is in the pending list`
+<pre><code>checkpending</code></pre>
+<details><summary>checkrestore</summary><div class="detail-body">`Check if the system is restoring`
+<p>Check whether Minima is currently being restored, is shutting down and if shutdown is complete.</p>
+<pre><code>checkrestore</code></pre>
+<h2>Network</h2>
+<details><summary>connect</summary><div class="detail-body">`Connect to a network Minima instance.`
+<p>Connect to another node to join the main network or to create a private test network.</p>
+<p>Set your own host using the -host parameter at start up.</p>
+<p>Examples:</p>
+<pre><code>connect host:94.0.239.117:9001</code></pre>
+<details><summary>disconnect</summary><div class="detail-body">`Disconnect from a connected or connecting host.`
+<p>Optionally disconnect from all hosts.</p>
+<p>Examples:</p>
+<pre><code>disconnect uid:all</code></pre>
+<pre><code>disconnect uid:CVNPMLPOCQ0HQ</code></pre>
+<details><summary>message</summary><div class="detail-body">`Send a message to one or all of your direct peers.`
+<p>Examples:</p>
+<pre><code>message data:"hello" uid:CVNPMLPOCQ0HQ</code></pre>
+<details><summary>network</summary><div class="detail-body">`Show network status or reset traffic counter.`
+<pre><code>network</code></pre>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>network</code></pre>
+<pre><code>network action:list</code></pre>
+<pre><code>network action:reset</code></pre>
+<pre><code>network action:recalculateip</code></pre>
+<details><summary>peers</summary><div class="detail-body">`Prints the peers list this node has. P2P must be enabled.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>peers</code></pre>
+<pre><code>peers action:list</code></pre>
+<pre><code>peers action:addpeers peerslist:["31.125.188.214:9001","94.0.239.117:9001"]</code></pre>
+<details><summary>ping</summary><div class="detail-body">`Ping a host and get back Minima Node info.`
+<p>Examples:</p>
+<pre><code>ping host:</code></pre>
+<details><summary>rpc</summary><div class="detail-body">`Enable and disable RPC on port 9005 (default is off).`
+<p>Examples:</p>
+<pre><code>rpc enable:true</code></pre>
+<pre><code>rpc enable:true ssl:true password:minima</code></pre>
+<pre><code>rpc enable:true password:minima</code></pre>
+<pre><code>rpc enable:false</code></pre>
+<details><summary>webhooks</summary><div class="detail-body">`Add a web hook that is called with Minima events as they happen.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>webhooks action:list</code></pre>
+<pre><code>webhooks action:add hook:http://127.0.0.1/myapi.php</code></pre>
+<pre><code>webhooks action:remove hook:http://127.0.0.1/myapi.php</code></pre>
+<pre><code>webhooks action:add hook:http://127.0.0.1/myapi.php filter:MINING</code></pre>
+<pre><code>webhooks action:clear</code></pre>
+<h2>Maxima</h2>
+<details><summary>maxcontacts</summary><div class="detail-body">`Manage your Maxima contacts. List, refresh, add, remove or search contacts.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>maxcontacts</code></pre>
+<pre><code>maxcontacts action:list</code></pre>
+<pre><code>maxcontacts action:add contact:MxG18H..</code></pre>
+<pre><code>maxcontacts action:remove id:1</code></pre>
+<pre><code>maxcontacts action:search publickey:0x3081..</code></pre>
+<details><summary>maxcreate</summary><div class="detail-body">`Create a 128 bit RSA public and private key.`
+<p>You can use them with maxsign and maxverify.</p>
+<pre><code>maxcreate</code></pre>
+<details><summary>maxextra</summary><div class="detail-body">`Perform extra functions on Maxima.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>maxextra action:staticmls host:Mx...@34.190.784.3:9001</code></pre>
+<pre><code>maxextra action:staticmls host:clear</code></pre>
+<pre><code>maxextra action:addpermanent publickey:0x3081..</code></pre>
+<pre><code>maxextra action:removepermanent publickey:0x3081..</code></pre>
+<pre><code>maxextra action:listpermanent</code></pre>
+<pre><code>maxextra action:clearpermanent</code></pre>
+<pre><code>maxextra action:getaddress maxaddress:MAX#0x3081..#Mx..@34.190.784.3:9001</code></pre>
+<pre><code>maxextra action:mlsinfo</code></pre>
+<pre><code>maxextra action:allowallcontacts enable:false</code></pre>
+<pre><code>maxextra action:addallowed publickey:0x2451..</code></pre>
+<pre><code>maxextra action:listallowed</code></pre>
+<pre><code>maxextra action:clearallowed</code></pre>
+<details><summary>maxima</summary><div class="detail-body">`Check your Maxima details, send a message/data.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>maxima action:info</code></pre>
+<pre><code>maxima action:setname name:myname</code></pre>
+<pre><code>maxima action:hosts</code></pre>
+<pre><code>maxima action:send id:1 application:appname data:0xFED5..</code></pre>
+<pre><code>maxima action:send to:MxG18H.. application:appname data:0xFED5..</code></pre>
+<pre><code>maxima action:send publickey:0xCD34.. application:ip:port data:0xFED5.. poll:true</code></pre>
+<pre><code>maxima action:refresh</code></pre>
+<details><summary>maxsign</summary><div class="detail-body">`Sign and verify data with your Maxima ID.`
+<p>Returns the signature of the data, signed with your Maxima private key or the specified key.</p>
+<p>Examples:</p>
+<pre><code>maxsign data:0xCD34..</code></pre>
+<pre><code>maxsign data:0xCD34.. privatekey:0x3081..</code></pre>
+<details><summary>maxverify</summary><div class="detail-body">`Verify data with a Maxima public key. Returns valid true or false.`
+<p>Examples:</p>
+<pre><code>maxverify data:0xCD34.. publickey:0xFED5.. signature:0x4827..</code></pre>
+<h2>Scripts</h2>
+<details><summary>newscript</summary><div class="detail-body">`Add a new custom script.`
+<p>Track ALL coins with this script address or just ones with state variables relevant to you.</p>
+<p>Examples:</p>
+<pre><code>newscript trackall:true script:"RETURN SIGNEDBY(0x1539..) AND SIGNEDBY(0xAD25..)"</code></pre>
+<pre><code>newscript trackall:false script:"RETURN (@BLOCK GTE PREVSTATE(1) OR @COINAGE GTE PREVSTATE(4)) AND VERIFYOUT(@INPUT PREVSTATE(2) @AMOUNT @TOKENID FALSE)"</code></pre>
+<details><summary>removescript</summary><div class="detail-body">`Remove a custom script.`
+<p>BE CAREFUL not to remove a script you need.</p>
+<pre><code>removescript</code></pre>
+<p>Examples:</p>
+<pre><code>removescript address:0xFFE678768CDE..</code></pre>
+<pre><code>removescript address:MxFFE678768CDE..</code></pre>
+<details><summary>runscript</summary><div class="detail-body">`Test run a script with predefined parameters without executing on chain.`
+<p>Scripts will be auto cleaned for you.</p>
+<p>Examples:</p>
+<pre><code>runscript script:"RETURN SIGNEDBY(0xFF..) AND @BLOCK GT 100" globals:\{"@BLOCK":"101"} signatures:["0xFF"]</code></pre>
+<pre><code>runscript script:"LET st=STATE(99) LET ps=PREVSTATE(99) IF st EQ ps AND @COINAGE GT 20 AND SIGNEDBY(0xFF) THEN RETURN TRUE ELSEIF st GT ps AND SIGNEDBY(0xEE) THEN RETURN TRUE ENDIF" globals:\{"@COINAGE":"23"} state:\{"99":"0"} prevstate:\{"99":"0"} signatures:["0xFF"]</code></pre>
+<pre><code>runscript script:"MAST 0x0E3.." extrascripts:\{"RETURN TRUE":"0x000.."}</code></pre>
+<details><summary>scripts</summary><div class="detail-body">`List all scripts or search for a script / basic address your node is tracking.`
+<p>Examples:</p>
+<pre><code>scripts</code></pre>
+<pre><code>scripts address:0xFED5..</code></pre>
+<pre><code>scripts address:MxG087..</code></pre>
+<details><summary>tutorial</summary><div class="detail-body">`Show the complete Grammar for Minima KISSVM scripting.`
+<pre><code>tutorial</code></pre>
+<h2>Search</h2>
+<details><summary>coins</summary><div class="detail-body">`Search for coins that are relevant to you or in the unpruned chain.`
+<p>Examples:</p>
+<pre><code>coins</code></pre>
+<pre><code>coins relevant:true sendable:true</code></pre>
+<pre><code>coins relevant:true amount:10</code></pre>
+<pre><code>coins coinid:0xEECD7..</code></pre>
+<pre><code>coins relevant:true tokenid:0xFED5..</code></pre>
+<pre><code>coins relevant:true address:0xCEF6.. tokenid:0x00</code></pre>
+<pre><code>coins relevant:true address:MxABC9..</code></pre>
+<details><summary>keys</summary><div class="detail-body">`Get a list of all your public keys or create a new key.`
+<p>Each public key can be used for signing securely 262144 (64^3) times.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>keys</code></pre>
+<pre><code>keys action:list</code></pre>
+<pre><code>keys action:list publickey:0xFFEE56..</code></pre>
+<pre><code>keys action:new</code></pre>
+<details><summary>tokens</summary><div class="detail-body">`List all tokens in the unpruned chain.`
+<p>Optionally import or export tokens to share token data.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>tokens</code></pre>
+<pre><code>tokens tokenid:0xFED5..</code></pre>
+<pre><code>tokens action:export tokenid:0xFED5..</code></pre>
+<pre><code>tokens action:import data:0x000..</code></pre>
+<details><summary>txpow</summary><div class="detail-body">`Search for a specific TxPoW in the unpruned chain or your mempool.`
+<p>Search by txpowid, block or 0x / Mx address.</p>
+<p>Examples:</p>
+<pre><code>txpow txpowid:0x000..</code></pre>
+<pre><code>txpow block:200</code></pre>
+<pre><code>txpow address:0xCEF6..</code></pre>
+<h2>Send</h2>
+<details><summary>multisig</summary><div class="detail-body">`Create a multisig coin that can only be used in a txn signed by root OR n of m given public keys.`
+<p>Provide your Vault password to temporarily decrypt the private keys when creating the coin or signing a transaction.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>multisig action:create id:2of3multisig amount:100 publickeys:["0xFED5..","0xABD6..","0xFD8B.."] required:2 password:your_password</code></pre>
+<pre><code>multisig action:create id:3of3multisigroot amount:100 publickeys:["0xFED5..","0xABD6..","0xFD8B.."] required:3 root:0xFFE..</code></pre>
+<pre><code>multisig action:list</code></pre>
+<pre><code>multisig action:list id:2of3multisig</code></pre>
+<pre><code>multisig action:spend id:3of3multisigroot amount:5 address:0xFF..</code></pre>
+<pre><code>multisig action:spend coinid:0x17EA.. amount:5 address:0xFF.. file:multisig.txn</code></pre>
+<pre><code>multisig action:sign file:multispend_1673351592845.txn</code></pre>
+<pre><code>multisig action:sign file:multisig.txn password:your_password</code></pre>
+<pre><code>multisig action:view file:multisig.txn</code></pre>
+<pre><code>multisig action:post file:signed_multispend_1673351592845.txn</code></pre>
+<pre><code>multisig action:post file:signed_multisig.txn</code></pre>
+<details><summary>send</summary><div class="detail-body">`Send Minima or custom tokens to a wallet or custom script address.`
+<p>Optionally, send to multiple addresses in one transaction; split UTxOs; add state variables or include a burn.</p>
+<p>Examples:</p>
+<pre><code>send address:0xFF.. amount:10</code></pre>
+<pre><code>send address:0xFF.. amount:10 tokenid:0xFED5.. burn:0.1</code></pre>
+<pre><code>send address:0xFF.. amount:10 split:5 burn:0.1</code></pre>
+<pre><code>send multi:["0xFF..:10","0xEE..:10","0xDD..:10"] split:10</code></pre>
+<pre><code>send amount:1 address:0xFF.. state:{"0":"0xEE..","1":"0xDD.."}</code></pre>
+<details><summary>sendpoll</summary><div class="detail-body">`Send function that adds 'send' commands to a list and polls every 30 seconds until the return status is 'true'.`
+<pre><code>sendpoll</code></pre>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>sendpoll address:0xFF.. amount:10</code></pre>
+<pre><code>sendpoll address:0xFF.. amount:10 tokenid:0xFED5.. burn:0.1</code></pre>
+<pre><code>sendpoll action:list</code></pre>
+<pre><code>sendpoll action:remove uid:0x..</code></pre>
+<details><summary>sendnosign</summary><div class="detail-body">`Create a txn but don't sign it.`
+<p>Constructs and outputs an unsigned transaction to a file in the base folder.</p>
+<p>The output .txn file can then be imported to an offline node for signing. Must be done from an online node as the MMR proofs for the input coins are added.</p>
+<p>Useful when the keys on an online node are wiped or password locked.</p>
+<p>Examples:</p>
+<pre><code>sendnosign address:0xFF.. amount:10</code></pre>
+<pre><code>sendnosign address:0xFF.. amount:10 tokenid:0xFED5.. burn:0.1</code></pre>
+<pre><code>sendnosign address:0xFF.. amount:10 split:5 burn:0.1</code></pre>
+<pre><code>sendnosign multi:["0xFF..:10","0xEE..:10","0xDD..:10"] split:10</code></pre>
+<pre><code>sendnosign amount:1 address:0xFF.. state:{"0":"0xEE..","1":"0xDD.."}</code></pre>
+<details><summary>sendsign</summary><div class="detail-body">`Sign a transaction previously created by the 'sendnosign' command, by specifying its .txn file.`
+<p>Optionally, if the node is Vault password locked, provide the Vault password to decrypt the keys for signing.</p>
+<p>The keys will be automatically re-encrypted after signing.</p>
+<p>Can be signed on an offline node, then posted from an online node.</p>
+<p>Examples:</p>
+<pre><code>sendsign file:unsignedtransaction-1674907380057.txn</code></pre>
+<pre><code>sendsign file:C:\\Users\\unsignedtransaction-1674907380057.txn password:your_vaultpassword</code></pre>
+<details><summary>sendview</summary><div class="detail-body">`View a transaction (signed or unsigned).`
+<p>View the details of a transaction created by the 'sendnosign' command by specifying its .txn file.</p>
+<p>Examples:</p>
+<pre><code>sendview file:unsignedtransaction-1674907380057.txn</code></pre>
+<pre><code>sendview file:C:\\Users\\unsignedtransaction-1674907380057.txn</code></pre>
+<details><summary>sendpost</summary><div class="detail-body">`Post a transaction previously created and signed using the 'sendnosign' and 'sendsign' commands.`
+<p>Must be posted from an online node within approximately 24 hours of creation to ensure MMR proofs are valid.</p>
+<p>Examples:</p>
+<pre><code>sendpost file:signedtransaction-1674907380057.txn</code></pre>
+<pre><code>sendpost file:C:\\Users\\signedtransaction-1674907380057.txn</code></pre>
+<h2>Signatures</h2>
+<details><summary>sign</summary><div class="detail-body">`Sign the data with the publickey.`
+<p>Returns the signature of the data, signed with the corresponding private key.</p>
+<pre><code>sign data:0xCD34..</code></pre>
+<details><summary>verify</summary><div class="detail-body">`Verify a signature.`
+<p>Returns valid true or false.</p>
+<p>Examples:</p>
+<pre><code>verify data:0xCD34.. publickey:0xFED5.. signature:0x4827..</code></pre>
+<h2>Transactions</h2>
+<details><summary>burn</summary><div class="detail-body">`View the latest Burn metrics`
+<p>View the number of burn transactions and the maximum, median, average and minimum burn metrics for the last 1, 10 and 50 blocks.</p>
+<p>Use as an indicator for an appropriate burn amount for transactions.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>burn</code></pre>
+<details><summary>logs</summary><div class="detail-body">`Enable detailed logs for script errors or mining activity.`
+<p>Enable detailed logs for script errors, mining activity, Maxima, network messages, blocks, or IBD processing.</p>
+<p>Examples:</p>
+<pre><code>logs scripts:true</code></pre>
+<pre><code>logs scripts:false mining:true</code></pre>
+<details><summary>txnbasics</summary><div class="detail-body">`Automatically set the MMR proofs and scripts for a transaction.`
+<p>Only run this command when a transaction is ready to be posted.</p>
+<pre><code>txnbasics</code></pre>
+<p>Examples:</p>
+<pre><code>txnbasics id:simpletxn</code></pre>
+<details><summary>txncheck</summary><div class="detail-body">`Show details about the transaction.`
+<p>Verify whether the inputs, outputs, signatures, proofs, and scripts are valid.</p>
+<pre><code>txncheck</code></pre>
+<p>Examples:</p>
+<pre><code>txncheck id:multisig</code></pre>
+<details><summary>txnclear</summary><div class="detail-body">`Clear ALL the Witness data for a transaction.`
+<p>Clears signatures, mmr proofs and script proofs.</p>
+<p>Examples:</p>
+<pre><code>txnclear id:multisig</code></pre>
+<details><summary>txncreate</summary><div class="detail-body">`Create a custom transaction.`
+<p>The first step before defining the inputs and outputs.</p>
+<p>Examples:</p>
+<pre><code>txncreate id:multisig</code></pre>
+<details><summary>txndelete</summary><div class="detail-body">`Delete a previously created custom transaction.`
+<p>Examples:</p>
+<pre><code>txndelete id:multisig</code></pre>
+<details><summary>txnexport</summary><div class="detail-body">`Export a transaction as HEX or to a file.`
+<p>Examples:</p>
+<pre><code>txnexport id:simpletxn</code></pre>
+<pre><code>txnexport id:multisig file:multisig.txn</code></pre>
+<details><summary>txnimport</summary><div class="detail-body">`Import a transaction from previously exported HEX data or a .txn file.`
+<p>Examples:</p>
+<pre><code>txnimport data:0x0000..</code></pre>
+<pre><code>txnimport id:simpletxn data:0x0000..</code></pre>
+<pre><code>txnimport id:multisig file:multisig.txn</code></pre>
+<details><summary>txninput</summary><div class="detail-body">`Add a coin as an input to a transaction.`
+<pre><code>txninput</code></pre>
+<p>Examples:</p>
+<pre><code>txninput id:simpletxn coinid:0xD0BF..</code></pre>
+<pre><code>txninput id:multisig coinid:0xD0BF.. scriptmmr:true</code></pre>
+<pre><code>txninput id:posttxn coindata:0x000..</code></pre>
+<pre><code>txninput id:eltootxn floating:true address:0xFED5.. amount:10 tokenid:0x00</code></pre>
+<details><summary>txnlist</summary><div class="detail-body">`List your custom transactions. Includes previously posted transactions.`
+<p>Examples:</p>
+<pre><code>txnlist</code></pre>
+<pre><code>txnlist id:multisig</code></pre>
+<details><summary>txnoutput</summary><div class="detail-body">`Create a transaction output.`
+<p>This will create a new coin (UTxO).</p>
+<p>If the sum of inputs > outputs, the difference will be burned unless change to the sender is defined as an output.</p>
+<p>Examples:</p>
+<pre><code>txnoutput id:simpletxn amount:10 address:0xFED5..</code></pre>
+<pre><code>txnoutput id:multisig amount:10 address:0xFED5.. tokenid:0xCEF5.. storestate:false</code></pre>
+<pre><code>txnoutput id:eltootxn amount:10 address:0xFED5..</code></pre>
+<details><summary>txnpost</summary><div class="detail-body">Post a transaction. Automatically set the Scripts and MMR proofs. Optionally set a burn for the transaction and mine the transaction immediately to return the final txpowid.
+<p>Examples:</p>
+<pre><code>txnpost id:simpletxn</code></pre>
+<pre><code>txnpost id:simpletxn auto:true burn:0.1</code></pre>
+<pre><code>txnpost id:multisig burn:0.1</code></pre>
+<details><summary>txnscript</summary><div class="detail-body">`Add scripts to a transaction.`
+<p>If it is a single script, and not one created with mmrcreate, leave the proof blank.</p>
+<p>If it is an mmrcreate script, include the proof.</p>
+<p>Examples:</p>
+<pre><code>txnscript id:txnmast scripts:{"RETURN TRUE":""}</code></pre>
+<pre><code>txnscript id:txnmast scripts:{"RETURN TRUE":"0x000.."}</code></pre>
+<details><summary>txnsign</summary><div class="detail-body">`Sign a transaction.`
+<pre><code>txnsign</code></pre>
+<p>Examples:</p>
+<pre><code>txnsign id:simpletxn publickey:auto</code></pre>
+<pre><code>txnsign id:simpletxn publickey:auto password:your_password</code></pre>
+<pre><code>txnsign id:multisig publickey:0xFD8B..</code></pre>
+<pre><code>txnsign id:simpletxn publickey:auto txnpostauto:true</code></pre>
+<details><summary>txnstate</summary><div class="detail-body">`Add a state variable to a transaction.`
+<p>Examples:</p>
+<pre><code>txnstate id:multisig port:0 value:0xFED5..</code></pre>
+<pre><code>txnstate id:multisig port:1 value:100</code></pre>
+<pre><code>txnstate id:multisig port:1 value:"string"</code></pre>
+<h2>External wallet transactions</h2>
+<p>These are available from v1.0.41 onwards.</p>
+<p>The following commands allow you to construct, sign (online or offline) and post transactions on behalf of specific wallets that are separate from the node's own wallet.</p>
+<p>They should be used alongside the <code>keys action:genkey</code> OR <code>keys action:genkey phrase:"MY SEED PHRASE"</code> command which generate a new private/public key pair and wallet address from a random or given seed phrase that is independent from the node itself.</p>
+<p>Note that <code>sendfrom</code> and <code>createfrom</code> require a <a href="/docs/run-a-node/mega-node">Mega MMR node</a>.</p>
+<details><summary>sendfrom</summary><div class="detail-body">`Send Minima or Tokens from a certain address with a given private key.`
+<p>Must be used from an ONLINE node.</p>
+<p>Examples:</p>
+<pre><code>sendfrom fromaddress:0xFEEED.. address:0xABCD.. script:"INSERT SCRIPT" privatekey:0xGHFK.. keyuses:5</code></pre>
+<details><summary>createfrom</summary><div class="detail-body">`Create and export an unsigned txn from a certain address.`
+<p>Must be run from a node using the <code>-megammr</code> start up parameter. Can be used from an ONLINE or OFFLINE node.</p>
+<p>Examples:</p>
+<pre><code>createfrom fromaddress:0xFEEED.. address:0xABCD.. script:"INSERT SCRIPT"</code></pre>
+<p>Examples:</div></details></p>
+<details><summary>signfrom</summary><div class="detail-body">`Sign a createfrom txn.`
+<p>Can be used from an ONLINE or OFFLINE node.</p>
+<p>Examples:</p>
+<pre><code>signfrom data:0x000000.. address:0xABCD.. script:"INSERT SCRIPT" keyuses:5</code></pre>
+<details><summary>postfrom</summary><div class="detail-body">`Post a signfrom txn to the network`
+<p>Must be used from an ONLINE node.</p>
+<p>Examples:</p>
+<pre><code>postfrom data:0x000000.. mine:true</code></pre>
+
+</div>
+<div class="footer">
+<a href="../minima-intro/index.html">Intro</a>
+<a href="../minima-learn/index.html">Learn</a>
+<a href="../minima-node/index.html">Node</a>
+<a href="../minima-guides/index.html">Guides</a>
+<a href="../minima-dev-start/index.html">Dev</a>
+<a href="https://docs.minima.global" target="_blank">Official</a>
+<br><br>Minima Docs &copy; 2025 &middot; On PocketWeb
+</div>
+<script>miniweb_Init();MDS.init(function(m){});</script>
+</body></html>
