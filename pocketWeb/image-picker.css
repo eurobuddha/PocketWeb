@@ -24,7 +24,7 @@ ul.thumbnails.image_picker_selector {
     /* line 35, source/sass/image-picker.scss */
     ul.thumbnails.image_picker_selector li .thumbnail {
       padding: 6px;
-      border: 1px solid #333;
+      border: 1px solid var(--border-input, #333);
       border-radius: 6px;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -34,5 +34,5 @@ ul.thumbnails.image_picker_selector {
         -webkit-user-drag: none; }
     /* line 48, source/sass/image-picker.scss */
     ul.thumbnails.image_picker_selector li .thumbnail.selected {
-      background: #5b8def;
-      border-color: #5b8def; }
+      background: var(--accent, #5b8def);
+      border-color: var(--accent, #5b8def); }

@@ -42,6 +42,7 @@
 			<button id="button-mysite">My Site</button>
 			<button id="button-dev">Dev</button>
 			<button id="button-help">Help</button>
+			<button id="theme-toggle" class="theme-toggle" onclick="toggleTheme();" title="Switch to light mode">&#9728;</button>
 		</div>
 	</div>
 </div>
@@ -129,7 +130,7 @@
 			}
 
 			if(len == 0){
-				bookmarkgrid.innerHTML = '<div style="color:#52525b;font-size:13px;">No bookmarks yet</div>';
+				bookmarkgrid.innerHTML = '<div style="color:var(--text-label);font-size:13px;">No bookmarks yet</div>';
 			}
 		});
 	}
@@ -280,9 +281,10 @@
 		
 		//Do initialisation
 		if(msg.event == "inited"){
-			
+
 			askNotificationPermission();
-			
+			loadTheme();
+
 			createDB(function(){
 				loadBookmarks();
 			});

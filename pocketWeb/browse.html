@@ -25,11 +25,38 @@
 	<script type="text/javascript" src="./js/sql.js"></script>
 	<script type="text/javascript" src="./js/gui.js"></script>
 	
+	<!-- Load shared gui.js for theme toggle -->
+	<script type="text/javascript" src="./js/gui.js"></script>
+
 	<style type="text/css">
 
 		@font-face {
 			font-family: Manrope;
 			src: url('./root/miniweb/fonts/Manrope-Regular.ttf');
+		}
+
+		:root {
+			--browse-bg: #1a1a1a;
+			--browse-surface: #2b2b2b;
+			--browse-border: #3a3a3a;
+			--browse-text: #d4d4d4;
+			--browse-text-secondary: #b0b0b0;
+			--browse-hover: #3d3d3d;
+			--browse-active: #4a4a4a;
+			--browse-accent: #5b8def;
+			--browse-accent-glow: rgba(91,141,239,0.15);
+		}
+
+		[data-theme="light"] {
+			--browse-bg: #e8e8ec;
+			--browse-surface: #ffffff;
+			--browse-border: #d0d0d4;
+			--browse-text: #1c1c1e;
+			--browse-text-secondary: #6b6b70;
+			--browse-hover: #f0f0f2;
+			--browse-active: #e4e4e7;
+			--browse-accent: #4a7be0;
+			--browse-accent-glow: rgba(74,123,224,0.15);
 		}
 
 		body {
@@ -38,7 +65,7 @@
 			width: 100%;
 			height: 100%;
 			font-family: Manrope, system-ui, sans-serif;
-			background: #1a1a1a;
+			background: var(--browse-bg);
 			overflow: hidden;
 		}
 
@@ -56,10 +83,10 @@
 			top: 0;
 			left: 0;
 			right: 0;
-			background-color: #2b2b2b;
+			background-color: var(--browse-surface);
 			display: block;
 			z-index: 10;
-			border-bottom: 1px solid #3a3a3a;
+			border-bottom: 1px solid var(--browse-border);
 			border-radius: 0;
 			font-family: Manrope, system-ui, sans-serif;
 			font-size: 14px;
@@ -72,22 +99,22 @@
 			font-size: 13px;
 			width: 100%;
 			height: 32px;
-			background: #1a1a1a;
-			color: #d4d4d4;
-			border: 1px solid #3a3a3a;
+			background: var(--browse-bg);
+			color: var(--browse-text);
+			border: 1px solid var(--browse-border);
 			border-radius: 8px;
 			padding: 0 14px;
 			outline: none;
 		}
 		.addressbar:focus {
-			border-color: #5b8def;
-			box-shadow: 0 0 0 2px rgba(91,141,239,0.15);
+			border-color: var(--browse-accent);
+			box-shadow: 0 0 0 2px var(--browse-accent-glow);
 		}
 
 		select.addressbar {
-			background: #1a1a1a;
-			color: #d4d4d4;
-			border: 1px solid #3a3a3a;
+			background: var(--browse-bg);
+			color: var(--browse-text);
+			border: 1px solid var(--browse-border);
 			border-radius: 6px;
 			padding: 4px 10px;
 			height: 30px;
@@ -104,7 +131,7 @@
 
 		.ui-icon {
 			zoom: 150%;
-			color: #5b8def;
+			color: var(--browse-accent);
 		}
 
 		.ui-button {
@@ -113,27 +140,43 @@
 			background: transparent !important;
 			border: none !important;
 			border-radius: 6px !important;
-			color: #b0b0b0 !important;
+			color: var(--browse-text-secondary) !important;
 			padding: 4px 8px !important;
 			min-height: 30px !important;
 			transition: background 120ms ease, color 120ms ease !important;
 		}
 		.ui-button:hover {
-			background: #3d3d3d !important;
-			color: #e0e0e0 !important;
+			background: var(--browse-hover) !important;
+			color: var(--browse-text) !important;
 		}
 		.ui-button:active {
-			background: #4a4a4a !important;
-			color: #fff !important;
+			background: var(--browse-active) !important;
+			color: var(--browse-text) !important;
 		}
 
 		.ui-widget {
 			font-family: Manrope, system-ui, sans-serif !important;
 		}
 		.ui-widget-content {
-			border: 1px solid #3a3a3a !important;
-			background: #2b2b2b !important;
-			color: #d4d4d4 !important;
+			border: 1px solid var(--browse-border) !important;
+			background: var(--browse-surface) !important;
+			color: var(--browse-text) !important;
+		}
+
+		.theme-toggle {
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 4px 6px;
+			border-radius: 6px;
+			font-size: 16px;
+			line-height: 1;
+			transition: background 120ms ease;
+			color: var(--browse-text-secondary);
+			vertical-align: middle;
+		}
+		.theme-toggle:hover {
+			background: var(--browse-hover);
 		}
 
 	</style>
@@ -154,6 +197,7 @@
 			   			<td  width=100%><input class=addressbar type=text id=mxaddress></td>
 			   			<td><button id=gobutton>Go</button></td>
 			   			<td><button id=refreshbutton>Refresh</button></td>
+			   			<td><button id="theme-toggle" class="theme-toggle" onclick="toggleTheme();" title="Switch to light mode">&#9728;</button></td>
 			   		</tr>
 				   	<tr>
 						 <td>
@@ -560,8 +604,9 @@
 	//Main message handler..
 	MDS.init(function(msg){
 		if(msg.event == "inited"){
-			
+
 			askNotificationPermission();
+			loadTheme();
 			
 			//Create the DB and load the Bookmarks
 			createDB(function(){
