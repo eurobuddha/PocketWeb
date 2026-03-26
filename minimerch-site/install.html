@@ -1,0 +1,207 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install — miniMerch</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<div class="nav">
+  <div class="nav-brand">
+    <span class="icon">🛒</span>
+    <span>miniMerch</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="features.html">Features</a>
+    <a href="install.html">Install</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+</div>
+
+<div class="hero" style="padding-bottom:32px;">
+  <h1 style="font-size:32px;">Install Guide</h1>
+  <p>Get a Minima node running, then build and deploy your miniMerch shop.</p>
+</div>
+
+<!-- Step 1: Run a Node -->
+<div class="section">
+  <div class="section-title">Step 1: Run a Minima Node</div>
+  <div class="section-sub">You need a Minima node before you can sell. Choose your platform.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">📱</div>
+      <div>
+        <h3>Mobile (Android)</h3>
+        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android" target="_blank">Google Play Store</a> (or APK from <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub</a>). Open it — your node starts automatically and runs in the background. Allow battery optimisation exemption for reliable operation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">💻</div>
+      <div>
+        <h3>Desktop (Command Line)</h3>
+
+        <p><strong>Pre-requisites:</strong></p>
+        <p>1. Check you have Java installed:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
+          java -version
+        </div>
+        <p style="font-size:13px; color:var(--dim);">If not installed, download from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.</p>
+
+        <p style="margin-top:12px;">2. Download the latest <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
+
+        <p style="margin-top:16px;"><strong>Start your node:</strong></p>
+        <p>Create a folder, copy minima.jar into it, open your terminal, <code>cd</code> into that folder, and run:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
+          java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD
+        </div>
+        <p style="font-size:13px; color:var(--dim);">Replace <strong>INSERTPASSWORD</strong> with your own password.</p>
+
+        <p style="margin-top:12px;">Minima will start and join the network. Log in to your MiniDapp Hub at <strong>https://127.0.0.1:9003</strong> using the password you set.</p>
+
+        <p style="margin-top:8px; font-size:13px; color:var(--dim);"><em>Note: Closing the terminal stops Minima. Create a startup script to run it automatically.</em></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Secure Your Node</h3>
+  <p>After starting your node, <strong>immediately</strong> write down your seed phrase:</p>
+  <div class="steps" style="margin-top:12px;">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div><p>Open the <strong>Security</strong> MiniDapp → <strong>Manage Seed Phrase</strong> → <strong>Show Seed Phrase</strong></p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div><p>Write it on paper or a metal plate. Make 2 copies. Store in separate locations. <strong>Never</strong> screenshot or copy/paste on a connected device.</p></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">MiniDapp Permissions</h3>
+  <p>All MiniDapps start with <strong>READ</strong> permission — transactions must be approved via the Pending MiniDapp. To give a trusted MiniDapp <strong>WRITE</strong> access (no approval needed): right-click the MiniDapp (or long press on mobile) → select <strong>Write mode</strong> → <strong>Confirm</strong>.</p>
+  <p style="font-size:13px; color:var(--dim); margin-top:6px;"><em>Lock your wallet with a password before giving any MiniDapp WRITE permission.</em></p>
+</div>
+
+<!-- Step 2: Get your credentials -->
+<div class="section section-alt">
+  <div class="section-inner">
+    <div class="section-title">Step 2: Get Your Vendor Credentials</div>
+    <div class="section-sub">You need two things from your Minima node.</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Minima Address</h3>
+          <p>Open the <strong>Wallet</strong> MiniDapp → <strong>Receive</strong> tab. Copy your address (starts with <code>0x</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Maxima Public Key</h3>
+          <p>Open the <strong>MDS Terminal</strong> MiniDapp. Type <code>maxima action:info</code> and copy the <code>mxpublickey</code> value (starts with <code>Mx</code>).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 3: Build your shop -->
+<div class="section">
+  <div class="section-title">Step 3: Build Your Shop</div>
+  <div class="section-sub">Use miniMerch Studio to create your multi-product store.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div>
+        <h3>Download miniMerch Studio</h3>
+        <p>Get it from <a href="https://github.com/eurobuddha/miniMerch/releases" target="_blank">GitHub Releases</a>. Available for macOS and Windows.</p>
+        <p style="margin-top:6px;">
+          <strong>macOS:</strong> Open the <code>.dmg</code>, drag to Applications, right-click → Open on first launch.<br>
+          <strong>Windows:</strong> Run the <code>.exe</code> installer. Click "More info" → "Run anyway" on first launch.
+        </p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div>
+        <h3>Configure Your Shop</h3>
+        <p>Studio opens at <code>http://localhost:3456</code>. Set up your vendor details (address + public key), add products with images, descriptions, prices, and shipping options.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div>
+        <h3>Generate Shop</h3>
+        <p>Click <strong>Generate Shop</strong>. Studio creates your shop MiniDapp and installs it directly to your node.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Step 4: Deploy -->
+<div class="section section-alt">
+  <div class="section-inner">
+    <div class="section-title">Step 4: Share Your Shop</div>
+    <div class="section-sub">Distribute your shop link to customers.</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Your shop is on your node</h3>
+          <p>After generation, your miniMerch shop is installed as a MiniDapp on your Minima node.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Share the link</h3>
+          <p>Share your shop's MiniFS link with customers. They can access it through their own Minima node.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px; font-size:13px; color:var(--dim); text-align:center;">
+      Want a single-product shop that's searchable on PocketWeb? Try <a href="https://pocketshop.uk">Pocket Shop</a> instead.
+    </p>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Need help?</h2>
+  <p>Check the FAQ or open an issue on GitHub.</p>
+  <div class="btn-row">
+    <a href="faq.html" class="btn btn-gold">FAQ</a>
+    <a href="https://github.com/eurobuddha/miniMerch/issues" target="_blank" class="btn btn-outline">GitHub Issues</a>
+  </div>
+</div>
+
+<div class="footer">
+  <a href="https://minima.global" target="_blank">Minima</a>
+  <a href="https://docs.minima.global" target="_blank">Docs</a>
+  <a href="https://github.com/eurobuddha/miniMerch" target="_blank">GitHub</a>
+  <a href="https://pocketshop.uk">Pocket Shop</a>
+  <br><br>
+  miniMerch &copy; 2025 &middot; Built on Minima &middot; Published on PocketFS
+</div>
+
+<script type="text/javascript">
+  miniweb_Init();
+  MDS.init(function(msg) {});
+</script>
+
+</body>
+</html>
