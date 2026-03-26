@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Install — miniMerch</title>
+  <title>Install — Pocket Shop</title>
   <script type="text/javascript" src="../../miniweb/mds.js"></script>
   <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
   <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
@@ -16,8 +16,8 @@
 <!-- Nav -->
 <div class="nav">
   <div class="nav-brand">
-    <span class="icon">🛒</span>
-    <span>miniMerch</span>
+    <span class="icon">🛍</span>
+    <span>Pocket Shop</span>
   </div>
   <div class="nav-links">
     <a href="index.html">Home</a>
@@ -29,7 +29,7 @@
 
 <div class="hero" style="padding-bottom:32px;">
   <h1 style="font-size:32px;">Install Guide</h1>
-  <p>Get a Minima node running, then build and deploy your miniMerch shop.</p>
+  <p>Get a Minima node running, then build and deploy your Pocket Shop.</p>
 </div>
 
 <!-- Step 1: Run a Node -->
@@ -113,7 +113,7 @@
       <tr><th style="text-align:left; padding:6px 8px; border-bottom:2px solid var(--border); color:var(--heading);">Parameter</th><th style="text-align:left; padding:6px 8px; border-bottom:2px solid var(--border); color:var(--heading);">Description</th></tr>
       <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-data [folder]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Config folder. Default: <code>.minima</code> in home dir.</td></tr>
       <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-port [port]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Base port (uses +4 range). Default: 9001. MDS = base+2.</td></tr>
-      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdsenable</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Enable the MiniDapp Hub (required for miniMerch).</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdsenable</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Enable the MiniDapp Hub (required for Pocket Shop).</td></tr>
       <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdspassword [pw]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">MDS login password.</td></tr>
       <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-server</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Accept incoming connections (for VPS/server).</td></tr>
       <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-daemon</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">No stdin input (for background services).</td></tr>
@@ -170,32 +170,30 @@
 <!-- Step 3: Build your shop -->
 <div class="section">
   <div class="section-title">Step 3: Build Your Shop</div>
-  <div class="section-sub">Use miniMerch Studio to create your multi-product store.</div>
+  <div class="section-sub">Use Pocket Shop Studio or the CLI.</div>
 
   <div class="steps">
     <div class="step">
-      <div class="step-num">1</div>
+      <div class="step-num">A</div>
       <div>
-        <h3>Download miniMerch Studio</h3>
-        <p>Get it from <a href="https://github.com/eurobuddha/miniMerch/releases" target="_blank">GitHub Releases</a>. Available for macOS and Windows.</p>
+        <h3>Option A: Studio Desktop App (Recommended)</h3>
+        <p>Download Pocket Shop Studio from <a href="https://github.com/eurobuddha/pocketShop/releases" target="_blank">GitHub Releases</a>.</p>
         <p style="margin-top:6px;">
           <strong>macOS:</strong> Open the <code>.dmg</code>, drag to Applications, right-click → Open on first launch.<br>
           <strong>Windows:</strong> Run the <code>.exe</code> installer. Click "More info" → "Run anyway" on first launch.
         </p>
+        <p style="margin-top:6px;">Studio opens at <code>http://localhost:3456</code>. Go to <strong>Vendor Setup</strong>, paste your address and public key, then go to <strong>Build Shop</strong> and fill in your product details.</p>
       </div>
     </div>
     <div class="step">
-      <div class="step-num">2</div>
+      <div class="step-num">B</div>
       <div>
-        <h3>Configure Your Shop</h3>
-        <p>Studio opens at <code>http://localhost:3456</code>. Set up your vendor details (address + public key), add products with images, descriptions, prices, and shipping options.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div>
-        <h3>Generate Shop</h3>
-        <p>Click <strong>Generate Shop</strong>. Studio creates your shop MiniDapp and installs it directly to your node.</p>
+        <h3>Option B: Command Line</h3>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
+          npm i -g pocketshop<br>
+          pocketshop
+        </div>
+        <p style="font-size:13px; color:var(--dim);">Or clone the repo and run <code>node build-pocketshop.js &lt;address&gt; &lt;pubkey&gt;</code></p>
       </div>
     </div>
   </div>
@@ -204,28 +202,35 @@
 <!-- Step 4: Deploy -->
 <div class="section section-alt">
   <div class="section-inner">
-    <div class="section-title">Step 4: Share Your Shop</div>
-    <div class="section-sub">Distribute your shop link to customers.</div>
+    <div class="section-title">Step 4: Deploy</div>
+    <div class="section-sub">Two files, two installs — then you're live.</div>
 
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div>
-          <h3>Your shop is on your node</h3>
-          <p>After generation, your miniMerch shop is installed as a MiniDapp on your Minima node.</p>
+          <h3>Install mInbox on your node</h3>
+          <p>Open the <strong>MiniDapp Hub</strong>, tap <strong>+</strong>, select <code>mInbox.zip</code>. This receives and decrypts your orders.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div>
-          <h3>Share the link</h3>
-          <p>Share your shop's MiniFS link with customers. They can access it through their own Minima node.</p>
+          <h3>Publish the shop to PocketWeb</h3>
+          <p>Open <strong>PocketFS</strong> on your node, upload <code>[productname].mds.zip</code>. Your shop is now broadcast to every node on the network — searchable by keyword and accessible by address. No link sharing needed.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Start selling</h3>
+          <p>Orders appear in mInbox automatically. Update status, reply via ChainMail, export to CSV.</p>
         </div>
       </div>
     </div>
 
     <p style="margin-top:20px; font-size:13px; color:var(--dim); text-align:center;">
-      Want a single-product shop that's searchable on PocketWeb? Try <a href="https://pocketshop.uk">Pocket Shop</a> instead.
+      Don't have PocketFS and PocketWeb installed? Get them from <a href="https://pocketweb.uk/install.html">pocketweb.uk</a>.
     </p>
   </div>
 </div>
@@ -236,17 +241,17 @@
   <p>Check the FAQ or open an issue on GitHub.</p>
   <div class="btn-row">
     <a href="faq.html" class="btn btn-gold">FAQ</a>
-    <a href="https://github.com/eurobuddha/miniMerch/issues" target="_blank" class="btn btn-outline">GitHub Issues</a>
+    <a href="https://github.com/eurobuddha/pocketShop/issues" target="_blank" class="btn btn-outline">GitHub Issues</a>
   </div>
 </div>
 
 <div class="footer">
   <a href="https://minima.global" target="_blank">Minima</a>
   <a href="https://docs.minima.global" target="_blank">Docs</a>
-  <a href="https://github.com/eurobuddha/miniMerch" target="_blank">GitHub</a>
-  <a href="https://pocketshop.uk">Pocket Shop</a>
+  <a href="https://github.com/eurobuddha/pocketShop" target="_blank">GitHub</a>
+  <a href="https://minimerch.info">miniMerch</a>
   <br><br>
-  miniMerch &copy; 2025 &middot; Built on Minima &middot; Published on PocketFS
+  Pocket Shop &copy; 2026 &middot; Built on Minima &middot; Published on PocketFS
 </div>
 
 <script type="text/javascript">
