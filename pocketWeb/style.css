@@ -119,9 +119,25 @@ body {
 	background-clip: text;
 }
 
+.hero-aka {
+	font-size: 16px;
+	font-weight: 600;
+	color: #f0c040;
+	margin-bottom: 6px;
+	letter-spacing: 0.02em;
+}
+
+.hero-tagline {
+	font-size: 15px;
+	font-weight: 500;
+	color: #e0e0e0;
+	margin-bottom: 14px;
+}
+
 .hero-sub {
 	font-size: 14px;
 	color: #71717a;
+	line-height: 1.6;
 	margin-bottom: 32px;
 }
 
