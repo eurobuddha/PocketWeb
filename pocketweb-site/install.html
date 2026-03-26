@@ -31,40 +31,91 @@
   <h2 class="section-title">Step 1: Run a Minima Node</h2>
   <p class="section-sub">You need a Minima node first. Choose your platform.</p>
 
+  <!-- Android -->
   <div class="steps">
     <div class="step">
-      <div class="step-num">&#128241;</div>
+      <div class="step-num">📱</div>
       <div>
-        <h3>Mobile (Android)</h3>
-        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android">Google Play Store</a> (or APK from <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub</a>). Open it — your node starts automatically and runs in the background. Allow battery optimisation exemption for reliable operation.</p>
+        <h3>Android</h3>
+        <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android" target="_blank">Google Play Store</a> (or APK from <a href="https://github.com/minima-global/Minima/releases" target="_blank">GitHub</a>). Open it — your node starts automatically and runs in the background.</p>
+        <p style="font-size:13px; color:var(--dim); margin-top:6px;">Allow battery optimisation exemption for reliable operation. On first launch, write down your seed phrase immediately (Security → Manage Seed Phrase).</p>
       </div>
     </div>
+
+    <!-- macOS -->
     <div class="step">
-      <div class="step-num">&#128187;</div>
+      <div class="step-num">🍎</div>
       <div>
-        <h3>Desktop (Command Line)</h3>
-
-        <p><strong>Pre-requisites:</strong></p>
-        <p>1. Check you have Java installed:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
-          java -version
-        </div>
-        <p style="font-size:13px; color:var(--dim);">If not installed, download from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.</p>
-
-        <p style="margin-top:12px;">2. Download the latest <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
-
-        <p style="margin-top:16px;"><strong>Start your node:</strong></p>
-        <p>Create a folder, copy minima.jar into it, open your terminal/command prompt, <code>cd</code> into that folder, and run:</p>
-        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">
-          java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD
-        </div>
-        <p style="font-size:13px; color:var(--dim);">Replace <strong>INSERTPASSWORD</strong> with your own password.</p>
-
-        <p style="margin-top:12px;">Minima will start and automatically join the network. Login to your MiniDapp Hub at <strong>https://127.0.0.1:9003</strong> using the password you set.</p>
-
-        <p style="margin-top:8px; font-size:13px; color:var(--dim);"><em>Note: Closing the terminal stops Minima. Create a startup script to run it automatically.</em></p>
+        <h3>macOS</h3>
+        <p>1. Install Java if you don't have it:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">brew install openjdk</div>
+        <p>2. Download <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
+        <p>3. Open <strong>Terminal</strong>, create a folder and start:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">mkdir ~/minima && cd ~/minima<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
+        <p>4. Open <strong>https://127.0.0.1:9003</strong> in your browser (proceed past the SSL warning). Log in with your password.</p>
       </div>
     </div>
+
+    <!-- Windows -->
+    <div class="step">
+      <div class="step-num">🪟</div>
+      <div>
+        <h3>Windows</h3>
+        <p>1. Install Java from <a href="https://www.java.com/en/download/" target="_blank">java.com</a> or <a href="https://adoptium.net/" target="_blank">Adoptium</a>. Verify with:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">java -version</div>
+        <p>2. Download <strong>minima.jar</strong> from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.</p>
+        <p>3. Create a folder (e.g. <code>C:\minima</code>), copy minima.jar into it. Open <strong>Command Prompt</strong>, then:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">cd C:\minima<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
+        <p>4. Open <strong>https://127.0.0.1:9003</strong> in your browser. Log in with your password.</p>
+      </div>
+    </div>
+
+    <!-- Linux -->
+    <div class="step">
+      <div class="step-num">🐧</div>
+      <div>
+        <h3>Linux</h3>
+        <p>1. Install Java:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;"># Ubuntu/Debian<br>sudo apt install default-jre<br><br># CentOS/RHEL<br>sudo yum install java-17-openjdk</div>
+        <p>2. Download and start:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">mkdir ~/minima && cd ~/minima<br>curl -L -o minima.jar https://github.com/minima-global/Minima/releases/latest/download/minima.jar<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
+        <p>3. Open <strong>https://127.0.0.1:9003</strong> in your browser. Log in with your password.</p>
+      </div>
+    </div>
+
+    <!-- Terminal with tmux -->
+    <div class="step">
+      <div class="step-num">⌨️</div>
+      <div>
+        <h3>Terminal with tmux (Keep It Running)</h3>
+        <p>On any platform, closing the terminal stops Minima. Use <strong>tmux</strong> to keep it running in the background.</p>
+        <p style="margin-top:8px;">1. Install tmux:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;"># Mac<br>brew install tmux<br><br># Ubuntu/Debian<br>sudo apt install tmux<br><br># CentOS/RHEL<br>sudo yum install tmux</div>
+        <p>2. Create a tmux session and start Minima inside it:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:12px; color:var(--text); overflow-x:auto;">tmux new -s minima<br>cd ~/minima<br>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword YOURPASSWORD</div>
+        <p>3. Detach from tmux (Minima keeps running): press <strong>Ctrl+B</strong>, then <strong>D</strong></p>
+        <p>4. Re-attach later: <code>tmux attach -t minima</code></p>
+        <p style="font-size:13px; color:var(--dim); margin-top:8px;"><strong>tmux cheat sheet:</strong> Create: <code>tmux new -s minima</code> · Detach: <code>Ctrl+B, D</code> · Re-attach: <code>tmux attach -t minima</code> · List: <code>tmux ls</code> · Kill: <code>tmux kill-session -t minima</code></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Common Startup Parameters</h3>
+  <p>All platforms use the same <code>java -jar minima.jar</code> command with these key parameters:</p>
+  <div style="overflow-x:auto; margin:10px 0;">
+    <table style="width:100%; border-collapse:collapse; font-size:12px;">
+      <tr><th style="text-align:left; padding:6px 8px; border-bottom:2px solid var(--border); color:var(--heading);">Parameter</th><th style="text-align:left; padding:6px 8px; border-bottom:2px solid var(--border); color:var(--heading);">Description</th></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-data [folder]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Config folder. Default: <code>.minima</code> in home dir.</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-port [port]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Base port (uses +4 range). Default: 9001. MDS = base+2.</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdsenable</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Enable the MiniDapp Hub (required for PocketWeb).</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-mdspassword [pw]</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">MDS login password.</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-server</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Accept incoming connections (for VPS/server).</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-daemon</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">No stdin input (for background services).</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-archive</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Run as Archive node (stores full chain).</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-clean</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);"><strong>CAREFUL!</strong> Wipes all data. Fresh start only.</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-rpcenable</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Enable RPC for external integrations.</td></tr>
+      <tr><td style="padding:6px 8px; border-bottom:1px solid var(--border);"><code>-help</code></td><td style="padding:6px 8px; border-bottom:1px solid var(--border); color:var(--dim);">Print all available parameters.</td></tr>
+    </table>
   </div>
 
   <h3 style="margin-top:28px; margin-bottom:12px; color:var(--heading);">Secure Your Node</h3>
