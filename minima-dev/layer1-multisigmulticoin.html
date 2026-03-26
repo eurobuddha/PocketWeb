@@ -1,0 +1,159 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multisigmulticoin — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link active" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Multisigmulticoin</h1>
+    <hr>
+<p>title: Multisig Multicoin</p>
+<p>description: Learn how to create a multisig multicoin contract on Minima</p>
+<p>tag: development</p>
+<hr>
+<p>Lets now try a more complex but more powerful exchange contract.</p>
+<p>2 users are negotiating the price of a certain amount of tokens or an NFT.</p>
+<p>They do this over a chat app ( MaxSolo/MaxChat ) and send offers backwards and forwards to each other.. All off chain. When they finally agree on a price.. what they would like is to construct a transaction that takes the Tokens and Minima as inputs ( one party does one of each ) and then sends those 'coins' to the correct recipient.</p>
+<p>All of this can be checked and validated by each user before either signs the transaction so that the swap itself is atomic, trustless and secure. Either they both get what they want or it doesn't happen.</p>
+<p>These types of offers could be collected together in a pool, or shared with other users, to allow for a completely decentralised exchange dynamic.</p>
+<p>Let's go through the steps to construct this transaction.</p>
+<p>I have 2 instances of Minima running. I have created an NFT token on one of them.</p>
+<pre><code>tokencreate name:mynft amount:1 decimals:0</code></pre>
+<p>Now the other user wishes to buy this off me for 10 Minima.</p>
+<p>To remove the need to worry about change the other user creates a 10 Minima coin by using <code>getaddress</code> and then sending 10 Minima to his own address. (Normally you wouldn't do this and just send the change back to yourself when constructing the transaction)</p>
+<pre><code>send amount:10 address:0x0AC281E79A096F046A1FAEF17D268BCF6D5DA604F533F3C64FE84F079C775FCE</code></pre>
+<p>So we now have 2 coins, 1 on each Instance of Minima, and we want to create a transaction that spends them both and sends them to the other party..</p>
+<p>The user who owns the NFT starts by creating a transaction:</p>
+<pre><code>txncreate id:swap</code></pre>
+<p>He then gets one of his addresses and adds an output paying him 10 Minima.</p>
+<pre><code>txnoutput id:swap address:Mx1W5E6AESNJG687D8GZC2JF9DZVVA3WE3TUW9PGWRRRCM32YV1BKMPRR2VY amount:10 tokenid:0x00</code></pre>
+<div class="callout"><strong>Info</strong><br>Note that I use the Mx.. style address!.. This is a special address format
+<p>(converted before used - you can't use them in Scripts) that takes the</p>
+<p>original 0x.. HEX address, hashes it, adds the first 4 bytes of the hash as a</p>
+<p>checksum to the end and then converts the whole thing to Base32. This way you</p>
+<p>have basic error checking so you can't input an invalid address and the size</p>
+<p>remains less than before.</div></p>
+<p>He then finds his NFT ( <code>coins</code> is the same as <code>coins relevant:true</code>)</p>
+<pre><code>coins</code></pre>
+<p>And adds the coin as an input.. Note the use of <code>scriptmmr</code>!</p>
+<p>This next part may require you to export & import the coin proof. Read the</p>
+<p><a href="/docs/development/pruning"><strong>Pruning</strong></a> section to learn more.</p>
+<pre><code>txninput id:swap coinid:0x5869DDC397979D9529AD92658C0FACC183D94F3E23F7E8028E02B183DE2FAB8B scriptmmr:true</code></pre>
+<p>This adds the coin and the script and MMR proof. But it is not yet signed.. Since the transaction is not yet complete.</p>
+<p>Export the transaction and let the other user import it. We have not signed it so the transaction is still small.. We can just copy paste the data without going via a file..</p>
+<pre><code>txnexport id:swap</code></pre>
+<p>Now the other user imports it.. Again just using the data.. This works well over RPC but the command line has a limit - which is why you would use files for larger signed transactions.</p>
+<pre><code>txnimport data:0x0000000473776170000101000000205869DDC397979D9529AD92658C0FACC183D94F3 E23F7E8028E02B183DE2FAB8B000000204BECB914994CE42E94209D0DD4EECAA19262DE6 B502EF9FC6347C416BC19EC4F2C01010000002002C30D6CD58E0230481C0A5075E40A837E DEA7331F7423BA4AE80731562318840100010000000001080000020BCF0001000100000020586 9DDC397979D9529AD92658C0FACC183D94F3E23F7E8028E02B183DE2FAB8B0000000B5245 5455524E205452554500012C2C0101000000107B226E616D65223A226D796E6674227D00020B CF000101000000208DA0C0DEC62C8DAA07703706A214E2418C86070EF166F8EBDBB202D4D DB71A8900000020322B8CA772F3819076A21860A6F4B71FFA87270FBE9273096F7B65862AFC 2BA500010A00000001000100010000000001000000010000010000000100000000010000010000 0101000000205869DDC397979D9529AD92658C0FACC183D94F3E23F7E8028E02B183DE2FAB 8B000000204BECB914994CE42E94209D0DD4EECAA19262DE6B502EF9FC6347C416BC19EC 4F2C01010000002002C30D6CD58E0230481C0A5075E40A837EDEA7331F7423BA4AE8073156 2318840100010000000001080000020BCF00010001000000205869DDC397979D9529AD92658C 0FACC183D94F3E23F7E8028E02B183DE2FAB8B0000000B52455455524E205452554500012C2 C0101000000107B226E616D65223A226D796E6674227D00020BCF0100020BF40001010000000 0208C518BEDACB2720EB9D72C0CB7B1C4E856CA1A3977F162374B0D48C1B1B99B602C141 18427B3B4A05BC8A8A4DE8459867FE8B78917FF0001010000005352455455524E205349474E4 5444259283078463836333245313141344632423445374339454544463838314338444434394538 344544383146323034303539343537324345443746393837333539314441412900000100</code></pre>
+<p>Gets an address for himself.. And adds an output sending the NFT to himself.</p>
+<pre><code>txnoutput id:swap address:Mx3H6YQPJT9UW2UYAWFZSD2635WWPREEUABBFWY2UYH4Y1BFQZJ91W8JK3SJ amount:1 tokenid:0x02C30D6CD58E0230481C0A5075E40A837EDEA7331F7423BA4AE8073156231884</code></pre>
+<p>And finally adds the 10 Minima input.. Which he finds with coins again..</p>
+<pre><code>txninput id:swap coinid:0x84352ECF59CAC79103C07254B5158AF8560DE68F609A346154FA812F0051A scriptmmr:true</code></pre>
+<p>OK - almost there.. We need to sign it now..</p>
+<pre><code>txnsign id:swap publickey:auto</code></pre>
+<p>NOW - export that.. via a file.. The signature makes it too large for command line copy paste..</p>
+<pre><code>txnexport id:swap file:swap.txn</code></pre>
+<p>Back on the other instance of Minima.. Import the Txn..</p>
+<pre><code>txnimport file:swap.txn</code></pre>
+<p>NOW - CHECK the transaction is as you would want it.. And sign it..</p>
+<pre><code>txnsign id:swap publickey:auto</code></pre>
+<p>And.. finally - post it..</p>
+<pre><code>txnpost id:swap</code></pre>
+<p>.. And like that - It's done.</p>
+<p>You just performed a trustless atomic secure token swap! Well done..</p>
+<p>It may seem slow and clunky to type this all in by hand but this entire exchange of contracts would take less than a second when automated.</p>
+<p>This procedure allows for truly secure peer 2 peer exchanges to take place and can be used as a base unit for many other interesting products, such as a DEX, trading pit, liquidity pools etc etc.. With all the negotiation / order book management done off chain.</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

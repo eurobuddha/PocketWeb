@@ -1,0 +1,154 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testnet Single — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link active" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Testnet Single</h1>
+    <hr>
+<p>title: Single Node Testnet</p>
+<p>description: Learn how to start a single node testnet</p>
+<p>tag: development</p>
+<p>icon: Component</p>
+<hr>
+<h2>Start a Testnet node</h2>
+<p>At its core, Minima is a Java application, so first make sure you have Java installed. Download from <a href="https://www.java.com/en/download/">here</a>.</p>
+<p>You will need the latest release of the minima.jar file which can be downloaded from GitHub <a href="https://github.com/minima-global/Minima/releases">here</a></p>
+<p>We will be using a server or desktop command line interface (CLI) to start Minima.</p>
+<p>Starting the node with <code>-genesis</code>, you will have your own private chain, you will be sent the genesis Minima with 1 billion coins to spend, and you can enter commands directly into the console.</p>
+<ol><li>Create a new folder and copy the minima.jar into that folder. We will run everything from there.</li><li>Copy the path to the file and from the command line, <code>cd</code> into that folder</li><li>Enter the following command</li></ol>
+<pre><code>java -jar minima.jar -data minidata -basefolder minidata -genesis -test -nop2p -mdsenable -mdspassword [INSERT PASSWORD]</code></pre>
+<ul><li>Replace placeholder <code>[INSERT PASSWORD]</code> with a custom password for your node</li></ul>
+<p>This will start a node on the default ports of 9001-5.</p>
+<p>You should see the node starting as below, if you type <code>help</code> then press enter, you should see the full list of Minima commands. Check your balance with <code>balance</code>.</p>
+<p>!<a href="/img/buildonminima/TestTerminalstartup.png">MDS</a></p>
+<p>To <strong>login to your MiniDapp hub</strong>, open up your web browser and navigate to the MiniDapp Hub via https://127.0.0.1:9003. Login with the password you set.</p>
+<p>_Minima uses self-signed certificates. For this reason you may be shown a security certificate warning when accessing Minima, to which you can click on <strong>Advanced</strong>, then <strong>Proceed</strong>. This may be different depending on the browser and OS you are using._</p>
+<h2>Restarting the node</h2>
+<p>You can shutdown the node by running <code>quit</code> from the command line window.</p>
+<p>To <strong>restart</strong> the same node from where you left off, re run the command above <strong>removing the <code>-genesis</code> parameter. </strong></p>
+<pre><code>java -jar minima.jar -data minidata -basefolder minidata -test -nop2p -mdsenable -mdspassword [INSERT PASSWORD]</code></pre>
+<p>To <strong>delete</strong> the data and start a new clean node, re run the command from step 3 above, adding the <code>-clean</code> parameter.</p>
+<p><strong>WARNING!</strong> The <code>-clean</code> parameter will delete all data and start a new fresh</p>
+<p>node. <strong>ALL DATA WILL BE LOST AND A NEW SEED PHRASE WILL BE GENERATED.</strong></p>
+<pre><code>java -jar minima.jar -data minidata -basefolder minidata -genesis -test -nop2p -mdsenable -mdspassword [INSERT PASSWORD] -clean</code></pre>
+<h2>Start up parameters</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>What do the parameters mean?</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">- `-data [foldername/path]` : the data folder where all the config files for this node are stored. Default is a hidden .minima folder under the user's home directory. If you want to specify a folder not in the user's home directory, you must use the complete path.
+<ul><li><code>-basefolder [foldername/path]</code> : specify a default file creation / backup / restore folder. Default is the user's home directory. Can be the same as the data folder provided.</li><li><code>-genesis</code> : delete all old data and start the node from the genesis block</li><li><code>-nop2p</code> : Disable the automatic P2P system</li><li><code>-test</code> : this uses test settings which have a faster blocktime and only keep a shorter chain in memory. If you are compiling Minima yourself you can edit these to your needs.</li><li><code>-mdsenable</code> : start the MiniDapp system</li><li><code>-mdspassword</code> : set the password to login to the MiniDapp system</li><li><code>-port</code> : set the starting port</li><li><code>-connect [ip:port]</code> : Disable the automatic P2P system and create your own network by manually connecting to this list of host:port</div></div></div></li></ul>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Optional startup parameters</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">The following start up parameters can optionally be specified when starting your Docker node.
+<p>To add/remove parameters after a node has been started, you must <code>quit</code> the</p>
+<p>node and restart it, adding/removing the required parameters. <code>[]</code> square</p>
+<p>brackets indicate where an input is required, **the brackets should not be</p>
+<p>included.**</p>
+<p>General</p>
+<ul><li><code>-clean</code> : CAREFUL! Clears existing data, starts a new fresh node. All coins will be lost.</li><li><code>-port [port]</code> : specify the initial port for Minima to use. Range used will be the specified port +4. Default is 9001-9005.</li><li><code>-host [ipaddress]</code> : specify the host IP</li><li><code>-dbpassword [yourdbpassword]</code> : Main Wallet / SQL AES password - MUST be specified on first launch. <strong>CANNOT be changed later.</strong></li><li><code>-allowallip</code> : Allow all IPs for Maxima / Networking. Local IPs won't be allowed otherwise.</li><li><code>-archive</code> : Run an Archive node - store all archive data / the cascade to allow for resyncs from this node<br/></li><li><code>-daemon</code> : Run in daemon mode with no stdin input (if running Minima as a background service)</li><li><code>-isclient</code> : Tells the P2P System that this node can't accept incoming connections</li><li><code>-server</code> : Use Server settings - this node can accept incoming connections</li><li><code>-desktop</code> : Use Desktop settings - this node can't accept incoming connections</li></ul>
+<p>Folders</p>
+<ul><li><code>-data [foldername/path]</code> : the data folder where all the config files for this node are stored. Default is a hidden .minima folder under the user's home directory. If you want to specify a folder not in the user's home directory, you must use the complete path.</li><li><code>-basefolder [foldername/path]</code> : specify a default file creation / backup / restore folder. Default is the user's home directory. Can be the same as the <code>data</code> folder provided.</li></ul>
+<p>MiniDapp System (MDS)</p>
+<ul><li><code>-mdsenable</code> : enable the MiniDapp System (default port 9003)</li><li><code>-mdspassword [yourmdspassword]</code> : specify the mds login password</li><li><code>-mdsinit [foldername/path]</code> : specify a folder of miniDAPPs</li><li><code>-mdswrite [minidapp]</code> : give an initial miniDAPP WRITE access</li></ul>
+<p>RPC</p>
+<ul><li><code>-rpcenable</code> : enable remote procedure call</li><li><code>-rpcssl</code> : use Self Signed SSL cert to run RPC</li><li><code>-rpcpassword [yourrpcpassword]</code> : set Basic Auth password for RPC calls ( Use with SSL / stunnel ). Only secure if used with SSL.</li><li><code>-rpcclrf</code> : use CRLF at the end of the RPC headers (NodeJS)</li></ul>
+<p>Test nodes</p>
+<ul><li><code>-genesis</code> : delete all old data and start the node from the genesis block</li><li><code>-test</code> : this uses test settings which have a faster blocktime and only keep a shorter chain in memory. If you are compiling Minima yourself you can edit these to your needs.</li><li><code>-connect [ip:port,ip:port]</code> : Disable the automatic P2P system and create your own network by manually connecting to this list of host:port</li><li><code>-nop2p</code> : Disable the automatic P2P system</li><li><code>-noconnect</code> : Stops the P2P system from connecting to other nodes until it has been connected to</li><li><code>-nosyncibd</code> : Do not sync IBD (for testing)</li></ul>
+<p>Mobile</p>
+<ul><li><code>-mobile</code> : Sets this device to a mobile device - used for metrics only</li><li><code>-limitbandwidth</code> : Limit the amount sent for archive sync</li><li><code>-noshutdownhook</code> : Do not use the shutdown hook (Android)</li></ul>
+<p>Debugging</p>
+<ul><li><code>-p2p-log-level-info</code> : Set the P2P log level to info<br/></li><li><code>-p2p-log-level-debug</code> : Set the P2P log level to debug</li></ul>
+<p>Help</p>
+<ul><li><code>-showparams</code> : Show relevant startup params on launch</li><li><code>-help</code> : print help for the start up parameters</div></div></div></li></ul>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

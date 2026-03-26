@@ -1,0 +1,158 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Parameters — Run a Node</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🖥️ Run a Node</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="node-types.html">Node Types</a>
+<a class="sidebar-link" href="firewall-rules.html">Firewall Rules</a>
+<a class="sidebar-link active" href="startup-parameters.html">Startup Parameters</a>
+<div class="sidebar-group">Full Node</div>
+<a class="sidebar-link" href="android.html">Android</a>
+<a class="sidebar-link" href="windows.html">Windows</a>
+<a class="sidebar-link" href="mac.html">Mac</a>
+<a class="sidebar-link" href="docker-desktop.html">Docker Desktop</a>
+<a class="sidebar-link" href="linux-vps-docker.html">Linux Vps Docker</a>
+<a class="sidebar-link" href="linux-vps-service.html">Linux Vps Service</a>
+<a class="sidebar-link" href="desktop-cli.html">Desktop Cli</a>
+<div class="sidebar-group">Archive Node</div>
+<a class="sidebar-link" href="archive-node.html">Archive Node</a>
+<div class="sidebar-group">Mega Node</div>
+<a class="sidebar-link" href="mega-node.html">Mega Node</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-about.html">Meg About</a>
+<a class="sidebar-link" href="meg-setup.html">Meg Setup</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Startup Parameters</h1>
+    <hr>
+<p>title: Startup Parameters</p>
+<p>description: Understand the different start up parameters</p>
+<p>icon: Settings</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>Below is a list of all start up parameters.</p>
+<p>Please note that not all parameters will be applicable for all platforms.</p>
+<p>For docker, these must be converted to environment variables, e.g. <code>-e minima_clean=true</code> please see the <a href="/docs/run-a-node/docker-desktop">Docker</a> guide for details.</p>
+<h2>General</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-clean</code></td><td>CAREFUL! Clears existing data, starts a new fresh node. All coins will be lost.</td></tr>
+<tr><td><code>-port [port]</code></td><td>Specify the initial port for Minima to use. Range used will be the specified port +4. Default is 9001-9005.</td></tr>
+<tr><td><code>-host [ipaddress]</code></td><td>Specify the host IP</td></tr>
+<tr><td><code>-dbpassword [yourdbpassword]</code></td><td>Main Wallet / SQL AES password - MUST be specified on first launch. CANNOT be changed later.</td></tr>
+<tr><td><code>-allowallip</code></td><td>Allow all IPs for Maxima / Networking. Local IPs won't be allowed otherwise.</td></tr>
+<tr><td><code>-archive</code></td><td>Run an Archive node - store all archive data / the cascade to allow for resyncs from this node</td></tr>
+<tr><td><code>-daemon</code></td><td>Run in daemon mode with no stdin input (if running Minima as a background service)</td></tr>
+<tr><td><code>-isclient</code></td><td>Tells the P2P System that this node can't accept incoming connections</td></tr>
+<tr><td><code>-server</code></td><td>Use Server settings - this node can accept incoming connections</td></tr>
+<tr><td><code>-desktop</code></td><td>Use Desktop settings - this node can't accept incoming connections</td></tr>
+<tr><td><code>-rescuenode</code></td><td>If you connect to a heavier chain, use this MegaMMR node to resync</td></tr>
+<tr><td><code>-seed</code></td><td>Use this seed phrase if starting a new node</td></tr>
+</table></div>
+<h2>Config</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-data</code></td><td>Specifies the folder for config files, defaulting to a hidden <code>.minima</code> folder in the home directory.</td></tr>
+<tr><td><code>-basefolder</code></td><td>Sets a default folder for file creation, backup, and restore. Default is the home directory.</td></tr>
+<tr><td><code>-conf</code></td><td>Specifies an absolute path to a configuration file.</td></tr>
+</table></div>
+<h2>Transaction (TxPoW) management</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+</table></div>
+<p>|-------------------|------------------------------------------------------------------------------------------------------------</p>
+<div class="table-wrap"><table>
+<tr><th><code>-txpowdbstore</code></th><th>How many days to store TxPoW in the internal H2 Database (default 3)</th></tr>
+<tr><td><code>-notifyalltxpow</code></td><td>Creates a NEWTXPOW notification for all transactions/blocks</td></tr>
+<tr><td><code>-mysqlalltxpow</code></td><td>Store all TxPoW in MySQL when mysql autobackup is enabled</td></tr>
+</table></div>
+<h2>MiniDapp System</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-mdsenable</code></td><td>Enable the MiniDapp System (default port 9003)</td></tr>
+<tr><td><code>-mdspassword [yourmdspassword]</code></td><td>Specify the MiniDapp System login password</td></tr>
+<tr><td><code>-mdsinit [foldername/path]</code></td><td>Specify a folder of MiniDAPPs</td></tr>
+<tr><td><code>-mdswrite [minidapp]</code></td><td>Give an initial MiniDAPP WRITE access</td></tr>
+<tr><td><code>-nodefaultminidapps</code></td><td>Do NOT install the default MiniDAPPs</td></tr>
+<tr><td><code>-publicmdsuid</code></td><td>Set your own Session ID for the Public MiniDAPP System  (Mega MMR nodes only)</td></tr>
+<tr><td><code>-nosslmds</code></td><td>Disable the self signed SSL cert for MDS. Use STunnel or your own SSL proxy instead.</td></tr>
+</table></div>
+<h2>RPC</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-rpcenable</code></td><td>Enable remote procedure call</td></tr>
+<tr><td><code>-rpcssl</code></td><td>Use Self Signed SSL cert to run RPC</td></tr>
+<tr><td><code>-rpcpassword [yourrpcpassword]</code></td><td>Set Basic Auth password for RPC calls (Use with SSL / stunnel). Only secure if used with SSL.</td></tr>
+<tr><td><code>-rpcclrf</code></td><td>Use CRLF at the end of the RPC headers (NodeJS)</td></tr>
+</table></div>
+<h2>Test nodes</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-genesis</code></td><td>Start the node from the genesis block (automatically uses -clean)</td></tr>
+<tr><td><code>-test</code></td><td>Uses test parameters e.g. faster block times</td></tr>
+<tr><td><code>-connect [ip:port,ip:port]</code></td><td>Disable the automatic P2P system and create your own network by manually connecting to this list of host:port</td></tr>
+<tr><td><code>-nop2p</code></td><td>Disable the automatic P2P system</td></tr>
+<tr><td><code>-noconnect</code></td><td>Stops the P2P system from connecting to other nodes until it has been connected to</td></tr>
+<tr><td><code>-nosyncibd</code></td><td>Do not sync IBD (for testing)</td></tr>
+<tr><td><code>-solo</code></td><td>Run a solo/private network (-test -nop2p) and will run -genesis ONLY the first time</td></tr>
+<tr><td><code>-testchainlength</code></td><td>Specify the length of the tree to keep in -test mode (default is 32)</td></tr>
+</table></div>
+<h2>Mobile</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-mobile</code></td><td>Sets this device to a mobile device - used for metrics only</td></tr>
+<tr><td><code>-limitbandwidth</code></td><td>Limit the amount sent for archive sync</td></tr>
+<tr><td><code>-noshutdownhook</code></td><td>Do not use the shutdown hook (Android)</td></tr>
+<tr><td><code>-slavenode</code></td><td>Connect to the node on the given ip:port only and only accept TxBlock messages</td></tr>
+</table></div>
+<h2>Debuggings</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-p2p-log-level-info</code></td><td>Set the P2P log level to info</td></tr>
+<tr><td><code>-p2p-log-level-debug</code></td><td>Set the P2P log level to debug</td></tr>
+<tr><td><code>-syncibdlogs</code></td><td>Show detailed SYNC_IBD logs</td></tr>
+</table></div>
+<h2>Help</h2>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>-showparams</code></td><td>Show relevant startup params on launch</td></tr>
+<tr><td><code>-help</code></td><td>Print help for the startup parameters</td></tr>
+</table></div>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

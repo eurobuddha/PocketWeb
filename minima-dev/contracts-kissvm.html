@@ -1,0 +1,206 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contracts Kissvm — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link active" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Contracts Kissvm</h1>
+    <hr>
+<p>title: KISS VM</p>
+<p>description: KISS VM</p>
+<p>tag: development</p>
+<hr>
+<p>Here is a breakdown of the simple and complete KISSVM language.</p>
+<h2>Grammar</h2>
+<div class="table-wrap"><table>
+<tr><th>Grammar</th><th>Description</th></tr>
+<tr><td>ADDRESS</td><td>ADDRESS ( BLOCK )</td></tr>
+<tr><td>BLOCK</td><td>STATEMENT_1 STATEMENT_2 ... STATEMENT_n</td></tr>
+<tr><td>STATEMENT</td><td>LET VARIABLE = EXPRESSION **\</td><td><strong> LET ( EXPRESSION_1 EXPRESSION_2 ... EXPRESSION_n ) = EXPRESSION </strong>\</td><td><strong> IF EXPRESSION THEN BLOCK [ELSEIF EXPRESSION THEN BLOCK]* [ELSE BLOCK] ENDIF </strong>\</td><td><strong> WHILE EXPRESSION DO BLOCK ENDWHILE </strong>\</td><td><strong> EXEC EXPRESSION </strong>\</td><td><strong> MAST EXPRESSION </strong>\</td><td><strong> ASSERT EXPRESSION </strong>\</td><td>** RETURN EXPRESSION</td></tr>
+<tr><td>EXPRESSION</td><td>RELATION</td></tr>
+<tr><td>RELATION</td><td>LOGIC AND LOGIC  **\</td><td><strong>  LOGIC OR LOGIC  </strong>\</td><td><strong> LOGIC XOR LOGIC  </strong>\</td><td><strong>  LOGIC NAND LOGIC </strong>\</td><td><strong> LOGIC NOR LOGIC  </strong>\</td><td><strong> LOGIC NXOR LOGIC </strong>\</td><td>** LOGIC</td></tr>
+<tr><td>LOGIC</td><td>OPERATION EQ OPERATION  **\</td><td><strong> OPERATION NEQ OPERATION  </strong>\</td><td><strong> OPERATION GT OPERATION  </strong>\</td><td><strong> OPERATION GTE OPERATION  </strong>\</td><td><strong> OPERATION LT OPERATION  </strong>\</td><td><strong> OPERATION LTE OPERATION  </strong>\</td><td>** OPERATION</td></tr>
+<tr><td>OPERATION</td><td>ADDSUB & ADDSUB **\</td><td>** ADDSUB \</td><td>ADDSUB **\</td><td><strong> ADDSUB ^ ADDSUB </strong>\</td><td>** ADDSUB</td></tr>
+<tr><td>ADDSUB</td><td>MULDIV + MULDIV **\</td><td><strong> MULDIV - MULDIV </strong>\</td><td><strong> MULDIV % MULDIV </strong>\</td><td><strong> MULDIV &lt;&lt; MULDIV </strong>\</td><td><strong> MULDIV >> MULDIV </strong>\</td><td>** MULDIV</td></tr>
+<tr><td>MULDIV</td><td>PRIME <em> PRIME </em>*\</td><td><strong> PRIME / PRIME </strong>\</td><td>** PRIME</td></tr>
+<tr><td>PRIME</td><td>NOT PRIME **\</td><td><strong> NEG PRIME </strong>\</td><td><strong> ~PRIME </strong>\</td><td>** BASEUNIT</td></tr>
+<tr><td>BASEUNIT</td><td>VARIABLE **\</td><td><strong> VALUE </strong>\</td><td><strong> -NUMBER </strong>\</td><td><strong> GLOBAL </strong>\</td><td><strong> FUNCTION </strong>\</td><td>** ( EXPRESSION )</td></tr>
+<tr><td>VARIABLE</td><td>[a-z]+</td></tr>
+<tr><td>VALUE</td><td>NUMBER **\</td><td><strong> HEX </strong>\</td><td><strong> STRING </strong>\</td><td>** BOOLEAN</td></tr>
+<tr><td>NUMBER</td><td>^[0-9]+(\\.[0-9]+)?</td></tr>
+<tr><td>HEX</td><td>0x[0-9a-fA-F]+</td></tr>
+<tr><td>STRING</td><td>[UTF8_String]</td></tr>
+<tr><td>BOOLEAN</td><td>TRUE **\</td><td>** FALSE</td></tr>
+<tr><td>FALSE</td><td>0</td></tr>
+<tr><td>TRUE</td><td>NOT FALSE</td></tr>
+<tr><td>GLOBAL</td><td>@BLOCK **\</td><td><strong> @BLOCKMILLI </strong>\</td><td><strong> @CREATED </strong>\</td><td><strong> @COINAGE </strong>\</td><td><strong> @INPUT </strong>\</td><td><strong> @AMOUNT </strong>\</td><td><strong> @ADDRESS </strong>\</td><td><strong> @TOKENID </strong>\</td><td><strong> @COINID </strong>\</td><td><strong> @SCRIPT </strong>\</td><td><strong> @TOTIN </strong>\</td><td>** @TOTOUT</td></tr>
+<tr><td>FUNCTION</td><td>FUNC ( EXPRESSION_1 EXPRESSION_2 .. EXPRESSION_n )</td></tr>
+<tr><td>FUNC</td><td>CONCAT **\</td><td><strong> LEN </strong>\</td><td><strong> REV </strong>\</td><td><strong> SUBSET </strong>\</td><td><strong> GET </strong>\</td><td><strong> EXISTS </strong>\</td><td><strong> OVERWRITE </strong>\</td><td><strong> REPLACE </strong>\</td><td><strong> SUBSTR </strong>\</td><td><strong> ADDRESS </strong>\</td><td><strong> SETLEN </strong>\</td><td><strong> BOOL </strong>\</td><td><strong> HEX </strong>\</td><td><strong> NUMBER </strong>\</td><td><strong> STRING </strong>\</td><td><strong> UTF8 </strong>\</td><td><strong> ASCII </strong>\</td><td><strong> ABS </strong>\</td><td><strong> CEIL </strong>\</td><td><strong> FLOOR </strong>\</td><td><strong> MIN </strong>\</td><td><strong> MAX </strong>\</td><td><strong> INC </strong>\</td><td><strong> DEC </strong>\</td><td><strong> SIGDIG </strong>\</td><td><strong> POW </strong>\</td><td><strong> SQRT </strong>\</td><td><strong> BITSET </strong>\</td><td><strong> BITGET </strong>\</td><td><strong> BITCOUNT </strong>\</td><td><strong> PROOF </strong>\</td><td><strong> SHA2 </strong>\</td><td><strong> SHA3 </strong>\</td><td><strong> SIGNEDBY </strong>\</td><td><strong> MULTISIG </strong>\</td><td><strong> CHECKSIG </strong>\</td><td><strong> FUNCTION </strong>\</td><td><strong> SUMINPUT </strong>\</td><td><strong> SUMOUTPUT </strong>\</td><td><strong> GETOUTADDR </strong>\</td><td><strong> GETOUTAMT </strong>\</td><td><strong> GETOUTTOK </strong>\</td><td><strong> GETOUTKEEPSTATE </strong>\</td><td><strong> VERIFYOUT </strong>\</td><td><strong> GETINADDR </strong>\</td><td><strong> GETINAMT </strong>\</td><td><strong> GETINTOK </strong>\</td><td><strong> GETINID </strong>\</td><td><strong> VERIFYIN </strong>\</td><td><strong> STATE </strong>\</td><td><strong> PREVSTATE </strong>\</td><td>** SAMESTATE</td></tr>
+</table></div>
+<h2>Globals</h2>
+<div class="table-wrap"><table>
+<tr><th>Global</th><th>Description</th></tr>
+<tr><td>@BLOCK</td><td>the current block number</td></tr>
+<tr><td>@BLOCKMILLI</td><td>the current block time in milliseconds since Jan 1 1970</td></tr>
+<tr><td>@CREATED</td><td>the block this coin was created in</td></tr>
+<tr><td>@COINAGE</td><td>the difference in @BLOCK and @CREATED</td></tr>
+<tr><td>@INPUT</td><td>Input index of a coin used in the transaction. First input coin has an index of 0.</td></tr>
+<tr><td>@COINID</td><td>the coinid</td></tr>
+<tr><td>@AMOUNT</td><td>the amount</td></tr>
+<tr><td>@ADDRESS</td><td>the address</td></tr>
+<tr><td>@TOKENID</td><td>the tokenid</td></tr>
+<tr><td>@SCRIPT</td><td>the script of this coin</td></tr>
+<tr><td>@TOTIN</td><td>the total number of input coins</td></tr>
+<tr><td>@TOTOUT</td><td>the total number of output coins</td></tr>
+</table></div>
+<h2>Functions</h2>
+<div class="table-wrap"><table>
+<tr><th>Function</th><th>Description</th></tr>
+<tr><td>CONCAT ( HEX_1 HEX_2 ... HEX_n )</td><td>Concatenate the HEX values.</td></tr>
+<tr><td>LEN ( HEX \</td><td>SCRIPT )</td><td>Length of the data</td></tr>
+<tr><td>REV ( HEX )</td><td>Reverse the data</td></tr>
+<tr><td>SUBSET ( HEX NUMBER NUMBER )</td><td>Return the HEX subset of the data - start - length</td></tr>
+<tr><td>SETLEN ( NUMBER HEX )</td><td>Set the length of a HEX value, trims if too large or pads with 0 if too short</td></tr>
+<tr><td>OVERWRITE ( HEX NUMBER HEX NUMBER NUMBER)</td><td>Copy bytes from the first HEX and pos to the second HEX and pos, length the last NUMBER</td></tr>
+<tr><td>GET (NUMBER NUMBER .. NUMBER)</td><td>Return the array value set with LET ( EXPRESSION EXPRESSION .. EXPRESSION )1</td></tr>
+<tr><td>EXISTS ( NUMBER NUMBER .. NUMBER )</td><td>Does the array value exists</td></tr>
+<tr><td>ADDRESS ( STRING )</td><td>Return the address of the script</td></tr>
+<tr><td>REPLACE ( STRING STRING STRING)</td><td>Replace in 1st string all occurrence of 2nd string with 3rd</td></tr>
+<tr><td>SUBSTR ( NUMBER NUMBER STRING )</td><td>Get the substring</td></tr>
+<tr><td>UTF8 ( HEX )</td><td>Convert the HEX value to a UTF8 string</td></tr>
+<tr><td>ASCII ( HEX )</td><td>Convert the HEX value to an ASCII string</td></tr>
+<tr><td>BOOL ( VALUE )</td><td>Convert to TRUE or FALSE value</td></tr>
+<tr><td>HEX ( SCRIPT )</td><td>Convert SCRIPT to HEX</td></tr>
+<tr><td>NUMBER ( HEX )</td><td>Convert HEX to NUMBER</td></tr>
+<tr><td>STRING ( HEX )</td><td>Convert a HEX value to SCRIPT</td></tr>
+<tr><td>ABS ( NUMBER )</td><td>Return the absolute value of a number</td></tr>
+<tr><td>CEIL ( NUMBER )</td><td>Return the number rounded up</td></tr>
+<tr><td>FLOOR ( NUMBER )</td><td>Return the number rounded down</td></tr>
+<tr><td>MIN ( NUMBER NUMBER )</td><td>Return the minimum value of the 2 numbers</td></tr>
+<tr><td>MAX ( NUMBER NUMBER )</td><td>Return the maximum value of the 2 numbers</td></tr>
+<tr><td>INC ( NUMBER )</td><td>Increment a number</td></tr>
+<tr><td>DEC ( NUMBER )</td><td>Decrement a number</td></tr>
+<tr><td>POW ( NUMBER NUMBER )</td><td>Returns the power of N of a number. N must be a whole number.</td></tr>
+<tr><td>SQRT ( NUMBER )</td><td>Returns the square root of a number</td></tr>
+<tr><td>SIGDIG ( NUMBER NUMBER )</td><td>Set the significant digits of the number</td></tr>
+<tr><td>BITSET ( HEX NUMBER BOOLEAN )</td><td>Set the value of the BIT at that Position to 0 or 1</td></tr>
+<tr><td>BITGET ( HEX NUMBER )</td><td>Get the BOOLEAN value of the bit at the position.</td></tr>
+<tr><td>BITCOUNT ( HEX )</td><td>Count the number of bits set in a HEX value</td></tr>
+<tr><td>PROOF ( HEX \</td><td>STRING NUMBER HEX NUMBER HEX )</td><td>Check the mmr data, mmr root, with mmr proof are correct. Use 0 Numbers for non-sum mmr trees. Same as mmrproof on Minima</td></tr>
+<tr><td>SHA2 ( HEX \</td><td>STRING )</td><td>Returns the SHA2 value of the HEX value.</td></tr>
+<tr><td>SHA3 ( HEX \</td><td>STRING )</td><td>Returns the SHA3 value of the HEX value.</td></tr>
+<tr><td>SIGNEDBY ( HEX )</td><td>Returns true if the transaction is signed by this public key</td></tr>
+<tr><td>MULTISIG ( NUMBER HEX1 HEX2 .. HEXn )</td><td>Returns true if the transaction is signed by N of the public keys</td></tr>
+<tr><td>CHECKSIG ( HEX HEX HEX)</td><td>Check public key, data and signature</td></tr>
+<tr><td>GETOUTADDR ( NUMBER )</td><td>Return the HEX address of the specified output</td></tr>
+<tr><td>GETOUTAMT ( NUMBER )</td><td>Return the amount of the specified output</td></tr>
+<tr><td>GETOUTTOK ( NUMBER )</td><td>Return the token id of the specified output</td></tr>
+<tr><td>GETOUTKEEPSTATE ( NUMBER )</td><td>Is the output keeping the state</td></tr>
+<tr><td>VERIFYOUT ( NUMBER HEX NUMBER HEX BOOL )</td><td>Verify the output has the specified address, amount, tokenid and keepstate</td></tr>
+<tr><td>GETINADDR ( NUMBER )</td><td>Return the HEX address of the specified input</td></tr>
+<tr><td>GETINAMT ( NUMBER )</td><td>Return the amount of the specified input</td></tr>
+<tr><td>GETINTOK ( NUMBER )</td><td>Return the token id of the specified input</td></tr>
+<tr><td>VERIFYIN ( NUMBER HEX NUMBER HEX )</td><td>Verify the input has the specified address, amount and tokenid</td></tr>
+<tr><td>STATE ( NUMBER )</td><td>Return the state value for the given number</td></tr>
+<tr><td>PREVSTATE ( NUMBER )</td><td>Return the state value stored in the coin MMR data - when the coin was created.</td></tr>
+<tr><td>SAMESTATE ( NUMBER NUMBER )</td><td>Return TRUE if the previous state and current state are the same for the start and end positions</td></tr>
+<tr><td>SUMINPUTS ( HEX )</td><td>Sum the input values of this token type</td></tr>
+<tr><td>SUMOUTPUTS ( HEX )</td><td>Sum the output values of this token type</td></tr>
+<tr><td>FUNCTION ( STRING VALUE1 VALUE2.. VALUEn )</td><td>Generic Function. Run the script after replacing $1, $2.. $n in the script with the provided parameters and use the variable 'returnvalue' as the returned result.</td></tr>
+</table></div>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

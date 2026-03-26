@@ -1,0 +1,359 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Vps Service — Run a Node</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🖥️ Run a Node</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="node-types.html">Node Types</a>
+<a class="sidebar-link" href="firewall-rules.html">Firewall Rules</a>
+<a class="sidebar-link" href="startup-parameters.html">Startup Parameters</a>
+<div class="sidebar-group">Full Node</div>
+<a class="sidebar-link" href="android.html">Android</a>
+<a class="sidebar-link" href="windows.html">Windows</a>
+<a class="sidebar-link" href="mac.html">Mac</a>
+<a class="sidebar-link" href="docker-desktop.html">Docker Desktop</a>
+<a class="sidebar-link" href="linux-vps-docker.html">Linux Vps Docker</a>
+<a class="sidebar-link active" href="linux-vps-service.html">Linux Vps Service</a>
+<a class="sidebar-link" href="desktop-cli.html">Desktop Cli</a>
+<div class="sidebar-group">Archive Node</div>
+<a class="sidebar-link" href="archive-node.html">Archive Node</a>
+<div class="sidebar-group">Mega Node</div>
+<a class="sidebar-link" href="mega-node.html">Mega Node</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-about.html">Meg About</a>
+<a class="sidebar-link" href="meg-setup.html">Meg Setup</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Linux Vps Service</h1>
+    <hr>
+<p>title: Linux VPS (Systemd service)</p>
+<p>description: Run Minima on a Linux VPS</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>Running a node on a server and allowing inbound connections on port 9001 will ensure your node acts as a <strong>relay node</strong>.</p>
+<p>Relay nodes are the backbone of the Minima peer-to-peer network that faciliate the transmission of transactions and blocks across the network and support the network to scale.</p>
+<p>Installing Minima as a background process with SystemD is an alternative to using Docker. SystemD is a daemon server that enables applications to run as background processes.</p>
+<p>The following instructions assume your server is using <strong>Debian OS with no existing installations.</strong></p>
+<p>For hardware specifications, see <a href="/docs/run-a-node/node-types">Node Types.</a></p>
+<h2>Firewall setup</h2>
+<p>Before starting, please ensure your server firewall rules:</p>
+<ul><li>Do not allow any inbound (Ingress) traffic from anywhere.</li><li>Allow ssh connections (inbound on port 22)</li></ul>
+<p>Once your node is running, you should open port 9001 from anywhere and, if you are enabling minidapps, 9003 from your home IP.</p>
+<p>We highly recommend using the default Firewall manager for your server. Alternatively to use Uncomplicated Firewall (UFW), see the instructions below.</p>
+<div class="tab-section"><h4>Custom Firewall</h4>After configuring your firewall, you should check they are enforced as expected.
+<p>Ingress</p>
+<p>All inbound connections except for SSH should be denied by default.</p>
+<p>Inbound connections from all IPs can be allowed for</p>
+<ul><li><strong>9001 tcp</strong>: Allowing inbound connections on port 9001 ensures your node acts as a relay node. Relay nodes are the backbone of the Minima peer-to-peer network that faciliate the transmission of transactions and blocks across the network and support the network to scale. If your inbound connection is closed, your node will only make outgoing connections and will not act as a relay node.</li></ul>
+<p>Inbound connections from <strong>all IPs</strong> should be <strong>denied</strong> to:</p>
+<ul><li><strong>9003 tcp</strong> : if not enabling the MiniDapp system (i.e. you are using Minima on the command line only)</li><li><strong>9002 tcp</strong> : Port not in use</li><li><strong>9004 tcp</strong> : Port not in use</li><li><strong>9005 tcp</strong>: RPC Port</li></ul>
+<p>Inbound connections from your <strong>HOME IP</strong> can be <strong>allowed</strong> for</p>
+<ul><li><strong>22 tcp</strong> : Allows SSH access to the server, we recommend only allowing this from your home IP address but ensure that you can update this if your home IP dynamically changes, otherwise you could be locked out.</li><li><strong>9003 tcp</strong>: if you intend to enable the MiniDapp system. If your home IP is dynamic, you will need to maintain this firewall rule to your latest IP. If you choose to allow inbound connections from anywhere, your login screen will be public facing, so your login password (mdspassword) must be long and secure, using a combination of lowercase, uppercase letters numbers and symbols.</li><li><strong>9005 tcp</strong>: RPC Port - ADVANCED USERS ONLY!</li></ul>
+<p>Opening port 9005 is __extremely risky__ as it exposes your node and seed</p>
+<p>phrase if you have not [set a secure password for RPC</p>
+<p>access](#rpc-client-setup).</p>
+<p>To <code>curl</code> into the node remotely, ensure this is <strong>only allowed inbound from your home IP address</strong>. <strong>You should only do this if you are an advanced user and understand the risks!</strong></div></p>
+<div class="tab-section"><h4>UFW</h4>
+<p>If using <strong>Docker</strong> to run your node on a VPS, you <strong>must not rely on UFW</strong> as</p>
+<p>your firewall, Docker will overwrite UFW firewall rules. You must use your VPS</p>
+<p>provider's firewall manager.</p>
+<p>As a user with sudo privileges:</p>
+<p>Install Uncomplicated Firewall</p>
+<pre><code>sudo apt install ufw</code></pre>
+<p>Run the commands</p>
+<p>This will disable the firewall, deny incoming connections, accept outgoing connections, allow ssh and enable the firewall.</p>
+<pre><code>sudo ufw disable</code></pre>
+<pre><code>sudo ufw default deny incoming</code></pre>
+<pre><code>sudo ufw default allow outgoing</code></pre>
+<p><strong>DO NOT SKIP THE FOLLOWING STEP, OR YOU WILL BE LOCKED OUT OF YOUR SERVER!</strong></p>
+<pre><code>sudo ufw allow ssh</code></pre>
+<p>Allow inbound connections to 9001</p>
+<pre><code>sudo ufw allow in 9001</code></pre>
+<p>Allow inbound connections to your MiniDapp system only from your home IP addresss</p>
+<div class="callout"><strong>Note</strong><br>Note that most home IP addresses are not fixed and change, so you may have to redo this rule at a later date. You can find your home IP address by going to [ipchicken](https://ipchicken.com/) when connected to your home wifi network.
+<p>Replace <code>xxx.xxx.xxx</code> with your actual home IP address</div></p>
+<pre><code>sudo ufw allow from xxx.xxx.xxx to any port 9003</code></pre>
+<p>or to allow connections to your MiniDapp system from anywhere. <strong>This will expose your login screen publicly.</strong></p>
+<pre><code>sudo ufw allow in 9003</code></pre>
+<p>Enable the firewall</p>
+<pre><code>sudo ufw enable</code></pre>
+<p>For more information see <a href="https://wiki.debian.org/Uncomplicated%20Firewall%20%28ufw%29">here</a></p>
+</div>
+<h2>Setup Minima as a systemd service</h2>
+<h3>Server installations</h3>
+<div class="tab-section"><h4>Debian/Ubuntu</h4>As a user with sudo privileges, install the following:
+<pre><code>sudo apt update -y
+   sudo apt upgrade -y
+   sudo apt install jq -y
+   sudo apt install default-jdk -y
+   sudo apt install wget -y</code></pre>
+<ul><li><code>sudo apt update -y</code>: Updates the package list to the latest version.</li><li><code>sudo apt upgrade -y</code>: Upgrades all the installed packages to their latest versions.</li><li><code>sudo apt install jq -y</code>: Installs <code>jq</code>, a lightweight and flexible command-line JSON processor.</li><li><code>sudo apt install default-jdk -y</code>: Installs the default Java Development Kit (JDK).</li><li><code>sudo apt install wget -y</code>: Installs <code>wget</code>, a utility for non-interactive download of files from the web.</div></li></ul>
+<div class="tab-section"><h4>CentOS/RedHat</h4>As a user with sudo privileges, install the following:
+<pre><code>sudo yum update -y
+   sudo yum install jq -y
+   sudo yum install java-1.8.0-openjdk-devel -y
+   sudo yum install wget nano -y</code></pre>
+<ul><li><code>sudo yum update -y</code>: Updates the package list to the latest version.</li><li><code>sudo yum install jq -y</code>: Installs <code>jq</code>, a lightweight and flexible command-line JSON processor.</li><li><code>sudo yum install java-1.8.0-openjdk-devel -y</code>: Installs the Java Development Kit (JDK) version 1.8.0.</li><li><code>sudo yum install wget -y</code>: Installs <code>wget</code>, a utility for non-interactive download of files from the web.</div></li></ul>
+<h3>Minima node setup</h3>
+<p>Create a minima user</p>
+<pre><code>sudo adduser minima</code></pre>
+<p>Set a password for the user and confirm it, leave all other settings blank by pressing enter, then y to confirm.<strong> Make sure to remember this user's password!</strong></p>
+<p>Setup journal logs service</p>
+<pre><code>echo "Storage=persistent" | sudo tee -a /etc/systemd/journald.conf &gt;/dev/null</code></pre>
+<p>Restart the service</p>
+<pre><code>sudo systemctl restart systemd-journald</code></pre>
+<p>Create the Minima systemd file</p>
+<div class="tab-section"><h4>MiniDapps</h4><div class="callout"><strong>Password Options</strong><br>Edit the file to change the password, use the arrow keys to go to
+<p><code>yourpasswordhere</code> and set a secure password of over 12</p>
+<p>characters using <code>a-z, A-Z, 0-9 and !@#=?+><,.-_'()/</code> symbols only.</div></p>
+<pre><code>sudo tee &lt;/dev/null /etc/systemd/system/minima.service
+   [Unit]
+   Description=minima
+   [Service]
+   User=minima
+   Type=simple
+   ExecStart=/usr/bin/java -jar /home/minima/minima.jar -mdsenable -mdspassword yourpasswordhere -daemon -basefolder /home/minima -data /home/minima/.minima
+   Restart=always
+   RestartSec=100
+   [Install]
+   WantedBy=multi-user.target
+   EOF</code></pre>
+<div class="tab-section"><h4>CLI only</h4>The following will create a systemd service file for a node without the MiniDapp system enabled.
+<pre><code>sudo tee &lt;/dev/null /etc/systemd/system/minima.service
+   [Unit]
+   Description=minima
+   [Service]
+   User=minima
+   Type=simple
+   ExecStart=/usr/bin/java -jar /home/minima/minima.jar -rpcenable -rpcpassword INSERTRPCPASSWORD -rpcssl -daemon -basefolder /home/minima -data /home/minima/.minima
+   Restart=always
+   RestartSec=100
+   [Install]
+   WantedBy=multi-user.target
+   EOF</code></pre>
+<p>To reopen the file if required:</p>
+<pre><code>sudo nano /etc/systemd/system/minima.service</code></pre>
+<p>use <code>ctrl-X</code> then <code>Y</code> then press enter to save changes.</p>
+<p>Navigate to home directory</p>
+<pre><code>sudo su minima</code></pre>
+<pre><code>cd /home/minima</code></pre>
+<p>Download the minima jar file from Github</p>
+<pre><code>wget https://github.com/minima-global/Minima/raw/master/jar/minima.jar</code></pre>
+<p>Exit back to your user</p>
+<pre><code>exit</code></pre>
+<p>Reload the services</p>
+<pre><code>sudo systemctl daemon-reload</code></pre>
+<p>Enable and start the minima service</p>
+<pre><code>sudo systemctl enable minima</code></pre>
+<pre><code>sudo systemctl start minima</code></pre>
+<p>View the logs to see your node starting up</p>
+<pre><code>sudo journalctl -u minima -f</code></pre>
+<p><code>Ctrl+C will exit the log stream</code></p>
+<p><strong>Congratulations, your node is now running!</strong></p>
+<p>Now that your node is running, you can setup the RPC client to interact with your node.</p>
+<div class="callout"><strong>CLI only</strong><br>To interact with your node you can setup the RPC client as below. Otherwise, skip to [preparing for future releases](#prepare-for-future-releases)</div>
+<h3>RPC client setup</h3>
+<p>You can interact with your node headlessly by setting up the RPC client for your node:</p>
+<ol><li>Log on to your server as your user with sudo priviledges, stop and disable Minima</li></ol>
+<pre><code>sudo systemctl stop minima</code></pre>
+<pre><code>sudo systemctl disable minima</code></pre>
+<ol><li>Edit the Minima service file</li></ol>
+<pre><code>sudo nano /etc/systemd/system/minima.service</code></pre>
+<ol><li>Edit the start up line to include the following parameters to enable RPC</li></ol>
+<pre><code>-rpcenable -rpcpassword yourrpcpassword -rpcssl</code></pre>
+<p><strong><em>Enter a password over 12 characters using a-z, A-Z, 0-9 and !@#=?+>,.-_'()/< symbols only.</em></strong></p>
+<p><strong>Example</strong></p>
+<pre><code>...
+ExecStart=/usr/bin/java -jar /home/minima/minima.jar -rpcenable -rpcpassword yourrpcpassword -rpcssl -mdsenable -mdspassword yourpasswordhere -daemon -basefolder /home/minima -data /home/minima/.minima
+...</code></pre>
+<p>Press <code>ctrl+x</code>, then <code>y</code> then Enter to save and exit</p>
+<ol><li>Reload the daemon and start Minima</li></ol>
+<pre><code>sudo systemctl daemon-reload</code></pre>
+<pre><code>sudo systemctl enable minima</code></pre>
+<pre><code>sudo systemctl start minima</code></pre>
+<ol><li>Check the logs to ensure it has started up</li></ol>
+<pre><code>sudo journalctl -u minima -f</code></pre>
+<p>then <code>ctrl+c</code> to exit the logs</p>
+<ol><li>Create a file and paste in the script below, ensuring that you <strong>change the password</strong></li></ol>
+<pre><code>sudo nano minima</code></pre>
+<pre><code>#!/bin/sh
+
+#Start the Minima RPC Client 
+java -cp /home/minima/minima.jar org.minima.utils.MinimaRPCClient -password yourrpcpassword -host https://127.0.0.1:9005</code></pre>
+<p>Write the file using ctrl-<code>x</code> then confirm with <code>y</code></p>
+<ol><li>Give the right permissions</li></ol>
+<pre><code>sudo chmod +x ./minima</code></pre>
+<ol><li>Run the script to start the RPC Client Terminal</li></ol>
+<pre><code>./minima</code></pre>
+<p>Going forward, simply login and start the Minima Terminal using <code>./minima</code>.</p>
+<p>[Image]</p>
+<p>You can run any Minima commands here.</p>
+<p>Type <code>block</code> then enter to return your top block. <code>status</code> will return details about your node.</p>
+<p>Type <code>help</code> to see a list of all commands and <code>help command:</code> to see detailed help for any command.</p>
+<p>To exit the Terminal, type <code>exit</code>.</p>
+<p><strong>Do not type <code>quit</code> as this will shut down your node.</strong></p>
+<p>{/*</p>
+<p>Start the Minima RPC Client</p>
+<div class="callout"><strong>Change Password</strong><br>Enter a password over 12 characters using `a-z, A-Z, 0-9 and !@#=?+><,.-_'()/` symbols only.</div>
+<pre><code>java -cp /home/minima/minima.jar org.minima.utils.MinimaRPCClient -password yourrpcpassword -host https://127.0.0.1:9005</code></pre>
+<p>Write the file using <code>ctrl-X</code> then confirm with <code>Y</code></p>
+<p>Permissions</p>
+<pre><code>sudo chmod +x ./minima</code></pre>
+<p>Run the script</p>
+<pre><code>./minima</code></pre>
+<p>[Image]</p>
+<p>You can run any Minima commands here.</p>
+<p>Type <code>block</code> then enter to return your top block. <code>status</code> will return details about your node.</p>
+<p>Type <code>help</code> to see a list of all commands and <code>help command:</code> to see detailed help for any command.</p>
+<p>To exit the Terminal, type <code>exit</code>.</p>
+<p><strong>Do not type <code>quit</code> as this will shut down your node.</strong> */}</p>
+<div class="callout"><strong>Future releases</strong><br>Your node will not auto-update so [prepare for future releases](/docs/run-a-node/linux-vps-service#prepare-for-future-releases) to make updating easy.</div>
+<h3>Prepare for future releases</h3>
+<p>Your node will not update to new versions of Minima automatically.</p>
+<p>You can check the version of your node by running the <code>status</code> command from the RPC Client. See <a href="/docs/run-a-node/linux-vps-service#using-the-rpc-client">How to use the RPC client</a>.</p>
+<p>To create a script that you can run every time you wish to update your node:</p>
+<p>Login as your user with sudo privileges</p>
+<p>Create the update script</p>
+<pre><code>sudo nano updateminimajar.sh</code></pre>
+<p>Paste in the script</p>
+<pre><code>#!/bin/sh
+
+#stop and disable service
+sudo systemctl stop minima
+sudo systemctl disable minima
+
+#remove old minima.jar from your home folder (if it exists)
+
+rm minima.jar
+
+#get latest jar
+
+wget https://github.com/minima-global/Minima/raw/master/jar/minima.jar 
+
+#change name minima.jar in minima user to minima.jar_old
+
+sudo mv /home/minima/minima.jar /home/minima/minima.jar_old
+
+#move the new jar to minima folder
+
+sudo mv minima.jar /home/minima/minima.jar
+
+#reenable and start minima service
+
+sudo systemctl daemon-reload
+sudo systemctl enable minima
+sudo systemctl start minima
+
+sudo journalctl -u minima -f</code></pre>
+<p>Save the script</p>
+<p>ctrl-<code>x</code> then <code>y</code> then press Enter</p>
+<p>Give permissions to the script</p>
+<pre><code>sudo chmod +x ./updateminimajar.sh</code></pre>
+<p>Run the script</p>
+<pre><code>./updateminimajar.sh</code></pre>
+<p>You will see the logs showing using the updated version.</p>
+<p>To exit the logs</p>
+<p>Use ctrl-<code>c</code></p>
+<p>For future updates, you simply need to run the script (steps 6 and 7).</p>
+<h3>Useful server commands</h3>
+<ul><li><code>sudo journalctl -u minima -f</code> : Show the Minima logs</li><li><code>ctrl + c</code> : Exits the Minima logs (Minima will continue to run in the background)</li><li><code>sudo ps -fC java</code> : Shows all running Java processes</li><li><code>sudo systemctl status minima</code> - Check the status of the Minima background service</li><li><code>sudo systemctl stop minima</code> - Stop the Minima service</li><li><code>sudo systemctl disable minima</code> - Disable the Minima service</li><li><code>sudo systemctl enable minima</code> - Enable the Minima service</li><li><code>sudo systemctl start minima</code> - Start the Minima service</li></ul>
+<h2>Login to your node</h2>
+<p>Login</p>
+<p>To login to your node, open a web browser and navigate to <strong>https://YourServerIP:9003/</strong></p>
+<p>Click on Advanced, then Proceed. Or in Google Chrome, you may have to click</p>
+<p>anywhere on the page and type thisisunsafe to proceed. Details for other</p>
+<p>browsers can be found</p>
+<p><a href="https://docs.vultr.com/how-to-bypass-the-https-warning-for-self-signed-ssl-tls-certificates">here</a>.</p>
+<p>You will see the login screen for your node.</p>
+<p>Enter your password</p>
+<p>Enter your password to login. This is the <code>-mdspassword</code> parameter you set in the minima.service file.</p>
+<p>[Image]</p>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How to check your login password</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">If you forgot the password you set in step 7 above, you can check the password you set in the minima.service file.
+<p>Log on to your server and run</p>
+<pre><code>sudo nano /etc/systemd/system/minima.service</code></pre>
+<p>The <code>-mdspassword</code> parameter is your login password.</p>
+<p>If you chose not to set a password in the minima.service file, set up the RPC client below and then run the <code>mds</code> command to find your password to login.</div></div></div></p>
+<h2>First steps</h2>
+<p>The first time you install Minima, you will need to</p>
+<ul><li>Connect to the network</li><li>Write down your seed phrase</li></ul>
+<div class="callout"><strong>User Guides</strong><br>For more information on how to connect to the network and secure your node,
+<p>please refer to <a href="/docs/user-guides/join-the-network">User Guides</a>.</div></p>
+<h2>Advanced</h2>
+<h3>Optional startup parameters</h3>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Startup parameters</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">The following start up parameters can optionally be specified when starting your node.
+<p>To add/remove parameters after a node has been started, you must <code>quit</code> the node and restart it, adding/removing the required parameters.</p>
+<p><code>[]</code> square brackets indicate where an input is required, <strong>the brackets should not be included</strong>.</p>
+<p>General</p>
+<ul><li><code>-clean</code> : CAREFUL! Clears existing data, starts a new fresh node. All coins will be lost.</li><li><code>-port [port]</code> : specify the initial port for Minima to use. Range used will be the specified port +4. Default is 9001-9005.</li><li><code>-host [ipaddress]</code> : specify the host IP</li><li><code>-dbpassword [yourdbpassword]</code> : Main Wallet / SQL AES password - MUST be specified on first launch. CANNOT be changed later.</li><li><code>-allowallip</code> : Allow all IPs for Maxima / Networking. Local IPs won't be allowed otherwise.</li><li><code>-archive</code> : Run an Archive node - store all archive data / the cascade to allow for resyncs from this node</li><li><code>-daemon</code> : Run in daemon mode with no stdin input (if running Minima as a background service)</li><li><code>-isclient</code> : Tells the P2P System that this node can't accept incoming connections</li><li><code>-server</code> : Use Server settings - this node can accept incoming connections</li><li><code>-desktop</code> : Use Desktop settings - this node can't accept incoming connections</li></ul>
+<p>Folders</p>
+<ul><li><code>- data</code> : the data folder where all the config files for this node are stored. Default is a hidden .minima folder under the user's home directory. If you want to specify a folder not in the user's home directory, you must use the complete path.</li><li><code>-basefolder</code> : specify a default file creation / backup / restore folder. Default is the user's home directory. Can be the same as the data folder provided.</li></ul>
+<p>MiniDapp System (mds)</p>
+<ul><li><code>- mdsenable</code> : enable the MiniDapp System (default port 9003)</li><li><code>-mdspassword [yourmdspassword]</code> : specify the mds login password</li><li><code>-mdsinit [foldername/path]</code> : specify a folder of miniDAPPs</li><li><code>-mdswrite [minidapp]</code> : give an initial miniDAPP WRITE access</li></ul>
+<p>RPC</p>
+<ul><li><code>-rpcenable</code> : enable remote procedure call</li><li><code>-rpcssl</code> : use Self Signed SSL cert to run RPC</li><li><code>-rpcpassword [yourrpcpassword]</code> : set Basic Auth password for RPC calls ( Use with SSL / stunnel ). Only secure if used with SSL.</li><li><code>-rpcclrf</code> : use CRLF at the end of the RPC headers (NodeJS)</li></ul>
+<p>Test nodes</p>
+<ul><li><code>-genesis</code> : start the node from the genesis block (automatically uses -clean)</li><li><code>-test</code> : uses test parameters e.g. faster block times</li><li><code>-connect [ip:port,ip:port]</code> : Disable the automatic P2P system and create your own network by manually connecting to this list of host:port</li><li><code>-nop2p</code> : Disable the automatic P2P system</li><li><code>-noconnect</code> : Stops the P2P system from connecting to other nodes until it has been connected to</li><li><code>-nosyncibd</code> : Do not sync IBD (for testing)</li></ul>
+<p>Mobile</p>
+<ul><li><code>-mobile</code> : Sets this device to a mobile device - used for metrics only</li><li><code>-limitbandwidth</code> : Limit the amount sent for archive sync</li><li><code>-noshutdownhook</code> : Do not use the shutdown hook (Android)</li></ul>
+<p>Debugging</p>
+<ul><li><code>-p2p-log-level-info</code> : Set the P2P log level to info</li><li><code>-p2p-log-level-debug</code> : Set the P2P log level to debug</li></ul>
+<p>Help</p>
+<ul><li><code>-showparams</code> : Show relevant startup params on launch</li><li><code>-help</code> : print help for the start up parameters</div></div></div></li></ul>
+<h3>Interacting with Minima</h3>
+<h4>Using the RPC client</h4>
+<p>The best way to interact with the node is to <a href="/docs/run-a-node/linux-vps-service#rpc-client-setup">enable the RPC client</a>.</p>
+<p>Once enabled, to start the RPC client when logged on to the server, enter:</p>
+<pre><code>./minima</code></pre>
+<p>You will see the Minima terminal header appear.</p>
+<p>To check the status of your node, enter <code>status</code> command, or type <code>help</code> to see the full list of commands.</p>
+<h4>Using cURL over RPC</h4>
+<p>You can send commands to your Minima node using cURL to the RPC port.</p>
+<p>Install cURL on your server:</p>
+<div class="tab-section"><h4>Debian/Ubuntu</h4>```bash 
+<p>sudo apt install curl</p>
+<pre><code>&lt;div class="tab-section"&gt;&lt;h4&gt;CentOS/RedHat&lt;/h4&gt;```bash 
+   sudo yum install curl</code></pre>
+<h5>Example cURL commands :</h5>
+<p>To interact with your node locally (whilst logged onto the server):</p>
+<pre><code>curl -k -u minima:[yourRPCpasswordhere] serverip:9005/status</code></pre>
+<p>To interact from an external computer, use SSH with each command, logging in with the minima user:</p>
+<pre><code>ssh minima@YourServerIP curl -k -u minima:[yourRPCpasswordhere] serverip:9005/status</code></pre>
+<p>To use commands that require spaces, use <code>%20</code> instead:</p>
+<pre><code>ssh minima@YourServerIP curl -k -u minima:[yourpasswordhere] serverip:9005/backup%20password:insertpassword%20file:insertpathtobackup\backupname.bak | jq</code></pre>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

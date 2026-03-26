@@ -1,0 +1,95 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index — Minima Knowledge</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🧠 Minima Knowledge</div>
+<a class="sidebar-link active" href="index.html">Index</a>
+<a class="sidebar-link" href="network-overview.html">Network Overview</a>
+<a class="sidebar-link" href="glossary.html">Glossary</a>
+<div class="sidebar-group">Minima</div>
+<a class="sidebar-link" href="transactions.html">Transactions</a>
+<a class="sidebar-link" href="mmr-database.html">MMR Database</a>
+<a class="sidebar-link" href="txpow.html">TxPoW Units & Blocks</a>
+<a class="sidebar-link" href="the-blockchain.html">The Blockchain</a>
+<a class="sidebar-link" href="mining-consensus.html">Mining Consensus</a>
+<a class="sidebar-link" href="coloured-coins.html">Coloured Coins</a>
+<a class="sidebar-link" href="keys-signatures.html">Keys Signatures</a>
+<a class="sidebar-link" href="quantum-security.html">Quantum Security</a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="scripting.html">Scripting</a>
+<div class="sidebar-group">Maxima</div>
+<a class="sidebar-link" href="maxima-about.html">Maxima About</a>
+<a class="sidebar-link" href="maxima-contacts.html">Maxima Contacts</a>
+<a class="sidebar-link" href="maxima-messaging.html">Maxima Messaging</a>
+<a class="sidebar-link" href="maxima-mls.html">Maxima Mls</a>
+<a class="sidebar-link" href="maxima-faq.html">Maxima Faq</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapps-about.html">Minidapps About</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Index</h1>
+    <hr>
+<p>title: Core Concepts</p>
+<p>description: Introduction to Minima</p>
+<p>icon: Album</p>
+<p>tag: learn</p>
+<hr>
+<h2>UTxO Model </h2>
+<p>Minima uses the UTxO (Unspent Transaction Output) Model, like Bitcoin. A Transaction Output is a specific amount of Minima, identifiable through a unique ID called a Coin ID. Each Transaction Output can be considered analogous to a physical coin in that they can represent different amounts of currency and must be spent in whole.</p>
+<p>The Minima blockchain keeps track of the UTxO set on the network and who can spend them. The UTxO set circulating in the network fluctuates as users spend coins and create new ones as outputs from transactions. The sum of the value of all the UTxOs in the network will equal at most 1 billion Minima. One or more UTxOs are used as inputs into transactions and one or more new UTxOs will be created as outputs.</p>
+<p>The example below shows a transaction of 30 Minima from Bob to Alice. A UTxO worth 50 Minima is used as an input and two new UTxOs are created as outputs - one worth 30 Minima which is sent to the recipient and one of 20 Minima which is returned to the sender as change. Just like change is received when physical coins are spent.</p>
+<p>[Diagram]</p>
+<h2>Transaction Proof-of-Work (TxPoW)</h2>
+<p>Minima requires users to provide work, in the form of hashing, to mine their own transactions, this is <strong>TxPoW</strong>.</p>
+<p>Once a user has contributed a small amount of work (~1 second of hashing) they have contributed enough for their transaction to be sent around the network.</p>
+<div class="callout"><strong>Info</strong><br>There are no financial rewards for mining your transactions e.g. block rewards
+<p>or collection of fees, the reward is simply being able to broadcast a (valid)</p>
+<p>transaction to the network.</div></p>
+<p>Transactions are held in <a href="/docs/learn/txpow">TxPoW units</a>, which are propagated around the network and may or may not become blocks. TxPoW units contain a user&apos;s transaction and the hashes of other unconfirmed transactions known to the user&apos;s node. TxPoW units become blocks if they, by chance, meet the level of difficulty required to become a block.</p>
+<p>This ensures that all users can contribute to the construction of the chain and is in contrast to Bitcoin where users rely on other dedicated miners with specific hardware to provide PoW and propagate their transactions on their behalf.</p>
+<h2>The Burn</h2>
+<p>The Burn is a small cost (fee) which is incurred when sending transactions on the Minima network during times of high demand. This cost, denominated in Minima, is <code>burned</code> i.e. removed from Minima's hard-capped supply, making Minima a deflationary currency as the overall circulating supply slowly decreases over time.</p>
+<p>The burn serves multiple purposes:</p>
+<ul><li><strong>A strong incentive to propagate and process a transaction</strong>: All users in the network will benefit from the decrease in supply as coins that are left become more scarce and therefore more valuable.</li><li><strong>A method for ordering transactions and regulating on-chain traffic</strong>: Similar to the fee model on other blockchains, the burn serves as a selection method for deciding which unconfirmed transactions will be added to a block. The higher the burn amount in a transaction, the more likely it is that a transaction will be added to a block.</li><li><strong>A mechanism for spam prevention by making Denial-of-Service (DoS) attacks expensive</strong>: The burn may be high during periods of heavy traffic or spam and, as it rises, traffic will decrease, self-regulating the system. The burn can be nil or very low when traffic is at manageable levels as the total amount is not important, only the relative burn amount in comparison to other transactions.</li></ul>
+<h2>MMR (Merkle Mountain Range) Database</h2>
+<p>To ensure that all users of the network can contribute to the construction of the chain, the chain needs to be small enough to run on a mobile device. This would not be possible if the entire history of the chain was required as this would be too much of an overhead for a mobile device. Therefore the blockchain must be constantly reduced in size to meet this requirement. This is known as pruning.</p>
+<p>The impact of pruning means that the full transaction history of the chain is not kept, therefore a storage mechanism is required to keep track of coins that were created in blocks that have since been pruned. This is the role of the MMR database.</p>
+<p>Hence, users must keep track of their spent and unspent coins/TxOs (Transaction Outputs) independently of the chain. Each coin is stored as a leaf node in a tree structure (a Merkle hash-sum tree). Then, using a collection of nodes in this tree, a proof path can be created from the coin to a peak of the tree, proving the existence of a coin even if the block that it was created in has been pruned.</p>
+<p>All users only keep the parts of the MMR tree required to create the proofs for their own coins, which is a tiny amount of data compared to all the coins in the network. Users are also required to store the peaks and the root of the tree so that they can validate a Coin Proof that is presented to them by another user.</p>
+<p>When a user wishes to spend their coins, they must provide the up-to-date, valid proof that it is unspent. Any other node in the network can verify this proof by calculating the peaks and root hash of the MMR tree from the proof and ensuring it matches their own values for the peak and root hash.</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

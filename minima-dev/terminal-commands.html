@@ -1,0 +1,657 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal Commands — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link active" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Terminal Commands</h1>
+    <hr>
+<p>title: Terminal Commands</p>
+<p>description: Terminal Commands</p>
+<p>tag: learn</p>
+<p>icon: Terminal</p>
+<hr>
+<p>Last updated: 17th July 2025</p>
+<p>The following commands can be run directly from a Minima Terminal. They can also be viewed by typing <code>help</code> into the Minima Terminal.</p>
+<p>For detailed help, use <code>help command:</code> followed by the command.</p>
+<p><code>;</code> can be used to chain multiple commands</p>
+<h2>General Commands</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>balance</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show your total balance of Minima and tokens.`
+<p>Examples:</p>
+<pre><code>balance</code></pre>
+<pre><code>balance tokenid:0xFED5.. confirmations:10</code></pre>
+<pre><code>balance address:0xFF..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>block</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Return the top block`
+<pre><code>block</code></pre>
+<p>Examples:</div></div></div></p>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>checkaddress</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Check the validity of an address and whether it belongs to your node.`
+<p>Examples:</p>
+<pre><code>checkaddress address:0xFED...</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>coincheck</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Check a coin exists and is valid. Can only check unspent coins.`
+<p>Examples:</p>
+<pre><code>coincheck data:0x00000..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>coinexport</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Export a coin including its MMR proof.`
+<p>A coin can then be imported and tracked on another node using the 'coinimport' command.</p>
+<p>This does not allow the spending of a coin - just the knowledge of its existence.</p>
+<p>Examples:</p>
+<pre><code>coinexport coinid:0xCD34..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>coinimport</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Import a coin including its MMR proof.`
+<p>Optionally you can track the coin to add it to your relevant coins list and know when it becomes spent.</p>
+<p>Importing does not allow the spending of a coin - just the knowledge of its existence.</p>
+<p>Examples:</p>
+<pre><code>coinimport data:0x00000..</code></pre>
+<pre><code>coinimport data:0x00000.. track:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>cointrack</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Track or untrack a coin.`
+<p>Track a coin to keep its MMR proof up-to-date and know when it becomes spent. Stop tracking to remove it from your relevant coins list.</p>
+<p>Examples:</p>
+<pre><code>cointrack enable:true coinid:0xCD34..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>consolidate</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Consolidate multiple coins (UTxOs) into one by sending them back to yourself.`
+<p>Must have at least 3 coins.</p>
+<p>Useful to prevent having many coins of tiny value and to manage the number of coins you are tracking. Optionally set the minimum coin age (in blocks), maximum number of coins, and maximum number of signatures for the transaction.</p>
+<p>Examples:</p>
+<pre><code>consolidate tokenid:0x00</code></pre>
+<pre><code>consolidate tokenid:0x00 coinage:10</code></pre>
+<pre><code>consolidate tokenid:0x00 maxcoins:5</code></pre>
+<pre><code>consolidate tokenid:0x00 coinage:10 maxcoins:8 burn:1</code></pre>
+<pre><code>consolidate tokenid:0x00 coinage:10 maxcoins:8 maxsigs:3 burn:1 dryrun:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>getaddress</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Returns an existing default Minima address to receive funds, use as a change address etc.`
+<p>Each address can be used securely 262144 (64^3) times.</p>
+<p>Then you can wipe the private keys from your online node using the 'vault' command.</p>
+<p>Examples:</p>
+<pre><code>getaddress</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>hashtest</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Check the speed of hashing of this device.`
+<p>Defaults to 1 million hashes.</p>
+<p>Returns the time taken in milliseconds and speed in megahashes/second.</p>
+<p>E.g. A speed of 0.5 MH/s indicates 500000 hashes per second.</p>
+<p>Examples:</p>
+<pre><code>hashtest</code></pre>
+<pre><code>hashtest amount:1000000</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>history</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Return all TxPoW relevant to you.`
+<p>Examples:</p>
+<pre><code>history max:20</code></pre>
+<pre><code>history max:20 offset:45</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>keys</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Get a list of all your public keys or create a new key.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>keys action:list</code></pre>
+<pre><code>keys action:checkkeys</code></pre>
+<pre><code>keys action:list publickey:0xFFEE56..</code></pre>
+<pre><code>keys action:new</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>newaddress</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create a new address that will not be not used for anything else (not one of the 64 default change address).`
+<p>Can be used for a specific use case or for improved privacy.</p>
+<pre><code>newaddress</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>printmmr</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Print the MMR set of the tip block and the total number of entries in the MMR.`
+<p>Returns the tip block number, latest entrynumber and latest set of MMR entries.</p>
+<p>For each entry, details of its row, entry number, data and value of all new and updated MMR entries for the tip block.</p>
+<p>Row 1 represents the leaf nodes, entry 0 represents the first entry on a row.</p>
+<pre><code>printmmr</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>printtree</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Print a tree representation of the blockchain.`
+<p>Default depth 32 blocks, can be increased to see more of the txpow tree.</p>
+<p>Examples:</p>
+<pre><code>printtree</code></pre>
+<pre><code>printtree depth:500</code></pre>
+<pre><code>printtree cascade:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>quit</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Shutdown Minima safely. Ensure you have a backup before shutting down.`
+<p>Ensure you have a backup before shutting down.</p>
+<p>Examples:</p>
+<pre><code>quit</code></pre>
+<pre><code>quit compact:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>seedrandom</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Generate a random value, based on your SEED and a modifier.`
+<p>Examples:</p>
+<pre><code>seedrandom modifier:"Hello you"</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>status</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show the general status for Minima and your node. Optionally clean the RAM.`
+<p>Prints details for general status, memory used, chain info, stored txpow units, network connections, p2p connections and traffic.</p>
+<p>Examples:</p>
+<pre><code>status</code></pre>
+<pre><code>status clean:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>tokencreate</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create (mint) custom tokens or NFTs.`
+<p>You must have some sendable Minima in your wallet as tokens are 'colored coins', a fraction of 1 Minima.</p>
+<p>Examples:</p>
+<pre><code>tokencreate name:newtoken amount:1000000</code></pre>
+<pre><code>tokencreate amount:10 name:\{"name":"newcoin","link":"http:mysite.com","description":"A very cool token"}</code></pre>
+<pre><code>tokencreate name:mynft amount:10 decimals:0 webvalidate:https://www.mysite.com/nftvalidation.txt signtoken:0xFF.. burn:0.1</code></pre>
+<pre><code>tokencreate name:charitycoin amount:1000 script:"ASSERT VERIFYOUT(@TOTOUT-1 0xMyAddress 1 0x00 TRUE)"</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>tokenvalidate</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Validate the signature and webvalidate link in a token.`
+<p>Examples:</p>
+<pre><code>tokenvalidate tokenid:0xFED5..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>trace</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show the message stacks of the internal Minima Engine with optional filter string.`
+<p>Examples:</p>
+<pre><code>trace enable:true</code></pre>
+<pre><code>trace enable:true filter:MAIN</code></pre>
+<pre><code>trace enable:true filter:MINER</code></pre>
+<pre><code>trace enable:true filter:MDS</code></pre>
+<pre><code>trace enable:true filter:NOTIFYMANAGER</code></pre>
+<pre><code>trace enable:true filter:TXPOWPROCESSOR</code></pre>
+<pre><code>trace enable:false</code></pre>
+<h2>Backup</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>archive</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Perform a chain or seed re-sync from an archive node.`
+<p>A chain re-sync will put your node on the correct chain so you are in sync with the latest tip block.</p>
+<p>Use a chain re-sync if your node has been offline for too long and cannot catchup. Seed Phrase is not required.</p>
+<p>A seed re-sync will wipe the wallet and re-generate your keys from your seed phrase. Your coins will be restored.</p>
+<p>Only use a seed re-sync if you have lost your node and do not have a backup.</p>
+<p>You can also check the integrity of your archive db.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>archive action:resync host:auto</code></pre>
+<pre><code>archive action:resync host:89.98.89.98:8888 phrase:"YOUR 24 WORD SEED PHRASE"</code></pre>
+<pre><code>archive action:resync host:89.98.89.98:8888 phrase:"YOUR 24 WORD SEED PHRASE" keys:90 keyuses:2000</code></pre>
+<pre><code>archive action:integrity</code></pre>
+<pre><code>archive action:export file:archiveexport-ddmmyy.gzip</code></pre>
+<pre><code>archive action:import file:archiveexport-ddmmyy.gzip</code></pre>
+<pre><code>archive action:inspect file:archiveexport-ddmmyy.gzip</code></pre>
+<pre><code>archive action:addresscheck address:Mx..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>backup</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Backup your node. Uses a timestamped name by default.`
+<p>Examples:</p>
+<pre><code>backup</code></pre>
+<pre><code>backup password:Longsecurepassword456</code></pre>
+<pre><code>backup password:Longsecurepassword456 confirm:Longsecurepassword456</code></pre>
+<pre><code>backup password:Longsecurepassword456 file:my-backup-01-Jan-22.bak maxhistory:100</code></pre>
+<pre><code>backup auto:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>megammr (from v1.0.41)</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`View information about your MegaMMR. Export and Import complete MegaMMR data.`
+<p>You must be running with the -megammr start up parameter.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>megammr</code></pre>
+<pre><code>megammr action:info</code></pre>
+<pre><code>megammr action:export file:mmrfile.mmr</code></pre>
+<pre><code>megammr action:import file:mmrfile.mmr</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>megammrsync (from v1.0.41)</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Perform a quick chain sync, seed re-sync or restore a backup from a MegaMMR node. Fast.`
+<p>If you are on the wrong chain - all you need to provide is the 'host' to connect to.</p>
+<p>If you are on a fresh node, with different seed phrase, provide 'host' and 'phrase' to resync with that Wallet.</p>
+<p>You can load an old backup and resync to the chain tip aswell.</p>
+<p>The host you connect to MUST be running with -megammr.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>megammrsync action:mydetails</code></pre>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001</code></pre>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001 file:myoldbackup.bak password:backup_password</code></pre>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001 phrase:"YOUR 24 WORD SEED PHRASE" keyuses:2000</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>mysql</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Export the archive data of your node to a MySQL database.`
+<p>The MySQL archive export (in .dat or .gzip format) can be used to perform a chain re-sync to put users on the correct chain or a seed re-sync to restore access to lost funds, using the 24 word seed phrase.</p>
+<p>Query an address for its history of spent and unspent coins.</p>
+<p>Additionally export the MySQL db to a .dat or .gzip file for resyncing with 'reset' or 'archive' command.</p>
+<p>You can also create a coins db in MySQL to search for coins using SQL queries.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:info</code></pre>
+<pre><code>mysql host:dockermysql database:archivedb user:archiveuser password:archivepassword action:info</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:integrity</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:update</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:addresscheck address:MxG08..</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:resync</code></pre>
+<pre><code>mysql host:mysqlhost:port database:archivedb user:archiveuser password:archivepassword action:resync phrase:"24 WORDS HERE" keys:90 keyuses:2000</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>mysqlcoins</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create and search a coins database from your MySQL Archive.`
+<p>Create a coins db from your mysql data and search it.</p>
+<p>Use the same database you already use for your TxBlocks. This creates a new table.</p>
+<p>You can then search for coins using SQL queries.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>mysqlcoins action:update maxcoins:100 host:127.0.0.1:3307 database:coinsdb user:myuser password:myuser</code></pre>
+<pre><code>mysqlcoins action:search where:"address='0x791E78C60652B0E19B8FE9EB035B122B261490C477FD76E38C0C928187076103'" host:127.0.0.1:3307 database:coinsdb user:myuser password:myuser</code></pre>
+<pre><code>mysqlcoins action:search query:"address='0x791E78C60652B0E19B8FE9EB035B122B261490C477FD76E38C0C928187076103' AND state LIKE '%0xFFEEDD%' LIMIT 10" host:127.0.0.1:3307 database:coinsdb user:myuser password:myuser</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>reset</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Reset your node in various ways.`
+<p>You MUST wait until all your original keys are created before this is allowed.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:chainsync</code></pre>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:seedsync keyuses:1000 phrase:"ENTER 24 WORDS HERE"</code></pre>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:restore file:backup-jul23.bak password:Longsecurepassword456</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>restore</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Restore your node from a backup.`
+<p>You MUST wait until all your original keys are created before this is allowed.</p>
+<p>Examples:</p>
+<pre><code>restore file:my-full-backup-01-Jan-22 password:Longsecurepassword456</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>restoresync</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Restore the entire system AND perform an archive chain sync. Use when the backup is old.`
+<p>The node will be restored and an archive chain sync will commence from the last block in the backup.</p>
+<p>You MUST wait until all your original keys are created before this is allowed.</p>
+<p>Examples:</p>
+<pre><code>restoresync file:my-full-backup-01-Jan-22 password:Longsecurepassword456  host:89.98.89.98:9001</code></pre>
+<pre><code>restoresync file:my-full-backup-01-Jan-22 password:Longsecurepassword456 keyuses:1000  host:89.98.89.98:9001</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>vault</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`View, encrypt/decrypt or wipe/restore your seed phrase and private keys.`
+<div class="callout"><strong>Warning</strong><br>DO NOT SHARE YOUR SEED PHRASE WITH ANYONE.
+<p>BE CAREFUL. ENSURE YOU HAVE A BACKUP AND SECURE RECORD OF YOUR PASSPHRASE BEFORE LOCKING.</div></p>
+<p>You must have your passphrase to unlock your private keys.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>vault action:wipekeys seed:0xDD4E..</code></pre>
+<pre><code>vault action:restorekeys phrase:\"SPRAY LAMP..\"</code></pre>
+<pre><code>vault action:passwordlock password:your_password</code></pre>
+<pre><code>vault action:passwordlock password:your_password confirm:your_password</code></pre>
+<pre><code>vault action:passwordunlock password:your_password</code></pre>
+<h2>MiniDapp System</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>mds</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`MiniDAPP System management.`
+<p>Install, update or uninstall MiniDapps and set their permissions to READ/WRITE. Default permission is READ.</p>
+<p>DO NOT give WRITE permissions to MiniDapps you do not trust!</p>
+<p>Accept/deny pending commands from MiniDapps with READ permissions.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>mds action:list</code></pre>
+<pre><code>mds action:install file:wallet_1.0.mds.zip</code></pre>
+<pre><code>mds action:install file:/Users/MyUser/Downloads/wallet_1.0.mds.zip trust:write</code></pre>
+<pre><code>mds action:update uid:0xABA3.. file:wallet_2.0.mds.zip</code></pre>
+<pre><code>mds action:uninstall uid:0xABA3..</code></pre>
+<pre><code>mds action:pending</code></pre>
+<pre><code>mds action:accept uid:0xCDF6..</code></pre>
+<pre><code>mds action:deny uid:0xCDF6..</code></pre>
+<pre><code>mds action:permission uid:0xABA3.. trust:write</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>checkmode</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show if this MiniDAPP is READ or WRITE mode.`
+<p>Can be called from a MiniDapp to check whether it is in READ or WRITE mode.</p>
+<pre><code>checkmode</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>checkpending</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show if a pending command UID is in the pending list`
+<pre><code>checkpending</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>checkrestore</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Check if the system is restoring`
+<p>Check whether Minima is currently being restored, is shutting down and if shutdown is complete.</p>
+<pre><code>checkrestore</code></pre>
+<h2>Network</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>connect</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Connect to a network Minima instance.`
+<p>Connect to another node to join the main network or to create a private test network.</p>
+<p>Set your own host using the -host parameter at start up.</p>
+<p>Examples:</p>
+<pre><code>connect host:94.0.239.117:9001</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>disconnect</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Disconnect from a connected or connecting host.`
+<p>Optionally disconnect from all hosts.</p>
+<p>Examples:</p>
+<pre><code>disconnect uid:all</code></pre>
+<pre><code>disconnect uid:CVNPMLPOCQ0HQ</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>message</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Send a message to one or all of your direct peers.`
+<p>Examples:</p>
+<pre><code>message data:"hello" uid:CVNPMLPOCQ0HQ</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>network</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show network status or reset traffic counter.`
+<pre><code>network</code></pre>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>network</code></pre>
+<pre><code>network action:list</code></pre>
+<pre><code>network action:reset</code></pre>
+<pre><code>network action:recalculateip</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>peers</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Prints the peers list this node has. P2P must be enabled.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>peers</code></pre>
+<pre><code>peers action:list</code></pre>
+<pre><code>peers action:addpeers peerslist:["31.125.188.214:9001","94.0.239.117:9001"]</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>ping</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Ping a host and get back Minima Node info.`
+<p>Examples:</p>
+<pre><code>ping host:</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>rpc</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Enable and disable RPC on port 9005 (default is off).`
+<p>Examples:</p>
+<pre><code>rpc enable:true</code></pre>
+<pre><code>rpc enable:true ssl:true password:minima</code></pre>
+<pre><code>rpc enable:true password:minima</code></pre>
+<pre><code>rpc enable:false</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>webhooks</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Add a web hook that is called with Minima events as they happen.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>webhooks action:list</code></pre>
+<pre><code>webhooks action:add hook:http://127.0.0.1/myapi.php</code></pre>
+<pre><code>webhooks action:remove hook:http://127.0.0.1/myapi.php</code></pre>
+<pre><code>webhooks action:add hook:http://127.0.0.1/myapi.php filter:MINING</code></pre>
+<pre><code>webhooks action:clear</code></pre>
+<h2>Maxima</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>maxcontacts</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Manage your Maxima contacts. List, refresh, add, remove or search contacts.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>maxcontacts</code></pre>
+<pre><code>maxcontacts action:list</code></pre>
+<pre><code>maxcontacts action:add contact:MxG18H..</code></pre>
+<pre><code>maxcontacts action:remove id:1</code></pre>
+<pre><code>maxcontacts action:search publickey:0x3081..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>maxcreate</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create a 128 bit RSA public and private key.`
+<p>You can use them with maxsign and maxverify.</p>
+<pre><code>maxcreate</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>maxextra</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Perform extra functions on Maxima.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>maxextra action:staticmls host:Mx...@34.190.784.3:9001</code></pre>
+<pre><code>maxextra action:staticmls host:clear</code></pre>
+<pre><code>maxextra action:addpermanent publickey:0x3081..</code></pre>
+<pre><code>maxextra action:removepermanent publickey:0x3081..</code></pre>
+<pre><code>maxextra action:listpermanent</code></pre>
+<pre><code>maxextra action:clearpermanent</code></pre>
+<pre><code>maxextra action:getaddress maxaddress:MAX#0x3081..#Mx..@34.190.784.3:9001</code></pre>
+<pre><code>maxextra action:mlsinfo</code></pre>
+<pre><code>maxextra action:allowallcontacts enable:false</code></pre>
+<pre><code>maxextra action:addallowed publickey:0x2451..</code></pre>
+<pre><code>maxextra action:listallowed</code></pre>
+<pre><code>maxextra action:clearallowed</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>maxima</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Check your Maxima details, send a message/data.`
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>maxima action:info</code></pre>
+<pre><code>maxima action:setname name:myname</code></pre>
+<pre><code>maxima action:hosts</code></pre>
+<pre><code>maxima action:send id:1 application:appname data:0xFED5..</code></pre>
+<pre><code>maxima action:send to:MxG18H.. application:appname data:0xFED5..</code></pre>
+<pre><code>maxima action:send publickey:0xCD34.. application:ip:port data:0xFED5.. poll:true</code></pre>
+<pre><code>maxima action:refresh</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>maxsign</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Sign and verify data with your Maxima ID.`
+<p>Returns the signature of the data, signed with your Maxima private key or the specified key.</p>
+<p>Examples:</p>
+<pre><code>maxsign data:0xCD34..</code></pre>
+<pre><code>maxsign data:0xCD34.. privatekey:0x3081..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>maxverify</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Verify data with a Maxima public key. Returns valid true or false.`
+<p>Examples:</p>
+<pre><code>maxverify data:0xCD34.. publickey:0xFED5.. signature:0x4827..</code></pre>
+<h2>Scripts</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>newscript</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Add a new custom script.`
+<p>Track ALL coins with this script address or just ones with state variables relevant to you.</p>
+<p>Examples:</p>
+<pre><code>newscript trackall:true script:"RETURN SIGNEDBY(0x1539..) AND SIGNEDBY(0xAD25..)"</code></pre>
+<pre><code>newscript trackall:false script:"RETURN (@BLOCK GTE PREVSTATE(1) OR @COINAGE GTE PREVSTATE(4)) AND VERIFYOUT(@INPUT PREVSTATE(2) @AMOUNT @TOKENID FALSE)"</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>removescript</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Remove a custom script.`
+<p>BE CAREFUL not to remove a script you need.</p>
+<pre><code>removescript</code></pre>
+<p>Examples:</p>
+<pre><code>removescript address:0xFFE678768CDE..</code></pre>
+<pre><code>removescript address:MxFFE678768CDE..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>runscript</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Test run a script with predefined parameters without executing on chain.`
+<p>Scripts will be auto cleaned for you.</p>
+<p>Examples:</p>
+<pre><code>runscript script:"RETURN SIGNEDBY(0xFF..) AND @BLOCK GT 100" globals:\{"@BLOCK":"101"} signatures:["0xFF"]</code></pre>
+<pre><code>runscript script:"LET st=STATE(99) LET ps=PREVSTATE(99) IF st EQ ps AND @COINAGE GT 20 AND SIGNEDBY(0xFF) THEN RETURN TRUE ELSEIF st GT ps AND SIGNEDBY(0xEE) THEN RETURN TRUE ENDIF" globals:\{"@COINAGE":"23"} state:\{"99":"0"} prevstate:\{"99":"0"} signatures:["0xFF"]</code></pre>
+<pre><code>runscript script:"MAST 0x0E3.." extrascripts:\{"RETURN TRUE":"0x000.."}</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>scripts</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`List all scripts or search for a script / basic address your node is tracking.`
+<p>Examples:</p>
+<pre><code>scripts</code></pre>
+<pre><code>scripts address:0xFED5..</code></pre>
+<pre><code>scripts address:MxG087..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>tutorial</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show the complete Grammar for Minima KISSVM scripting.`
+<pre><code>tutorial</code></pre>
+<h2>Search</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>coins</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Search for coins that are relevant to you or in the unpruned chain.`
+<p>Examples:</p>
+<pre><code>coins</code></pre>
+<pre><code>coins relevant:true sendable:true</code></pre>
+<pre><code>coins relevant:true amount:10</code></pre>
+<pre><code>coins coinid:0xEECD7..</code></pre>
+<pre><code>coins relevant:true tokenid:0xFED5..</code></pre>
+<pre><code>coins relevant:true address:0xCEF6.. tokenid:0x00</code></pre>
+<pre><code>coins relevant:true address:MxABC9..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>keys</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Get a list of all your public keys or create a new key.`
+<p>Each public key can be used for signing securely 262144 (64^3) times.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>keys</code></pre>
+<pre><code>keys action:list</code></pre>
+<pre><code>keys action:list publickey:0xFFEE56..</code></pre>
+<pre><code>keys action:new</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>tokens</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`List all tokens in the unpruned chain.`
+<p>Optionally import or export tokens to share token data.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>tokens</code></pre>
+<pre><code>tokens tokenid:0xFED5..</code></pre>
+<pre><code>tokens action:export tokenid:0xFED5..</code></pre>
+<pre><code>tokens action:import data:0x000..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txpow</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Search for a specific TxPoW in the unpruned chain or your mempool.`
+<p>Search by txpowid, block or 0x / Mx address.</p>
+<p>Examples:</p>
+<pre><code>txpow txpowid:0x000..</code></pre>
+<pre><code>txpow block:200</code></pre>
+<pre><code>txpow address:0xCEF6..</code></pre>
+<h2>Send</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>multisig</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create a multisig coin that can only be used in a txn signed by root OR n of m given public keys.`
+<p>Provide your Vault password to temporarily decrypt the private keys when creating the coin or signing a transaction.</p>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>multisig action:create id:2of3multisig amount:100 publickeys:["0xFED5..","0xABD6..","0xFD8B.."] required:2 password:your_password</code></pre>
+<pre><code>multisig action:create id:3of3multisigroot amount:100 publickeys:["0xFED5..","0xABD6..","0xFD8B.."] required:3 root:0xFFE..</code></pre>
+<pre><code>multisig action:list</code></pre>
+<pre><code>multisig action:list id:2of3multisig</code></pre>
+<pre><code>multisig action:spend id:3of3multisigroot amount:5 address:0xFF..</code></pre>
+<pre><code>multisig action:spend coinid:0x17EA.. amount:5 address:0xFF.. file:multisig.txn</code></pre>
+<pre><code>multisig action:sign file:multispend_1673351592845.txn</code></pre>
+<pre><code>multisig action:sign file:multisig.txn password:your_password</code></pre>
+<pre><code>multisig action:view file:multisig.txn</code></pre>
+<pre><code>multisig action:post file:signed_multispend_1673351592845.txn</code></pre>
+<pre><code>multisig action:post file:signed_multisig.txn</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>send</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Send Minima or custom tokens to a wallet or custom script address.`
+<p>Optionally, send to multiple addresses in one transaction; split UTxOs; add state variables or include a burn.</p>
+<p>Examples:</p>
+<pre><code>send address:0xFF.. amount:10</code></pre>
+<pre><code>send address:0xFF.. amount:10 tokenid:0xFED5.. burn:0.1</code></pre>
+<pre><code>send address:0xFF.. amount:10 split:5 burn:0.1</code></pre>
+<pre><code>send multi:["0xFF..:10","0xEE..:10","0xDD..:10"] split:10</code></pre>
+<pre><code>send amount:1 address:0xFF.. state:{"0":"0xEE..","1":"0xDD.."}</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sendpoll</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Send function that adds 'send' commands to a list and polls every 30 seconds until the return status is 'true'.`
+<pre><code>sendpoll</code></pre>
+<p>Parameters used with the <code>action:</code> parameter:</p>
+<p>Examples:</p>
+<pre><code>sendpoll address:0xFF.. amount:10</code></pre>
+<pre><code>sendpoll address:0xFF.. amount:10 tokenid:0xFED5.. burn:0.1</code></pre>
+<pre><code>sendpoll action:list</code></pre>
+<pre><code>sendpoll action:remove uid:0x..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sendnosign</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create a txn but don't sign it.`
+<p>Constructs and outputs an unsigned transaction to a file in the base folder.</p>
+<p>The output .txn file can then be imported to an offline node for signing. Must be done from an online node as the MMR proofs for the input coins are added.</p>
+<p>Useful when the keys on an online node are wiped or password locked.</p>
+<p>Examples:</p>
+<pre><code>sendnosign address:0xFF.. amount:10</code></pre>
+<pre><code>sendnosign address:0xFF.. amount:10 tokenid:0xFED5.. burn:0.1</code></pre>
+<pre><code>sendnosign address:0xFF.. amount:10 split:5 burn:0.1</code></pre>
+<pre><code>sendnosign multi:["0xFF..:10","0xEE..:10","0xDD..:10"] split:10</code></pre>
+<pre><code>sendnosign amount:1 address:0xFF.. state:{"0":"0xEE..","1":"0xDD.."}</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sendsign</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Sign a transaction previously created by the 'sendnosign' command, by specifying its .txn file.`
+<p>Optionally, if the node is Vault password locked, provide the Vault password to decrypt the keys for signing.</p>
+<p>The keys will be automatically re-encrypted after signing.</p>
+<p>Can be signed on an offline node, then posted from an online node.</p>
+<p>Examples:</p>
+<pre><code>sendsign file:unsignedtransaction-1674907380057.txn</code></pre>
+<pre><code>sendsign file:C:\\Users\\unsignedtransaction-1674907380057.txn password:your_vaultpassword</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sendview</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`View a transaction (signed or unsigned).`
+<p>View the details of a transaction created by the 'sendnosign' command by specifying its .txn file.</p>
+<p>Examples:</p>
+<pre><code>sendview file:unsignedtransaction-1674907380057.txn</code></pre>
+<pre><code>sendview file:C:\\Users\\unsignedtransaction-1674907380057.txn</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sendpost</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Post a transaction previously created and signed using the 'sendnosign' and 'sendsign' commands.`
+<p>Must be posted from an online node within approximately 24 hours of creation to ensure MMR proofs are valid.</p>
+<p>Examples:</p>
+<pre><code>sendpost file:signedtransaction-1674907380057.txn</code></pre>
+<pre><code>sendpost file:C:\\Users\\signedtransaction-1674907380057.txn</code></pre>
+<h2>Signatures</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sign</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Sign the data with the publickey.`
+<p>Returns the signature of the data, signed with the corresponding private key.</p>
+<pre><code>sign data:0xCD34..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>verify</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Verify a signature.`
+<p>Returns valid true or false.</p>
+<p>Examples:</p>
+<pre><code>verify data:0xCD34.. publickey:0xFED5.. signature:0x4827..</code></pre>
+<h2>Transactions</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>burn</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`View the latest Burn metrics`
+<p>View the number of burn transactions and the maximum, median, average and minimum burn metrics for the last 1, 10 and 50 blocks.</p>
+<p>Use as an indicator for an appropriate burn amount for transactions.</p>
+<p><strong>Examples:</strong></p>
+<pre><code>burn</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>logs</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Enable detailed logs for script errors or mining activity.`
+<p>Enable detailed logs for script errors, mining activity, Maxima, network messages, blocks, or IBD processing.</p>
+<p>Examples:</p>
+<pre><code>logs scripts:true</code></pre>
+<pre><code>logs scripts:false mining:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnbasics</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Automatically set the MMR proofs and scripts for a transaction.`
+<p>Only run this command when a transaction is ready to be posted.</p>
+<pre><code>txnbasics</code></pre>
+<p>Examples:</p>
+<pre><code>txnbasics id:simpletxn</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txncheck</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Show details about the transaction.`
+<p>Verify whether the inputs, outputs, signatures, proofs, and scripts are valid.</p>
+<pre><code>txncheck</code></pre>
+<p>Examples:</p>
+<pre><code>txncheck id:multisig</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnclear</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Clear ALL the Witness data for a transaction.`
+<p>Clears signatures, mmr proofs and script proofs.</p>
+<p>Examples:</p>
+<pre><code>txnclear id:multisig</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txncreate</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create a custom transaction.`
+<p>The first step before defining the inputs and outputs.</p>
+<p>Examples:</p>
+<pre><code>txncreate id:multisig</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txndelete</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Delete a previously created custom transaction.`
+<p>Examples:</p>
+<pre><code>txndelete id:multisig</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnexport</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Export a transaction as HEX or to a file.`
+<p>Examples:</p>
+<pre><code>txnexport id:simpletxn</code></pre>
+<pre><code>txnexport id:multisig file:multisig.txn</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnimport</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Import a transaction from previously exported HEX data or a .txn file.`
+<p>Examples:</p>
+<pre><code>txnimport data:0x0000..</code></pre>
+<pre><code>txnimport id:simpletxn data:0x0000..</code></pre>
+<pre><code>txnimport id:multisig file:multisig.txn</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txninput</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Add a coin as an input to a transaction.`
+<pre><code>txninput</code></pre>
+<p>Examples:</p>
+<pre><code>txninput id:simpletxn coinid:0xD0BF..</code></pre>
+<pre><code>txninput id:multisig coinid:0xD0BF.. scriptmmr:true</code></pre>
+<pre><code>txninput id:posttxn coindata:0x000..</code></pre>
+<pre><code>txninput id:eltootxn floating:true address:0xFED5.. amount:10 tokenid:0x00</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnlist</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`List your custom transactions. Includes previously posted transactions.`
+<p>Examples:</p>
+<pre><code>txnlist</code></pre>
+<pre><code>txnlist id:multisig</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnoutput</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create a transaction output.`
+<p>This will create a new coin (UTxO).</p>
+<p>If the sum of inputs > outputs, the difference will be burned unless change to the sender is defined as an output.</p>
+<p>Examples:</p>
+<pre><code>txnoutput id:simpletxn amount:10 address:0xFED5..</code></pre>
+<pre><code>txnoutput id:multisig amount:10 address:0xFED5.. tokenid:0xCEF5.. storestate:false</code></pre>
+<pre><code>txnoutput id:eltootxn amount:10 address:0xFED5..</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnpost</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">Post a transaction. Automatically set the Scripts and MMR proofs. Optionally set a burn for the transaction and mine the transaction immediately to return the final txpowid.
+<p>Examples:</p>
+<pre><code>txnpost id:simpletxn</code></pre>
+<pre><code>txnpost id:simpletxn auto:true burn:0.1</code></pre>
+<pre><code>txnpost id:multisig burn:0.1</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnscript</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Add scripts to a transaction.`
+<p>If it is a single script, and not one created with mmrcreate, leave the proof blank.</p>
+<p>If it is an mmrcreate script, include the proof.</p>
+<p>Examples:</p>
+<pre><code>txnscript id:txnmast scripts:{"RETURN TRUE":""}</code></pre>
+<pre><code>txnscript id:txnmast scripts:{"RETURN TRUE":"0x000.."}</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnsign</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Sign a transaction.`
+<pre><code>txnsign</code></pre>
+<p>Examples:</p>
+<pre><code>txnsign id:simpletxn publickey:auto</code></pre>
+<pre><code>txnsign id:simpletxn publickey:auto password:your_password</code></pre>
+<pre><code>txnsign id:multisig publickey:0xFD8B..</code></pre>
+<pre><code>txnsign id:simpletxn publickey:auto txnpostauto:true</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>txnstate</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Add a state variable to a transaction.`
+<p>Examples:</p>
+<pre><code>txnstate id:multisig port:0 value:0xFED5..</code></pre>
+<pre><code>txnstate id:multisig port:1 value:100</code></pre>
+<pre><code>txnstate id:multisig port:1 value:"string"</code></pre>
+<h2>External wallet transactions</h2>
+<p>These are available from v1.0.41 onwards.</p>
+<p>The following commands allow you to construct, sign (online or offline) and post transactions on behalf of specific wallets that are separate from the node's own wallet.</p>
+<p>They should be used alongside the <code>keys action:genkey</code> OR <code>keys action:genkey phrase:"MY SEED PHRASE"</code> command which generate a new private/public key pair and wallet address from a random or given seed phrase that is independent from the node itself.</p>
+<p>Note that <code>sendfrom</code> and <code>createfrom</code> require a <a href="/docs/run-a-node/mega-node">Mega MMR node</a>.</p>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>sendfrom</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Send Minima or Tokens from a certain address with a given private key.`
+<p>Must be used from an ONLINE node.</p>
+<p>Examples:</p>
+<pre><code>sendfrom fromaddress:0xFEEED.. address:0xABCD.. script:"INSERT SCRIPT" privatekey:0xGHFK.. keyuses:5</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>createfrom</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Create and export an unsigned txn from a certain address.`
+<p>Must be run from a node using the <code>-megammr</code> start up parameter. Can be used from an ONLINE or OFFLINE node.</p>
+<p>Examples:</p>
+<pre><code>createfrom fromaddress:0xFEEED.. address:0xABCD.. script:"INSERT SCRIPT"</code></pre>
+<p>Examples:</div></div></div></p>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>signfrom</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Sign a createfrom txn.`
+<p>Can be used from an ONLINE or OFFLINE node.</p>
+<p>Examples:</p>
+<pre><code>signfrom data:0x000000.. address:0xABCD.. script:"INSERT SCRIPT" keyuses:5</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>postfrom</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">`Post a signfrom txn to the network`
+<p>Must be used from an ONLINE node.</p>
+<p>Examples:</p>
+<pre><code>postfrom data:0x000000.. mine:true</code></pre>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

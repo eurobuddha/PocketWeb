@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index — Minima Docs</title>
+  <title>The Pulse Network — Minima Docs</title>
   <script type="text/javascript" src="../../miniweb/mds.js"></script>
   <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
   <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
@@ -16,7 +16,7 @@
 <div class="sidebar">
 <div class="sidebar-title">📘 Minima Docs</div>
 <div class="sidebar-group">About Minima</div>
-<a class="sidebar-link active" href="index.html">Index</a>
+<a class="sidebar-link" href="index.html">Index</a>
 <a class="sidebar-link" href="at-a-glance.html">At A Glance</a>
 <a class="sidebar-link" href="use-cases.html">Use Cases</a>
 <a class="sidebar-link" href="tokenomics.html">Tokenomics</a>
@@ -27,7 +27,7 @@
 <a class="sidebar-link" href="minimawhitepaper-introduction.html">Introduction</a>
 <a class="sidebar-link" href="minimawhitepaper-txpow.html">Tx-PoW</a>
 <a class="sidebar-link" href="minimawhitepaper-maxima.html">Maxima</a>
-<a class="sidebar-link" href="minimawhitepaper-thepulsenetwork.html">The Pulse Network</a>
+<a class="sidebar-link active" href="minimawhitepaper-thepulsenetwork.html">The Pulse Network</a>
 <a class="sidebar-link" href="minimawhitepaper-powvsdistributedpow.html">PoW vs Distributed PoW</a>
 <a class="sidebar-link" href="minimawhitepaper-hashcashandburn.html">HashCash and Burn</a>
 <a class="sidebar-link" href="minimawhitepaper-energy.html">Energy</a>
@@ -54,26 +54,14 @@
 
 <div class="main-content">
   <div class="prose">
-    <h1>Index</h1>
-    <hr>
-<p>title: What is Minima?</p>
-<p>description: Learn more about Minima</p>
-<p>tag: core</p>
-<hr>
-<p>Minima is the only decentralised layer 1 blockchain lightweight enough to run entirely on mobile and IoT (Internet of Things) silicon chips - and versatile enough to scale across almost any physical device - Minima is unique in its ability to provide Web3 based infrastructure, providing everyday solutions on everyday devices.</p>
-<p>Minima provides utility beyond what is already possible, on a completely decentralised blockchain.</p>
-<p>Additionally including a secure, peer-to-peer messaging system - Maxima - the Minima network also enables decentralised transfer of information.</p>
-<p>Minima’s technology is compact, quantum-resistant, and secured by every single device on the network.</p>
-<div class="callout"><strong>Minima node - browser interface</strong><br>[Image]</div>
-<h2>Who is Minima for?</h2>
-<p>Minima primarily caters to four groups, creating value for each in different ways:</p>
-<p><strong>Enterprises</strong> benefit by deploying Minima's lightweight and versatile nodes that naturally scale for an increasing user base and reduce infrastructure costs.</p>
-<p><strong>Decentralised Physical Infrastructure Networks</strong> (DePINs) that build on Minima can quickly prove the value or concept of their project before building and scaling on Minima.</p>
-<p><strong>Developers</strong> benefit from open source code, easy-to-create decentralised applications (MiniDapps), comprehensive documentation and support materials.</p>
-<p><strong>Individuals</strong> interested in decentralised and trustless payments can start a Minima node and launch projects, tokenise real-world assets, and participate in constructing and validating blocks.</p>
-<p>{/*</p>
-  <div class="cards-grid">
-  </div> */}
+    <h1>The Pulse Network</h1>
+    <p>Both Minima and Maxima require users to perform a small amount of PoW when sending messages. The more messages, the more PoW. The more PoW, the more secure the network. But what if a user is not sending any messages? Can that user also help to secure the network? What if sending a message is time-critical, and there must be no delay before sending it – say a high-frequency trader? Maxima addresses both these concerns by repurposing existing technology, allowing users to do the work beforehand, and then present that work as proof when sending messages.</p>
+<p>Most network protocols have a PING message. This is a message network peers periodically send to check the health and status of their peers. Network nodes send a PING message and peers reply, to show they are functioning correctly. But in a crypto network like Minima far more information on the health and status of a node can be transmitted in a PING message. Add some PoW to a PING message, and you create a Pulse.</p>
+<p>Every 10 minutes every Minima user creates a valid Tx-PoW message, with its current correct block details, but leaves the transaction blank. Performs 10 seconds of work. Then sends this message to each of its peers. If the message is not a valid Tx-PoW message, the peer is kicked off the network. If a peer does not send a Pulse message every 10 minutes, the peer is kicked off the network. If the Tx-PoW message is also a block, on average 1 Tx-PoW message every 50 seconds, that is then forwarded on to the rest of the network</p>
+<p>This has many benefits :</p>
+<ul><li>Shares the peers’ current mempool - the list of transactions it knows about not in the current longest chain. Any discrepancies can be resolved and missing transactions passed on. Peer data synchronisation.</li><li>Shows the peer is a functioning Minima node, has a working network connection, is a valid router for network messages and can help secure the network.</li><li>Adds to the overall PoW security of the network.</li><li>This is all off-chain. Only the immediate peers check the Pulse message and only a block is forwarded on to the rest of the network.</li></ul>
+<p>As the requirements to send a Pulse message are so small, should a peer not be able to send a Pulse message, there must be something wrong, so there is no point wasting resources. When they fix themselves, they can come back online, and rejoin the network. Those thinking they will not pay the PoW, will just be kicked off the network.</p>
+<p>Minima has a Pulse. No zombies allowed (nodes with no Pulse).</p>
 
   </div>
   <div class="doc-footer">

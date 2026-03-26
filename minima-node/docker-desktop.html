@@ -1,0 +1,180 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker Desktop — Run a Node</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🖥️ Run a Node</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="node-types.html">Node Types</a>
+<a class="sidebar-link" href="firewall-rules.html">Firewall Rules</a>
+<a class="sidebar-link" href="startup-parameters.html">Startup Parameters</a>
+<div class="sidebar-group">Full Node</div>
+<a class="sidebar-link" href="android.html">Android</a>
+<a class="sidebar-link" href="windows.html">Windows</a>
+<a class="sidebar-link" href="mac.html">Mac</a>
+<a class="sidebar-link active" href="docker-desktop.html">Docker Desktop</a>
+<a class="sidebar-link" href="linux-vps-docker.html">Linux Vps Docker</a>
+<a class="sidebar-link" href="linux-vps-service.html">Linux Vps Service</a>
+<a class="sidebar-link" href="desktop-cli.html">Desktop Cli</a>
+<div class="sidebar-group">Archive Node</div>
+<a class="sidebar-link" href="archive-node.html">Archive Node</a>
+<div class="sidebar-group">Mega Node</div>
+<a class="sidebar-link" href="mega-node.html">Mega Node</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-about.html">Meg About</a>
+<a class="sidebar-link" href="meg-setup.html">Meg Setup</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Docker Desktop</h1>
+    <hr>
+<p>title: Docker Desktop</p>
+<p>description: Run a Minima node on Docker Desktop</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>Docker is an open-source software platform that simplifies the process of running, testing and managing applications. It uses the operating system of the computer on which it&apos;s installed to provide an independent computing environment for an application to run on.</p>
+<h2>Start a new Minima node</h2>
+<h3>Install Docker Desktop</h3>
+<div class="callout"><strong>Docker Desktop</strong><br>Download and install Docker Desktop from the [Docker website](https://docs.docker.com/desktop/).</div>
+<p>### Run Docker Desktop on startup</p>
+<p>Once installed, set Docker to start when your computer turns on - launch Docker and click on the <strong>Settings</strong> icon in the top right. Under <strong>General</strong>, select <strong>Start Docker Desktop when you log in</strong>, then click <strong>Apply & Restart</strong>.</p>
+<h3>Docker container</h3>
+<p>Open a new terminal/command line window and start a docker container for your</p>
+<p>Minima node by pasting the following into your command line window</p>
+<div class="tab-section"><h4>Mac/Linux</h4>```bash 
+<p>docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -v ~/minimadocker9001:/home/minima/data -p 9001-9003:9001-9003 --restart unless-stopped --name minima9001 minimaglobal/minima:latest</p>
+<pre><code>&lt;div class="tab-section"&gt;&lt;h4&gt;Windows&lt;/h4&gt;```bash
+  docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -v C:\Users\INSERTUSERNAME\minimadocker9001:/home/minima/data -p 9001-9003:9001-9003 --restart unless-stopped --name minima9001 minimaglobal/minima:latest</code></pre>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>What do the parameters mean?</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">- `-d` - Daemon mode, Minima will run in the background
+<ul><li><code>-e minima_mdspassword=INSERTPASSWORD</code> - Sets the password to login to your node</li><li><code>-e minima_desktop=true</code> - Sets your node type as a desktop node that does not receive incoming connections</li><li><code>-v ~/minimadocker9001:/home/minima/data</code> - Maps the Minima data directory to a local directory</li><li><code>-p 9001-9003:9001-9003</code> - Maps the Minima ports to the host machine</li><li><code>--restart unless-stopped</code> - Restarts the container if it stops</li><li><code>--name minima9001</code> - Names the container</li><li><code>minimaglobal/minima:latest</code> - The Minima image to run</div></div></div></li></ul>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Optional startup parameters</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">The following start up parameters can optionally be specified when starting your Docker node.
+<p>To add/remove parameters after a node has been started, you must stop and</p>
+<p>remove your minima9001 Docker container, then start it again, adding/removing</p>
+<p>the required parameters in front of <code>-v ~/minimadocker9001:/home/minima/data</code>.</p>
+<p>As long as you use the same minimadocker8001 folder, your previous node will</p>
+<p>be preserved but will use different parameters.</p>
+<p>General</p>
+<ul><li><code>-e minima_clean=true</code> - <strong>CAREFUL!</strong> Clears existing data, starts a new fresh node. All coins will be lost.</li><li><code>e minima_host=ipaddress</code> - specify the host IP</li><li><code>minima_dbpassword=yourdbpassword</code> - Main Wallet / SQL AES password - MUST be specified on first launch. CANNOT be changed later.</li><li><code>minima_allowallip=true</code> - Allow all IPs for Maxima / Networking. Local IPs won't be allowed otherwise.</li><li><code>minima_archive=true</code> - Run an Archive node - store all archive data / the cascade to allow for resyncs from this node</li><li><code>minima_isclient=true</code> - Tells the P2P System that this node can't accept incoming connections</li><li><code>minima_server=true</code> - Use Server settings - this node can accept incoming connections</li><li><code>minima_desktop=true</code> - Use Desktop settings - this node can't accept incoming connections</li><li><code>minima_connect=ip:port</code> - Disable the automatic P2P system and create your own network by manually connecting to this list of host:port</li></ul>
+<p>MiniDapp System (MDS)</p>
+<ul><li><code>-e minima_mdsenable=true/false</code> - enable the MiniDapp System (default port 9003). Enabled by default.</li><li><code>-e minima_mdspassword=yourmdspassword</code> - specify the mds login password</li></ul>
+<p>RPC</p>
+<ul><li><code>-e minima_rpcenable=true/false</code> - enable remote procedure call. Disabled by default.</li><li><code>-e minima_rpcssl=true</code> - use Self Signed SSL cert to run RPC</li><li><code>-e minima_rpcpassword=yourrpcpassword</code> - set Basic Auth password for RPC calls ( Use with SSL / stunnel ). Only secure if used with SSL.</li><li><code>-e minima_rpcclrf=true</code> - use CRLF at the end of the RPC headers (NodeJS)</li></ul>
+<p>Help</p>
+<ul><li><code>-e minima_showparams=true</code> - Show relevant startup params on launch</li><li><code>-e minima_help=true</code> - print help for the start up parameters</div></div></div></li></ul>
+<p>You will notice a container in Docker called minima9001, this is running your Minima node.</p>
+<p>[Image]</p>
+<h3>Check your node is running</h3>
+<p>Click on <strong>minima9001</strong> and check the logs tab and ensure your node has started up.</p>
+<p>[Image]</p>
+<p>Your node is now installed & running!</p>
+<p>To ensure your node updates automatically when a new version of Minima is released, continue to start a Watchtower container.</p>
+<h2>Automate updates with Watchtower</h2>
+<p>A Watchtower container enables automatic updates of your Minima node when a new version is released. It will pull down the latest Minima image and restart the node using the same parameters you initially specified.</p>
+<p>Create the Watchtower container by running the following command from your terminal/command line interface.</p>
+<pre><code>docker run -d --restart unless-stopped --name watchtower -e WATCHTOWER_CLEANUP=true -e WATCHTOWER_TIMEOUT=60s -e WATCHTOWER_POLL_INTERVAL=28800 -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower</code></pre>
+<div class="callout"><strong>Note</strong><br>This will update ALL containers you have running in Docker, to restrict it to
+<p>your Minima container only, add the container name of your Minima node to the</p>
+<p>end of the command. You can specify multiple containers by listing the names</p>
+<p>separated by a space. For more details, see the [Docker</p>
+<p>documentation](https://containrrr.dev/watchtower/arguments/)</div></p>
+<p>You will see the Watchtower in Docker.</p>
+<p>[Image]</p>
+<p>Every 8 hours, the Watchtower will check whether there is a new version of Minima and will update if so.</p>
+<p>Optionally, to run a one time update on demand, you can start a watchtower container that you can run whenever you wish to check for updates.</p>
+<pre><code>docker run --name watchtower_runonce -e WATCHTOWER_CLEANUP=true -e WATCHTOWER_TIMEOUT=60s -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once</code></pre>
+<h2>Login to your node</h2>
+<p>Login</p>
+<p>To login to your node, open a web browser and navigate to <a href="<code>https://localhost:9003</code>"><code>https://localhost:9003</code></a> .</p>
+<p>The first time accessing your Minima node, you may need to pass through the</p>
+<p>security warning as Minima uses self-signed certificates. Learn how</p>
+<p><a href="https://www.vultr.com/docs/how-to-bypass-the-https-warning-for-self-signed-ssl-tls-certificates/">here</a>.</p>
+<p>You will see the login screen for your node.</p>
+<p>[Image]</p>
+<p>Enter your password</p>
+<p>Enter the password you set when starting your Minima node to login.</p>
+<div class="callout"><strong>Dont remember your password?</strong><br>To check your password, click on the name of your Minima node (e.g.
+<p>minima9001) in Docker desktop. On the <strong>Inspect</strong> tab, check the parameter for</p>
+<p><strong>mdspassword</strong>.</div></p>
+<p>Please see the <a href="#first-steps">first steps</a> to complete now your node is running.</p>
+<h2>First steps</h2>
+<p>The first time you install Minima, you will need to <strong>connect to the network</strong> and <strong>write down your seed phrase.</strong></p>
+<div class="cards-grid">
+</div>
+<h2>FAQ</h2>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Using the RPC client</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">You can use the Docker CLI/Terminal to interact with your node, for example to check your status, balance, password, incentive program setup or to create a backup. This requires enabling RPC.
+<p>To permanently enable RPC, stop and delete the container - this will not delete your data files - then start a new container with the following parameters:</p>
+<pre><code>docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -e minima_rpcenable=true -v ~/minimadocker9001:/home/minima/data -p 9001-9003:9001-9003 --restart unless-stopped --name minima9001 minimaglobal/minima:latest</code></pre>
+<p>Alternatively, to temporarily enable RPC:</p>
+<ul><li>Click on the minima9001 container and select the Terminal tab.</li><li>Run the following command to enable RPC:</li></ul>
+<pre><code>/bin/bash
+nano minima.config</code></pre>
+<p>[Image]</p>
+<ul><li>Scroll to the bottom of the file and add a new line, insert rpcenable=true.</li></ul>
+<p>Example:</p>
+<pre><code>data=/home/minima/data/.minima/
+mdsenable=true
+basefolder=/home/minima/data/
+daemon=true
+rpcenable=true</code></pre>
+<ul><li>Exit by pressing ctrl+x together, then save the file with y</li><li>Exit the container with <code>exit</code></li><li>Restart the container using the Restart icon in the top right</li><li>Once restarted, from the Terminal tab type <code>minima</code> and press Enter, you will see the Minima RPC client where you can enter any Minima command. To see a complete list of commands, type <code>help</code>.</li></ul>
+<p>[Image]</p>
+<div class="callout"><strong>Note</strong><br>RPC will be disabled the next time your docker container is updated to a new
+<p>version.</div></div></div></div></p>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How to check or change your login password</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">To check your login password, click on the name of the container and check the Inspect tab. The `mdspassword` parameter is your login password
+<p>To change your password, stop and remove your minima9001 container and restart it with a different password.</p>
+<ol><li>From the Containers screen, stop and remove the minima9001 container</li></ol>
+<p>[Image]</p>
+<ol><li>2. Repeat step 3 and 4 from <a href="#start-a-new-minima-node">Start a new Minima node using Docker</a>, with a different password.  </li></ol>
+<div class="callout"><strong>Info</strong><br>Deleting the container will not delete the minimadocker9001 data folder so your coins will be safe during this process.When starting the new container, you must use the same **minimadocker9001** folder to ensure your coins and data are restored.</div></div></div></div>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How to start a second node in Docker</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">To run a second node in Docker, you can create another container using
+<p>different port numbers, file path and name.</p>
+<p>To create a node on port 8001:</p>
+<div class="tab-section"><h4>Mac/Linux</h4>```bash 
+<p>docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -v ~/minimadocker8001:/home/minima/data -p 8001-8003:9001-9003 --restart unless-stopped --name minima8001 minimaglobal/minima:latest</p>
+<pre><code>&lt;div class="tab-section"&gt;&lt;h4&gt;Windows&lt;/h4&gt;```bash
+docker run -d -e minima_mdspassword=INSERTPASSWORD -e minima_desktop=true -v C:\Users\INSERTUSERNAME\minimadocker9001:/home/minima/data -p 8001-8003:9001-9003 --restart unless-stopped --name minima9001 minimaglobal/minima:latest</code></pre>
+<p>Access your second node by going to https://127.0.0.1:8003/</div></div></div></p>
+<div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How to remove a node</span><span class="arrow">▾</span></button><div class="faq-a"><div class="faq-a-inner">
+<p>Removing a container does not remove your minima data files - these are stored</p>
+<p>in the minimadocker9001 folder in your home directory. Deleting the</p>
+<p>minimadocker9001 folder without taking a backup will result in losing your</p>
+<p>coins.</p>
+<p>To remove a Docker node, stop and delete the minima9001 container.</p>
+<p>[Image]</p>
+<p>To start the same node with new startup parameters, reuse the minimadocker9001 directory in the startup line.</p>
+<p>To start a new, clean node, delete the minimadocker9001 folder in your home directory or specify a different when starting the container.</div></div></div></p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

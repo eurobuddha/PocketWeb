@@ -1,0 +1,101 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mac — Run a Node</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🖥️ Run a Node</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="node-types.html">Node Types</a>
+<a class="sidebar-link" href="firewall-rules.html">Firewall Rules</a>
+<a class="sidebar-link" href="startup-parameters.html">Startup Parameters</a>
+<div class="sidebar-group">Full Node</div>
+<a class="sidebar-link" href="android.html">Android</a>
+<a class="sidebar-link" href="windows.html">Windows</a>
+<a class="sidebar-link active" href="mac.html">Mac</a>
+<a class="sidebar-link" href="docker-desktop.html">Docker Desktop</a>
+<a class="sidebar-link" href="linux-vps-docker.html">Linux Vps Docker</a>
+<a class="sidebar-link" href="linux-vps-service.html">Linux Vps Service</a>
+<a class="sidebar-link" href="desktop-cli.html">Desktop Cli</a>
+<div class="sidebar-group">Archive Node</div>
+<a class="sidebar-link" href="archive-node.html">Archive Node</a>
+<div class="sidebar-group">Mega Node</div>
+<a class="sidebar-link" href="mega-node.html">Mega Node</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-about.html">Meg About</a>
+<a class="sidebar-link" href="meg-setup.html">Meg Setup</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Mac</h1>
+    <hr>
+<p>title: Mac</p>
+<p>description: Run a Minima node on Mac</p>
+<p>tag: run-a-node</p>
+<hr>
+<p>Minima can be installed as a desktop application, launched from a JNLP file, the Java Network Launch Protocol.</p>
+<div class="callout"><strong>CLI</strong><br>If you prefer to run Minima from the command line visit the [Desktop Command
+<p>Line](/docs/run-a-node/desktop-cli) page.</div></p>
+<h2>Setting up your node</h2>
+<h3>Open Web Start</h3>
+<p>Download and install <a href="https://openwebstart.com/download/">Open Web Start</a> using the default options.</p>
+<div class="callout"><strong>Not sure which version to download?</strong><br>From the Apple icon in the top left of your Mac, select “About This Mac”. If
+<p>the processor says <strong>Intel</strong>, choose the <strong>OpenWebStart_macos-x64</strong> option, if</p>
+<p>you see <strong>M1</strong> or <strong>M2</strong>, choose <strong>OpenWebStart_macos-aarch64</strong>.</div></p>
+<h3>Download Minima</h3>
+<p>Visit <a href="https://spartacusrex.com/jnlp.html">this link</a>, then click the !<a href="/img/runanode/jws-launch-button.png">Launch button</a> to download Minima as a JNLPX file.</p>
+<p>Open / double-click the downloaded minima.jnlpx file to install Minima as an application.</p>
+<h3>Desktop shortcut</h3>
+<p>Create a desktop shortcut for Minima if it was not created automatically. Right-click on the minima.jnlpx file and select Make Alias, then drag the alias file to your desktop.</p>
+<h3>Launch Minima on startup</h3>
+<p>Set Minima to start automatically when your PC starts by referring to this <a href="https://support.apple.com/en-gb/guide/mac-help/mh15189/14.0/mac/14.0">guide</a>.</p>
+<h3>Set your password</h3>
+<p>Set your own password - on the Settings tab, use the <code>-mdspassword</code> parameter in the <strong>Advanced params</strong> section.</p>
+<p>[Image]</p>
+<div class="callout"><strong>Password</strong><br>Enter a password over 12 characters using `a-z, A-Z, 0-9, !@#=?+<>,.-_ '()/ `characters only and without spaces, then close the window and restart the app for this to take effect.</div>
+<p>Once restarted, select Launch MinimaOS to access your node and login with your password.</p>
+<p>Congratulations on starting your node!</p>
+<div class="callout"><strong>Shutdown</strong><br>When shutting down your Mac, please shutdown Minima first by closing the
+<p>launcher window and waiting for the shutdown to complete. This ensures your</p>
+<p>node does not get corrupted by an unexpected shutdown.</div></p>
+<h2>Updating your node</h2>
+<p>To update your node to the latest version of Minima, simply close the dialog box to shut it down, then relaunch the JNLP. Any updates will be checked for and downloaded automatically.</p>
+<p>Please see the essential <a href="#first-steps">first steps</a> to complete now your node is running.</p>
+<h2>First steps</h2>
+<p>The first time you install Minima, you will need to <strong>connect to the network</strong> and <strong>write down your seed phrase.</strong></p>
+<div class="cards-grid">
+</div>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

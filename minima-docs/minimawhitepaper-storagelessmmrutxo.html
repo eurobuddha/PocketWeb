@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index — Minima Docs</title>
+  <title>Storage-less MMR UTXO — Minima Docs</title>
   <script type="text/javascript" src="../../miniweb/mds.js"></script>
   <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
   <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
@@ -16,7 +16,7 @@
 <div class="sidebar">
 <div class="sidebar-title">📘 Minima Docs</div>
 <div class="sidebar-group">About Minima</div>
-<a class="sidebar-link active" href="index.html">Index</a>
+<a class="sidebar-link" href="index.html">Index</a>
 <a class="sidebar-link" href="at-a-glance.html">At A Glance</a>
 <a class="sidebar-link" href="use-cases.html">Use Cases</a>
 <a class="sidebar-link" href="tokenomics.html">Tokenomics</a>
@@ -32,7 +32,7 @@
 <a class="sidebar-link" href="minimawhitepaper-hashcashandburn.html">HashCash and Burn</a>
 <a class="sidebar-link" href="minimawhitepaper-energy.html">Energy</a>
 <a class="sidebar-link" href="minimawhitepaper-acascadingchain.html">A Cascading Chain</a>
-<a class="sidebar-link" href="minimawhitepaper-storagelessmmrutxo.html">Storage-less MMR UTXO</a>
+<a class="sidebar-link active" href="minimawhitepaper-storagelessmmrutxo.html">Storage-less MMR UTXO</a>
 <a class="sidebar-link" href="minimawhitepaper-smartcontractstokensandtransactions.html">Smart Contracts, Tokens and Transactions</a>
 <a class="sidebar-link" href="minimawhitepaper-quantumsecure.html">Quantum Secure</a>
 <a class="sidebar-link" href="minimawhitepaper-blocksize.html">Block Size</a>
@@ -54,26 +54,12 @@
 
 <div class="main-content">
   <div class="prose">
-    <h1>Index</h1>
-    <hr>
-<p>title: What is Minima?</p>
-<p>description: Learn more about Minima</p>
-<p>tag: core</p>
-<hr>
-<p>Minima is the only decentralised layer 1 blockchain lightweight enough to run entirely on mobile and IoT (Internet of Things) silicon chips - and versatile enough to scale across almost any physical device - Minima is unique in its ability to provide Web3 based infrastructure, providing everyday solutions on everyday devices.</p>
-<p>Minima provides utility beyond what is already possible, on a completely decentralised blockchain.</p>
-<p>Additionally including a secure, peer-to-peer messaging system - Maxima - the Minima network also enables decentralised transfer of information.</p>
-<p>Minima’s technology is compact, quantum-resistant, and secured by every single device on the network.</p>
-<div class="callout"><strong>Minima node - browser interface</strong><br>[Image]</div>
-<h2>Who is Minima for?</h2>
-<p>Minima primarily caters to four groups, creating value for each in different ways:</p>
-<p><strong>Enterprises</strong> benefit by deploying Minima's lightweight and versatile nodes that naturally scale for an increasing user base and reduce infrastructure costs.</p>
-<p><strong>Decentralised Physical Infrastructure Networks</strong> (DePINs) that build on Minima can quickly prove the value or concept of their project before building and scaling on Minima.</p>
-<p><strong>Developers</strong> benefit from open source code, easy-to-create decentralised applications (MiniDapps), comprehensive documentation and support materials.</p>
-<p><strong>Individuals</strong> interested in decentralised and trustless payments can start a Minima node and launch projects, tokenise real-world assets, and participate in constructing and validating blocks.</p>
-<p>{/*</p>
-  <div class="cards-grid">
-  </div> */}
+    <h1>Storage-less MMR UTXO</h1>
+    <p>In the old world, every user kept track of every account in a big book (or database). Every user had a copy of this book. Whenever a user wanted to send a transaction, every user checked the transaction was valid, by checking the inputs were valid in the big book and updating the books’ pages as necessary. The more transactions, the bigger the book.</p>
+<p>In the new world, each user has a specific page in the book, with all their account details. That page is ripped out of the book and given to that user. Each user rips out their own page. Every user only keeps their own page and the spine of the whole book. Whenever a user wants to send a transaction, they add a copy of their page, which verifiably fits the spine, so that users can check if the transaction is valid, update the page, and update the spine ready for the next transaction. Now users only store their own transactions, and a cryptographic spine no thicker than a single page. Orders of magnitude less data.</p>
+<p>Minima does not have a database (or big book) that stores all the Unspent Transaction Outputs, instead, utilising Peter Todds’ MMR[[4]](/docs/core/minimawhitepaper/specialthanksto) storage-less Proof DB. It allows for an almost limitless amount of provable data to be added and updated in a particular hash tree. It’s a little bit like a SQL database with INSERT and UPDATE, but no SELECT or DELETE. The trick is that if you have data in the database, and are listening to all the additions and updates, you can always prove what data you know, your version of SELECT. Data proves it exists with a Merkle proof to the root of the MMR hash tree.</p>
+<p>Each user keeps track of their own coins, rather than miners or even all users keeping track of all the coins. This is an infinitesimally small amount of data in comparison to an entire blockchain. But - each user must stay up to date with the blockchain. By doing so they can keep track of the Merkle proofs required to prove their coins not only exist but are unspent. This proof changes with every addition or update to the MMR. Should a user not keep track of his coins, they would not be lost, but he would need a third party to help recover them. He would need to find either an archive node that stores everything – for the purposes of selling the data in this exact scenario, or have previously set up a friend or chat group to keep track of extra coins (coin-proofs pose no security issues), and have them rediscover the individual MMR proofs for their coins.</p>
+<p>Minima goes MMR real-time. Each block commits to the current MMR state for that block. Each user sends his transactions with a recent MMR proof, to prove the transaction is valid. Users can check these details with their latest MMR database, and update as necessary when a block is accepted. This process will need to be made very fast. The MMR database stores multiple overlapping MMR states, one for each block, and it needs to be able to prune and un-prune MMR data and derive proofs quickly for multiple changing states. Fun.</p>
 
   </div>
   <div class="doc-footer">

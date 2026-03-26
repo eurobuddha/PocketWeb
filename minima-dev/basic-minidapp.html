@@ -1,0 +1,205 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Minidapp — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link active" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Basic Minidapp</h1>
+    <hr>
+<p>title: Basic MiniDapp</p>
+<p>description: Learn how to create a basic MiniDapp</p>
+<p>tag: development</p>
+<hr>
+<p>In this section, we walk through how to create a very simple MiniDapp that does not interact with the Minima blockchain.</p>
+<p>You will learn how to:</p>
+<ol><li>Create the MiniDapp config file</li><li>Give your MiniDapp an icon</li><li>Create a basic interface for your MiniDapp</li><li>Package your MiniDapp to load to your MiniDapp Hub</li><li>Install your MiniDapp on your node on Minima</li></ol>
+<h2>Config file</h2>
+<p>The first step is to create a folder that your MiniDapp will live in. Call it <code>helloworld</code>.</p>
+<p>In your code editor, create a new file called <code>dapp.conf</code> and save it into your helloworld folder.</p>
+<p>The dapp.conf file is the configuration file for your MiniDapp and is where we provide the MiniDapp metadata in JSON format which will be required by the MiniDapp Hub later.</p>
+<p>Following the HelloWorld example, your dapp.conf file should look something like this:</p>
+<pre><code>{
+  "name": "Hello World",
+  "icon": "favicon.ico",
+  "version": "1.0",
+  "description": "My Hello World MiniDapp"
+}</code></pre>
+<p>Save it. That&apos;s your config file done!</p>
+<h2>Icon</h2>
+<p>To include an icon for your MiniDapp, save an image as <code>favicon.ico</code> and add it to your <code>helloworld</code> folder with your <code>dapp.conf</code> file.</p>
+<p>Your folder should now contain 2 files</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li></ol>
+<p>Your config file and icon used will determine what is visible when your MiniDapp is loaded into the MiniDapp Hub, as shown below.</p>
+<p>!<a href="/img/runanode/mds_pendingicon.png">Accessing the MiniDapp Hub</a></p>
+<h2>Basic interface for your MiniDapp</h2>
+<p>Next, we will create a simple webpage which will be the homepage of your MiniDapp.</p>
+<p>Create and open an <code>index.html</code> file.</p>
+<p>Copy and paste the following code, or alternatively, create your own basic html page.</p>
+<p>If you are comfortable with CSS styling you can also go ahead and create a .CSS file for your html file.</p>
+<pre><code>&lt;html&gt;
+
+&lt;head&gt;
+	&lt;link rel="icon" type="image/x-icon" href="favicon.ico"&gt;
+	&lt;title&gt;Hello World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body style="font-family:manrope;"&gt;
+	&lt;h1&gt;Hello World!&lt;/h1&gt;
+
+	&lt;p&gt;This is my first MiniDapp!&lt;/p&gt;
+
+	&lt;h3&gt;Welcome to complete decentralization&lt;/h3&gt;
+	&lt;p&gt;
+	Minima is a cooperative network that enables everyone to freely connect and prosper.&lt;br&gt;&lt;/br&gt;
+	Click &lt;a href="https://minima.global"&gt;here&lt;/a&gt; to go to the Minima website.
+	&lt;/p&gt;
+
+	&lt;h3&gt;Next Steps&lt;/h3&gt;
+	&lt;p&gt;
+		Next, you will learn how to create a MiniDapp that interacts with the Minima Blockchain.
+	&lt;/p&gt;
+	&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+<p>Save it.</p>
+<p>Your folder should now contain 3 files.</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li><li>index.html</li></ol>
+<p>If you also created a CSS file, add that to your <code>helloworld</code> folder.</p>
+<p>Next, we will see how the MiniDapp looks when installed onto a Minima node.</p>
+<h2>Packaging your MiniDapp</h2>
+<p>We now have a complete helloworld folder containing:</p>
+<ol><li>dapp.conf</li><li>favicon.ico</li><li>index.html</li><li>styling.css (optional)</li></ol>
+<p>Zip up the contents of this folder (not the folder itself)</p>
+<p>!<a href="/img/buildonminima/zipup.png">Accessing the MiniDapp Hub</a></p>
+<p>Name the folder as <code>helloworld.mds.zip</code> or if you are using a zip library through your cli run <code>zip -r helloworld.mds.zip</code>.</p>
+<h2>Installing your MiniDapp</h2>
+<p>The final stage is to install the MiniDapp onto your node.</p>
+<h3>Installing onto a mobile device</h3>
+<p>To install the MiniDapp on your phone:</p>
+<ol><li>Send the zip file to your mobile device (via email or other method)</li><li>Download the MiniDapp zip file to your mobile device</li><li>Open the Minima App</li><li>From the Home page, click the + button</li><li>Find the MiniDapp in your mobile’s file explorer (most likely the Downloads folder)</li><li>Select the MiniDapp, the MiniDapp will install on your node</li><li>Click on your MiniDapp to open it</li></ol>
+<p><strong>Congratulations! You have created your first MiniDapp!</strong></p>
+<h3>Installing onto a desktop node</h3>
+<ol><li>Login to your MiniDapp Hub and click on the <code>+</code> in the top right</li><li>Select your <code>helloworld.mds.zip</code> MiniDapp</li><li>Click on <strong>Install</strong>, then return to the Hub</li></ol>
+<p>Alternatively, to install from the command line:</p>
+<ol><li>Run the command <code>mds action:install file:helloworld.mds.zip</code> from the Minima Command Line (including the path with the file if required.)</li></ol>
+<p>Example</p>
+<pre><code>mds action:install file:C:\Users\Downloads\HelloWorld.mds.zip
+
+# Output
+Minima @ 06/07/2022 12:49:44 [233.9 MB] : unzipping package into C:\Users\minima\mds\web\0xCFAB5D98C98CED060F5FDD235CDA27AF
+{
+  "command":"mds",
+  "params":{
+    "action":"install",
+    "file":"C:\\Users\\Downloads\\HelloWorld.mds.zip"
+  },
+  "status":true,
+  "response":{
+    "installed":{
+      "uid":"0xCFAB5D98C98CED060F5FDD235CDA27AF",
+      "conf":{
+        "name":"Hello World",
+        "icon":"favicon.ico",
+        "version":"1.0",
+        "description":"My Hello World MiniDapp",
+        "browser":"internal"
+      }
+    }
+  }</code></pre>
+<ol><li>Login to your MiniDapp Hub</li><li>Click on your MiniDapp to open it</li></ol>
+<p><strong>Congratulations! You have created your first MiniDapp!</strong></p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

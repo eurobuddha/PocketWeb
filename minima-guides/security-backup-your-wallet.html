@@ -1,0 +1,114 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Backup Your Wallet — User Guides</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">📋 User Guides</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="login.html">Login</a>
+<a class="sidebar-link" href="join-the-network.html">Join The Network</a>
+<a class="sidebar-link" href="secure-your-seedphrase.html">Secure Your Seedphrase</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">General</div>
+<a class="sidebar-link" href="check-node-status.html">Check Node Status</a>
+<a class="sidebar-link" href="set-your-profile.html">Set Your Profile</a>
+<div class="sidebar-group">Security</div>
+<a class="sidebar-link" href="security-lock-your-wallet.html">Security Lock Your Wallet</a>
+<a class="sidebar-link" href="security-create-a-safe.html">Security Create A Safe</a>
+<a class="sidebar-link active" href="security-backup-your-wallet.html">Security Backup Your Wallet</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="mds-minidapp-permissions.html">Mds Minidapp Permissions</a>
+<a class="sidebar-link" href="mds-approve-transactions.html">Mds Approve Transactions</a>
+<a class="sidebar-link" href="mds-manage-minidapps.html">Mds Manage Minidapps</a>
+<div class="sidebar-group">Maxima</div>
+<a class="sidebar-link" href="maxima-maxima-contacts.html">Maxima Maxima Contacts</a>
+<a class="sidebar-link" href="maxima-advanced-maxima-options.html">Maxima Advanced Maxima Options</a>
+<div class="sidebar-group">Node Recovery</div>
+<a class="sidebar-link" href="node-recovery-recovery-options.html">Node Recovery Recovery Options</a>
+<a class="sidebar-link" href="node-recovery-chain-resync.html">Node Recovery Chain Resync</a>
+<a class="sidebar-link" href="node-recovery-restore-backup.html">Restoring your backup</a>
+<a class="sidebar-link" href="node-recovery-import-seed-phrase.html">Node Recovery Import Seed Phrase</a>
+<div class="sidebar-group">Archive Nodes</div>
+<a class="sidebar-link" href="archive-node-archive-export.html">Archive Node Archive Export</a>
+<div class="sidebar-group">Mega Nodes</div>
+<a class="sidebar-link" href="mega-node-host-a-web-wallet.html">Mega Node Host A Web Wallet</a>
+<div class="sidebar-group">MySQL Integration</div>
+<a class="sidebar-link" href="mysql-mysql-setup.html">Mysql Mysql Setup</a>
+<a class="sidebar-link" href="mysql-mysql-exportto.html">Mysql Mysql Exportto</a>
+<a class="sidebar-link" href="mysql-mysql-exportfrom.html">Mysql Mysql Exportfrom</a>
+<a class="sidebar-link" href="mysql-restore-from-mysql.html">Mysql Restore From Mysql</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-meg-wallet-api.html">Meg Meg Wallet Api</a>
+<div class="sidebar-group">Advanced</div>
+<a class="sidebar-link" href="advanced-cold-storage.html">Advanced Cold Storage</a>
+<a class="sidebar-link" href="advanced-log-messages.html">Log messages</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Security Backup Your Wallet</h1>
+    <hr>
+<p>title: Backup your wallet</p>
+<p>description: Learn how to backup your Minima wallet</p>
+<p>tag: user-guides</p>
+<hr>
+<p>Using a backup is the fastest and most convenient way to restore your wallet if you lose access to your node.</p>
+<p><strong>If you lose your device and do not have a valid backup, you will need to restore your wallet by <a href="/docs/user-guides/node-recovery/import-seed-phrase">importing your seed phrase</a>.</strong></p>
+<p>If your node is not locked, your backups will contain your unencrypted seed</p>
+<p>phrase. Backups of unlocked nodes must be kept as safe as your seed phrase!</p>
+<p>If your node is locked, your seed phrase will remain encrypted in the backup file.</p>
+<p>!<a href="/img/app/security.png">Security</a></p>
+<h2>Take a backup</h2>
+<ol><li>Open the <strong>Security</strong> MiniDapp and select <strong>Backup node</strong>.</li><li>Set a <strong>password</strong> for the backup that will be required if you need to restore it.</li><li>A backup file will be created and you will be prompted to download and <strong>choose a location</strong> to save it.</li></ol>
+<div class="callout"><strong>Note</strong><br>Your password will be required if you restore this backup at a later date, **it cannot be changed or recovered** so you must remember it!
+<p>Once you have saved your backup file, we recommend you store it off the device.</div></p>
+<h2>Enable auto backups</h2>
+<ol><li>Open the <strong>Security</strong> MiniDapp and select <strong>Backup node</strong></li><li>Enable auto backups</li><li>Set a password for the auto backups. You must remember or write down this password as it cannot be recovered once set.</li></ol>
+<p>Backups will be taken every 24 hours. The latest 14 backups will be kept on the node. You should periodically download these backups and store them on a different device to your node.</p>
+<h3>Points to remember</h3>
+<ul><li>Take regular backups</li><li>Consider locking your node before taking a backup - when restoring the backup, the node will remain locked</li><li>The password used to lock the node can be different to the password used for a backup</li><li>Regularly download your backups and store them on a different device to your node</li></ul>
+<h2>Using commands</h2>
+<h3>To take a backup</h3>
+<pre><code>backup password:(optional) file:(optional) auto:(optional)</code></pre>
+<div class="table-wrap"><table>
+<tr><th>Parameter</th><th>Description</th></tr>
+<tr><td><code>password</code></td><td>The password to encrypt the backup file with</td></tr>
+<tr><td><code>file</code></td><td>The name of the backup file to create</td></tr>
+<tr><td><code>auto</code></td><td>Set to <code>true</code> to enable auto backups every 24 hours</td></tr>
+</table></div>
+<div class="callout"><strong>Note</strong><br>Setting `auto:true` will backup your node every 24 hours however these backups
+<p>cannot be password protected so we recommend locking your node first. To</p>
+<p>password protect your auto backups, you must use the Security minidapp.</div></p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mysql Mysql Exportto — User Guides</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">📋 User Guides</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="login.html">Login</a>
+<a class="sidebar-link" href="join-the-network.html">Join The Network</a>
+<a class="sidebar-link" href="secure-your-seedphrase.html">Secure Your Seedphrase</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">General</div>
+<a class="sidebar-link" href="check-node-status.html">Check Node Status</a>
+<a class="sidebar-link" href="set-your-profile.html">Set Your Profile</a>
+<div class="sidebar-group">Security</div>
+<a class="sidebar-link" href="security-lock-your-wallet.html">Security Lock Your Wallet</a>
+<a class="sidebar-link" href="security-create-a-safe.html">Security Create A Safe</a>
+<a class="sidebar-link" href="security-backup-your-wallet.html">Security Backup Your Wallet</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="mds-minidapp-permissions.html">Mds Minidapp Permissions</a>
+<a class="sidebar-link" href="mds-approve-transactions.html">Mds Approve Transactions</a>
+<a class="sidebar-link" href="mds-manage-minidapps.html">Mds Manage Minidapps</a>
+<div class="sidebar-group">Maxima</div>
+<a class="sidebar-link" href="maxima-maxima-contacts.html">Maxima Maxima Contacts</a>
+<a class="sidebar-link" href="maxima-advanced-maxima-options.html">Maxima Advanced Maxima Options</a>
+<div class="sidebar-group">Node Recovery</div>
+<a class="sidebar-link" href="node-recovery-recovery-options.html">Node Recovery Recovery Options</a>
+<a class="sidebar-link" href="node-recovery-chain-resync.html">Node Recovery Chain Resync</a>
+<a class="sidebar-link" href="node-recovery-restore-backup.html">Restoring your backup</a>
+<a class="sidebar-link" href="node-recovery-import-seed-phrase.html">Node Recovery Import Seed Phrase</a>
+<div class="sidebar-group">Archive Nodes</div>
+<a class="sidebar-link" href="archive-node-archive-export.html">Archive Node Archive Export</a>
+<div class="sidebar-group">Mega Nodes</div>
+<a class="sidebar-link" href="mega-node-host-a-web-wallet.html">Mega Node Host A Web Wallet</a>
+<div class="sidebar-group">MySQL Integration</div>
+<a class="sidebar-link" href="mysql-mysql-setup.html">Mysql Mysql Setup</a>
+<a class="sidebar-link active" href="mysql-mysql-exportto.html">Mysql Mysql Exportto</a>
+<a class="sidebar-link" href="mysql-mysql-exportfrom.html">Mysql Mysql Exportfrom</a>
+<a class="sidebar-link" href="mysql-restore-from-mysql.html">Mysql Restore From Mysql</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-meg-wallet-api.html">Meg Meg Wallet Api</a>
+<div class="sidebar-group">Advanced</div>
+<a class="sidebar-link" href="advanced-cold-storage.html">Advanced Cold Storage</a>
+<a class="sidebar-link" href="advanced-log-messages.html">Log messages</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Mysql Mysql Exportto</h1>
+    <hr>
+<p>title: Export Minima data to MySQL</p>
+<p>description: Learn how export data from Minima to MySQL</p>
+<p>tag: user-guides</p>
+<hr>
+<p>Once your node is connected to a MySQL database, the following data can be exported from the node:</p>
+<div class="table-wrap"><table>
+<tr><th>Table</th><th>Description</th></tr>
+<tr><td><code>cascadedata</code></td><td>if the node does not start at the genesis block, there will be compact block data for the cascade</td></tr>
+<tr><td><code>syncblocks</code></td><td>historical compact blocks (excludes transaction details)</td></tr>
+<tr><td><code>coins</code></td><td>(from v1.0.39) a coins table of all coins in the syncblocks</td></tr>
+<tr><td><code>txpow</code></td><td>(from v1.0.41) full txpow data, including all transaction and block details</td></tr>
+</table></div>
+<h2>How to export archive blocks data</h2>
+<p>To update the MySQL tables with the archive blocks (syncblocks) from your node, run the following command from the Minima Docker CLI or Minima Terminal MiniDapp:</p>
+<pre><code>mysql action:update host:minimysql database:archivedb user:archiveuser password:youruserpassword</code></pre>
+<p>or if you have <a href="/docs/user-guides/mysql/mysql-setup#how-to-set-your-login-details">set your login details</a>, simply:</p>
+<pre><code>mysql action:update</code></pre>
+<p>The archive blocks will start being transferred, please be patient and wait for it to finish, it will take some time.</p>
+<p>Example output:</p>
+<pre><code>{
+  "command":"mysql",
+  "params":{
+    "host":"minimysql",
+    "database":"archivedb",
+    "user":"archiveuser",
+    "password":"youruserpassword",
+    "action":"update"
+  },
+  "status":true,
+  "pending":false,
+  "response":{
+    "archive":{
+      "archivestart":1,
+      "archiveend":72206,
+      "archivetotal":72205
+    },
+    "mysql":{
+      "mysqlstart":1,
+      "mysqlend":72206,
+      "mysqltotal":72205
+    }
+  }
+}</code></pre>
+<p>Future updates will be incremental, only syncing the new blocks that are not already in the MySQL database.</p>
+<h3>Check the integrity</h3>
+<p>To check that there are no missing blocks in the MySQL database, you can run:</p>
+<pre><code>mysql action:integrity ...LOGIN DETAILS...</code></pre>
+<h2>How to export coins data</h2>
+<p>To create a table in your MySQL archive database for all spent and unspent coins, you can use the <code>mysqlcoins</code> command.</p>
+<p>The coins table will be populated from the syncblock table, so this must be populated first. You can then run any SQL command against it to query the coins.</p>
+<div class="callout"><strong>Info</strong><br>The coins database is large and will take a while to populate, optionally you can create a second database in mysql workbench to keep the coinsdb separate to your existing archivedb.</div>
+<p>To populate the coins table, you can choose to specify the number of coins to update in one go by using the <code>maxcoins</code> parameter. To update the table will all the coins, remove the <code>maxcoins</code> parameter.</p>
+<p>The example below adds the first 100 coins to the database. Next time, it will start from where it left off.</p>
+<p><strong>From any node</strong></p>
+<pre><code>mysqlcoins action:update maxcoins:100 ...LOGIN DETAILS...</code></pre>
+<p><strong>From docker</strong></p>
+<pre><code>mysqlcoins action:update maxcoins:100 ...LOGIN DETAILS...</code></pre>
+<h3>How to query the coins</h3>
+<p>To search for all coins at an address or with the address in a state variable:</p>
+<pre><code>mysqlcoins action:search address: ...LOGIN DETAILS...</code></pre>
+<p>To run a WHERE query on the coins table, string data MUST be in single quotes and you can use multiple parameters.</p>
+<pre><code>mysqlcoins action:search where: ...LOGIN DETAILS...</code></pre>
+<p>To run a full SQL query on the coins table:</p>
+<pre><code>mysqlcoins action:search query: ...LOGIN DETAILS...</code></pre>
+<p>For full help, use <code>help command:mysqlcoins</code> or see <a href="/docs/development/terminal-commands">here</a>.</p>
+<h2>How to export transaction data</h2>
+<p>To export all full txpow data to MySQL, your node must be running with the following additional startup parameters.</p>
+<div class="table-wrap"><table>
+<tr><th>Startup Parameter</th><th>Description</th></tr>
+<tr><td><code>-notifyalltxpow</code></td><td>creates a NEWTXPOW notification for all transactions</td></tr>
+</table></div>
+<p>| <code>-mysqlalltxpow</code>                    | Store all TxPoW in MySQL when mysql autobackup is enabled</p>
+<p>Provided MySQL auto backups are enabled, all txpow data will be pushed to MySQL. TxPoW data is only transferred to MySQL once they are pruned from the chain.</p>
+<p>This can take between 24-48 hours.</p>
+<h2>How to enable auto updates to MySQL</h2>
+<p>To automatically update the MySQL database daily, run:</p>
+<pre><code>mysql action:autobackup enable:true ...LOGIN DETAILS...</code></pre>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

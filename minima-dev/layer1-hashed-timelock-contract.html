@@ -1,0 +1,129 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hashed Timelock Contract — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link active" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Hashed Timelock Contract</h1>
+    <p>A VERY powerful variant on the time lock contract and the backbone and basis of the lightning network. This is a contract that has both a time lock and a hash lock. This means you can spend it at a certain time IF you know a secret. The preimage of a hash..</p>
+<p>Let’s say you own the coin. And your public key is 0xFF.</p>
+<p>The other party you are sending the coin to is 0xEE</p>
+<pre><code>IF @BLOCK GT 1000 AND SIGNEDBY(0xFF) THEN RETURN TRUE
+ENDIF
+RETURN ( SIGNEDBY(0xEE) AND SHA3(STATE(1)) EQ 0x546FCD56E.. )</code></pre>
+<p><strong>What this does:</strong></p>
+<p>You can cancel the contract after block 1000 ( you could use @COINAGE ) - but until then only the 0xEE user can claim the funds if they know the secret. They need to know the secret to claim before that.</p>
+<p>Also - you will note we have used a state variable!.. This is where the value of the preimage is put.</p>
+<p>You could use this to perform an atomic cross chain exchange, The same contract would be written by the other party, using the same hash, on a different chain. Then you collect on the other chain, since you know the secret, show the preimage and they can then collect on Minima. Minima also has SHA2 and SHA3 as hash functions for this very purpose.</p>
+<p>You can use the 'hash' function to hash the data.</p>
+<pre><code>hash data:0xFFEEDD</code></pre>
+<p>And use that in your scripts..</p>
+<p>One thing of note here..</p>
+<p>If you were to use a String for the preimage, so:</p>
+<pre><code>hash data:"this is my secret"</code></pre>
+<p>You would get</p>
+<pre><code>0x1D63D6377EA45E6A5F410FCCED3066B80CA9FB391C346E74948FBB27C7617908</code></pre>
+<p>as the hash of the data - the byte representation of the string. Also - this is the SHA3 hash, and you would probably want to use SHA2 or SHA3 for cross chain antics as that is what BTC and ETH support.</p>
+<p>Now to add this as a state variable you would need to enclose it in square brackets.</p>
+<p>So..</p>
+<pre><code>runscript script:"LET preimage=STATE(0) RETURN SHA3(preimage) EQ 0x1D63D6377EA45E6A5F410FCCED3066B80CA9FB391C346E74948FBB27C7617908" state:{"0":"[this is my secret]"}</code></pre>
+<p>This is because Strings in KISSVM are enclosed in square brackets.. Not quotes - ".</p>
+<p>Another already widely used case is in the Lightning Network on Bitcoin. HTLC contracts work just as well off chain as on chain.. You can set up cascading HTLC contracts that allow for payments to hop through multiple parties.</p>
+<p>For instance - imagine I have a channel with Bob and Bob has one with Alice. I want to pay Alice. I create an HTLC payment to Bob locked for 12 hours if he knows a secret that only I know. He then creates the same HTLC payment to Alice, locked for 6 hours. I then reveal the secret - give it to Alice, and she collects the payment from Bob. Bob now also knows the secret and collects his payment from me.</p>
+<p>This can be used in larger groups with more hops, so instead of only being able to pay people you know.. You can pay people who know people who know people you know. A much larger set - in fact at 6 hops you should theoretically be able to pay anyone in the network.</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

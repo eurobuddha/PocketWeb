@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index — Minima Docs</title>
+  <title>A Cascading Chain — Minima Docs</title>
   <script type="text/javascript" src="../../miniweb/mds.js"></script>
   <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
   <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
@@ -16,7 +16,7 @@
 <div class="sidebar">
 <div class="sidebar-title">📘 Minima Docs</div>
 <div class="sidebar-group">About Minima</div>
-<a class="sidebar-link active" href="index.html">Index</a>
+<a class="sidebar-link" href="index.html">Index</a>
 <a class="sidebar-link" href="at-a-glance.html">At A Glance</a>
 <a class="sidebar-link" href="use-cases.html">Use Cases</a>
 <a class="sidebar-link" href="tokenomics.html">Tokenomics</a>
@@ -31,7 +31,7 @@
 <a class="sidebar-link" href="minimawhitepaper-powvsdistributedpow.html">PoW vs Distributed PoW</a>
 <a class="sidebar-link" href="minimawhitepaper-hashcashandburn.html">HashCash and Burn</a>
 <a class="sidebar-link" href="minimawhitepaper-energy.html">Energy</a>
-<a class="sidebar-link" href="minimawhitepaper-acascadingchain.html">A Cascading Chain</a>
+<a class="sidebar-link active" href="minimawhitepaper-acascadingchain.html">A Cascading Chain</a>
 <a class="sidebar-link" href="minimawhitepaper-storagelessmmrutxo.html">Storage-less MMR UTXO</a>
 <a class="sidebar-link" href="minimawhitepaper-smartcontractstokensandtransactions.html">Smart Contracts, Tokens and Transactions</a>
 <a class="sidebar-link" href="minimawhitepaper-quantumsecure.html">Quantum Secure</a>
@@ -54,26 +54,13 @@
 
 <div class="main-content">
   <div class="prose">
-    <h1>Index</h1>
-    <hr>
-<p>title: What is Minima?</p>
-<p>description: Learn more about Minima</p>
-<p>tag: core</p>
-<hr>
-<p>Minima is the only decentralised layer 1 blockchain lightweight enough to run entirely on mobile and IoT (Internet of Things) silicon chips - and versatile enough to scale across almost any physical device - Minima is unique in its ability to provide Web3 based infrastructure, providing everyday solutions on everyday devices.</p>
-<p>Minima provides utility beyond what is already possible, on a completely decentralised blockchain.</p>
-<p>Additionally including a secure, peer-to-peer messaging system - Maxima - the Minima network also enables decentralised transfer of information.</p>
-<p>Minima’s technology is compact, quantum-resistant, and secured by every single device on the network.</p>
-<div class="callout"><strong>Minima node - browser interface</strong><br>[Image]</div>
-<h2>Who is Minima for?</h2>
-<p>Minima primarily caters to four groups, creating value for each in different ways:</p>
-<p><strong>Enterprises</strong> benefit by deploying Minima's lightweight and versatile nodes that naturally scale for an increasing user base and reduce infrastructure costs.</p>
-<p><strong>Decentralised Physical Infrastructure Networks</strong> (DePINs) that build on Minima can quickly prove the value or concept of their project before building and scaling on Minima.</p>
-<p><strong>Developers</strong> benefit from open source code, easy-to-create decentralised applications (MiniDapps), comprehensive documentation and support materials.</p>
-<p><strong>Individuals</strong> interested in decentralised and trustless payments can start a Minima node and launch projects, tokenise real-world assets, and participate in constructing and validating blocks.</p>
-<p>{/*</p>
-  <div class="cards-grid">
-  </div> */}
+    <h1>A Cascading Chain</h1>
+    <p>The power of hashing ensures that an unbroken chain of blocks cannot be altered in any way. The power of hashing also ensures that sometimes someone will find a very high difficulty PoW when looking for a much lower one. If you take this into account pre-PoW you can construct block headers that reference multiple block parents at different levels of difficulty. Instead of having 2 difficulty values for a user to mine in the Tx-PoW, the Transaction Difficulty set to 10 seconds of work on average, and the Block Difficulty set to 1 block every 50 seconds, let us add 1 more difficulty, the Super Block Difficulty set to twice the current block difficulty...</p>
+<p>Every block references its direct parent and the last Super Block. Now a Tx-PoW has 3 possible levels, Transaction, Block and Super Block. If the Block hash difficulty is high enough it becomes a Super Block (which is also a valid block). Eventually, all blocks and data are discarded and only a chain of Super Block headers is kept as a long term store of the total PoW in the chain. Now instead of only 1 Super Block Level, let us use 256. 1 for each bit in a 32-byte hash. Each level is twice the difficulty of the level below. These are the only difficulty values for each block, each linking back to its Super Block Level parent.</p>
+<p>The proof chain grows logarithmically, so that an almost limitless amount of PoW can be stored in a finite chain of headers, since every level stores blocks that are twice as difficult as the level below. Thus, an exponentially shorter unbroken chain of more PoWerful blocks is kept in place of a longer unbroken chain of less PoWerful ones. Due to the nature of randomised hash mining, the sum of the Tx-PoW difficulty of the higher-level blocks will on average equal the sum of the Tx-PoW difficulty of the lower level blocks.</p>
+<p>The cascading chain allows each user to keep the total cumulative PoW without requiring the storage of every block. Only certain lucky blocks are kept, all of which reference each other, to keep a short unbroken chain of ever-increasing total PoW.</p>
+<p>Almost all blocks and transactions are pruned. Pruning has no effect on the security of the user doing-the-pruning. Once a transaction has been checked by a user, that transaction need never be checked again, a simple reference will suffice. Blocks are kept for a certain period of time, a week would be fine, before being pruned. This way any user that logs on to the network can always catch up a weeks' worth of blocks. So as long as a user logs on to the network once a week he can validate every transaction on layer 1 and run a Complete node, full validating and full TxPoW mining, without needing increasing amounts of storage.</p>
+<p>For a new user, who has no previous history of the chain and no coins, Nakamoto Consensus can objectively and independently tell which chain is the current valid chain - the Cascading Chain with the most PoW.</p>
 
   </div>
   <div class="doc-footer">

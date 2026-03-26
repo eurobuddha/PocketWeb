@@ -1,0 +1,139 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restoring your backup — User Guides</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">📋 User Guides</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="login.html">Login</a>
+<a class="sidebar-link" href="join-the-network.html">Join The Network</a>
+<a class="sidebar-link" href="secure-your-seedphrase.html">Secure Your Seedphrase</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">General</div>
+<a class="sidebar-link" href="check-node-status.html">Check Node Status</a>
+<a class="sidebar-link" href="set-your-profile.html">Set Your Profile</a>
+<div class="sidebar-group">Security</div>
+<a class="sidebar-link" href="security-lock-your-wallet.html">Security Lock Your Wallet</a>
+<a class="sidebar-link" href="security-create-a-safe.html">Security Create A Safe</a>
+<a class="sidebar-link" href="security-backup-your-wallet.html">Security Backup Your Wallet</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="mds-minidapp-permissions.html">Mds Minidapp Permissions</a>
+<a class="sidebar-link" href="mds-approve-transactions.html">Mds Approve Transactions</a>
+<a class="sidebar-link" href="mds-manage-minidapps.html">Mds Manage Minidapps</a>
+<div class="sidebar-group">Maxima</div>
+<a class="sidebar-link" href="maxima-maxima-contacts.html">Maxima Maxima Contacts</a>
+<a class="sidebar-link" href="maxima-advanced-maxima-options.html">Maxima Advanced Maxima Options</a>
+<div class="sidebar-group">Node Recovery</div>
+<a class="sidebar-link" href="node-recovery-recovery-options.html">Node Recovery Recovery Options</a>
+<a class="sidebar-link" href="node-recovery-chain-resync.html">Node Recovery Chain Resync</a>
+<a class="sidebar-link active" href="node-recovery-restore-backup.html">Restoring your backup</a>
+<a class="sidebar-link" href="node-recovery-import-seed-phrase.html">Node Recovery Import Seed Phrase</a>
+<div class="sidebar-group">Archive Nodes</div>
+<a class="sidebar-link" href="archive-node-archive-export.html">Archive Node Archive Export</a>
+<div class="sidebar-group">Mega Nodes</div>
+<a class="sidebar-link" href="mega-node-host-a-web-wallet.html">Mega Node Host A Web Wallet</a>
+<div class="sidebar-group">MySQL Integration</div>
+<a class="sidebar-link" href="mysql-mysql-setup.html">Mysql Mysql Setup</a>
+<a class="sidebar-link" href="mysql-mysql-exportto.html">Mysql Mysql Exportto</a>
+<a class="sidebar-link" href="mysql-mysql-exportfrom.html">Mysql Mysql Exportfrom</a>
+<a class="sidebar-link" href="mysql-restore-from-mysql.html">Mysql Restore From Mysql</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-meg-wallet-api.html">Meg Meg Wallet Api</a>
+<div class="sidebar-group">Advanced</div>
+<a class="sidebar-link" href="advanced-cold-storage.html">Advanced Cold Storage</a>
+<a class="sidebar-link" href="advanced-log-messages.html">Log messages</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Restoring your backup</h1>
+    <p>If you have lost your node, this is the optimal way to restore access to your wallet.</p>
+<p>You will need:</p>
+<ul><li>A backup of your node that you took previously,</li></ul>
+<p>and, if the backup is older than 1 week</p>
+<ul><li>the IP address of a Mega node for QuickSync (recommended), or</li><li>a recent archive file, exported from an archive node (Legacy method)</li></ul>
+<h2>Restoring a backup with QuickSync</h2>
+<div class="tab-section"><h4>Security MiniDapp</h4>![dappmenu](/img/app/security.png)
+<ol><li>Login to your MiniHub and open the Security MiniDapp</li><li>Select <strong>Restore node</strong></li><li>Select <strong>Import a Backup</strong></li><li>If you have enabled autobackups, you can choose <strong>Select an internal backup</strong>, otherwise, choose <strong>Select an external backup</strong> and navigate to find and upload your backup file. Then click <strong>Next</strong>.</li><li>Enter the password of the backup file. Then click <strong>Next</strong>.</li></ol>
+<p>The following step is optional if your backup is less than 1 week old but recommended either way.</p>
+<ol><li>Enter the IP:port of a Mega node. If you do not have one, you can use the example IP provided, megammr.minima.global:9001. Then select <strong>Next</strong>.</li><li>Select <strong>Restore</strong></li><li>Wait for the sync to complete, please be patient whilst wallet is restored. The node will shutdown when complete.</li><li>Restart the node for the restore to take effect. Then allow a few minutes for the node to connect to the network.</li></ol>
+<p>You will then be on the correct top block.</div></p>
+<div class="tab-section"><h4>Terminal</h4>1. Access the Minima Terminal via the MiniDapp, Docker CLI, Command Line or RPC Client
+<ol><li>Enter the following command, then press Enter</li></ol>
+<p>Example</p>
+<pre><code>megammrsync action:resync host:megammr.minima.global:9001 file:yourbackup.bak</code></pre>
+<p>The re-sync will begin, please be patient whilst the wallet is restored. The node will shutdown automatically when complete.</p>
+<ol><li>Restart the node for the restore to take effect. Then allow a few minutes for the node to connect to the network.</li></ol>
+<p>You will then be on the correct top block.</p>
+<p>For further help using the <code>megammrsync</code> command, use <code>help command:megammrsync</code> from the Terminal.</div></p>
+<h2>Legacy method (using an Archive file)</h2>
+<h3>Using a recent backup</h3>
+<p>A recent backup should be within 1-2 weeks for Android or up to 4-6 weeks on desktop/server.</p>
+<ol><li>Open the Security MiniDapp</li><li>Select <strong>Restore from backup</strong></li><li>Choose a backup. If you previously uploaded a backup or enabled auto backups, you may select an internal backup. Alternatively, upload an external backup from your file storage.</li><li>Enter the password used when generating the backup.</li><li>Optionally, enter the IP:Port or URL of an archive node - this will be used to sync the latest blocks since the backup was taken. If you leave this blank, the backup will need time to resync to the chain after restoring.</li><li>Select <strong>Restore</strong> and wait for the restore to finish.</li></ol>
+<p><strong>Please be patient and do not attempt to use any other MiniDapps whilst this is in progress.</strong></p>
+<p>Once complete the node will shutdown and on restarting the node your wallet will be restored.</p>
+<h3>Using an old backup</h3>
+<p>If your backup is older than 1-2 weeks for Android or 4-6 weeks on desktop/server, use the following method.</p>
+<ol><li>Open the Security MiniDapp</li><li>Select <strong>Archive reset</strong></li><li>Select <strong>Restore a backup</strong></li><li>Upload an archive file. If you do not have one, you can visit our <a href="https://discord.com/invite/minimaglobal">Discord server</a> to get one or go to https://spartacusrex.com/archive and download the latest file.</li><li>Upload your backup and enter the password used when generating the backup</li><li>Select <strong>Restore</strong></li><li>Wait for the restore to finish, this can take a long time.</li></ol>
+<p><strong>Please be patient and do not attempt to use any other MiniDapps whilst this is in progress.</strong></p>
+<p>Once complete the node will shutdown and on restarting the node your wallet will be restored.</p>
+<h2>From the Terminal (advanced)</h2>
+<p>There are 3 options for restoring a backup:</p>
+<p><strong>restore</strong> : For backups less than 1 month old, restore the backup and use the network to catch up to the chain.</p>
+<p><strong>restoresync</strong> : For backups older than 1 month, restore the backup and use an archive host to sync the latest blocks.</p>
+<p><strong>reset</strong> : For backups older than 1 month, restore the backup and use an archive file to resync ALL blocks from genesis.</p>
+<p>If you locked your node before taking the backup that you are now restoring, your private keys will still be encrypted after restoring.</p>
+<p>If successful, you will need to restart your node for the restore to take effect.</p>
+<p><strong>restore</strong></p>
+<pre><code>restore file: password:</code></pre>
+<p><strong>file:</strong> the name of the backup to restore, e.g. mybackup.bak</p>
+<p><strong>password:</strong> (optional) the password of the backup. Can be left blank if restoring a non password protected backup.</p>
+<p><strong>restoresync</strong></p>
+<pre><code>restoresync file: password: host:</code></pre>
+<p><strong>file:</strong></p>
+<p>Specify the filename or local path of the backup to restore</p>
+<p><strong>password:</strong> (optional)</p>
+<p>The password of the backup. Can be left blank if restoring a non password protected backup.</p>
+<p><strong>host:</strong> (optional)</p>
+<p>ip:port of the archive node to sync from.</p>
+<p><strong>reset</strong></p>
+<pre><code>reset archivefile:archiveexport-jul23.gz action:restore file:backup-jul23.bak password:Longsecurepassword456</code></pre>
+<p><strong>archivefile:</strong></p>
+<p>Specify the the archive gzip file. Should be recently exported from an archive node.</p>
+<p><strong>file:</strong></p>
+<p>Specify the filename or local path of the backup to restore</p>
+<p><strong>password:</strong> (optional)</p>
+<p>(optional) the password of the backup. Can be left blank if restoring a non password protected backup.</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

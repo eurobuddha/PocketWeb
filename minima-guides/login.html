@@ -1,0 +1,112 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — User Guides</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">📋 User Guides</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link active" href="login.html">Login</a>
+<a class="sidebar-link" href="join-the-network.html">Join The Network</a>
+<a class="sidebar-link" href="secure-your-seedphrase.html">Secure Your Seedphrase</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">General</div>
+<a class="sidebar-link" href="check-node-status.html">Check Node Status</a>
+<a class="sidebar-link" href="set-your-profile.html">Set Your Profile</a>
+<div class="sidebar-group">Security</div>
+<a class="sidebar-link" href="security-lock-your-wallet.html">Security Lock Your Wallet</a>
+<a class="sidebar-link" href="security-create-a-safe.html">Security Create A Safe</a>
+<a class="sidebar-link" href="security-backup-your-wallet.html">Security Backup Your Wallet</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="mds-minidapp-permissions.html">Mds Minidapp Permissions</a>
+<a class="sidebar-link" href="mds-approve-transactions.html">Mds Approve Transactions</a>
+<a class="sidebar-link" href="mds-manage-minidapps.html">Mds Manage Minidapps</a>
+<div class="sidebar-group">Maxima</div>
+<a class="sidebar-link" href="maxima-maxima-contacts.html">Maxima Maxima Contacts</a>
+<a class="sidebar-link" href="maxima-advanced-maxima-options.html">Maxima Advanced Maxima Options</a>
+<div class="sidebar-group">Node Recovery</div>
+<a class="sidebar-link" href="node-recovery-recovery-options.html">Node Recovery Recovery Options</a>
+<a class="sidebar-link" href="node-recovery-chain-resync.html">Node Recovery Chain Resync</a>
+<a class="sidebar-link" href="node-recovery-restore-backup.html">Restoring your backup</a>
+<a class="sidebar-link" href="node-recovery-import-seed-phrase.html">Node Recovery Import Seed Phrase</a>
+<div class="sidebar-group">Archive Nodes</div>
+<a class="sidebar-link" href="archive-node-archive-export.html">Archive Node Archive Export</a>
+<div class="sidebar-group">Mega Nodes</div>
+<a class="sidebar-link" href="mega-node-host-a-web-wallet.html">Mega Node Host A Web Wallet</a>
+<div class="sidebar-group">MySQL Integration</div>
+<a class="sidebar-link" href="mysql-mysql-setup.html">Mysql Mysql Setup</a>
+<a class="sidebar-link" href="mysql-mysql-exportto.html">Mysql Mysql Exportto</a>
+<a class="sidebar-link" href="mysql-mysql-exportfrom.html">Mysql Mysql Exportfrom</a>
+<a class="sidebar-link" href="mysql-restore-from-mysql.html">Mysql Restore From Mysql</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-meg-wallet-api.html">Meg Meg Wallet Api</a>
+<div class="sidebar-group">Advanced</div>
+<a class="sidebar-link" href="advanced-cold-storage.html">Advanced Cold Storage</a>
+<a class="sidebar-link" href="advanced-log-messages.html">Log messages</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Login</h1>
+    <hr>
+<p>title: Login to Minima</p>
+<p>description: Learn how to login to Minima</p>
+<p>icon: KeyRound</p>
+<p>tag: user-guides</p>
+<hr>
+<h2>Desktop</h2>
+<p>If you are using the JNLP on desktop, simply click on the <code>Launch MinimaOS</code> button or go to https://127.0.0.1:9003/ in your web browser. If you have any trouble logging in, close the window and restart Minima.</p>
+<p>Similarly, if using docker desktop go to https://127.0.0.1:9003/</p>
+<p>If you installed Minima on a different port to 9001, your login page can be accessed from this base port +2.</p>
+<h2>Server</h2>
+<p>Access your login screen by going to https://YourserverIP:9003/</p>
+<p><strong>We recommend configuring your server's firewall to only having the MiniDapp System (MDS) port (9003) accessible from your home IP address.</strong></p>
+<h2>Android - Desktop connect</h2>
+<p>Android users can connect to their phone node from a computer that is connected to the same WiFi network.</p>
+<p>Open Minima</p>
+<p>Navigate to the settings MiniDapp and select <strong>Desktop connect</strong>.</p>
+<div class="callout"><strong>Refresh the URL</strong><br>If you have recently joined a WiFi network, refresh the URL.</div>
+<p>!<a href="/settings-icon.png">settings</a></p>
+<p>Open the URL</p>
+<p>From your computer's web browser, go to the URL shown on your phone.</p>
+<p>[Image]</p>
+<p>Accept the security warning</p>
+<p>Accept the security warning shown</p>
+<p>Enter the password shown to login</p>
+<p><strong>You can now use your node on your computer!</strong></p>
+<h3>Set your own password</h3>
+<p>To set your own password for Desktop Connect:</p>
+<ol><li>Open the Minima app on your phone</li><li>Tap at the top of the screen to show the MinimaOS title bar</li><li>Tap on the 3 dots and select <strong>Startup Params</strong></li><li>Enter <code>-mdspassword yOurp@ssw0rdhere</code> to set your own password</li><li>Select <strong>Save</strong></li><li>Tap at the top of the screen to show the MinimaOS title bar again</li><li>Select <strong>Shutdown</strong> to restart Minima</li></ol>
+<p>When you reopen Minima, go to <strong>Settings > Desktop Connect</strong> to confirm your password has been set.</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

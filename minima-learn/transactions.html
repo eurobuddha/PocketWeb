@@ -1,0 +1,119 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transactions — Minima Knowledge</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🧠 Minima Knowledge</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="network-overview.html">Network Overview</a>
+<a class="sidebar-link" href="glossary.html">Glossary</a>
+<div class="sidebar-group">Minima</div>
+<a class="sidebar-link active" href="transactions.html">Transactions</a>
+<a class="sidebar-link" href="mmr-database.html">MMR Database</a>
+<a class="sidebar-link" href="txpow.html">TxPoW Units & Blocks</a>
+<a class="sidebar-link" href="the-blockchain.html">The Blockchain</a>
+<a class="sidebar-link" href="mining-consensus.html">Mining Consensus</a>
+<a class="sidebar-link" href="coloured-coins.html">Coloured Coins</a>
+<a class="sidebar-link" href="keys-signatures.html">Keys Signatures</a>
+<a class="sidebar-link" href="quantum-security.html">Quantum Security</a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="scripting.html">Scripting</a>
+<div class="sidebar-group">Maxima</div>
+<a class="sidebar-link" href="maxima-about.html">Maxima About</a>
+<a class="sidebar-link" href="maxima-contacts.html">Maxima Contacts</a>
+<a class="sidebar-link" href="maxima-messaging.html">Maxima Messaging</a>
+<a class="sidebar-link" href="maxima-mls.html">Maxima Mls</a>
+<a class="sidebar-link" href="maxima-faq.html">Maxima Faq</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapps-about.html">Minidapps About</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Transactions</h1>
+    <h2>Transaction Lifecycle</h2>
+<p>The following diagram explains the basic process from a Transaction to TxPoW unit to Block.</p>
+<p>[Diagram]</p>
+<h2>Structure</h2>
+<p>All transactions have the following structure:</p>
+<ul><li>Inputs</li><li>Outputs</li><li>State variables</li><li>Link hash</li><li>Transaction ID</li></ul>
+<h3>Inputs</h3>
+<p>Transaction inputs are coins (UTxOs) that will be spent in the transaction, identified by the Coin ID. One or more coins may be required depending on the value of the coins owned by the user and the amount they wish to spend.</p>
+<blockquote>If a user wishes to spend 100 Minima but they only have two coins worth 40 and 90 Minima, they must use both coins as inputs to the transaction and receive change of 30 as a new coin.</blockquote>
+<p>Each coin is identifiable with a unique CoinID has the following attributes:</p>
+<div class="table-wrap"><table>
+<tr><th>Coin Attribute</th><th>Description</th><th>Type</th></tr>
+<tr><td>CoinID</td><td>The globally unique identifier for a coin. The coin id of a new UTxO is hash(first input coin in txn \</td><td>output_num_in_txn)</td><td>64 byte hash (MiniData)</td></tr>
+<tr><td>Amount</td><td>The amount of 'Minima'. Even custom token transactions are just amounts of coloured Minima (see Coloured Coins)</td><td>MiniNumber</td></tr>
+<tr><td>Address</td><td>The hash of a script. If no custom script is provided, the script will simply be RETURN(SIGNEDBY([PublicKey of coin owner]) i.e. the transaction must be signed by the coin owner before it can be spent. All addresses are P2SH (Pay to Script Hash).</td><td>64 byte hash (MiniData)</td></tr>
+<tr><td>Token ID</td><td>The Token ID. Minima is 0x00. Everything else has a full 64 byte hash. Tokens are created by colouring Minima.</td><td>64 byte hash (MiniData)</td></tr>
+<tr><td>Token</td><td>Token Details (see Coloured Coins)</td></tr>
+<tr><td>Floating</td><td>True or False. Set when you create a transaction. If True, the Coin ID is ignored so that any valid coin that has the same amount, address and Token ID can be used.</td><td>Boolean</td></tr>
+<tr><td>Store State</td><td>True or False, depending on whether the state is stored for this coin</td><td>Boolean</td></tr>
+<tr><td>State</td><td>The state variables (0-255) of the transaction this coin was created in. You can access this data from scripts.</td><td>Integer</td></tr>
+<tr><td>MMR Entry</td><td>The MMR database entry number for this coin</td><td>MMREntryNumber</td></tr>
+<tr><td>Spent</td><td>True or False, depending on whether this coin has been spent or not.</td><td>Boolean</td></tr>
+<tr><td>Created</td><td>The block number this coin was created in.</td><td>Integer</td></tr>
+</table></div>
+<p>Example coin details by running:</p>
+<pre><code>coins relevant:true</code></pre>
+<pre><code>{
+  "command": "coins",
+  "params": {
+    "relevant": "true"
+  },
+  "status": true,
+  "response": [
+    {
+      "coinid": "0xB76A17B0444D40A90697FCC7EFFFB1917F7B4AC7FD70D7E70323DC560B6A3CF2",
+      "amount": "98",
+      "address": "0x0B00C23C8B4DFBDEC76FEE908ADF1BD396A5E92DCC826D3ADD26E4140CFA1DC0",
+      "tokenid": "0x00",
+      "token": null,
+      "floating": false,
+      "storestate": true,
+      "state": [],
+      "mmrentry": "439",
+      "spent": false,
+      "created": "167764"
+    }
+  ]
+}</code></pre>
+<h2>Outputs</h2>
+<p>Transaction outputs are new coins (UTxOs) created as a result of a transaction and include:</p>
+<ol><li>Amount to send to recipients: One or more amounts with recipients' addresses specified.</li><li>Change to the sender: When the amount being sent is less than the value of the coin inputs, change needs to be returned to the sender's address.</li></ol>
+<div class="callout"><strong>Burn</strong><br>Any difference between inputs and outputs will be burned, reducing the
+<p>circulating supply of Minima.</div></p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

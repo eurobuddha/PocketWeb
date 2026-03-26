@@ -1,0 +1,157 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node Types — Run a Node</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">🖥️ Run a Node</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link active" href="node-types.html">Node Types</a>
+<a class="sidebar-link" href="firewall-rules.html">Firewall Rules</a>
+<a class="sidebar-link" href="startup-parameters.html">Startup Parameters</a>
+<div class="sidebar-group">Full Node</div>
+<a class="sidebar-link" href="android.html">Android</a>
+<a class="sidebar-link" href="windows.html">Windows</a>
+<a class="sidebar-link" href="mac.html">Mac</a>
+<a class="sidebar-link" href="docker-desktop.html">Docker Desktop</a>
+<a class="sidebar-link" href="linux-vps-docker.html">Linux Vps Docker</a>
+<a class="sidebar-link" href="linux-vps-service.html">Linux Vps Service</a>
+<a class="sidebar-link" href="desktop-cli.html">Desktop Cli</a>
+<div class="sidebar-group">Archive Node</div>
+<a class="sidebar-link" href="archive-node.html">Archive Node</a>
+<div class="sidebar-group">Mega Node</div>
+<a class="sidebar-link" href="mega-node.html">Mega Node</a>
+<a class="sidebar-link" href="web-wallet.html">Web Wallet</a>
+<div class="sidebar-group">Minima E-Gateway (MEG)</div>
+<a class="sidebar-link" href="meg-about.html">Meg About</a>
+<a class="sidebar-link" href="meg-setup.html">Meg Setup</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+<a class="sidebar-link sister" href="../minima-dev/index.html">⚡ Developer Docs</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Node Types</h1>
+    <hr>
+<p>title: Node Types</p>
+<p>description: Understand the different types of Minima node</p>
+<p>icon: Waypoints</p>
+<p>tag: run-a-node</p>
+<hr>
+<h2>Overview</h2>
+<p>No matter which node type you choose, <strong>all Minima nodes are full nodes</strong> that contribute to finding new blocks, validate all transactions, and provide Proof of Work to secure the chain.</p>
+<p>Running a node means that you will run</p>
+<ol><li><strong>The Minima Blockchain</strong> - to make and receive transactions to other users</li><li><strong>Maxima</strong> - to send and receive off-chain messages and data to other users</li><li><strong>The MiniDapp System (MDS)</strong> - to use decentralised applications (if enabled)</li><li><strong>Omnia (Coming soon)</strong> - for fast, cheap transactions</li></ol>
+<p>There is no minimum amount of Minima coins required to run a node.</p>
+<hr>
+<h2>Node Options</h2>
+<p><strong>The following node types are available:</strong></p>
+<ol><li><strong>Full node</strong> - The default and best option for Android users and small devices. Ideal for regular users who want to participate in the Minima network without worrying about significant storage or technical requirements.</li></ol>
+<ol><li><strong>Mega MMR node</strong> - Ideal for those who have access to a server and wish to assist others in the recovery of their coins or host a Minima node for use by others.</li></ol>
+<ol><li><strong>Archive node</strong> -  Ideal for those who wish to hold a record of all previous block headers (excludes transaction details)</li></ol>
+<div class="callout"><strong>Relay nodes</strong><br>All types of nodes can contribute further to the network's health and resilience by relaying transactions and blocks across the network. This requires the node to be hosted on a server that accepts both incoming and outgoing connections on the base port (default 9001).</div>
+<hr>
+<h2>Supported devices</h2>
+<div class="table-wrap"><table>
+<tr><th>Platform</th><th>Full Node</th><th>Archive Node</th><th>Mega (MMR) Node</th></tr>
+<tr><td>Android</td></tr>
+<tr><td>Raspberry Pi</td></tr>
+<tr><td>Desktop (Windows/Mac/Linux/Docker)</td></tr>
+<tr><td>Server (Windows/Linux/Docker)</td></tr>
+</table></div>
+<h2>Minimum device specifications</h2>
+<p>Device specifications are separate to any Operating System and other third party application requirements.</p>
+<div class="table-wrap"><table>
+<tr><th>Platform</th><th>Full Node (Docker)</th><th>Archive Node</th><th>Mega Node</th></tr>
+<tr><td>Processing (CPU)</td><td>2 (4) CPU</td><td>2 CPU</td><td>4 CPU</td></tr>
+<tr><td>Memory (RAM)</td><td>2 (4) RAM</td><td>4 RAM</td><td>8-16 RAM</td></tr>
+<tr><td>Storage (GB)<sup>*</sup></td><td>2 (4) GB</td><td>50 GB</td><td>50 GB</td></tr>
+</table></div>
+<sup>*</sup>Note that storage requirements will depend on the level of MiniDapp usage.
+<h2>Functionality</h2>
+<div class="table-wrap"><table>
+<tr><th>Full Node</th><th>Archive Node</th><th>Mega Node</th></tr>
+<tr><td>Ease of setup</td><td>Basic</td><td>Advanced</td><td>Advanced</td></tr>
+<tr><td><strong>Basic functionality</strong></td></tr>
+<tr><td>Receive Minima, custom tokens and NFTs</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Send Minima, custom tokens and NFTs</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Mint custom tokens and NFTs</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Send data and messages over Maxima</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td><strong>Blockchain functionality</strong></td></tr>
+<tr><td>Creates blocks</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Validates transactions</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Can be synced back to Genesis block</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Can store entire block history (excludes transaction details)</td><td>No</td><td>Yes<sup>x</sup></td><td>No</td></tr>
+<tr><td>Can store complete coin set (excludes transaction details)</td><td>No</td><td>No</td><td>Yes<sup>x</sup></td></tr>
+<tr><td><strong>Node recovery</strong></td></tr>
+<tr><td>Recover wallets, backups and chain re-sync (for personal use)</td><td>No</td><td>Yes</td><td>Yes*</td></tr>
+<tr><td>Recover wallets, backups and chain re-sync (for other users)</td><td>No</td><td>Yes</td><td>Yes*<sup>+</sup></td></tr>
+<tr><td><strong>Data Export functionality</strong></td></tr>
+<tr><td>Export coins, transactions and block data to MySQL</td><td>Yes</td><td>Yes*</td><td>Yes</td></tr>
+<tr><td>Export block history to a file (.raw.dat) (excludes transaction details)</td><td>No</td><td>Yes</td><td>No</td></tr>
+<tr><td>Export coin history to a file (.mmr) (excludes transaction details)</td><td>No</td><td>No</td><td>Yes</td></tr>
+<tr><td><strong>Advanced functionality</strong></td></tr>
+<tr><td>Create and/or post transactions on behalf of external users</td><td>No</td><td>No</td><td>Yes</td></tr>
+<tr><td>Minting tokens on behalf of external users</td><td>No</td><td>No</td><td>Yes</td></tr>
+<tr><td>Host public facing minidapps</td><td>No</td><td>No</td><td>Yes</td></tr>
+</table></div>
+<sup>x</sup> if node is re-synced to Genesis block<br></br>
+<sup>*</sup> recommended option<br></br>
+<sup>+</sup> requires server hosting
+<p>Before taking a closer look at the differences between these node types it's useful to understand, via an analogy, how Minima stores coins:</p>
+<p><em>If all the coins in the Minima blockchain were a page in a book, every user would only hold the pages that relate to them, as well as the spine. When spending their coins, the user shares their relevant pages (coin proofs) with the other users on the network, who can check that they fit with their own spine - confirming the user's coins are valid.</em></p>
+<h3>Full node (default)</h3>
+<p>A full node can run on almost any device — be it a mobile phone, desktop computer, raspberry pi, or a server.</p>
+<p>This is the default node type designed for efficiency. It is perfect for everyday users and small devices wishing to utilise the Minima network. It uses the least amount of memory as possible, making it ideal for devices with limited storage.</p>
+<p><strong>Transaction history:</strong> Full nodes store only the most recent transaction history in full, roughly the last 24 hours' worth. It prunes older blocks to keep the storage space minimal but keeps a compact record of the pruned history, called the Cascade, to ensure it can validate transactions and create new blocks. <br></br></p>
+<p>Users keep a record of their own full transaction history which can be backed up or exported.</p>
+<p><strong>Coin records:</strong> Full nodes only hold the proofs for the coins that are relevant to the user (i.e. their own pages in the book), keeping storage and processing requirements minimal.</p>
+<h3>Mega (MMR) Node</h3>
+<p>A Mega node must be online constantly to remain in sync with the chain. Downtime of less than 24 hours is acceptable. It requires a server or other device with more considerable processing power and is not suitable for mobile devices.</p>
+<p><strong>Transaction history:</strong> Same as a default full node.</p>
+<p><strong>Coin records:</strong> While it does not permanently store full transaction details, it stores all the proofs needed to verify any coin on the network. This is the entire set of unspent coins for the whole blockchain. Known as the Mega MMR.</p>
+<h3>Archive node</h3>
+<p>{/* All Minima nodes have a <strong>txpow (transaction) database</strong> and an <strong>archive database</strong>.</p>
+<p>The <strong>txpow database</strong> contains transactions and full blocks. This is limited to the most recent blocks from the unpruned section of the chain - approximately the last 24 hours worth. */}</p>
+<p>{/*</p>
+<p>The <strong>archive database</strong> contains the last 2 months of <strong>sync blocks</strong>, which do not include transaction details but do hold all the MMR proofs for coins spent or created in the block. Sync blocks older than 2 months are not stored unless the node is set up as an archive node. */}</p>
+<p><strong>Archive nodes</strong> store <strong>all</strong> the <strong>sync blocks</strong> from after the archive node is started, no pruning is done after 2 months. Note that storage requirements will gradually increase over time.</p>
+<p>An Archive Node is typically run on a server or desktop computer as it requires more storage space.</p>
+<p><strong>Transaction history:</strong> Unlike the default full node, an archive node does not prune older blocks, storing all block headers and coin proofs from the moment it was started. Full transaction details are still pruned after two months.</p>
+<p><strong>Coins:</strong> It maintains a record of all spent and unspent coins since the archive node was started, not just the ones relevant to the user. If an archive file provided by another archive node (which contains data since the Genesis block) is imported, it will hold a complete record of the coins.</p>
+<p><strong>Additional functionality</strong></p>
+<ul><li>export block, coin and transaction data to an external MySQL database</li><li>export the chain history to a file, required for syncing new Archive or Mega MMR nodes </li></ul>
+<h2>Choosing the right node for You</h2>
+<p><strong>Just Getting Started?</strong> Stick with the default Full Node. It's easy to set up and doesn't demand much from your device.</p>
+<p><strong>Want to Support the Network More?</strong> Consider hosting a Mega MMR node and relaying transactions by allowing incoming connections. You'll contribute to the network's resilience and help other users recover their nodes.</p>
+<p><strong>Want the most complete chain history?</strong> Consider running an Archive node locally or hosting one on a server and relaying transactions by allowing incoming connections. You'll contribute to the network's resilience.</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>

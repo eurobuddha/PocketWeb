@@ -1,0 +1,180 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multisig Contract — Developer Docs</title>
+  <script type="text/javascript" src="../../miniweb/mds.js"></script>
+  <script type="text/javascript" src="../../miniweb/miniweb.js"></script>
+  <link rel="stylesheet" href="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+  <script type="text/javascript" src="../../miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="../../miniweb/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+<div class="sidebar">
+<div class="sidebar-title">⚡ Developer Docs</div>
+<div class="sidebar-group">Get Started</div>
+<a class="sidebar-link" href="index.html">Index</a>
+<a class="sidebar-link" href="testnet-single.html">Testnet Single</a>
+<a class="sidebar-link" href="testnet-multiple.html">Testnet Multiple</a>
+<a class="sidebar-link" href="cli.html">Minidapp CLI</a>
+<a class="sidebar-link" href="using-typescript.html">Using Typescript</a>
+<a class="sidebar-link" href="terminal-commands.html">Terminal Commands</a>
+<div class="sidebar-group">Transactions</div>
+<a class="sidebar-link" href="txnbasics.html">Txnbasics</a>
+<div class="sidebar-group">Transaction Tutorials</div>
+<a class="sidebar-link" href="simple-txn.html">Simple Txn</a>
+<div class="sidebar-group">MiniDapps</div>
+<a class="sidebar-link" href="minidapp-structure.html">Minidapp Structure</a>
+<a class="sidebar-link" href="minidapp-configfile.html">Minidapp Configfile</a>
+<a class="sidebar-link" href="minidapp-mdsjs.html">Minidapp Mdsjs</a>
+<a class="sidebar-link" href="minidapp-events.html">Minidapp Events</a>
+<a class="sidebar-link" href="mini-browser.html">Mini Browser</a>
+<a class="sidebar-link" href="minidapp-servicejs.html">Minidapp Servicejs</a>
+<div class="sidebar-group">MiniDapp Tutorials</div>
+<a class="sidebar-link" href="start.html">MiniDapp Hub</a>
+<a class="sidebar-link" href="basic-minidapp.html">Basic Minidapp</a>
+<a class="sidebar-link" href="interactive-minidapp.html">Interactive Minidapp</a>
+<a class="sidebar-link" href="react-minidapp.html">React Minidapp</a>
+<a class="sidebar-link" href="minidapp-stores.html">MiniDapp Stores </a>
+<div class="sidebar-group">Smart Contracts</div>
+<a class="sidebar-link" href="contracts-basics.html">Contracts Basics</a>
+<a class="sidebar-link" href="contracts-tokenscripts.html">Contracts Tokenscripts</a>
+<a class="sidebar-link" href="contracts-kissvm.html">Contracts Kissvm</a>
+<div class="sidebar-group">Smart Contract Tutorials</div>
+<a class="sidebar-link" href="pruning.html">Pruning</a>
+<a class="sidebar-link" href="tokens.html">Tokens</a>
+<div class="sidebar-group">Layer 1 - On Chain </div>
+<a class="sidebar-link" href="layer1-basic-contract.html">Basic signed contract</a>
+<a class="sidebar-link" href="layer1-time-lock-contract.html">Time Lock Contract</a>
+<a class="sidebar-link active" href="layer1-multisig.html">Multisig Contract</a>
+<a class="sidebar-link" href="layer1-mofnmultisig.html">Mofnmultisig</a>
+<a class="sidebar-link" href="layer1-complex-multisig.html">Complex Multisig</a>
+<a class="sidebar-link" href="layer1-slowcash.html">Slow Cash</a>
+<a class="sidebar-link" href="layer1-hashed-timelock-contract.html">Hashed Timelock Contract</a>
+<a class="sidebar-link" href="layer1-exchange-contract.html">Exchange Contract</a>
+<a class="sidebar-link" href="layer1-flashcash.html">Flash Cash</a>
+<a class="sidebar-link" href="layer1-multisigmulticoin.html">Multisigmulticoin</a>
+<a class="sidebar-link" href="layer1-mast-contract.html">MAST Contracts</a>
+<a class="sidebar-link" href="layer1-thevault.html">The Vault</a>
+<a class="sidebar-link" href="layer1-coinflip.html">Coin Flip</a>
+<div class="sidebar-group">Layer 2 - Off Chain </div>
+<a class="sidebar-link" href="layer2-uni-directional-channel.html">Uni-directional Channel</a>
+<a class="sidebar-link" href="layer2-bi-directional-payments.html">Bi-directional Payments</a>
+<a class="sidebar-link" href="layer2-eltoo-channel.html">ELTOO Channel</a>
+<a class="sidebar-link" href="layer2-eltoo-precoin.html">ELTOO Pre-Coin Txn</a>
+<a class="sidebar-link" href="layer2-eltoo-floating-coin.html">ELTOO Floating Coin</a>
+<a class="sidebar-link" href="layer2-eltoo-full-sequence.html">Full ELTOO Sequence</a>
+<a class="sidebar-link" href="layer2-state-chains.html">State Chains</a>
+<a class="sidebar-link" href="layer2-coinflipv2.html">Coin flip V2</a>
+<div class="sidebar-group">Smart Contract Examples</div>
+<a class="sidebar-link" href="future-cash.html">Future Cash</a>
+<a class="sidebar-link" href="vestr.html">Vestr</a>
+<div class="sidebar-group">Integrations</div>
+<a class="sidebar-link" href="streamr.html">Streamr</a>
+<div class="sidebar-group" style="margin-top:20px;">Other Sections</div>
+<a class="sidebar-link sister" href="../minima-docs/index.html">📘 Minima Docs</a>
+<a class="sidebar-link sister" href="../minima-learn/index.html">🧠 Minima Knowledge</a>
+<a class="sidebar-link sister" href="../minima-node/index.html">🖥️ Run a Node</a>
+<a class="sidebar-link sister" href="../minima-guides/index.html">📋 User Guides</a>
+</div>
+
+<div class="main-content">
+  <div class="prose">
+    <h1>Multisig Contract</h1>
+    <p>You have funds, and you want them to be spent ONLY if Multiple parties agree.</p>
+<p>Let's go through the full steps required to run a simple 2 of 2 multisig on chain via the Minima commands.</p>
+<p>You would run 2 versions of Minima, to simulate both users, still on a private network.</p>
+<p>As before - Start node 1 ( if not already started )</p>
+<pre><code>java -jar minima.jar -data minidata1 -test -nop2p -genesis</code></pre>
+<p>Now - Start node 2</p>
+<pre><code>java -jar minima.jar -data minidata2 -test -nop2p -clean -port 10001 -connect 127.0.0.1:9001</code></pre>
+<p>_-clean_ wipes previous data so you don't have to use it if you want to keep your old files</p>
+<p>The second node needs a separate data folder, a different port, and is told to connect to version 1 on the default port 9001.</p>
+<p>Now you have 2 versions of Minima running on a private test network. You can send minima back and forth to each other.</p>
+<p>Next both users will need a public key.. Run this on both. The output will show you a public key</p>
+<p>Node 1:</p>
+<pre><code>getaddress</code></pre>
+<p>On my setup the Public key (use your output here):</p>
+<pre><code>0x1539C2B974C1589C6AB3C734AA41D8E7D999759EFE057B047B200E836BA5268A</code></pre>
+<p>Node 2:</p>
+<pre><code>getaddress</code></pre>
+<p>On my setup the Public key :</p>
+<pre><code>0xAD25E1E40605A68AFE357ECF83E51FE27EC10013851AE95889A00C695D5B9402</code></pre>
+<p>Let's talk about <code>getaddress</code> vs <code>newaddress</code>.</p>
+<p>Minima creates 64 default keys for you to use as change addresses or to accept money or create tokens etc etc.. to keep the number of proof checks to a minimum (these are checked in every block to see if any coins are relevant to you).</p>
+<p>This also means that backup and restore operations know which addresses to look out for easily - so even if you do a new transaction your previous restore file will know the keys of the change address you use.</p>
+<p>Unless you really need a SINGLE address that is not used for anything else - use <code>getaddress</code>.</p>
+<p>To create a brand new address, that will not be used for anything else - then use <code>newaddress</code>.</p>
+<p>Now that you have both the public keys.. You can create the multisig contract.</p>
+<p>Script:</p>
+<pre><code>RETURN SIGNEDBY(0x1539C2B974C1589C6AB3C734AA41D8E7D999759EFE057B047B200E836BA5268A) AND SIGNEDBY(0xAD25E1E40605A68AFE357ECF83E51FE27EC10013851AE95889A00C695D5B9402)</code></pre>
+<p>You must add the script to BOTH nodes, so they know how to spend the coin.</p>
+<p>In Minima when you send funds to an address the script is not revealed. It is only added to the transaction when you wish to spend the coin, as an input.</p>
+<p>So on both nodes you need to run:</p>
+<pre><code>newscript trackall:true script:"RETURN SIGNEDBY(0x1539C2B974C1589C6AB3C734AA41D8E7D999759EFE057B047B200E836BA5268A) AND SIGNEDBY(0xAD25E1E40605A68AFE357ECF83E51FE27EC10013851AE95889A00C695D5B9402)"</code></pre>
+<p>This will tell you the address.. in this case:</p>
+<pre><code>0x7C6EB00C850E4E95743C6D6A181489D1215F53D39AE9702C42069C9F09DF378C</code></pre>
+<p>You will note <code>trackall</code>. This tells your node to track all instances of this address. The default is true.</p>
+<p>Sometimes you will add scripts you need to spend but you do not wish to track all occurrences (an exchange contract for instance)</p>
+<p>Minima will automatically track any coin that has an address you track, or an address you track or public key you own in the state variables.</p>
+<p>We now have both nodes able to understand the script. Let's send some funds to the script.</p>
+<p>On Node 1 - the genesis node..</p>
+<pre><code>send amount:10 address:0x7C6EB00C850E4E95743C6D6A181489D1215F53D39AE9702C42069C9F09DF378C</code></pre>
+<p>Now both nodes should show a new coin! This coin can now only be spent if the script returns TRUE when attempting to use it as an input to a transaction.</p>
+<p>When you try <code>balance</code> you will see the confirmed coins and sendable coins.</p>
+<p><strong>Confirmed</strong> are the coins you are tracking.</p>
+<p><strong>Sendable</strong> are the coins with simple addresses you can use with the <code>send</code> function. It takes 3 blocks for a coin to go from unconfirmed to confirmed.</p>
+<p>Now lets construct a transaction that uses this coin as an input.</p>
+<pre><code>txncreate id:multisig</code></pre>
+<p>This creates a custom transaction.</p>
+<p>Now we need to find the coin to add as input</p>
+<pre><code>coins relevant:true</code></pre>
+<p>You could just use <code>coins</code> here on its own and it defaults to <code>coins relevant:true</code>.</p>
+<p>This will display all the coins you are tracking. You can search for any coin using this function but we are only interested in our coins for now.</p>
+<p>Copy the coinid for the coin with <code>address</code> matching script address and amount 10. Then add it to your transaction. This will be the same on both nodes.</p>
+<pre><code>txninput id:multisig coinid:0x9EAD12B53C8B595BFAFA636BC844AB51E3BF3B4B463DFF6D983FA236B3AEB49F</code></pre>
+<p>Your coinid will be different. You should now see a transaction with 1 input. You can check the txn with :</p>
+<pre><code>txncheck id:multisig</code></pre>
+<p>And list them with</p>
+<pre><code>txnlist</code></pre>
+<p>Now - let’s add an output</p>
+<p>1 to be sent to 0xFF (or whatever - you could create a newaddress on one of your nodes) and 9 to be sent back to the multisig as change. Remember that all transactions spend all the inputs so change outputs are required.</p>
+<pre><code>txnoutput id:multisig address:0xFF amount:1</code></pre>
+<pre><code>txnoutput id:multisig address:0x7C6EB00C850E4E95743C6D6A181489D1215F53D39AE9702C42069C9F09DF378C amount:9</code></pre>
+<p>Now - we have an almost complete transaction.. BUT it needs both nodes to sign it.</p>
+<p>So - on this node.. Where you are constructing the transaction..</p>
+<pre><code>keys</code></pre>
+<p>This will show all your public keys. Pick the Public Key you used to make the multisig and run:</p>
+<pre><code>txnsign id:multisig publickey:0x1539C2B974C1589C6AB3C734AA41D8E7D999759EFE057B047B200E836BA5268A</code></pre>
+<p>You now have a partially signed transaction. You need to export it, to a file, and send the data to the other node to sign..</p>
+<pre><code>txnexport id:multisig file:mymultisig.txn</code></pre>
+<p>Now on the _other_ node.. You can change the id if you wish..</p>
+<pre><code>txnimport file:mymultisig.txn</code></pre>
+<p>Now you should have the transaction on the other node.. Sign it with the other key..</p>
+<pre><code>txnsign id:multisig publickey:0xAD25E1E40605A68AFE357ECF83E51FE27EC10013851AE95889A00C695D5B9402</code></pre>
+<p>And NOW - you should have a correctly signed transaction.. by both parties.. Just needs the correct MMR proofs and scripts.. Which is done with..</p>
+<pre><code>txnbasics id:multisig</code></pre>
+<p>The reason this is not done immediately when you add an input.. Is that you may be posting this transaction weeks or months after it is created and will need up to date proofs.</p>
+<p>And now - we can attempt to publish the transaction:</p>
+<pre><code>txnpost id:multisig</code></pre>
+<p>IF everything has gone to plan - you will post that transaction and you will see the coins appear on both sides!</p>
+
+  </div>
+  <div class="doc-footer">
+    <a href="https://minima.global" target="_blank">Minima</a>
+    <a href="https://docs.minima.global" target="_blank">Official Docs</a>
+    <a href="https://github.com/minima-global" target="_blank">GitHub</a>
+    <br><br>
+    Minima Documentation &copy; 2025 &middot; Republished on PocketWeb
+  </div>
+</div>
+</div>
+<script>
+  miniweb_Init();
+  MDS.init(function(msg){});
+</script>
+</body>
+</html>
