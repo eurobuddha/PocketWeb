@@ -8,7 +8,15 @@ var MINIWEB_REQUESTS = [];
  * Initialise the MiniWEB library
  */
 function miniweb_Init(){
-	
+
+	//Periodically clean up stale requests (2 min TTL)
+	setInterval(function(){
+		var now = Date.now();
+		MINIWEB_REQUESTS = MINIWEB_REQUESTS.filter(function(r){
+			return r.created && (now - r.created) < 120000;
+		});
+	}, 60000);
+
 	//listen for post messages..
 	window.onmessage = function(event){
 		
@@ -61,12 +69,13 @@ function miniweb_GetDataURI(minifile,callback){
 	
 	//First store this request in thelist..
 	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000); 
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	request.callback 	= callback;
-	
+
 	//Push it on the stack
 	MINIWEB_REQUESTS.push(request);
-	
+
 	//Make a request msg to the top window..
 	var msg 	= {};
 	msg.action 	= "MINIWEB_GETDATAURI";
@@ -84,6 +93,7 @@ function miniweb_ListAll(callback){
 
 	var request 		= {};
 	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	request.callback 	= callback;
 
 	MINIWEB_REQUESTS.push(request);
@@ -102,6 +112,7 @@ function miniweb_Search(searchterm, callback){
 
 	var request 		= {};
 	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	request.callback 	= callback;
 
 	MINIWEB_REQUESTS.push(request);
@@ -121,9 +132,10 @@ function miniweb_JumpToURL(minifile,callback){
 	
 	//First store this request in thelist..
 	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000); 
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	if(callback){
-		request.callback 	= callback;	
+		request.callback 	= callback;
 	}else{
 		request.callback 	= null;
 	}
@@ -148,6 +160,7 @@ function miniweb_NetGET(url, callback){
 
 	var request 		= {};
 	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	request.callback 	= callback;
 
 	MINIWEB_REQUESTS.push(request);
@@ -167,6 +180,7 @@ function miniweb_MdsCmd(command, callback){
 
 	var request 		= {};
 	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	request.callback 	= callback;
 
 	MINIWEB_REQUESTS.push(request);
@@ -187,6 +201,7 @@ function miniweb_InstallDapp(fileUrl, name, callback){
 	//First store this request in the list..
 	var request 		= {};
 	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.created		= Date.now();
 	request.callback 	= callback;
 
 	//Push it on the stack

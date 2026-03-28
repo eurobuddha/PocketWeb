@@ -25,8 +25,6 @@
 	<script type="text/javascript" src="./js/sql.js"></script>
 	<script type="text/javascript" src="./js/gui.js"></script>
 	
-	<!-- Load shared gui.js for theme toggle -->
-	<script type="text/javascript" src="./js/gui.js"></script>
 
 	<style type="text/css">
 
@@ -591,8 +589,19 @@
 
 			}else if(action == "MINIWEB_NET_GET"){
 
-				//Proxy MDS.net.GET for iframe pages
-				MDS.net.GET(msg.data, function(netResp){
+				//Proxy MDS.net.GET for iframe pages — HTTPS only, no local network
+				var netUrl = msg.data || "";
+				var netLower = netUrl.toLowerCase();
+				var netIsLocal = netLower.indexOf("127.0.0.1") !== -1 || netLower.indexOf("localhost") !== -1 || netLower.indexOf("0.0.0.0") !== -1 || netLower.indexOf("[::1]") !== -1 || netLower.indexOf("192.168.") !== -1 || netLower.indexOf("10.") !== -1;
+				if(!netUrl.startsWith("https://") || netIsLocal){
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+					resp.data 		= { status:false, error:"Only HTTPS external URLs allowed" };
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+					return;
+				}
+				MDS.net.GET(netUrl, function(netResp){
 					var resp 		= {};
 					resp.action 	= "MINIWEB_RESPONSE";
 					resp.randid 	= msg.randid;
@@ -602,7 +611,26 @@
 
 			}else if(action == "MINIWEB_MDS_CMD"){
 
-				//Proxy read-only MDS.cmd for iframe pages
+				//Proxy read-only MDS.cmd for iframe pages — ALLOWLIST ONLY
+				var SAFE_COMMANDS = ["mds","block","status","balance","coins","maxima","checkmode","history","tokenvalidate","keys","getaddress","random","convert","hash"];
+				var cmdRaw = msg.data.trim().toLowerCase();
+				var cmdName = cmdRaw.split(/\s+/)[0];
+
+				//Block dangerous sub-actions even for allowed commands
+				var BLOCKED_ACTIONS = ["action:install","action:uninstall","action:remove","action:send","action:sendall"];
+				var hasBlockedAction = false;
+				for(var bi=0;bi<BLOCKED_ACTIONS.length;bi++){
+					if(cmdRaw.indexOf(BLOCKED_ACTIONS[bi]) !== -1){ hasBlockedAction = true; break; }
+				}
+
+				if(SAFE_COMMANDS.indexOf(cmdName) === -1 || hasBlockedAction){
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+					resp.data 		= { status:false, error:"Command not allowed: "+cmdName };
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+					return;
+				}
 				MDS.cmd(msg.data, function(cmdResp){
 					var resp 		= {};
 					resp.action 	= "MINIWEB_RESPONSE";
@@ -613,11 +641,12 @@
 
 			}else if(action == "MINIWEB_INSTALL_DAPP"){
 
-				//Validate URL - must be HTTPS and end with .zip
+				//Validate URL - must be HTTPS, end with .zip, no local addresses
 				var installUrl = msg.data;
 				var installName = msg.name || "Unknown";
-
-				if(!installUrl || !installUrl.startsWith("https://") || !installUrl.endsWith(".zip")){
+				var lowerUrl = (installUrl||"").toLowerCase();
+				var isLocal = lowerUrl.indexOf("127.0.0.1") !== -1 || lowerUrl.indexOf("localhost") !== -1 || lowerUrl.indexOf("0.0.0.0") !== -1 || lowerUrl.indexOf("[::1]") !== -1;
+				if(!installUrl || !installUrl.startsWith("https://") || !installUrl.endsWith(".zip") || isLocal){
 					var resp 		= {};
 					resp.action 	= "MINIWEB_RESPONSE";
 					resp.randid 	= msg.randid;
@@ -639,9 +668,7 @@
 
 				//Download the file
 				var savedRandId = msg.randid;
-				MDS.log("INSTALL_DAPP: downloading " + installUrl);
 				MDS.file.download(installUrl, function(dlResp){
-					MDS.log("INSTALL_DAPP: download response status=" + dlResp.status + " resp=" + JSON.stringify(dlResp.response));
 					if(!dlResp.status){
 						var resp 		= {};
 						resp.action 	= "MINIWEB_RESPONSE";
@@ -654,11 +681,9 @@
 					//Get file path - try both .path and .file fields
 					var dl = dlResp.response.download || dlResp.response;
 					var filePath = dl.path || dl.file || dl.location;
-					MDS.log("INSTALL_DAPP: filePath=" + filePath);
 
 					//Install the MiniDapp (trust:read means it goes to Pending for approval)
 					MDS.cmd("mds action:install file:" + filePath + " trust:read", function(installResp){
-						MDS.log("INSTALL_DAPP: install response status=" + installResp.status + " error=" + installResp.error);
 						var resp 		= {};
 						resp.action 	= "MINIWEB_RESPONSE";
 						resp.randid 	= savedRandId;
