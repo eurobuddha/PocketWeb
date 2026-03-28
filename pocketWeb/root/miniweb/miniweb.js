@@ -141,4 +141,27 @@ function miniweb_JumpToURL(minifile,callback){
 	window.top.postMessage(msg, '*');
 }
 
+/**
+ * Install a MiniDapp from a URL via PocketWeb parent
+ */
+function miniweb_InstallDapp(fileUrl, name, callback){
+
+	//First store this request in the list..
+	var request 		= {};
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.callback 	= callback;
+
+	//Push it on the stack
+	MINIWEB_REQUESTS.push(request);
+
+	//Make a request msg to the top window..
+	var msg 	= {};
+	msg.action 	= "MINIWEB_INSTALL_DAPP";
+	msg.data 	= fileUrl;
+	msg.name 	= name;
+	msg.randid	= request.randid;
+
+	//Send this to the parent window..
+	window.top.postMessage(msg, '*');
+}
 

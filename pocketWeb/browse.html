@@ -589,6 +589,65 @@
 					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
 				});
 
+			}else if(action == "MINIWEB_INSTALL_DAPP"){
+
+				//Validate URL - must be HTTPS and end with .zip
+				var installUrl = msg.data;
+				var installName = msg.name || "Unknown";
+
+				if(!installUrl || !installUrl.startsWith("https://") || !installUrl.endsWith(".zip")){
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+					resp.data 		= { status:false, error:"Invalid URL. Must be HTTPS and end with .zip" };
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+					return;
+				}
+
+				//Confirm with user before installing
+				var ok = confirm("Install MiniDapp: " + installName + "?\n\nFrom: " + installUrl);
+				if(!ok){
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+					resp.data 		= { status:false, error:"cancelled" };
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+					return;
+				}
+
+				//Download the file
+				var savedRandId = msg.randid;
+				MDS.file.download(installUrl, function(dlResp){
+					if(!dlResp.status){
+						var resp 		= {};
+						resp.action 	= "MINIWEB_RESPONSE";
+						resp.randid 	= savedRandId;
+						resp.data 		= { status:false, error:"Download failed" };
+						document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+						return;
+					}
+
+					var filePath = dlResp.response.download.file;
+
+					//Install the MiniDapp
+					MDS.cmd("mds action:install file:" + filePath + " trust:read", function(installResp){
+						var resp 		= {};
+						resp.action 	= "MINIWEB_RESPONSE";
+						resp.randid 	= savedRandId;
+
+						if(installResp.status){
+							resp.data = { status:true, installed:installResp.response };
+						}else{
+							resp.data = { status:false, error:"Install failed: " + (installResp.error || "unknown error") };
+						}
+
+						document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+
+						//Cleanup downloaded file
+						MDS.file.delete(filePath, function(){});
+					});
+				});
+
 			}else if(action == "MINIWEB_LOCATION"){
 				//The current iFrame location
 				newIFramePage(msg.data);
