@@ -656,15 +656,18 @@
 					var filePath = dl.path || dl.file || dl.location;
 					MDS.log("INSTALL_DAPP: filePath=" + filePath);
 
-					//Install the MiniDapp
+					//Install the MiniDapp (trust:read means it goes to Pending for approval)
 					MDS.cmd("mds action:install file:" + filePath + " trust:read", function(installResp){
 						MDS.log("INSTALL_DAPP: install response status=" + installResp.status + " error=" + installResp.error);
 						var resp 		= {};
 						resp.action 	= "MINIWEB_RESPONSE";
 						resp.randid 	= savedRandId;
 
-						if(installResp.status){
-							resp.data = { status:true, installed:installResp.response };
+						//Check for pending state (status=false but "pending" in error) - treat as success
+						var isPending = !installResp.status && installResp.error && installResp.error.indexOf("pending") !== -1;
+
+						if(installResp.status || isPending){
+							resp.data = { status:true, installed:installResp.response, pending:isPending };
 						}else{
 							resp.data = { status:false, error:"Install failed: " + (installResp.error || "unknown error") };
 						}
