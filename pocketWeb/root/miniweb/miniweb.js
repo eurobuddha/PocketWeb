@@ -142,6 +142,44 @@ function miniweb_JumpToURL(minifile,callback){
 }
 
 /**
+ * Proxy MDS.net.GET via PocketWeb parent
+ */
+function miniweb_NetGET(url, callback){
+
+	var request 		= {};
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.callback 	= callback;
+
+	MINIWEB_REQUESTS.push(request);
+
+	var msg 	= {};
+	msg.action 	= "MINIWEB_NET_GET";
+	msg.data 	= url;
+	msg.randid	= request.randid;
+
+	window.top.postMessage(msg, '*');
+}
+
+/**
+ * Proxy MDS.cmd via PocketWeb parent (read-only commands)
+ */
+function miniweb_MdsCmd(command, callback){
+
+	var request 		= {};
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.callback 	= callback;
+
+	MINIWEB_REQUESTS.push(request);
+
+	var msg 	= {};
+	msg.action 	= "MINIWEB_MDS_CMD";
+	msg.data 	= command;
+	msg.randid	= request.randid;
+
+	window.top.postMessage(msg, '*');
+}
+
+/**
  * Install a MiniDapp from a URL via PocketWeb parent
  */
 function miniweb_InstallDapp(fileUrl, name, callback){

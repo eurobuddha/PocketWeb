@@ -589,6 +589,28 @@
 					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
 				});
 
+			}else if(action == "MINIWEB_NET_GET"){
+
+				//Proxy MDS.net.GET for iframe pages
+				MDS.net.GET(msg.data, function(netResp){
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+					resp.data 		= netResp;
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+				});
+
+			}else if(action == "MINIWEB_MDS_CMD"){
+
+				//Proxy read-only MDS.cmd for iframe pages
+				MDS.cmd(msg.data, function(cmdResp){
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+					resp.data 		= cmdResp;
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+				});
+
 			}else if(action == "MINIWEB_INSTALL_DAPP"){
 
 				//Validate URL - must be HTTPS and end with .zip
