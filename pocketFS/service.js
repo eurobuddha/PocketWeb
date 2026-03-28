@@ -217,6 +217,99 @@ function loadMxSite(mxsite, callback){
 	}); 
 }
 
+/**
+ * Import file packets from the original MiniFS on first run
+ */
+function importFromMiniFS(){
+
+	//Check if we've already done this
+	MDS.keypair.get("minifs_imported", function(result){
+
+		if(result.status && result.value == "true"){
+			if(logging){
+				MDS.log("MiniFS import already completed");
+			}
+			return;
+		}
+
+		//Search MiniFS with empty term to match all files (LIKE '%%')
+		var api 	= {};
+		api.action 	= "SEARCH";
+		api.data 	= " ";
+
+		MDS.api.call("minifs", JSON.stringify(api), function(resp){
+
+			if(!resp.status){
+				MDS.log("MiniFS not installed or unavailable - skipping import");
+				return;
+			}
+
+			try{
+				var data  = JSON.parse(resp.data);
+				var files = data.results || [];
+
+				MDS.log("MiniFS import: checking "+files.length+" files..");
+
+				var imported = 0;
+				var checked  = 0;
+
+				for(var i=0; i<files.length; i++){
+					(function(fp){
+
+						//Do we already have this file?
+						getFilePacket(fp.data.name, function(existing){
+
+							if(!existing){
+
+								//Verify signature before importing
+								verifyFilepacket(fp, function(valid){
+
+									checked++;
+
+									if(valid){
+										insertFilePacket(true, fp, function(){
+											imported++;
+											MDS.log("MiniFS import: added "+fp.data.name);
+
+											//Check if we're done
+											if(checked == files.length){
+												MDS.log("MiniFS import complete: "+imported+" new files added");
+												MDS.keypair.set("minifs_imported", "true");
+											}
+										});
+									}else{
+										MDS.log("MiniFS import: invalid signature for "+fp.data.name);
+										if(checked == files.length){
+											MDS.log("MiniFS import complete: "+imported+" new files added");
+											MDS.keypair.set("minifs_imported", "true");
+										}
+									}
+								});
+
+							}else{
+								checked++;
+								if(checked == files.length){
+									MDS.log("MiniFS import complete: "+imported+" new files added");
+									MDS.keypair.set("minifs_imported", "true");
+								}
+							}
+						});
+					})(files[i]);
+				}
+
+				//If MiniFS had zero files, mark as done
+				if(files.length == 0){
+					MDS.log("MiniFS import: no files found");
+					MDS.keypair.set("minifs_imported", "true");
+				}
+
+			}catch(e){
+				MDS.log("MiniFS import error: "+e);
+			}
+		});
+	});
+}
+
 function postNotification(action, file){
 	//Broadcast a Notification
 	var notif 		= {};
@@ -264,7 +357,10 @@ MDS.init(function(msg){
 						processRequestCoin(resp.response[i]);
 					}
 				});
-			});	
+
+				//Import any files from original MiniFS (runs once)
+				importFromMiniFS();
+			});
 		});
 		
 	}else if(msg.event == "NOTIFYCOIN"){
@@ -392,23 +488,66 @@ MDS.init(function(msg){
 				}
 			});
 			
+		}else if(apicall.action == "LISTALL"){
+
+			//Return ALL published filepackets
+			getAllFilePackets(function(allfound){
+
+				//Create a resp object
+				var resp 		= {};
+				resp.status 	= true;
+				resp.results 	= allfound;
+
+				//Send it
+				MDS.api.reply(msg.data.from,msg.data.id,JSON.stringify(resp));
+			});
+
 		}else if(apicall.action == "SEARCH"){
-			
+
 			//DOMAIN is specified as the data
 			var request = apicall.data.trim();
-			
+
 			searchFilePackets(request,function(allfound){
-				
+
 				//Create a resp object
 				var resp 		= {};
 				resp.status 	= true;
 				resp.term 		= request;
 				resp.results 	= allfound;
-				
+
 				//Send it
 				MDS.api.reply(msg.data.from,msg.data.id,JSON.stringify(resp));
 			});
 			
+		}else if(apicall.action == "REFRESH"){
+
+			//Delete cached version and re-request from network
+			var request = apicall.data.trim();
+
+			MDS.log("REFRESH requested for: " + request);
+
+			//Delete from local cache
+			deleteFilePacket(request, function(){
+
+				MDS.log("Deleted cached packet: " + request);
+
+				//Remove from recent requests so it can be re-requested
+				RECENT_MAXIMA_REQUESTS = RECENT_MAXIMA_REQUESTS.filter(function(r){ return r !== request; });
+				RECENT_REQUESTS = RECENT_REQUESTS.filter(function(r){ return r !== request; });
+
+				//Now request fresh from the network
+				loadMxSite(request, function(reqresp){
+
+					var resp	= {};
+					resp.status	= true;
+					resp.found	= false;
+					resp.requested	= reqresp;
+					resp.refreshed	= true;
+
+					MDS.api.reply(msg.data.from, msg.data.id, JSON.stringify(resp));
+				});
+			});
+
 		}else if(apicall.action == "COPY"){
 			
 			//DOMAIN is specified as the data

@@ -39,6 +39,7 @@
 		</div>
 		<div class="topnav-links">
 			<button id="button-home">Home</button>
+			<button id="button-catalog">Catalog</button>
 			<button id="button-mysite">My Site</button>
 			<button id="button-dev">Dev</button>
 			<button id="button-help">Help</button>
@@ -217,16 +218,22 @@
 	
 	function search(){
 		var text = searchfield.value.trim();
-		
+
 		if(text == ""){
 			return;
 		}
-		
+
+		if(text == "*"){
+			//Jump to the full catalog
+			location.href="catalog.html?uid="+MDS.minidappuid;
+			return;
+		}
+
 		if(text.startsWith("miniweb://")){
-			
+
 			//Just jump to that page!
 			openBrowser(text);
-			
+
 		}else{
 			
 			mywebpackets.innerHTML = "Searching..";

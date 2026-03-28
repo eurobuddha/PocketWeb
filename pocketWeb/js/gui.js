@@ -18,7 +18,11 @@ function jumpToDev(){
 }
 
 function jumpToMySite(){
-	location.href="gensite.html?uid="+MDS.minidappuid;	
+	location.href="gensite.html?uid="+MDS.minidappuid;
+}
+
+function jumpToCatalog(){
+	location.href="catalog.html?uid="+MDS.minidappuid;
 }
 
 function startupButtons(){
@@ -41,6 +45,11 @@ function startupButtons(){
 		icon: "ui-icon-vcard",
 		showLabel: false
 	}).click(function(){jumpToMySite();});
+
+	$( "#button-catalog" ).button({
+		icon: "ui-icon-grid",
+		showLabel: false
+	}).click(function(){jumpToCatalog();});
 }
 
 var NOTIFICATION_ENABLED = false;

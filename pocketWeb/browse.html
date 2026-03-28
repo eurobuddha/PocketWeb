@@ -197,6 +197,7 @@
 			   			<td  width=100%><input class=addressbar type=text id=mxaddress></td>
 			   			<td><button id=gobutton>Go</button></td>
 			   			<td><button id=refreshbutton>Refresh</button></td>
+			<td><button id=forcerefreshbutton>Force Refresh</button></td>
 			   			<td><button id="theme-toggle" class="theme-toggle" onclick="toggleTheme();" title="Switch to light mode">&#9728;</button></td>
 			   		</tr>
 				   	<tr>
@@ -261,6 +262,11 @@
 			icon: "ui-icon-refresh",
 			showLabel: false
 		}).click(function(){refreshIFramePage();});
+
+		$( "#forcerefreshbutton" ).button({
+			icon: "ui-icon-arrowrefresh-1-e",
+			showLabel: false
+		}).click(function(){forceRefreshPage();});
 		
 		$( "#addbookmark" ).button({
 			icon: "ui-icon-circle-plus",
@@ -392,6 +398,78 @@
 			mxaddress.value = IFRAME_BAR;
 		}
 	}
+
+	function forceRefreshPage(){
+		var domain = mxaddress.value.trim();
+		if(domain == ""){
+			if(lastgo != ""){
+				domain = lastgo;
+			}else{
+				alert("No site to refresh");
+				return;
+			}
+		}
+
+		if(domain.startsWith("miniweb://")){
+			domain = domain.substring(10);
+		}
+		if(domain.endsWith("/")){
+			domain = domain.substring(0, domain.length-1);
+		}
+
+		var basedomain = getBaseDomain(domain);
+		var webfolder = addDomains(BASE_WEB, basedomain);
+		var internalfolder = addDomains(BASE_INTERNAL, basedomain);
+
+		MDS.log("Force refresh: clearing all caches for " + basedomain);
+
+		// Show loading page
+		loadPage("loading.html", function(){
+
+			// 1. Clear PocketWeb's extracted files
+			MDS.file.deletefromweb(webfolder, function(){
+				MDS.file.delete(internalfolder, function(){
+
+					// 2. Tell pocketFS to delete its cached ZIP and re-request from network
+					var api = {};
+					api.action = "REFRESH";
+					api.data = basedomain;
+
+					MDS.api.call("pocketfs", JSON.stringify(api), function(resp){
+
+						MDS.log("pocketFS REFRESH response: " + JSON.stringify(resp));
+
+						// 3. Now poll pocketFS until the fresh data arrives
+						var attempts = 0;
+						var maxAttempts = 30;
+
+						function pollForData(){
+							attempts++;
+							MDS.log("Polling for fresh data, attempt " + attempts + "...");
+
+							loadFilePacket(domain, function(loaded, minifsfound, requested){
+								if(loaded){
+									var finalpage = addDomains(BASE_WEB, domain);
+									if(!finalpage.includes(".html")){
+										finalpage = addDomains(finalpage, "index.html");
+									}
+									loadPage(finalpage);
+								}else if(attempts < maxAttempts){
+									setTimeout(pollForData, 2000);
+								}else{
+									MDS.log("Force refresh timed out after " + maxAttempts + " attempts");
+									loadPage("loading_notfound.html");
+								}
+							});
+						}
+
+						// Wait a moment for network request to propagate, then start polling
+						setTimeout(pollForData, 3000);
+					});
+				});
+			});
+		});
+	}
 	
 	function goBackIFramePage(){
 		var histlen = IFRAME_HISTORY.length;
@@ -466,10 +544,55 @@
 					}
 				});		
 			
+			}else if(action == "MINIWEB_LISTALL"){
+
+				//List all minisites via pocketFS API
+				var api 	= {};
+				api.action 	= "LISTALL";
+
+				MDS.api.call("pocketfs",JSON.stringify(api),function(apiResp){
+
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+
+					if(apiResp.status){
+						var parsed = JSON.parse(apiResp.data);
+						resp.data = { status:true, results: parsed.results || [] };
+					}else{
+						resp.data = { status:false, results:[] };
+					}
+
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+				});
+
+			}else if(action == "MINIWEB_SEARCH"){
+
+				//Search minisites via pocketFS API
+				var api 	= {};
+				api.action 	= "SEARCH";
+				api.data 	= msg.data;
+
+				MDS.api.call("pocketfs",JSON.stringify(api),function(apiResp){
+
+					var resp 		= {};
+					resp.action 	= "MINIWEB_RESPONSE";
+					resp.randid 	= msg.randid;
+
+					if(apiResp.status){
+						var parsed = JSON.parse(apiResp.data);
+						resp.data = { status:true, results: parsed.results || [] };
+					}else{
+						resp.data = { status:false, results:[] };
+					}
+
+					document.getElementById('webframe').contentWindow.postMessage(resp,"*");
+				});
+
 			}else if(action == "MINIWEB_LOCATION"){
 				//The current iFrame location
 				newIFramePage(msg.data);
-			}		
+			}
 		}
 	};
 	

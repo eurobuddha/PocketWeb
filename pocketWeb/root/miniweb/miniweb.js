@@ -78,6 +78,43 @@ function miniweb_GetDataURI(minifile,callback){
 }
 
 /**
+ * List ALL published minisites on the linternet
+ */
+function miniweb_ListAll(callback){
+
+	var request 		= {};
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.callback 	= callback;
+
+	MINIWEB_REQUESTS.push(request);
+
+	var msg 	= {};
+	msg.action 	= "MINIWEB_LISTALL";
+	msg.randid	= request.randid;
+
+	window.top.postMessage(msg, '*');
+}
+
+/**
+ * Search minisites by term
+ */
+function miniweb_Search(searchterm, callback){
+
+	var request 		= {};
+	request.randid		= Math.floor(Math.random() * 1000000000);
+	request.callback 	= callback;
+
+	MINIWEB_REQUESTS.push(request);
+
+	var msg 	= {};
+	msg.action 	= "MINIWEB_SEARCH";
+	msg.data 	= searchterm;
+	msg.randid	= request.randid;
+
+	window.top.postMessage(msg, '*');
+}
+
+/**
  * Jump to a specific miniweb://.. page
  */
 function miniweb_JumpToURL(minifile,callback){
