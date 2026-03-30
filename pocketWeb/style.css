@@ -66,6 +66,9 @@ body {
 	font-family: Manrope, system-ui, sans-serif;
 	margin: 0;
 	padding: 0;
+	padding-left: env(safe-area-inset-left);
+	padding-right: env(safe-area-inset-right);
+	padding-bottom: env(safe-area-inset-bottom);
 	background: var(--bg-body);
 	color: var(--text-primary);
 	min-height: 100vh;
@@ -105,6 +108,7 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px 20px;
+	padding-top: max(10px, env(safe-area-inset-top));
 	max-width: 900px;
 	margin: 0 auto;
 }

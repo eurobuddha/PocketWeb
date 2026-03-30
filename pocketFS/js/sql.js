@@ -7,6 +7,11 @@ function wipeDB(callback){
 	});
 }
 
+function sanitizeForSQL(str){
+	if(!str) return "";
+	return str.replace(/[';\\]/g, "");
+}
+
 function encodeStringForDB(str){
 	return encodeURIComponent(str).split("'").join("%27");
 }
@@ -60,13 +65,13 @@ function insertFilePacket(onchain, packetjson, callback){
 	//Insert this packet
 	var sql = "INSERT INTO filepackets(name, owner, randid, description, version, "
 							+"data, signature, lastaccess, published) "
-			 +"VALUES ('"+packetjson.data.name
-				   +"','"+packetjson.data.owner
-				   +"','"+packetjson.data.randid
+			 +"VALUES ('"+sanitizeForSQL(packetjson.data.name)
+				   +"','"+sanitizeForSQL(packetjson.data.owner)
+				   +"','"+sanitizeForSQL(packetjson.data.randid)
 				   +"','"+encodeStringForDB(packetjson.data.description)
-	 			   +"',"+packetjson.data.version
-				   +",'"+packetjson.data.file
-				   +"','"+packetjson.signature
+				   +"',"+parseInt(packetjson.data.version)
+				   +",'"+sanitizeForSQL(packetjson.data.file)
+				   +"','"+sanitizeForSQL(packetjson.signature)
 				   +"', "+getTimeMilli()+", "+published+")";
 	
 	MDS.sql(sql,function(msg){
@@ -77,9 +82,9 @@ function insertFilePacket(onchain, packetjson, callback){
 }
 
 function getFilePacket(name, callback){
-	
+
 	//Find a record
-	var sql = "SELECT * FROM filepackets WHERE name='"+name+"' ORDER BY id ASC LIMIT 1";
+	var sql = "SELECT * FROM filepackets WHERE name='"+sanitizeForSQL(name)+"' ORDER BY id ASC LIMIT 1";
 				
 	//Run this..
 	MDS.sql(sql,function(msg){
@@ -118,9 +123,9 @@ function getTotalFilePackets(callback){
 }
 
 function getMyFilePackets(userkey, callback){
-	
+
 	//Find a record
-	var sql = "SELECT * FROM filepackets WHERE owner='"+userkey+"' ORDER BY id ASC";
+	var sql = "SELECT * FROM filepackets WHERE owner='"+sanitizeForSQL(userkey)+"' ORDER BY id ASC";
 				
 	//Run this..
 	MDS.sql(sql,function(msg){
@@ -149,9 +154,9 @@ function getMyFilePackets(userkey, callback){
 }
 
 function getAllUnpublishedFilePackets(userkey, callback){
-	
+
 	//Find a record
-	var sql = "SELECT * FROM filepackets WHERE published=0 AND owner='"+userkey+"' ORDER BY id ASC";
+	var sql = "SELECT * FROM filepackets WHERE published=0 AND owner='"+sanitizeForSQL(userkey)+"' ORDER BY id ASC";
 				
 	//Run this..
 	MDS.sql(sql,function(msg){
@@ -181,7 +186,8 @@ function getAllUnpublishedFilePackets(userkey, callback){
 
 function getAllFilePackets(callback){
 
-	var sql = "SELECT * FROM filepackets WHERE published=1 ORDER BY id DESC";
+	//Exclude the data (ZIP hex) column to keep the response lightweight
+	var sql = "SELECT id, name, owner, randid, description, version, signature, published FROM filepackets WHERE published=1 ORDER BY id DESC";
 
 	MDS.sql(sql,function(msg){
 
@@ -197,7 +203,7 @@ function getAllFilePackets(callback){
 			packet.data.randid 		= row.RANDID;
 			packet.data.description	= decodeStringFromDB(row.DESCRIPTION);
 			packet.data.version 	= row.VERSION;
-			packet.data.file		= row.DATA;
+			packet.data.file		= "";
 			packet.signature 		= row.SIGNATURE;
 			packet.published 		= row.PUBLISHED;
 
@@ -209,11 +215,14 @@ function getAllFilePackets(callback){
 }
 
 function searchFilePackets(searchterm, callback){
-	
+
+	//Sanitize the search term to prevent SQL injection
+	var safe = searchterm.replace(/[';\\]/g, "");
+
 	//Find a record
-	var sql = "SELECT * FROM filepackets WHERE LOWER(description) LIKE '%"+searchterm.toLowerCase()+"%' ORDER BY id ASC";
-	if(searchterm.startsWith("Mx")){
-		sql = "SELECT * FROM filepackets WHERE name LIKE '%"+searchterm+"%' ORDER BY id ASC";
+	var sql = "SELECT * FROM filepackets WHERE LOWER(description) LIKE '%"+safe.toLowerCase()+"%' ORDER BY id ASC LIMIT 200";
+	if(safe.startsWith("Mx")){
+		sql = "SELECT * FROM filepackets WHERE name LIKE '%"+safe+"%' ORDER BY id ASC LIMIT 200";
 	}
 	
 	//var sql = "SELECT * FROM filepackets WHERE description REGEXP_LIKE '%"+searchterm+"%' ORDER BY id ASC LIMIT 50";			
@@ -245,14 +254,14 @@ function searchFilePackets(searchterm, callback){
 }
 
 function updateFilePacket(packetjson, callback){
-	
+
 	//Update the record..
 	var sql = "UPDATE filepackets SET "
-			 +" description='"+encodeStringForDB(packetjson.data.description)+"'"	 
-			 +", version="+packetjson.data.version
-			 +", data='"+packetjson.data.file
-			 +"', signature='"+packetjson.signature+"'"
-			 +", published=0 WHERE name='"+packetjson.data.name+"'";
+			 +" description='"+encodeStringForDB(packetjson.data.description)+"'"
+			 +", version="+parseInt(packetjson.data.version)
+			 +", data='"+sanitizeForSQL(packetjson.data.file)
+			 +"', signature='"+sanitizeForSQL(packetjson.signature)+"'"
+			 +", published=0 WHERE name='"+sanitizeForSQL(packetjson.data.name)+"'";
 					
 	MDS.sql(sql,function(msg){
 		callback(true);
@@ -260,14 +269,14 @@ function updateFilePacket(packetjson, callback){
 }
 
 function updateExternalFilePacket(packetjson, callback){
-	
+
 	//Update the record..
 	var sql = "UPDATE filepackets SET "
-			 +" description='"+encodeStringForDB(packetjson.data.description)+"'"	 
-			 +", version="+packetjson.data.version
-			 +", data='"+packetjson.data.file
-			 +"', signature='"+packetjson.signature+"'"
-			 +", published=1 WHERE name='"+packetjson.data.name+"'";
+			 +" description='"+encodeStringForDB(packetjson.data.description)+"'"
+			 +", version="+parseInt(packetjson.data.version)
+			 +", data='"+sanitizeForSQL(packetjson.data.file)
+			 +"', signature='"+sanitizeForSQL(packetjson.signature)+"'"
+			 +", published=1 WHERE name='"+sanitizeForSQL(packetjson.data.name)+"'";
 					
 	MDS.sql(sql,function(msg){
 		callback(true);
@@ -285,9 +294,9 @@ function updateFilePacketsToPublished(callback){
 }
 
 function deleteFilePacket(name, callback){
-	
-	//Update the record..
-	var sql = "DELETE FROM filepackets WHERE name='"+name+"'";
+
+	//Delete the record..
+	var sql = "DELETE FROM filepackets WHERE name='"+sanitizeForSQL(name)+"'";
 					
 	MDS.sql(sql,function(msg){
 		callback(true);
