@@ -79,6 +79,17 @@
         <p>Download the <strong>Minima</strong> app from the <a href="https://play.google.com/store/apps/details?id=com.minima.android" target="_blank">Google Play Store</a>. Open it — your node starts automatically.</p>
       </div>
     </div>
+
+    <!-- Raspberry Pi -->
+    <div class="step">
+      <div class="step-num">🍓</div>
+      <div>
+        <h3>Raspberry Pi</h3>
+        <p>Flash <strong>Pi OS Lite (64-bit)</strong> with <a href="https://www.raspberrypi.com/software/" target="_blank">Raspberry Pi Imager</a> (enable SSH + WiFi), then SSH in and paste:</p>
+        <div style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin:10px 0; font-family:monospace; font-size:13px; color:var(--text); overflow-x:auto; cursor:pointer;" onclick="copyCmd(this)" title="Click to copy">curl -sL https://raw.githubusercontent.com/eurobuddha/raspberry/main/headless/setup-minima-headless.sh | bash</div>
+        <p style="font-size:13px; color:var(--dim);">Runs as a systemd service. Access MDS Hub at <strong>https://minima.local:9003</strong> from any device on your network. Pi 4 or Pi 5 recommended (4GB+).</p>
+      </div>
+    </div>
   </div>
 
   <p style="font-size:13px; color:var(--dim); margin-top:16px;">After your node is running, write down your seed phrase: open the <strong>Security</strong> MiniDapp and back it up immediately.</p>
