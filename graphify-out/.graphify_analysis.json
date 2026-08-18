@@ -1,0 +1,244 @@
+{
+  "communities": {
+    "0": [
+      "android_content_context",
+      "android_net_uri",
+      "android_os_handler",
+      "app_src_main_java_com_eurobuddha_pocketweb_mainactivity_mainactivity_probestatus",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_cb",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_cb_onerror",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_cb_onresult",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_armtimeout",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_cmd",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_dead",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_file",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_listenerfor",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_nodeapi",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_timeoutfor",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_pairinglistener",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_pairinglistener_onenabled",
+      "minimaapi",
+      "minimaapilistener",
+      "org_json_jsonobject",
+      "org_minimarex_minimaapi_minimaapi",
+      "org_minimarex_minimaapi_minimaapilistener"
+    ],
+    "1": [
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_data",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_data_data",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_base32decode",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_encodetext",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_hexdecode",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_hexencode",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_jsonstring",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_jsonstringify",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_pocketprotocol",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_privatekeyfromhex",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_publickeyfromhex",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_sign",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_signingpreimage",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_signpacket",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_unreserved",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_utf8",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_verify",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_verifypacket",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest_jsonstringifyandpreimagematchjs",
+      "java_security_privatekey",
+      "java_security_publickey"
+    ],
+    "2": [
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_parsedpacket",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_parsedpacket_parsedpacket",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_buildpublishcommand",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_buildrequestcommand",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_decodestringfromdb",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_encodestringfordb",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_fromcoinstate",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_jstr",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_pocketwire",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_statejson",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_stripbrackets",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire_urldecode",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest_protocolselftest",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest_protocolselftest_check",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest_protocolselftest_extractslots",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest_protocolselftest_jshow",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest_protocolselftest_main"
+    ],
+    "3": [
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_base32",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_derivename",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_generatersa1024",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_makemxaddress",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_ownerhex",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_parsemxaddress",
+      "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol_sha3",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest_encodetextmatchesjs",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest_fullpacketsignverifyandantiforgery",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest_realonchainnamesvalidateandroundtrip",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest_rsasignverifyisdeterministicandtamperevident",
+      "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest_wirestateroundtrips",
+      "java_security_keypair",
+      "org_junit_test"
+    ],
+    "4": [
+      "protocol_vectors_gen_vectors",
+      "protocol_vectors_gen_vectors_cases",
+      "protocol_vectors_gen_vectors_dir",
+      "protocol_vectors_gen_vectors_encodetext",
+      "protocol_vectors_gen_vectors_fs",
+      "protocol_vectors_gen_vectors_jdir",
+      "protocol_vectors_gen_vectors_jlit",
+      "protocol_vectors_gen_vectors_mkdata",
+      "protocol_vectors_gen_vectors_out",
+      "protocol_vectors_gen_vectors_path",
+      "protocol_vectors_gen_vectors_strtohex0x"
+    ],
+    "5": [
+      "android_os_bundle",
+      "android_widget_textview",
+      "androidx_appcompat_app_appcompatactivity",
+      "app_src_main_java_com_eurobuddha_pocketweb_mainactivity",
+      "app_src_main_java_com_eurobuddha_pocketweb_mainactivity_mainactivity",
+      "app_src_main_java_com_eurobuddha_pocketweb_mainactivity_mainactivity_oncreate",
+      "app_src_main_java_com_eurobuddha_pocketweb_mainactivity_mainactivity_ondestroy",
+      "app_src_main_java_com_eurobuddha_pocketweb_mainactivity_mainactivity_openminimacore",
+      "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi_ondestroy",
+      "override"
+    ],
+    "6": [
+      "gradlew",
+      "gradlew__entry",
+      "gradlew_die",
+      "gradlew_save",
+      "gradlew_warn"
+    ],
+    "7": [
+      "app_src_test_java_com_eurobuddha_pocketweb_goldendata",
+      "app_src_test_java_com_eurobuddha_pocketweb_goldendata_c",
+      "app_src_test_java_com_eurobuddha_pocketweb_goldendata_c_c",
+      "app_src_test_java_com_eurobuddha_pocketweb_goldendata_goldendata"
+    ],
+    "8": [
+      "githooks_install",
+      "githooks_install_sh__entry"
+    ],
+    "9": [
+      "githooks_pre_commit",
+      "githooks_pre_commit__entry"
+    ],
+    "10": [
+      "app_build"
+    ],
+    "11": [
+      "build"
+    ],
+    "12": [
+      "settings"
+    ]
+  },
+  "cohesion": {
+    "0": 0.16996047430830039,
+    "1": 0.19367588932806323,
+    "2": 0.18947368421052632,
+    "3": 0.25,
+    "4": 0.18181818181818182,
+    "5": 0.3111111111111111,
+    "6": 0.6,
+    "7": 0.5,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_pocketprotocol_pocketprotocol",
+      "label": "PocketProtocol",
+      "degree": 25
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_nodeapi",
+      "label": "NodeApi",
+      "degree": 16
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_pocketwire",
+      "label": "PocketWire",
+      "degree": 12
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_mainactivity_mainactivity",
+      "label": "MainActivity",
+      "degree": 8
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_cb",
+      "label": "Cb",
+      "degree": 8
+    },
+    {
+      "id": "app_src_test_java_com_eurobuddha_pocketweb_protocolgoldentest_protocolgoldentest",
+      "label": "ProtocolGoldenTest",
+      "degree": 7
+    },
+    {
+      "id": "app_src_test_java_com_eurobuddha_pocketweb_protocolselftest_protocolselftest",
+      "label": "ProtocolSelfTest",
+      "degree": 5
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_pocketwire_parsedpacket",
+      "label": "ParsedPacket",
+      "degree": 4
+    },
+    {
+      "id": "app_src_main_java_com_eurobuddha_pocketweb_nodeapi_pairinglistener",
+      "label": "PairingListener",
+      "degree": 3
+    },
+    {
+      "id": "app_src_test_java_com_eurobuddha_pocketweb_goldendata_goldendata",
+      "label": "GoldenData",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "MainActivity",
+      "target": "NodeApi",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/pocketweb/MainActivity.java",
+        "app/src/main/java/com/eurobuddha/pocketweb/NodeApi.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "ParsedPacket",
+      "target": "Data",
+      "source_files": [
+        "app/src/main/java/com/eurobuddha/pocketweb/PocketWire.java",
+        "app/src/main/java/com/eurobuddha/pocketweb/PocketProtocol.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}

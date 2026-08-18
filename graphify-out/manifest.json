@@ -1,0 +1,72 @@
+{
+  ".githooks/install.sh": {
+    "mtime": 1787081158.908997,
+    "ast_hash": "f31b37c6d1b5d340a5623f1715457ea0",
+    "semantic_hash": "f31b37c6d1b5d340a5623f1715457ea0"
+  },
+  ".githooks/pre-commit": {
+    "mtime": 1787079660.7143435,
+    "ast_hash": "f2942c9cbcfdbb28265c72fbdef57483",
+    "semantic_hash": "f2942c9cbcfdbb28265c72fbdef57483"
+  },
+  "app/build.gradle": {
+    "mtime": 1787079421.2452512,
+    "ast_hash": "01687e979d458c1e0a26a645a35a582d",
+    "semantic_hash": "01687e979d458c1e0a26a645a35a582d"
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/MainActivity.java": {
+    "mtime": 1787079591.1692688,
+    "ast_hash": "664683ff78fdb4bd96a9f51a53a2d45f",
+    "semantic_hash": "664683ff78fdb4bd96a9f51a53a2d45f"
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/NodeApi.java": {
+    "mtime": 1787078703.7205894,
+    "ast_hash": "27aaf5441bddfabd3efcd488bca0799d",
+    "semantic_hash": "27aaf5441bddfabd3efcd488bca0799d"
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketProtocol.java": {
+    "mtime": 1787079086.9762504,
+    "ast_hash": "91ac842476e1ae4841a357c8f4cfdee4",
+    "semantic_hash": "91ac842476e1ae4841a357c8f4cfdee4"
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketWire.java": {
+    "mtime": 1787079199.0756142,
+    "ast_hash": "9612957d430f229240c9a052cf5d209e",
+    "semantic_hash": "9612957d430f229240c9a052cf5d209e"
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/GoldenData.java": {
+    "mtime": 1787079135.8089182,
+    "ast_hash": "ef853caf693abe833ce5b5c870ce6af0",
+    "semantic_hash": "ef853caf693abe833ce5b5c870ce6af0"
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/ProtocolGoldenTest.java": {
+    "mtime": 1787079465.612496,
+    "ast_hash": "1230b132e4d584f2fb5e789e5e46bef8",
+    "semantic_hash": "1230b132e4d584f2fb5e789e5e46bef8"
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/ProtocolSelfTest.java": {
+    "mtime": 1787079241.5505583,
+    "ast_hash": "31f91bb348dc09c8301e0df7ddff1aaa",
+    "semantic_hash": "31f91bb348dc09c8301e0df7ddff1aaa"
+  },
+  "build.gradle": {
+    "mtime": 1787078682.4728405,
+    "ast_hash": "583193a3771192898c84ddef2d926224",
+    "semantic_hash": "583193a3771192898c84ddef2d926224"
+  },
+  "gradlew": {
+    "mtime": 1787078682.473424,
+    "ast_hash": "02c16663c6f0aa37f98d94d698c22b8c",
+    "semantic_hash": "02c16663c6f0aa37f98d94d698c22b8c"
+  },
+  "protocol-vectors/gen-vectors.js": {
+    "mtime": 1787079030.666943,
+    "ast_hash": "0a384cf90e14dc781be9e92c0426d0d6",
+    "semantic_hash": "0a384cf90e14dc781be9e92c0426d0d6"
+  },
+  "settings.gradle": {
+    "mtime": 1787078703.7232594,
+    "ast_hash": "c8bf0d36c7512e9223f6fc84c49e1477",
+    "semantic_hash": "c8bf0d36c7512e9223f6fc84c49e1477"
+  }
+}
