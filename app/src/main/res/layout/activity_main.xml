@@ -3,41 +3,72 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:paddingBottom="4dp" />
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Browse the decentralized web"
-        android:textSize="13sp"
-        android:alpha="0.7"
-        android:paddingBottom="12dp" />
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="Back" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Mx… site address"
+            android:inputType="textNoSuggestions|textVisiblePassword"
+            android:maxLines="1"
+            android:imeOptions="actionGo" />
+
+        <Button
+            android:id="@+id/go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go"
+            android:minWidth="0dp" />
+
+        <Button
+            android:id="@+id/sites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sites"
+            android:minWidth="0dp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/pairingBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:padding="12dp"
+        android:padding="10dp"
         android:background="#33FF9800"
-        android:text="Not enabled in Minima Core yet. Tap to open Minima Core → Apps and enable PocketWeb (enable for browsing; grant Admin to publish)."
-        android:textSize="13sp" />
+        android:text="Not enabled in Minima Core. Tap to open Minima Core → Apps and enable PocketWeb (enable to browse; grant Admin to publish)."
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:text="Starting…"
-        android:textSize="14sp" />
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:textSize="11sp"
+        android:alpha="0.7"
+        android:text="Starting…" />
+
+    <WebView
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

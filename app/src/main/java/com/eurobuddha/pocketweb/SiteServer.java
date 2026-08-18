@@ -71,8 +71,11 @@ public class SiteServer {
         web.setWebViewClient(new Client());
     }
 
-    /** Extract (if needed) and load a verified site. Reports onSiteMissing if we don't hold it. */
-    public void loadSite(String mx) {
+    /** Extract (if needed) and load a verified site's index. Reports onSiteMissing if absent. */
+    public void loadSite(String mx) { loadSite(mx, "index.html"); }
+
+    /** Extract (if needed) and load a specific page within a verified site. */
+    public void loadSite(String mx, String path) {
         PocketStore.Row row = store.get(mx);
         if (row == null || row.data.file == null) {
             if (listener != null) listener.onSiteMissing(mx);
@@ -94,7 +97,7 @@ public class SiteServer {
             }
             currentMx = mx;
             currentSiteDir = dir;
-            web.loadUrl(MiniwebUrl.pageUrl(mx, "index.html"));
+            web.loadUrl(MiniwebUrl.pageUrl(mx, path));
         } catch (SiteExtractor.UnsafeZipException e) {
             if (listener != null) listener.onError("Unsafe site content rejected: " + e.getMessage());
         } catch (IOException e) {
