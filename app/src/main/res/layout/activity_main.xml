@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse the decentralized web"
+        android:textSize="13sp"
+        android:alpha="0.7"
+        android:paddingBottom="12dp" />
+
+    <TextView
+        android:id="@+id/pairingBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="12dp"
+        android:background="#33FF9800"
+        android:text="Not enabled in Minima Core yet. Tap to open Minima Core → Apps and enable PocketWeb (enable for browsing; grant Admin to publish)."
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:text="Starting…"
+        android:textSize="14sp" />
+
+</LinearLayout>

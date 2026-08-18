@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Sites may fetch HTTPS resources via the (host-allowlisted, SSRF-guarded) NET_GET bridge -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Android 11+ package visibility: needed to launch the node app and to deliver
+         our targeted (setPackage) IPC broadcasts to it -->
+    <queries>
+        <package android:name="org.minimarex.minimacore" />
+    </queries>
+
+    <!-- allowBackup=false (security-review TERM-2): Android Auto Backup would otherwise upload the
+         app's data dir to the user's cloud and restore it on reinstall. At stake here: the site cache
+         (SQLite), the app's OWN RSA publishing key + any imported Maxima key, and the shared
+         minima_api_prefs node pairing token. Publishing keys and a stale pairing token must NOT ride
+         a cloud backup, and a reinstall must be a true reset. -->
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PocketWeb"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Serves site zips the user picked (staged in cache/imports/) to the node's FILE bridge,
+             and hands exported sites to other apps. Non-exported; per-URI grants only. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.eurobuddha.pocketweb.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

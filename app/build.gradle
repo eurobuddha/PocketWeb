@@ -1,0 +1,68 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace 'com.eurobuddha.pocketweb'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.eurobuddha.pocketweb"
+        minSdk 28
+        targetSdk 35
+        versionCode 1
+        versionName "0.1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        // Minima family release key. Credentials come from ~/.gradle/gradle.properties
+        // (outside every repo), so nothing secret is ever committed. On a machine without
+        // those props this config stays empty and release falls back to debug signing.
+        release {
+            def ksFile = project.findProperty('MINIMA_FAMILY_RELEASE_STORE_FILE')
+            if (ksFile != null) {
+                storeFile file(ksFile)
+                storePassword project.findProperty('MINIMA_FAMILY_RELEASE_STORE_PASSWORD')
+                keyAlias project.findProperty('MINIMA_FAMILY_RELEASE_KEY_ALIAS')
+                keyPassword project.findProperty('MINIMA_FAMILY_RELEASE_KEY_PASSWORD')
+            }
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Sign release with the debug keystore, matching the minima-core-android node app.
+            // IPC is authorized by the MINIMA_ID token, not by signature, so this is sufficient
+            // for sideloading. Swap to a dedicated release keystore if uploading to Play.
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+
+    // Tabbed shell (Browse / Catalog / My Sites / Build / Publish)
+    implementation 'androidx.viewpager:viewpager:1.0.0'
+
+    implementation files('libs/minimaapi.aar')
+
+    // Backward-compat protocol core (PocketProtocol/PocketWire) is pure java.security +
+    // BigInteger; SHA3-256 comes from the platform provider (Conscrypt, API 28+). No BouncyCastle,
+    // so no BC 1.69 pin is needed (this app does NOT vendor the Winternitz signer).
+
+    // Golden-vector acceptance gate runs as a plain JVM unit test (no device needed).
+    testImplementation libs.junit
+}

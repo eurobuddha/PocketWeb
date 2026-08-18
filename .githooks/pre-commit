@@ -1,0 +1,13 @@
+#!/bin/sh
+# Guardrail (Android) — every code change ships with a version bump.
+# Blocks a commit touching app/src/** unless app/build.gradle versionCode changed vs HEAD.
+# Real funds, real chain. Do NOT bypass with --no-verify.
+staged=$(git diff --cached --name-only); [ -z "$staged" ] && exit 0
+code=$(printf '%s\n' "$staged" | grep -E '^app/src/'); [ -z "$code" ] && exit 0
+sv=$(git show :app/build.gradle 2>/dev/null | grep -E 'versionCode[[:space:]]+[0-9]+' | head -1 | grep -oE '[0-9]+' | head -1)
+hv=$(git show HEAD:app/build.gradle 2>/dev/null | grep -E 'versionCode[[:space:]]+[0-9]+' | head -1 | grep -oE '[0-9]+' | head -1)
+if [ -n "$hv" ] && [ "$sv" = "$hv" ]; then
+  echo "pre-commit: app/src changed but versionCode not bumped (still $hv). Bump versionCode+versionName." >&2
+  exit 1
+fi
+exit 0
