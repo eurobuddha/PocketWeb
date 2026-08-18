@@ -82,6 +82,18 @@ public class ProtocolGoldenTest {
         assertFalse("name not committing to (randid,owner) rejected", PocketProtocol.verifyPacket(spoof, sig));
     }
 
+    @Test public void verifyPacketIsTotalOnMalformedInput() {
+        // Attacker crafts a name that DOES commit to a deliberately-invalid owner key, so the name
+        // check passes and verification reaches publicKeyFromHex — which must not throw out of verifyPacket.
+        String badOwner = "0xDEADBEEF";                 // not a valid X.509 RSA key
+        String randid = "0x00112233445566778899AABBCCDDEEFF";
+        String name = PocketProtocol.deriveName(randid, badOwner);
+        PocketProtocol.Data d = new PocketProtocol.Data(name, badOwner, randid, "x", 1, "0x00");
+        assertFalse("malformed owner -> false, not exception", PocketProtocol.verifyPacket(d, "0x00"));
+        assertFalse("null-ish fields -> false", PocketProtocol.verifyPacket(
+                new PocketProtocol.Data("MxX", "0x", "0x", "", 1, "0x"), "0x"));
+    }
+
     @Test public void wireStateRoundTrips() {
         KeyPair kp = PocketProtocol.generateRsa1024();
         String owner = PocketProtocol.ownerHex(kp.getPublic());

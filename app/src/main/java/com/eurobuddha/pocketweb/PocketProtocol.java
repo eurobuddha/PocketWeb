@@ -283,9 +283,18 @@ public final class PocketProtocol {
     /**
      * Full verification as pocketFS does it: (1) name commits to (randid, owner),
      * (2) SHA256withRSA signature over the canonical pre-image checks out.
+     *
+     * Total by contract: a malformed packet (bad owner DER, bad hex, etc.) returns false rather
+     * than throwing, so one hostile coin cannot abort a whole ingest loop.
      */
     public static boolean verifyPacket(Data d, String signatureHex) {
-        if (!deriveName(d.randid, d.owner).equals(d.name)) return false;
-        return verify(signingPreimage(d), publicKeyFromHex(d.owner), hexDecode(signatureHex));
+        try {
+            if (d == null || d.name == null || d.owner == null || d.randid == null || signatureHex == null)
+                return false;
+            if (!deriveName(d.randid, d.owner).equals(d.name)) return false;
+            return verify(signingPreimage(d), publicKeyFromHex(d.owner), hexDecode(signatureHex));
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 }

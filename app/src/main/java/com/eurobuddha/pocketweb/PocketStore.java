@@ -196,13 +196,18 @@ public class PocketStore extends SQLiteOpenHelper {
         }
     }
 
-    /** LRU prune: keep the newest `keep` by lastaccess; never evict bookmarked or locally-authored. */
+    /**
+     * LRU prune: evict cold on-chain packets, keeping at most `keep` of them (the most recently
+     * accessed). Bookmarked and locally-authored packets are always exempt and never counted.
+     */
     public int pruneTo(int keep) {
+        // Delete on-chain, non-bookmarked rows whose id is NOT among the `keep` most-recently-accessed
+        // such rows. The subquery is a single SELECT so its ORDER BY/LIMIT bind unambiguously.
         return getWritableDatabase().delete("filepackets",
-                "bookmarked = 0 AND published = " + PUB_ONCHAIN + " AND name NOT IN " +
-                "(SELECT name FROM filepackets WHERE bookmarked = 1 OR published = " + PUB_LOCAL +
-                " UNION SELECT name FROM filepackets ORDER BY lastaccess DESC LIMIT ?)",
-                new String[]{ String.valueOf(keep) });
+                "published = ? AND bookmarked = 0 AND id NOT IN " +
+                "(SELECT id FROM filepackets WHERE published = ? AND bookmarked = 0 " +
+                " ORDER BY lastaccess DESC LIMIT ?)",
+                new String[]{ String.valueOf(PUB_ONCHAIN), String.valueOf(PUB_ONCHAIN), String.valueOf(keep) });
     }
 
     // ---- helpers ----

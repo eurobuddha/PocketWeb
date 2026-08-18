@@ -111,8 +111,10 @@ public class SiteServer {
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             Uri uri = request.getUrl();
             if (!MiniwebUrl.SCHEME.equals(uri.getScheme()) || !MiniwebUrl.isMiniwebHost(uri.getHost())) {
-                // Not one of our origins — let the stack handle it (external https is governed elsewhere).
-                return null;
+                // On-chain sites are self-contained zips: deny ALL external/off-origin requests so a
+                // hostile site cannot beacon out to track viewers or exfiltrate. External access is only
+                // ever available through the hardened NET_GET bridge, never a raw resource load.
+                return denied();
             }
             MiniwebUrl.Route r = MiniwebUrl.route(uri.getHost(), uri.getEncodedPath());
             try {
