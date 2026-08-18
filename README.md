@@ -10,7 +10,7 @@ FILE bridge). Vendors the newest AAR from `apks/base/dist/minimaapi.aar`.
 
 ## Status
 
-**Built and PROVEN (this increment):**
+**Built + tested (functional MVP — browse, sync, render, publish):**
 - `PocketProtocol` — identity (SHA3-256 → 16-byte id → Minima `Mx` base32 address), signing
   (`SHA256withRSA` over `encodeURIComponent(JSON.stringify(data))`, `'`→`%27`), verification, and
   RSA-1024 key handling. Byte-for-byte reimplementation of the node primitives (no BouncyCastle;
@@ -21,18 +21,29 @@ FILE bridge). Vendors the newest AAR from `apks/base/dist/minimaapi.aar`.
   validates the two **real on-chain `Mx` names** in `mds/PocketWeb/*.zip` against their embedded
   SHA3 checksums, cross-checks JSON/encodeURIComponent against a JS oracle
   (`protocol-vectors/gen-vectors.js`), and round-trips full sign→verify→wire→parse. All pass.
-- App scaffold: gradle/manifest/res, `NodeApi`, minimal `MainActivity` (pairing banner + live
-  `status` probe), FileProvider, version-bump guardrail hook, backup lockdown.
+- `PocketStore` — SQLite filepackets cache (parameterized statements, `UNIQUE(name)` version-aware
+  upsert, FTS4 search, maintained-`lastaccess` LRU). Replaces MDS.sql.
+- `PocketNode` — poll-based chain sync: polls `coins ... address:<site>` on debounced NEWBLOCK and
+  `coinnotify`s ONLY the tiny request address (never the site address — its fat NOTIFYCOIN would kill
+  every companion app). Verifies at ingest AND read. `publish`/`requestSite` command builders.
+- `SiteServer` + `MiniwebUrl` + `MimeTypes` — per-origin WebView rendering via
+  `shouldInterceptRequest`, serving the site's extracted files + the shipped `/miniweb/` tree and
+  denying everything else (external loads blocked; traversal/cross-origin refused).
+- `MiniwebBridge` + `HostGuard` + native `miniweb.js` — the site API (`miniweb_*`) as an
+  `@JavascriptInterface`, with the hardened NET_GET (host-resolved SSRF block incl. 169.254/172.16)
+  and a read-only command allowlist excluding wallet/identity commands.
+- `PocketKeys` + `PocketPublisher` — own RSA-1024 publishing key + Maxima-key import; create/update
+  signed packets (50KB limit), publish via `sendpoll`.
+- `MainActivity` — browse screen (address bar, site picker, sync on NEWBLOCK) + Publish / My sites /
+  Import-key menu. Full debug APK builds (~20MB); 24 JVM unit tests pass.
 
-**Next increments (see `~/.claude/plans/i-would-like-pocketweb-curious-canyon.md`):**
-1. `PocketStore` — SQLite (`SQLiteOpenHelper`) filepackets cache + FTS5 (replaces MDS.sql).
-2. Chain poller/ingest — poll `coins simplestate:true address:0x4D494E4957454220524F434B5321` on
-   debounced NEWBLOCK (NOT `coinnotify` on the fat address — that pushes ~200KB parcels through the
-   node's unguarded broadcast and kills every companion app). `coinnotify` the tiny request address.
-3. `SiteServer` — WebView + `WebViewClient.shouldInterceptRequest` serving `miniweb://<Mx>/path`
-   per-site origins + the shipped `../../miniweb/` asset tree; `MiniwebBridge` JS API with the
-   hardened NET_GET (host allowlist incl. 169.254/172.16) + command allowlist (no wallet-reading cmds).
-4. UI tabs: Browse / Catalog+Search / My Sites / Build / Publish; key generation + Maxima-key import.
+**Remaining (on-device + polish):**
+1. **On-device/testnet verification** — confirm SHA3-256 is available via the platform provider on
+   API 28 (else add a BouncyCastle 1.69 `SHA3Digest` fallback); confirm a real site renders and a
+   published site is discovered/rendered by the existing MDS MiniDapp (interop acceptance).
+2. Polish: gensite visual builder (Build tab), update notifications for bookmarked sites, an `mds.js`
+   asset shim (route site `MDS.cmd` through the allowlisted bridge), WebChromeClient (page titles),
+   community mirroring/pinning.
 
 ## Backward-compat invariants (do not change — see plan spec)
 
