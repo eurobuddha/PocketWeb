@@ -1,5 +1,6 @@
 package com.eurobuddha.pocketweb;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -55,6 +56,16 @@ public class SiteServer {
     }
 
     public void setListener(Listener l) { this.listener = l; }
+
+    /**
+     * Expose the native site API to loaded pages as window.PocketWebNative. Safe because every site
+     * runs under its own null-of-app https origin; the bridge itself enforces the command/host
+     * allowlists. Call once after construction.
+     */
+    @SuppressLint("JavascriptInterface")
+    public void attachBridge(MiniwebBridge bridge) {
+        web.addJavascriptInterface(bridge, "PocketWebNative");
+    }
 
     @SuppressWarnings("SetJavaScriptEnabled")
     private void configure() {

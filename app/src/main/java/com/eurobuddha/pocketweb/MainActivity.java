@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private PocketStore store;
     private PocketNode chain;
     private SiteServer server;
+    private MiniwebBridge bridge;
 
     private WebView web;
     private EditText address;
@@ -86,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
         node = new NodeApi(this, this::onPaired);
         chain = new PocketNode(node, store);
+
+        // Native site API: sites' miniweb_* calls route here (hardened command + host allowlists).
+        bridge = new MiniwebBridge(web, store, node, (mx, path) -> server.loadSite(mx, path));
+        server.attachBridge(bridge);
 
         registerNotify();
         setStatus("Cached sites: " + store.count());
@@ -207,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         if (notifyReceiver != null) try { unregisterReceiver(notifyReceiver); } catch (Exception ignored) {}
+        if (bridge != null) bridge.shutdown();
         if (node != null) node.onDestroy();
         if (store != null) store.close();
         super.onDestroy();

@@ -40,6 +40,49 @@ public final class SiteExtractor {
         return extract(PocketProtocol.hexDecode(zipHex), destDir);
     }
 
+    /**
+     * Read a single entry's bytes from a zip without extracting to disk, applying the same
+     * name-safety checks and the per-entry size cap. Returns null if the entry is absent.
+     * Used for cross-site GetDataURI (loading one file from another verified site).
+     */
+    public static byte[] readEntry(byte[] zipBytes, String wantPath) throws IOException {
+        String want = normalizeRel(wantPath);
+        if (want == null) throw new UnsafeZipException("unsafe requested path: " + wantPath);
+        byte[] buf = new byte[64 * 1024];
+        try (ZipInputStream zin = new ZipInputStream(new ByteArrayInputStream(zipBytes))) {
+            ZipEntry e;
+            while ((e = zin.getNextEntry()) != null) {
+                if (e.isDirectory()) { zin.closeEntry(); continue; }
+                String norm = normalizeRel(e.getName());
+                if (norm == null || !norm.equals(want)) { zin.closeEntry(); continue; }
+                java.io.ByteArrayOutputStream bos = new java.io.ByteArrayOutputStream();
+                long entryBytes = 0; int n;
+                while ((n = zin.read(buf)) != -1) {
+                    entryBytes += n;
+                    if (entryBytes > MAX_ENTRY_BYTES) throw new UnsafeZipException("entry too large: " + norm);
+                    bos.write(buf, 0, n);
+                }
+                return bos.toByteArray();
+            }
+        }
+        return null;
+    }
+
+    /** Normalise a zip/relative path to a clean forward-slash form, or null if it is unsafe. */
+    static String normalizeRel(String name) {
+        if (name == null || name.isEmpty()) return null;
+        if (name.startsWith("/") || name.startsWith("\\") || name.contains("\\")
+                || name.contains("..") || name.contains(":")) return null;
+        StringBuilder out = new StringBuilder();
+        for (String seg : name.split("/")) {
+            if (seg.isEmpty() || seg.equals(".")) continue;
+            if (seg.equals("..")) return null;
+            if (out.length() > 0) out.append('/');
+            out.append(seg);
+        }
+        return out.length() == 0 ? null : out.toString();
+    }
+
     public static List<String> extract(byte[] zipBytes, File destDir) throws IOException {
         if (!destDir.exists() && !destDir.mkdirs())
             throw new IOException("cannot create " + destDir);

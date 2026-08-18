@@ -1,220 +1,58 @@
-
 /**
- * List of all MinWeb requests 
+ * miniweb.js — native PocketWeb build.
+ *
+ * Exposes the SAME miniweb_* functions on-chain sites already call, but routes them to the native
+ * @JavascriptInterface bridge (window.PocketWebNative) instead of postMessage-to-parent. Drop-in
+ * compatible: existing sites keep working unchanged. Results come back via __miniweb_resolve(id,obj).
+ * (The original MDS postMessage build is preserved in the pocketWeb MiniDapp source + git history.)
  */
-var MINIWEB_REQUESTS = [];
+(function () {
+  "use strict";
 
-/**
- * Initialise the MiniWEB library
- */
-function miniweb_Init(){
+  var callbacks = {};
+  var seq = 0;
 
-	//Periodically clean up stale requests (2 min TTL)
-	setInterval(function(){
-		var now = Date.now();
-		MINIWEB_REQUESTS = MINIWEB_REQUESTS.filter(function(r){
-			return r.created && (now - r.created) < 120000;
-		});
-	}, 60000);
+  function register(cb) {
+    var id = "cb" + (++seq);
+    callbacks[id] = typeof cb === "function" ? cb : function () {};
+    return id;
+  }
 
-	//listen for post messages..
-	window.onmessage = function(event){
-		
-		//What was the message
-		var msg = event.data;
-		if(msg){
-			
-			//Get the randid..
-			var randid 	= msg.randid;
-			
-			//Now cycle..
-			var len 	= MINIWEB_REQUESTS.length;
-			var found 	= false;
-			for(var i=0;i<len;i++){
-				var datauri = MINIWEB_REQUESTS[i];
-				if(datauri.randid == randid){
-					found 	= true;
-					
-					//Call back..
-					if(datauri.callback){
-						datauri.callback(msg.data);
-					}
-				}
-			}
-			
-			if(!found){
-				MDS.log("MinWEB Request not found : "+JSON.stringify(msg));
-			}
-			
-			//Now remove that elemnt
-			MINIWEB_REQUESTS = MINIWEB_REQUESTS.filter(function(item) {
-			    return item.randid !== randid;
-			});
-		}
-	};
-	
-	//Post the current location to MiniWEB Parent
-	var msg 	= {};
-	msg.action 	= "MINIWEB_LOCATION";
-	msg.data 	= window.location.href;
-	
-	//Send this to the parent window..
-	window.top.postMessage(msg, '*');
-}
+  // Called by the native side with the result object for a pending callback.
+  window.__miniweb_resolve = function (id, result) {
+    var cb = callbacks[id];
+    if (!cb) return;
+    delete callbacks[id];
+    try { cb(result); } catch (e) { /* site callback threw; ignore */ }
+  };
 
-/**
- * Load the data from ANY MiniFS file as a Data URI
- */
-function miniweb_GetDataURI(minifile,callback){
-	
-	//First store this request in thelist..
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	request.callback 	= callback;
+  function bridge() { return window.PocketWebNative; }
 
-	//Push it on the stack
-	MINIWEB_REQUESTS.push(request);
+  // Build a miniweb_* function. Supports both (data, cb) and (cb) call shapes seen across sites.
+  function call(action, wrap) {
+    var b = bridge();
+    return function (arg, cb) {
+      if (typeof arg === "function") { cb = arg; arg = ""; }
+      var id = register(function (result) { if (cb) cb(wrap ? wrap(result) : result); });
+      if (!b) { window.__miniweb_resolve(id, { status: false, error: "native bridge unavailable" }); return; }
+      try { b.call(action, arg == null ? "" : String(arg), id); }
+      catch (e) { window.__miniweb_resolve(id, { status: false, error: String(e) }); }
+    };
+  }
 
-	//Make a request msg to the top window..
-	var msg 	= {};
-	msg.action 	= "MINIWEB_GETDATAURI";
-	msg.data 	= minifile;
-	msg.randid	= request.randid;
-	
-	//Send this to the parent window..
-	window.top.postMessage(msg, '*');
-}
+  // ---- public API (same names/signatures as the MDS miniweb.js) ----
 
-/**
- * List ALL published minisites on the linternet
- */
-function miniweb_ListAll(callback){
+  window.miniweb_Init = function () { /* no-op: navigation state is tracked natively */ };
 
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	request.callback 	= callback;
+  window.miniweb_GetDataURI = call("GETDATAURI", function (r) { return r && r.datauri; });
+  window.miniweb_ListAll    = call("LISTALL",    function (r) { return r && r.results; });
+  window.miniweb_Search     = call("SEARCH",     function (r) { return { term: r && r.term, results: r && r.results }; });
+  window.miniweb_JumpToURL  = call("JUMPTOURL",  function (r) { return r; });
+  window.miniweb_NetGET     = call("NET_GET",    function (r) { return r; });
+  window.miniweb_MdsCmd     = call("MDS_CMD",    function (r) { return r && r.response; });
 
-	MINIWEB_REQUESTS.push(request);
-
-	var msg 	= {};
-	msg.action 	= "MINIWEB_LISTALL";
-	msg.randid	= request.randid;
-
-	window.top.postMessage(msg, '*');
-}
-
-/**
- * Search minisites by term
- */
-function miniweb_Search(searchterm, callback){
-
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	request.callback 	= callback;
-
-	MINIWEB_REQUESTS.push(request);
-
-	var msg 	= {};
-	msg.action 	= "MINIWEB_SEARCH";
-	msg.data 	= searchterm;
-	msg.randid	= request.randid;
-
-	window.top.postMessage(msg, '*');
-}
-
-/**
- * Jump to a specific miniweb://.. page
- */
-function miniweb_JumpToURL(minifile,callback){
-	
-	//First store this request in thelist..
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	if(callback){
-		request.callback 	= callback;
-	}else{
-		request.callback 	= null;
-	}
-		
-	//Push it on the stack
-	MINIWEB_REQUESTS.push(request);
-	
-	//Make a request msg to the top window..
-	var msg 	= {};
-	msg.action 	= "MINIWEB_JUMPTOURL";
-	msg.data 	= minifile;
-	msg.randid	= request.randid;
-	
-	//Send this to the parent window..
-	window.top.postMessage(msg, '*');
-}
-
-/**
- * Proxy MDS.net.GET via PocketWeb parent
- */
-function miniweb_NetGET(url, callback){
-
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	request.callback 	= callback;
-
-	MINIWEB_REQUESTS.push(request);
-
-	var msg 	= {};
-	msg.action 	= "MINIWEB_NET_GET";
-	msg.data 	= url;
-	msg.randid	= request.randid;
-
-	window.top.postMessage(msg, '*');
-}
-
-/**
- * Proxy MDS.cmd via PocketWeb parent (read-only commands)
- */
-function miniweb_MdsCmd(command, callback){
-
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	request.callback 	= callback;
-
-	MINIWEB_REQUESTS.push(request);
-
-	var msg 	= {};
-	msg.action 	= "MINIWEB_MDS_CMD";
-	msg.data 	= command;
-	msg.randid	= request.randid;
-
-	window.top.postMessage(msg, '*');
-}
-
-/**
- * Install a MiniDapp from a URL via PocketWeb parent
- */
-function miniweb_InstallDapp(fileUrl, name, callback){
-
-	//First store this request in the list..
-	var request 		= {};
-	request.randid		= Math.floor(Math.random() * 1000000000);
-	request.created		= Date.now();
-	request.callback 	= callback;
-
-	//Push it on the stack
-	MINIWEB_REQUESTS.push(request);
-
-	//Make a request msg to the top window..
-	var msg 	= {};
-	msg.action 	= "MINIWEB_INSTALL_DAPP";
-	msg.data 	= fileUrl;
-	msg.name 	= name;
-	msg.randid	= request.randid;
-
-	//Send this to the parent window..
-	window.top.postMessage(msg, '*');
-}
-
+  window.miniweb_InstallDapp = function (fileUrl, name, cb) {
+    var id = register(function (r) { if (cb) cb(r); });
+    window.__miniweb_resolve(id, { status: false, error: "install is not supported in the native app" });
+  };
+})();
