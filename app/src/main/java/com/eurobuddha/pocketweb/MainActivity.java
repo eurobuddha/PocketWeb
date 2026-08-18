@@ -4,9 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebView;
@@ -16,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -27,6 +32,9 @@ import org.json.JSONObject;
 import org.minimarex.minimaapi.MinimaAPI;
 import org.minimarex.minimaapi.MinimaAPIMessages;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -47,9 +55,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText address;
     private TextView status, banner;
 
+    private PocketKeys keys;
     private BroadcastReceiver notifyReceiver;
     private final Handler ui = new Handler(Looper.getMainLooper());
     private boolean enabled = false;
+
+    private ActivityResultLauncher<String[]> pickZip;
+    private ActivityResultLauncher<String[]> pickKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +99,18 @@ public class MainActivity extends AppCompatActivity {
 
         node = new NodeApi(this, this::onPaired);
         chain = new PocketNode(node, store);
+        keys = new PocketKeys(getFilesDir());
 
         // Native site API: sites' miniweb_* calls route here (hardened command + host allowlists).
         bridge = new MiniwebBridge(web, store, node, (mx, path) -> server.loadSite(mx, path));
         server.attachBridge(bridge);
+
+        pickZip = registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
+            if (uri != null) onZipPicked(uri);
+        });
+        pickKey = registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
+            if (uri != null) onKeyPicked(uri);
+        });
 
         registerNotify();
         setStatus("Cached sites: " + store.count());
@@ -189,6 +209,120 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         @Override public void onError(String message) { setStatus(message); }
+    }
+
+    // ---- publish / keys menu ----
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, 1, 0, "Publish a site…");
+        menu.add(0, 2, 1, "My sites");
+        menu.add(0, 3, 2, "Import signing key…");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1: pickZip.launch(new String[]{"application/zip", "application/octet-stream"}); return true;
+            case 2: showMySites(); return true;
+            case 3: pickKey.launch(new String[]{"*/*"}); return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void onZipPicked(Uri uri) {
+        byte[] bytes = readUri(uri, PocketPublisher.MAX_ZIP_BYTES + 64);
+        if (bytes == null) { toast("Could not read file"); return; }
+        if (bytes.length > PocketPublisher.MAX_ZIP_BYTES) {
+            toast("Site too big: " + bytes.length + " bytes (max " + PocketPublisher.MAX_ZIP_BYTES + ")");
+            return;
+        }
+        final EditText input = new EditText(this);
+        input.setHint("Short description");
+        new AlertDialog.Builder(this)
+                .setTitle("Publish site (" + bytes.length + " bytes)")
+                .setView(input)
+                .setPositiveButton("Publish", (d, w) -> publishNew(bytes, input.getText().toString()))
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void publishNew(byte[] zip, String description) {
+        try {
+            PocketWire.ParsedPacket p = PocketPublisher.createNew(keys, zip, description);
+            store.upsertIfNewer(p.data, p.signature, PocketStore.PUB_LOCAL);
+            setStatus("Publishing " + p.data.name + " …");
+            chain.publish(p.data, p.signature, new PocketNode.CmdListener() {
+                @Override public void onOk(JSONObject resp) {
+                    // istransaction:false / pending == async mining, NOT failure
+                    store.markPublished(p.data.name);
+                    setStatus("Published " + p.data.name + " (mining). Others can now find it.");
+                    ui.post(() -> address.setText(p.data.name));
+                }
+                @Override public void onError(String message) {
+                    boolean needsAdmin = message != null && (message.contains("write") || message.contains("Admin") || message.contains(NodeApi.ERR_NOT_ENABLED));
+                    setStatus("Publish failed: " + message + (needsAdmin ? " — grant PocketWeb Admin in Minima Core → Apps." : ""));
+                }
+            });
+        } catch (Exception e) {
+            toast("Publish error: " + e.getMessage());
+        }
+    }
+
+    private void onKeyPicked(Uri uri) {
+        byte[] bytes = readUri(uri, 64 * 1024);
+        if (bytes == null) { toast("Could not read key"); return; }
+        try {
+            String text = new String(bytes, StandardCharsets.UTF_8).trim();
+            String hex = keyTextToHex(text);
+            String owner = keys.importPrivateKeyHex(hex);
+            toast("Imported key. You can now edit sites owned by\n" + owner);
+        } catch (Exception e) {
+            toast("Import failed: " + e.getMessage());
+        }
+    }
+
+    /** Accept a raw "0x…"/hex PKCS#8, or a PEM ("-----BEGIN PRIVATE KEY-----" base64). */
+    private String keyTextToHex(String text) {
+        String t = text.trim();
+        if (t.startsWith("0x") || t.matches("(?s)[0-9a-fA-F\\s]+")) return t.replaceAll("\\s", "");
+        if (t.contains("BEGIN")) {
+            String b64 = t.replaceAll("-----[A-Z ]+-----", "").replaceAll("\\s", "");
+            byte[] der = android.util.Base64.decode(b64, android.util.Base64.DEFAULT);
+            return PocketProtocol.hexEncode(der);
+        }
+        // last resort: treat as base64
+        byte[] der = android.util.Base64.decode(t.replaceAll("\\s", ""), android.util.Base64.DEFAULT);
+        return PocketProtocol.hexEncode(der);
+    }
+
+    private void showMySites() {
+        List<PocketStore.Row> mine = store.getMine();
+        if (mine.isEmpty()) { toast("No locally-authored sites yet. Use Publish a site…"); return; }
+        String[] labels = new String[mine.size()];
+        for (int i = 0; i < mine.size(); i++)
+            labels[i] = mine.get(i).data.name + "  (v" + mine.get(i).data.version + ", not yet on-chain)";
+        new AlertDialog.Builder(this)
+                .setTitle("My sites (" + mine.size() + ")")
+                .setItems(labels, (d, which) -> { address.setText(mine.get(which).data.name); server.loadSite(mine.get(which).data.name); })
+                .setNegativeButton("Close", null)
+                .show();
+    }
+
+    private byte[] readUri(Uri uri, int cap) {
+        try (InputStream in = getContentResolver().openInputStream(uri)) {
+            if (in == null) return null;
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[8192];
+            int total = 0, n;
+            while ((n = in.read(buf)) != -1) {
+                total += n;
+                if (total > cap) { bos.write(buf, 0, n); break; }   // read one past cap so caller can detect oversize
+                bos.write(buf, 0, n);
+            }
+            return bos.toByteArray();
+        } catch (Exception e) { return null; }
     }
 
     // ---- helpers ----
