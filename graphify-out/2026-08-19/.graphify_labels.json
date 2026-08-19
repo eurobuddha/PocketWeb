@@ -1,5 +1,5 @@
 {
-  "0": "NodeApi",
+  "0": "MiniwebUrl",
   "1": "SiteExtractor",
   "2": "org.junit.Test",
   "3": "jquery-3.7.1.min.js",
@@ -45,14 +45,15 @@
   "43": "Data",
   "44": "MainActivity",
   "45": "Override",
-  "46": "PocketNode",
+  "46": "js/purify.min.js",
   "47": "NodeApi",
-  "48": "MiniwebBridge",
+  "48": "gui.js",
   "49": ".allow",
-  "50": "Override",
+  "50": "jslib.js",
   "51": "PocketStore",
   "52": "SuppressWarnings",
-  "53": ".publishNew",
-  "54": "SyncListener",
-  "55": "PocketWeb — native Minima companion app"
+  "53": "sql.js",
+  "54": "android.widget.EditText",
+  "55": "PocketWeb — native Minima companion app",
+  "56": "PocketStore"
 }

@@ -1,21 +1,21 @@
-# Graph Report - pocketweb  (2026-08-18)
+# Graph Report - pocketweb  (2026-08-19)
 
 ## Corpus Check
-- 49 files · ~445,040 words
+- 56 files · ~452,560 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 815 nodes · 1596 edges · 56 communities (40 shown, 16 thin omitted)
-- Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 176 edges (avg confidence: 0.72)
+- 893 nodes · 1775 edges · 57 communities (41 shown, 16 thin omitted)
+- Extraction: 90% EXTRACTED · 10% INFERRED · 0% AMBIGUOUS · INFERRED: 181 edges (avg confidence: 0.72)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1b3ae8d8`
+- Built from commit: `bbcca89c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- NodeApi
+- MiniwebUrl
 - SiteExtractor
 - org.junit.Test
 - jquery-3.7.1.min.js
@@ -57,28 +57,28 @@
 - Data
 - MainActivity
 - Override
-- PocketNode
+- js/purify.min.js
 - NodeApi
-- MiniwebBridge
+- gui.js
 - .allow
-- Override
+- jslib.js
 - PocketStore
 - SuppressWarnings
-- .publishNew
-- SyncListener
+- android.widget.EditText
 - PocketWeb — native Minima companion app
+- PocketStore
 
 ## God Nodes (most connected - your core abstractions)
-1. `MainActivity` - 35 edges
-2. `PocketProtocol` - 25 edges
-3. `PocketStore` - 25 edges
+1. `MainActivity` - 34 edges
+2. `PocketStore` - 30 edges
+3. `PocketProtocol` - 25 edges
 4. `MiniwebBridge` - 22 edges
-5. `SiteServer` - 20 edges
-6. `re()` - 16 edges
-7. `ne()` - 14 edges
-8. `$e()` - 14 edges
-9. `NodeApi` - 14 edges
-10. `e()` - 13 edges
+5. `AppBridge` - 20 edges
+6. `SiteServer` - 20 edges
+7. `re()` - 16 edges
+8. `AppServer` - 15 edges
+9. `ne()` - 14 edges
+10. `$e()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `F()` --indirect_call--> `R()`  [INFERRED]
@@ -95,19 +95,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (56 total, 16 thin omitted)
+## Communities (57 total, 16 thin omitted)
 
-### Community 0 - "NodeApi"
-Cohesion: 0.19
-Nodes (9): android.content.Context, android.os.Handler, Cb, NodeApi, PairingListener, MinimaAPI, MinimaAPIListener, org.minimarex.minimaapi.MinimaAPI (+1 more)
+### Community 0 - "MiniwebUrl"
+Cohesion: 0.13
+Nodes (8): Kind, ASSET, BLOCKED, SITE, MiniwebUrl, Route, MiniwebUrlSelfTest, MiniwebUrlTest
 
 ### Community 1 - "SiteExtractor"
 Cohesion: 0.13
 Nodes (4): SiteExtractor, UnsafeZipException, SiteExtractorSelfTest, SiteExtractorTest
 
 ### Community 2 - "org.junit.Test"
-Cohesion: 0.05
-Nodes (22): PocketKeys, Data, PocketProtocol, PocketKeys, PocketPublisher, ParsedPacket, PocketWire, MiniwebUrlTest (+14 more)
+Cohesion: 0.06
+Nodes (21): PocketKeys, Data, PocketProtocol, PocketKeys, PocketPublisher, ParsedPacket, PocketWire, PocketKeysSelfTest (+13 more)
 
 ### Community 3 - "jquery-3.7.1.min.js"
 Cohesion: 0.07
@@ -118,16 +118,16 @@ Cohesion: 0.18
 Nodes (6): cases, dir, fs, jdir, out, path
 
 ### Community 5 - "PocketStore"
-Cohesion: 0.13
-Nodes (6): android.database.Cursor, android.database.sqlite.SQLiteDatabase, android.database.sqlite.SQLiteOpenHelper, Override, PocketStore, Row
+Cohesion: 0.07
+Nodes (16): android.database.Cursor, android.database.sqlite.SQLiteDatabase, android.database.sqlite.SQLiteOpenHelper, android.webkit.JavascriptInterface, AppBridge, PocketKeys, NodeApi, PocketStore (+8 more)
 
 ### Community 6 - "gradlew"
 Cohesion: 0.60
 Nodes (3): gradlew script, die(), warn()
 
 ### Community 13 - "SiteServer"
-Cohesion: 0.06
-Nodes (20): android.annotation.SuppressLint, android.webkit.WebResourceRequest, android.webkit.WebResourceResponse, android.webkit.WebViewClient, MimeTypes, Kind, ASSET, BLOCKED (+12 more)
+Cohesion: 0.08
+Nodes (20): android.annotation.SuppressLint, android.content.Context, android.webkit.WebResourceError, android.webkit.WebResourceRequest, android.webkit.WebResourceResponse, android.webkit.WebView, android.webkit.WebViewClient, AppServer (+12 more)
 
 ### Community 14 - "decimal.min.js"
 Cohesion: 0.06
@@ -218,24 +218,24 @@ Cohesion: 0.67
 Nodes (3): Datepicker(), datepicker_bindHover(), datepicker_handleMouseover()
 
 ### Community 44 - "MainActivity"
-Cohesion: 0.14
-Nodes (15): android.content.BroadcastReceiver, android.os.Bundle, android.view.Menu, android.view.MenuItem, android.widget.EditText, android.widget.TextView, androidx.activity.result.ActivityResultLauncher, androidx.appcompat.app.AppCompatActivity (+7 more)
+Cohesion: 0.05
+Nodes (32): android.content.BroadcastReceiver, android.net.Uri, android.os.Bundle, android.os.Handler, android.view.Menu, android.view.MenuItem, android.widget.TextView, androidx.activity.result.ActivityResultLauncher (+24 more)
 
-### Community 45 - "Override"
-Cohesion: 0.21
-Nodes (4): ServerListener, Listener, Override, SuppressWarnings
+### Community 46 - "js/purify.min.js"
+Cohesion: 0.26
+Nodes (11): app(), call(), a(), C(), e(), i(), l(), n() (+3 more)
 
-### Community 46 - "PocketNode"
+### Community 48 - "gui.js"
 Cohesion: 0.24
-Nodes (4): CmdListener, Data, PocketNode, NodeApi
-
-### Community 48 - "MiniwebBridge"
-Cohesion: 0.20
-Nodes (9): android.webkit.JavascriptInterface, android.webkit.WebView, NodeApi, PocketStore, MiniwebBridge, Navigator, JSONObject, org.json.JSONObject (+1 more)
+Nodes (9): applyTheme(), jumpToCatalog(), jumpToDev(), jumpToHelp(), jumpToHome(), jumpToMySite(), loadTheme(), startupButtons() (+1 more)
 
 ### Community 49 - ".allow"
 Cohesion: 0.19
 Nodes (4): HostGuard, HostGuardSelfTest, HostGuardTest, java.net.InetAddress
+
+### Community 50 - "jslib.js"
+Cohesion: 0.38
+Nodes (8): addDomains(), convertDomainToInternal(), convertDomainToURL(), extractFilePacketToWeb(), getBaseDomain(), loadDataURI(), loadFilePacket(), webFolderExists()
 
 ### Community 55 - "PocketWeb — native Minima companion app"
 Cohesion: 0.40
@@ -250,16 +250,16 @@ Nodes (4): Backward-compat invariants (do not change — see plan spec), Build &
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `computeStyleTests()` connect `computeStyleTests` to `jquery.js`?**
-  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
 - **Why does `div()` connect `computeStyleTests` to `decimal.js`?**
-  _High betweenness centrality (0.061) - this node is a cross-community bridge._
+  _High betweenness centrality (0.051) - this node is a cross-community bridge._
 - **Why does `done()` connect `done` to `jquery.js`, `jquery-3.7.1.min.js`?**
-  _High betweenness centrality (0.060) - this node is a cross-community bridge._
+  _High betweenness centrality (0.050) - this node is a cross-community bridge._
 - **What connects `Status`, `Backward-compat invariants (do not change — see plan spec)`, `Build & test` to the rest of the system?**
   _49 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `MiniwebUrl` be split into smaller, more focused modules?**
+  _Cohesion score 0.12666666666666668 - nodes in this community are weakly interconnected._
 - **Should `SiteExtractor` be split into smaller, more focused modules?**
   _Cohesion score 0.13405797101449277 - nodes in this community are weakly interconnected._
 - **Should `org.junit.Test` be split into smaller, more focused modules?**
-  _Cohesion score 0.05181787291879035 - nodes in this community are weakly interconnected._
-- **Should `jquery-3.7.1.min.js` be split into smaller, more focused modules?**
-  _Cohesion score 0.0673274094326726 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.056158385684370836 - nodes in this community are weakly interconnected._

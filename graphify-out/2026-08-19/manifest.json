@@ -10,13 +10,13 @@
     "semantic_hash": "f2942c9cbcfdbb28265c72fbdef57483"
   },
   "app/build.gradle": {
-    "mtime": 1787087197.8847315,
-    "ast_hash": "90252137041f3801ab03eb9fb23b72de",
+    "mtime": 1787137092.213267,
+    "ast_hash": "3a616c8b4e3582de4e485c50c8ed95c3",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/MainActivity.java": {
-    "mtime": 1787087185.9850276,
-    "ast_hash": "529749d70e64e8df8d7aeff6af7745c6",
+    "mtime": 1787136682.204287,
+    "ast_hash": "95fa459ee8ec41dff2d8891285c57e23",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/NodeApi.java": {
@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/PocketStore.java": {
-    "mtime": 1787086389.7476804,
-    "ast_hash": "c7b32c226c9e6ab0a880af3e5e91506e",
+    "mtime": 1787136406.3312297,
+    "ast_hash": "786d2db21b1bd32ab4e894a6e14579b2",
     "semantic_hash": ""
   },
   "app/src/test/resources/golden/vectors.json": {
@@ -2097,6 +2097,61 @@
   "app/src/test/java/com/eurobuddha/pocketweb/PocketPublisherTest.java": {
     "mtime": 1787087116.1702313,
     "ast_hash": "e65c552ad3c18f6d84c8efdbc7ff1ef2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/gui.js": {
+    "mtime": 1787136113.1649358,
+    "ast_hash": "2699be9811324af7bf7d3ccb703e0a84",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/jslib.js": {
+    "mtime": 1787136113.1700628,
+    "ast_hash": "db565db8bfe151d0571077134fac7780",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/mds.js": {
+    "mtime": 1787136351.9487417,
+    "ast_hash": "e5c4aebd91840119b228ec2cac6527e0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/purify.min.js": {
+    "mtime": 1787136113.162504,
+    "ast_hash": "aade6b48561e886f544d464490524168",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/sql.js": {
+    "mtime": 1787136113.1669729,
+    "ast_hash": "6d04bc787a582180d8b4340dd7306fd4",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/AppBridge.java": {
+    "mtime": 1787136442.3638628,
+    "ast_hash": "2d2626aac254315e55a649b7ff49a9cc",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/AppServer.java": {
+    "mtime": 1787137077.1791487,
+    "ast_hash": "a6389497a746c896268001247bdce6af",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/catalog.html": {
+    "mtime": 1787136311.0041428,
+    "ast_hash": "cc240b174693429cde218227426b2227",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/index.html": {
+    "mtime": 1787136311.0006042,
+    "ast_hash": "a283a5045630fa333602f9cf3f55985d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/browser.png": {
+    "mtime": 1787136113.172853,
+    "ast_hash": "d5116303264bf7f1b710c7908c30dfa1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/browser.png": {
+    "mtime": 1787136703.569785,
+    "ast_hash": "d5116303264bf7f1b710c7908c30dfa1",
     "semantic_hash": ""
   }
 }

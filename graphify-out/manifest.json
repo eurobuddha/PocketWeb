@@ -10,13 +10,13 @@
     "semantic_hash": "f2942c9cbcfdbb28265c72fbdef57483"
   },
   "app/build.gradle": {
-    "mtime": 1787137092.213267,
-    "ast_hash": "3a616c8b4e3582de4e485c50c8ed95c3",
+    "mtime": 1787143532.077693,
+    "ast_hash": "7bac3aa2a2616aec9ed2eecd29d84170",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/MainActivity.java": {
-    "mtime": 1787136682.204287,
-    "ast_hash": "95fa459ee8ec41dff2d8891285c57e23",
+    "mtime": 1787142689.0063775,
+    "ast_hash": "b29bd5233865677a9a9ed0470aef57b1",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/NodeApi.java": {
@@ -25,8 +25,8 @@
     "semantic_hash": "27aaf5441bddfabd3efcd488bca0799d"
   },
   "app/src/main/java/com/eurobuddha/pocketweb/PocketProtocol.java": {
-    "mtime": 1787086369.5563335,
-    "ast_hash": "bb457b64ae5556ddd7fece15b981692d",
+    "mtime": 1787143356.5990267,
+    "ast_hash": "922ccbbba33d73342a81836b234e456a",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/PocketWire.java": {
@@ -140,8 +140,8 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/PocketKeys.java": {
-    "mtime": 1787085662.2429283,
-    "ast_hash": "69e9dcb7bd165f5e2137775ac15555d4",
+    "mtime": 1787142449.5434163,
+    "ast_hash": "83cbe37d80a3376ad530105822083c9a",
     "semantic_hash": ""
   },
   "app/src/test/java/com/eurobuddha/pocketweb/PocketKeysSelfTest.java": {
@@ -2100,8 +2100,8 @@
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/js/gui.js": {
-    "mtime": 1787136113.1649358,
-    "ast_hash": "2699be9811324af7bf7d3ccb703e0a84",
+    "mtime": 1787142929.16833,
+    "ast_hash": "d954bc737f3e985b46e0c30f89f99a90",
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/js/jslib.js": {
@@ -2110,8 +2110,8 @@
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/js/mds.js": {
-    "mtime": 1787136351.9487417,
-    "ast_hash": "e5c4aebd91840119b228ec2cac6527e0",
+    "mtime": 1787142337.6155303,
+    "ast_hash": "9ba41ecb6cdc19e502539d0e5c73fbb2",
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/js/purify.min.js": {
@@ -2125,23 +2125,23 @@
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/AppBridge.java": {
-    "mtime": 1787136442.3638628,
-    "ast_hash": "2d2626aac254315e55a649b7ff49a9cc",
+    "mtime": 1787143515.3378952,
+    "ast_hash": "15d59b84475f0078d136355b48a8baa2",
     "semantic_hash": ""
   },
   "app/src/main/java/com/eurobuddha/pocketweb/AppServer.java": {
-    "mtime": 1787137077.1791487,
-    "ast_hash": "a6389497a746c896268001247bdce6af",
+    "mtime": 1787142636.4500973,
+    "ast_hash": "c1ed1f49daf80f27251f87ef52561ab5",
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/catalog.html": {
-    "mtime": 1787136311.0041428,
-    "ast_hash": "cc240b174693429cde218227426b2227",
+    "mtime": 1787142942.038882,
+    "ast_hash": "e668a8d48fe23917b19b4ba2b06449fe",
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/index.html": {
-    "mtime": 1787136311.0006042,
-    "ast_hash": "a283a5045630fa333602f9cf3f55985d",
+    "mtime": 1787142942.022557,
+    "ast_hash": "c6afc16d9a8bcdfbf9be6af7e0807416",
     "semantic_hash": ""
   },
   "app/src/main/assets/app-ui/browser.png": {
@@ -2152,6 +2152,131 @@
   "app/src/main/assets/miniweb/browser.png": {
     "mtime": 1787136703.569785,
     "ast_hash": "d5116303264bf7f1b710c7908c30dfa1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/auth.js": {
+    "mtime": 1787142153.7295942,
+    "ast_hash": "07a21be7f3a5c87cb0ce6d85beec46d0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/gui.js": {
+    "mtime": 1787142153.7374032,
+    "ast_hash": "4d5bc0cb938b5aecf21e3047b5bd48e6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/jslib.js": {
+    "mtime": 1787142153.7399619,
+    "ast_hash": "db4acf8e4748b3d3bd77bdeed5f55c55",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/jszip.min.js": {
+    "mtime": 1787142153.7431228,
+    "ast_hash": "b5d02b3f0bf3ae026451909419df07bb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/mimetypes.js": {
+    "mtime": 1787142153.7441213,
+    "ast_hash": "9d1ca3268478892630db862dffa5fa89",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/purify.min.js": {
+    "mtime": 1787142153.7457316,
+    "ast_hash": "aade6b48561e886f544d464490524168",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/sql.js": {
+    "mtime": 1787142153.747514,
+    "ast_hash": "e310fb5dd3ae1ae26264dcaf7e62aa12",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/txns.js": {
+    "mtime": 1787142153.7487311,
+    "ast_hash": "f97d7c8f26f195c3412b49beb31b6741",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/js/ziputil.js": {
+    "mtime": 1787142153.7496357,
+    "ast_hash": "e5fc18356c18c57c6fb45f7e13e091d0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/gensite/jslib.js": {
+    "mtime": 1787141794.6544738,
+    "ast_hash": "7063676fcba5d172ceb6716cf1234ac4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/generate.js": {
+    "mtime": 1787141794.6472445,
+    "ast_hash": "3bd2502867f585b1e5843722c19f0c07",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/mimetypes.js": {
+    "mtime": 1787141794.6522083,
+    "ast_hash": "9d1ca3268478892630db862dffa5fa89",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/js/ziputil.js": {
+    "mtime": 1787141794.6497843,
+    "ast_hash": "958791fe8c2bda395960ffbdf0743ddf",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/devmode.html": {
+    "mtime": 1787142942.0767071,
+    "ast_hash": "ffe72f1133e79fb5132e93770845f726",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/edit.html": {
+    "mtime": 1787142153.7612367,
+    "ast_hash": "9976b4ae08c1e50dff0ffe73c4eeb7a6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/help.html": {
+    "mtime": 1787142153.7685657,
+    "ast_hash": "f5714afd53edb5cabd7db9c18c883dff",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/index.html": {
+    "mtime": 1787142976.3508215,
+    "ast_hash": "c3fbbfb4465e0c4a3d299e2bda15aff0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/newfile.html": {
+    "mtime": 1787142153.7793388,
+    "ast_hash": "e27672cc811d076eb34b11b8e08eee28",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/publish.html": {
+    "mtime": 1787142153.7895584,
+    "ast_hash": "51d1b45292f3141c8998635da7c7bc6c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/fs/search.html": {
+    "mtime": 1787142153.797896,
+    "ast_hash": "395dfd34099c9743db75c53fce4f5bfd",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/gensite.html": {
+    "mtime": 1787142942.05312,
+    "ast_hash": "eb49e22418ecc9058c1b684506288fec",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/gensite/template.html": {
+    "mtime": 1787141868.4529278,
+    "ast_hash": "f80c0df8c95f316a22c3c72d043453e9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/help.html": {
+    "mtime": 1787142942.066312,
+    "ast_hash": "40cccbb12924c6709e8d11c4e0aca11f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/loading.html": {
+    "mtime": 1787141868.4501917,
+    "ast_hash": "e8700442f87c770e2d7031fbaefc658d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/app-ui/loading_notfound.html": {
+    "mtime": 1787141868.4478247,
+    "ast_hash": "d27326601f1c50312e59b5cac39ce9b4",
     "semantic_hash": ""
   }
 }
