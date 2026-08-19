@@ -10,8 +10,8 @@ android {
         applicationId "com.eurobuddha.pocketweb"
         minSdk 28
         targetSdk 35
-        versionCode 11
-        versionName "0.9.1"
+        versionCode 18
+        versionName "0.10.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,10 +59,12 @@ dependencies {
 
     implementation files('libs/minimaapi.aar')
 
-    // Backward-compat protocol core (PocketProtocol/PocketWire) is pure java.security +
-    // BigInteger; SHA3-256 comes from the platform provider (Conscrypt, API 28+). No BouncyCastle,
-    // so no BC 1.69 pin is needed (this app does NOT vendor the Winternitz signer).
+    // SHA3-256: Samsung/Conscrypt does NOT provide "SHA3-256" via MessageDigest on-device
+    // (NoSuchAlgorithmException on SM-F966B / API 36), so PocketProtocol.sha3 uses BouncyCastle's
+    // SHA3Digest(256) — byte-identical to the core node's impl and available on every device.
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
 
     // Golden-vector acceptance gate runs as a plain JVM unit test (no device needed).
     testImplementation libs.junit
+    testImplementation 'org.bouncycastle:bcprov-jdk15on:1.69'
 }

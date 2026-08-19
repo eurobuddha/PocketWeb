@@ -52,9 +52,27 @@ public final class PocketKeys {
         return owner;
     }
 
+    /** The identity new sites are published under: an imported Maxima key if set active, else our own. */
+    public synchronized String activeOwnerHex() throws IOException {
+        File marker = new File(dir, "active.owner");
+        if (marker.isFile()) {
+            String o = new String(Files.readAllBytes(marker.toPath()), StandardCharsets.UTF_8).trim();
+            if (has(o)) return o;
+        }
+        return ownOwnerHex();
+    }
+
+    public synchronized void setActive(String ownerHex) throws IOException {
+        if (!has(ownerHex)) throw new IOException("key not held: " + ownerHex);
+        Files.write(new File(dir, "active.owner").toPath(), ownerHex.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public PrivateKey activePrivateKey() throws IOException { return privateKeyFor(activeOwnerHex()); }
+
     /**
      * Import a Maxima RSA private key (PKCS#8, as "0x"+hex or bare hex). Returns the owner hex of the
      * corresponding public key, which is what on-chain packets carry. Throws if it is not an RSA key.
+     * The imported key becomes the ACTIVE signing identity so sites publish under the user's own Maxima key.
      */
     public synchronized String importPrivateKeyHex(String pkcs8Hex) throws IOException {
         byte[] der = PocketProtocol.hexDecode(pkcs8Hex.trim());
@@ -69,6 +87,7 @@ public final class PocketKeys {
         PublicKey pub = derivePublic((RSAPrivateCrtKey) priv);
         String owner = PocketProtocol.ownerHex(pub);
         store(owner, priv);
+        setActive(owner);
         return owner;
     }
 

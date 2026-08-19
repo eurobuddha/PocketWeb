@@ -71,14 +71,14 @@ public final class PocketProtocol {
     }
 
     // ===================== SHA3-256 (Crypto.hashData) =====================
-    /** FIPS-202 SHA3-256, 32 bytes. On Android (minSdk 28) the platform provider supplies it;
-     *  identical output to core's BouncyCastle SHA3Digest(256). */
+    /** FIPS-202 SHA3-256, 32 bytes — BouncyCastle SHA3Digest(256), byte-identical to the core node.
+     *  Not MessageDigest: Samsung/Conscrypt does not register "SHA3-256" on some devices. */
     public static byte[] sha3(byte[] data) {
-        try {
-            return MessageDigest.getInstance("SHA3-256").digest(data);
-        } catch (Exception e) {
-            throw new IllegalStateException("SHA3-256 unavailable", e);
-        }
+        org.bouncycastle.crypto.digests.SHA3Digest d = new org.bouncycastle.crypto.digests.SHA3Digest(256);
+        d.update(data, 0, data.length);
+        byte[] out = new byte[d.getDigestSize()];
+        d.doFinal(out, 0);
+        return out;
     }
 
     private static byte[] utf8(String s) { return s.getBytes(StandardCharsets.UTF_8); }

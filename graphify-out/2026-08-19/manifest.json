@@ -1,0 +1,2102 @@
+{
+  ".githooks/install.sh": {
+    "mtime": 1787081158.908997,
+    "ast_hash": "f31b37c6d1b5d340a5623f1715457ea0",
+    "semantic_hash": "f31b37c6d1b5d340a5623f1715457ea0"
+  },
+  ".githooks/pre-commit": {
+    "mtime": 1787079660.7143435,
+    "ast_hash": "f2942c9cbcfdbb28265c72fbdef57483",
+    "semantic_hash": "f2942c9cbcfdbb28265c72fbdef57483"
+  },
+  "app/build.gradle": {
+    "mtime": 1787087197.8847315,
+    "ast_hash": "90252137041f3801ab03eb9fb23b72de",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/MainActivity.java": {
+    "mtime": 1787087185.9850276,
+    "ast_hash": "529749d70e64e8df8d7aeff6af7745c6",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/NodeApi.java": {
+    "mtime": 1787078703.7205894,
+    "ast_hash": "27aaf5441bddfabd3efcd488bca0799d",
+    "semantic_hash": "27aaf5441bddfabd3efcd488bca0799d"
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketProtocol.java": {
+    "mtime": 1787086369.5563335,
+    "ast_hash": "bb457b64ae5556ddd7fece15b981692d",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketWire.java": {
+    "mtime": 1787079199.0756142,
+    "ast_hash": "9612957d430f229240c9a052cf5d209e",
+    "semantic_hash": "9612957d430f229240c9a052cf5d209e"
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/GoldenData.java": {
+    "mtime": 1787079135.8089182,
+    "ast_hash": "ef853caf693abe833ce5b5c870ce6af0",
+    "semantic_hash": "ef853caf693abe833ce5b5c870ce6af0"
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/ProtocolGoldenTest.java": {
+    "mtime": 1787086404.996994,
+    "ast_hash": "e0864624cffbe92b595b6e5a37f7df5d",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/ProtocolSelfTest.java": {
+    "mtime": 1787079241.5505583,
+    "ast_hash": "31f91bb348dc09c8301e0df7ddff1aaa",
+    "semantic_hash": "31f91bb348dc09c8301e0df7ddff1aaa"
+  },
+  "build.gradle": {
+    "mtime": 1787078682.4728405,
+    "ast_hash": "583193a3771192898c84ddef2d926224",
+    "semantic_hash": "583193a3771192898c84ddef2d926224"
+  },
+  "gradlew": {
+    "mtime": 1787078682.473424,
+    "ast_hash": "02c16663c6f0aa37f98d94d698c22b8c",
+    "semantic_hash": "02c16663c6f0aa37f98d94d698c22b8c"
+  },
+  "protocol-vectors/gen-vectors.js": {
+    "mtime": 1787079030.666943,
+    "ast_hash": "0a384cf90e14dc781be9e92c0426d0d6",
+    "semantic_hash": "0a384cf90e14dc781be9e92c0426d0d6"
+  },
+  "settings.gradle": {
+    "mtime": 1787078703.7232594,
+    "ast_hash": "c8bf0d36c7512e9223f6fc84c49e1477",
+    "semantic_hash": "c8bf0d36c7512e9223f6fc84c49e1477"
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketNode.java": {
+    "mtime": 1787081342.5883775,
+    "ast_hash": "c5c6334a5d26330892ded2dde9747689",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketStore.java": {
+    "mtime": 1787086389.7476804,
+    "ast_hash": "c7b32c226c9e6ab0a880af3e5e91506e",
+    "semantic_hash": ""
+  },
+  "app/src/test/resources/golden/vectors.json": {
+    "mtime": 1787079135.8081436,
+    "ast_hash": "6045d0736f71561f322ea65ab92868e1",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1787087436.0635526,
+    "ast_hash": "bc058ce42ddfba5204ac118ded237545",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/drawable-nodpi/minima_coin.png": {
+    "mtime": 1787078682.510493,
+    "ast_hash": "b42a00a97985ae43dc75340e887b85c2",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/drawable-nodpi/minima_logo.png": {
+    "mtime": 1787078682.5091634,
+    "ast_hash": "6976cdf6379c575ff396965d8c79bae4",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png": {
+    "mtime": 1787078682.5028634,
+    "ast_hash": "2c9737d4f912a1f8476a4e408ed8df68",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png": {
+    "mtime": 1787078682.5034251,
+    "ast_hash": "178b630bb3b6c6e0ea2ffc4b38648a79",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png": {
+    "mtime": 1787078682.503833,
+    "ast_hash": "d75267b0727bf4ccd4133e1646faf96e",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png": {
+    "mtime": 1787078682.5042887,
+    "ast_hash": "84b6fd2f44142db9739322b1e45987ef",
+    "semantic_hash": ""
+  },
+  "app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png": {
+    "mtime": 1787078682.5048125,
+    "ast_hash": "171bc4320ad34791f91054d5b2835cb7",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/SiteExtractor.java": {
+    "mtime": 1787086718.3138568,
+    "ast_hash": "dae57af16301c40ec9f944fc115311ab",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/SiteExtractorSelfTest.java": {
+    "mtime": 1787081559.1361988,
+    "ast_hash": "e09ec9bedc5a7954350fa64628488c3f",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/SiteExtractorTest.java": {
+    "mtime": 1787081588.8771985,
+    "ast_hash": "55c1b09955fb15b5976fb0a0ffe2f18d",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketKeys.java": {
+    "mtime": 1787085662.2429283,
+    "ast_hash": "69e9dcb7bd165f5e2137775ac15555d4",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/PocketKeysSelfTest.java": {
+    "mtime": 1787085685.2335389,
+    "ast_hash": "c22537b88194d8d98310319e9bfd12d8",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/PocketKeysTest.java": {
+    "mtime": 1787085717.1878285,
+    "ast_hash": "d9ebfed9d671d6981db658e787c2febd",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/decimal.js": {
+    "mtime": 1787085825.6780934,
+    "ast_hash": "d82ecf9b2aa5125fff87f91dfaad593b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/decimal.min.js": {
+    "mtime": 1787085825.7538822,
+    "ast_hash": "277304477526834eaf918ca7d9d9e049",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-3.7.1.min.js": {
+    "mtime": 1787085825.753441,
+    "ast_hash": "2c872dbe60f4ba70fb85356113d8b35e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/external/jquery/jquery.js": {
+    "mtime": 1787085825.7467453,
+    "ast_hash": "12e87d2f3a4c8b347ab13a0764d420a3",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js": {
+    "mtime": 1787085825.7520332,
+    "ast_hash": "0c983553a5edeaffb408e27b4bc526ad",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.min.js": {
+    "mtime": 1787085825.6954582,
+    "ast_hash": "12c28b31a1369383b3549abf958b01fe",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/package.json": {
+    "mtime": 1787085825.7425234,
+    "ast_hash": "f4c18cd57e594d6292b6b471f526e6bf",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/mds.js": {
+    "mtime": 1787085825.674333,
+    "ast_hash": "253b44c986fc67673434527dbdd9f473",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/purify.js": {
+    "mtime": 1787085825.7552457,
+    "ast_hash": "ec5f6173b3563138c610f4a07421094f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/purify.min.js": {
+    "mtime": 1787085825.670652,
+    "ast_hash": "aade6b48561e886f544d464490524168",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/mds.js": {
+    "mtime": 1787085825.6194868,
+    "ast_hash": "253b44c986fc67673434527dbdd9f473",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/miniweb.js": {
+    "mtime": 1787086816.1833892,
+    "ast_hash": "e32d3c49439e7cb81ee8d67c9d4590d8",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/MimeTypes.java": {
+    "mtime": 1787085891.1980393,
+    "ast_hash": "b4733739b7692d3742ccd0d85f261ff5",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/MiniwebUrl.java": {
+    "mtime": 1787085917.6449742,
+    "ast_hash": "1f86f9c00ba844c801b8b42f50ad066b",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/SiteServer.java": {
+    "mtime": 1787086839.320979,
+    "ast_hash": "60ba9d90b3c3a88f6fceb42736d245c7",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/MiniwebUrlSelfTest.java": {
+    "mtime": 1787085944.9634304,
+    "ast_hash": "cee09b91f356ca476e356d6e046002fc",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/MiniwebUrlTest.java": {
+    "mtime": 1787086228.4740634,
+    "ast_hash": "a2f3ff5647468e8f29f2095a751ed204",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/AUTHORS.txt": {
+    "mtime": 1787085825.7509434,
+    "ast_hash": "b453229b60c13121252e2bf6a692d73e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/Changelog.md": {
+    "mtime": 1787085825.7118137,
+    "ast_hash": "d67b30cea5c6a7f339da7d9a063a5772",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/LICENSE.txt": {
+    "mtime": 1787085825.7506356,
+    "ast_hash": "c43692f7b18388dbe40eb34dae75d165",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/README.md": {
+    "mtime": 1787085825.7291973,
+    "ast_hash": "d39e3ae5631e7922566c198bb0491361",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/index.html": {
+    "mtime": 1787085825.6992097,
+    "ast_hash": "e746a60648040a0404b23f69b429bd92",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/about.svg": {
+    "mtime": 1787085825.832696,
+    "ast_hash": "b0f2998a9499d886d0a1545ae5fea656",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/accept_database.svg": {
+    "mtime": 1787085825.8308063,
+    "ast_hash": "7bc99ad31b9d5b97cce25a50406d47b3",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/add_column.svg": {
+    "mtime": 1787085825.814037,
+    "ast_hash": "f9ee8870d07458ab4b779e1c7bbf27fa",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/add_database.svg": {
+    "mtime": 1787085825.8284392,
+    "ast_hash": "f39ed14c5f229a76989820f3e695e5bf",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/add_image.svg": {
+    "mtime": 1787085825.819138,
+    "ast_hash": "057f1ac8cafb5e27432698940157bb16",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/add_row.svg": {
+    "mtime": 1787085825.829517,
+    "ast_hash": "760305d4f0194524908c54a616c68faa",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/address_book.svg": {
+    "mtime": 1787085825.7859325,
+    "ast_hash": "e852aaf4a904cd319ae1f3962324fd5d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/advance.svg": {
+    "mtime": 1787085825.7870648,
+    "ast_hash": "1b290613c9b245ac4f966d63e637bfbb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/advertising.svg": {
+    "mtime": 1787085825.8343308,
+    "ast_hash": "69c7ba818a70918d31cdff54f95a3a18",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/alarm_clock.svg": {
+    "mtime": 1787085825.7883186,
+    "ast_hash": "79fa6b56ac469316042060c651260744",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/alphabetical_sorting_az.svg": {
+    "mtime": 1787085825.7861521,
+    "ast_hash": "94f633f3e745adf4cb324ca1542eb756",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/alphabetical_sorting_za.svg": {
+    "mtime": 1787085825.7719667,
+    "ast_hash": "9459b8d11105836e59e101d0c8d8e5c7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/android_os.svg": {
+    "mtime": 1787085825.831265,
+    "ast_hash": "7f27131dbf3a992f3173313599a3e816",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/answers.svg": {
+    "mtime": 1787085825.822462,
+    "ast_hash": "bec5fc050c2bbc793dce5bb5a83da554",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/approval.svg": {
+    "mtime": 1787085825.7715003,
+    "ast_hash": "0598640a38b294fa7f1ba5f00ea28204",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/approve.svg": {
+    "mtime": 1787085825.7936022,
+    "ast_hash": "711fee4f28f85986de43e0378f24278d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/area_chart.svg": {
+    "mtime": 1787085825.8211915,
+    "ast_hash": "16d63f5ed70cb4c919749866ce73315c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/assistant.svg": {
+    "mtime": 1787085825.7710397,
+    "ast_hash": "e89591e44ab6760c13f0ede9220082b4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/audio_file.svg": {
+    "mtime": 1787085825.7766757,
+    "ast_hash": "1a1ff5eef3e46eae28304f79e1b7758a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/automatic.svg": {
+    "mtime": 1787085825.8357227,
+    "ast_hash": "9add5dfc6c0087eea4ff3d70f6a55470",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/automotive.svg": {
+    "mtime": 1787085825.856739,
+    "ast_hash": "5f6d466ebf3f9ae79681ea8ae6db18d7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/bad_decision.svg": {
+    "mtime": 1787085825.8161542,
+    "ast_hash": "f25974a165e100be67bc0d2775a598ec",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/bar_chart.svg": {
+    "mtime": 1787085825.8053803,
+    "ast_hash": "c965b9c250f69536339e7f0aa26d0fd8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/bbc.svg": {
+    "mtime": 1787085825.7905133,
+    "ast_hash": "dbc40ffef31b8e06e435448c1ced2a3c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/bearish.svg": {
+    "mtime": 1787085825.7678277,
+    "ast_hash": "6418b702c7ff1f99c54d8c12c5d39e17",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/binoculars.svg": {
+    "mtime": 1787085825.85795,
+    "ast_hash": "f5580d3d7cf9bafa0b5dd79dac422e1d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/biohazard.svg": {
+    "mtime": 1787085825.815917,
+    "ast_hash": "40045bbd8bae81c83576298cc6339b61",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/biomass.svg": {
+    "mtime": 1787085825.7663429,
+    "ast_hash": "5e6aeb659a19418cbe7a52ac2588cef9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/biotech.svg": {
+    "mtime": 1787085825.8574932,
+    "ast_hash": "4b587adf440e024bb507fc34b4899523",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/bookmark.svg": {
+    "mtime": 1787085825.8533733,
+    "ast_hash": "80f0e75ab75020a0d4cfe7c889a24eb1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/briefcase.svg": {
+    "mtime": 1787085825.7795188,
+    "ast_hash": "afe792a850d63ecc63998868098dda1f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/broken_link.svg": {
+    "mtime": 1787085825.8214161,
+    "ast_hash": "e9c104213033224bc834136c2737af11",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/bullish.svg": {
+    "mtime": 1787085825.8164213,
+    "ast_hash": "6bd0bfa3393afb1db3c1ffb1f82dd5d9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/business.svg": {
+    "mtime": 1787085825.845074,
+    "ast_hash": "e5fb830a772fb8044bea125e7eba872a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/business_contact.svg": {
+    "mtime": 1787085825.8144953,
+    "ast_hash": "ea32954f5d396ab00d389f28583b0f8f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/businessman.svg": {
+    "mtime": 1787085825.8046718,
+    "ast_hash": "620390754d362bfeb96754c74072ca1f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/businesswoman.svg": {
+    "mtime": 1787085825.7726686,
+    "ast_hash": "8b0ca1529b67fd11a7030516318b7b12",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/butting_in.svg": {
+    "mtime": 1787085825.8529105,
+    "ast_hash": "f10acf1966463984e20775bcdac63673",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/cable_release.svg": {
+    "mtime": 1787085825.7757225,
+    "ast_hash": "1481c8ea6f24a35045875b14975a9fc2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/calculator.svg": {
+    "mtime": 1787085825.856054,
+    "ast_hash": "6e75e8a84a5f59dc88c6cb0f756551c1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/calendar.svg": {
+    "mtime": 1787085825.8469305,
+    "ast_hash": "ae5f7105ec74ad0190e6f75d75befa8e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/call_transfer.svg": {
+    "mtime": 1787085825.8022943,
+    "ast_hash": "15749a7702eaf70f20e55ab87b5c4f77",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/callback.svg": {
+    "mtime": 1787085825.8249495,
+    "ast_hash": "e2012b81c8330064366c92e63bc98056",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/camcorder.svg": {
+    "mtime": 1787085825.782622,
+    "ast_hash": "528adf335ae1be35e4bc6c6273fae2db",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/camcorder_pro.svg": {
+    "mtime": 1787085825.841198,
+    "ast_hash": "85956d5db1fa4acf6fc8582d469cafcc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/camera.svg": {
+    "mtime": 1787085825.8290572,
+    "ast_hash": "62e8c1adf776116ad1f086a839bf8020",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/camera_addon.svg": {
+    "mtime": 1787085825.7687175,
+    "ast_hash": "e0c272f61e1178e349078d73ba6e9de1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/camera_identification.svg": {
+    "mtime": 1787085825.8231065,
+    "ast_hash": "b91d6285665c5f72b0d9ad4d84c63b13",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/cancel.svg": {
+    "mtime": 1787085825.7771432,
+    "ast_hash": "bdc094a726799a91aed227f6c3270107",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/candle_sticks.svg": {
+    "mtime": 1787085825.8197863,
+    "ast_hash": "fe571bc8020b401cdc1f45aa3ce61d62",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/capacitor.svg": {
+    "mtime": 1787085825.859879,
+    "ast_hash": "2a90636ad9211bec2f6411b2beb75dd8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/cd_logo.svg": {
+    "mtime": 1787085825.8302233,
+    "ast_hash": "64e8f66f45c402e16a921d5078b540b5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/cell_phone.svg": {
+    "mtime": 1787085825.8201435,
+    "ast_hash": "b57de83d901e4d6d24169b962c493960",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/charge_battery.svg": {
+    "mtime": 1787085825.8609388,
+    "ast_hash": "c56ae8e39eee8c9d5c71b0b3981472f9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/checkmark.svg": {
+    "mtime": 1787085825.7668977,
+    "ast_hash": "9590bdde74800c985029c73f8be21ac4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/circuit.svg": {
+    "mtime": 1787085825.7762291,
+    "ast_hash": "22022d1610fdeb2a3fbe0203a108551e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/clapperboard.svg": {
+    "mtime": 1787085825.7695136,
+    "ast_hash": "f363c68732d9261f5236fcf947e27262",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/clear_filters.svg": {
+    "mtime": 1787085825.8073547,
+    "ast_hash": "9a14b3d8f76b9de17fba49761a3b3841",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/clock.svg": {
+    "mtime": 1787085825.840812,
+    "ast_hash": "6fda23f699a31aef34f52f424314fe1b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/close_up_mode.svg": {
+    "mtime": 1787085825.7895103,
+    "ast_hash": "1cb96cfcf5daa3518a3c5f17f753f4e4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/cloth.svg": {
+    "mtime": 1787085825.7705953,
+    "ast_hash": "dfb08459b76efead78682cfbc46a6e9f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/collaboration.svg": {
+    "mtime": 1787085825.8299963,
+    "ast_hash": "730fdf3396db059504b1ae4851257291",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/collapse.svg": {
+    "mtime": 1787085825.8063395,
+    "ast_hash": "3d0e7cffd3bb81a8924ddb6e4b097905",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/collect.svg": {
+    "mtime": 1787085825.792605,
+    "ast_hash": "b32cf5f0c755a89db05e4a4b732b19eb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/combo_chart.svg": {
+    "mtime": 1787085825.8496554,
+    "ast_hash": "e4b7f6a2e21d02befb4f7ffbbf18cdc8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/command_line.svg": {
+    "mtime": 1787085825.7939498,
+    "ast_hash": "33eaae6e3d8ddeca05c71135615fbbfc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/comments.svg": {
+    "mtime": 1787085825.7812,
+    "ast_hash": "f8b25a0707085ac1549772c6036ecd77",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/compact_camera.svg": {
+    "mtime": 1787085825.8001566,
+    "ast_hash": "7e0f074d61147b5a56acf52822724020",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/conference_call.svg": {
+    "mtime": 1787085825.8340952,
+    "ast_hash": "610dc165844765670c3b4cf18c4d8482",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/contacts.svg": {
+    "mtime": 1787085825.8350468,
+    "ast_hash": "e90e48b871e25e2c0cf9ad6c02eb530d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/copyleft.svg": {
+    "mtime": 1787085825.839368,
+    "ast_hash": "cac56c26644d5bbc9cf1bebabad55e24",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/copyright.svg": {
+    "mtime": 1787085825.774096,
+    "ast_hash": "b912a721d657eedb2ffabace98b7187b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/crystal_oscillator.svg": {
+    "mtime": 1787085825.8142529,
+    "ast_hash": "33a7ec2baf4ecf1fc72d8a3efbe8ae3b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/currency_exchange.svg": {
+    "mtime": 1787085825.8031254,
+    "ast_hash": "b35b84c358f8230e24d34653ec2fecf5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/cursor.svg": {
+    "mtime": 1787085825.8151803,
+    "ast_hash": "e0041c4b0ba2bf410a4c2197a0ce3dd5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/customer_support.svg": {
+    "mtime": 1787085825.789294,
+    "ast_hash": "c5acf4dc3c64db8783a35dce6a3ea7a6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/dam.svg": {
+    "mtime": 1787085825.81723,
+    "ast_hash": "ee28256769cf1fa5eca281c6d8a739af",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/data_backup.svg": {
+    "mtime": 1787085825.776939,
+    "ast_hash": "3f49d4ad75a22574420376373aaf3371",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/data_configuration.svg": {
+    "mtime": 1787085825.8304455,
+    "ast_hash": "b7f2d2d347d011b3f48f57d6a853eb10",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/data_encryption.svg": {
+    "mtime": 1787085825.789708,
+    "ast_hash": "e67b240c0419aa280af9362de8df744a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/data_protection.svg": {
+    "mtime": 1787085825.8541725,
+    "ast_hash": "5099ed3c7d0911f3fa0e9e70b181c43a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/data_recovery.svg": {
+    "mtime": 1787085825.7863808,
+    "ast_hash": "428f06184c55ba99a6a1e9e6517c30a5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/data_sheet.svg": {
+    "mtime": 1787085825.8526695,
+    "ast_hash": "b6d48c83c8e9cc004f2aacc27bd65639",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/database.svg": {
+    "mtime": 1787085825.7820914,
+    "ast_hash": "7ea8425c78afbefef939b5ba955e2ceb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/debian.svg": {
+    "mtime": 1787085825.8505666,
+    "ast_hash": "87d37c3977d4346d3425b6d4b9857536",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/debt.svg": {
+    "mtime": 1787085825.7666397,
+    "ast_hash": "58675bf836c44ebdba4aa3ba331d921f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/decision.svg": {
+    "mtime": 1787085825.8154528,
+    "ast_hash": "db22713b49eec0f6ee1b12f30a288210",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/delete_column.svg": {
+    "mtime": 1787085825.837693,
+    "ast_hash": "1712dbecf93362f93b2731147e668e8b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/delete_database.svg": {
+    "mtime": 1787085825.8332844,
+    "ast_hash": "ae0b3bc953b76900e9a46b7474a09be4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/delete_row.svg": {
+    "mtime": 1787085825.806109,
+    "ast_hash": "c888ac1b09534c0f5f9b33614be43b10",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/department.svg": {
+    "mtime": 1787085825.8454912,
+    "ast_hash": "6d4da8a4001bdd6316b184a7c3ecd653",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/deployment.svg": {
+    "mtime": 1787085825.8274987,
+    "ast_hash": "746645e776aaf0c6c50ab24efd041252",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/diploma_1.svg": {
+    "mtime": 1787085825.807007,
+    "ast_hash": "f1e0b7996d20d96d0084e76e36919c50",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/diploma_2.svg": {
+    "mtime": 1787085825.8179476,
+    "ast_hash": "65785b7b2157d5ddd9bdf165e578605a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/disapprove.svg": {
+    "mtime": 1787085825.8168902,
+    "ast_hash": "6311df0d7401ccd6cc79343f461f7963",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/disclaimer.svg": {
+    "mtime": 1787085825.8040535,
+    "ast_hash": "498b84209e0065abcf99635952913d33",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/dislike.svg": {
+    "mtime": 1787085825.7899444,
+    "ast_hash": "f4cba515757fa67d4dec1005e4d40656",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/display.svg": {
+    "mtime": 1787085825.8502212,
+    "ast_hash": "ab561d2c1e1551d2b672620afa88b869",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/do_not_inhale.svg": {
+    "mtime": 1787085825.813756,
+    "ast_hash": "8539f898a052918221b093a2df9137f9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/do_not_insert.svg": {
+    "mtime": 1787085825.8324735,
+    "ast_hash": "abdb6ae3277fa1c707486ae5f30655b6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/do_not_mix.svg": {
+    "mtime": 1787085825.851126,
+    "ast_hash": "5bbad455c5f5464a009036b217128c98",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/document.svg": {
+    "mtime": 1787085825.8182313,
+    "ast_hash": "c10903eda7f52e53cd879a41b6f939d1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/donate.svg": {
+    "mtime": 1787085825.8257096,
+    "ast_hash": "ddc4d7a5402e7cdbb37f85c083765b5e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/doughnut_chart.svg": {
+    "mtime": 1787085825.8434343,
+    "ast_hash": "8b544d1c1a538f0877d22a8cb21b2ba6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/down.svg": {
+    "mtime": 1787085825.7782,
+    "ast_hash": "f310cf62fed81027a3491320c903a360",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/down_left.svg": {
+    "mtime": 1787085825.7697184,
+    "ast_hash": "fa7e0e1112075a3b276f9d36393d54e1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/down_right.svg": {
+    "mtime": 1787085825.85582,
+    "ast_hash": "f94f3471229314c570d09a7609aca80b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/download.svg": {
+    "mtime": 1787085825.7999108,
+    "ast_hash": "3c0d26f72b6249d9a3271f5f2a5d895c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/dribbble.svg": {
+    "mtime": 1787085825.8431902,
+    "ast_hash": "651c7b435330bc818216adc4c821e16d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/dvd_logo.svg": {
+    "mtime": 1787085825.857265,
+    "ast_hash": "3ca4aa0380f8a1698310af0725ccbe61",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/edit_image.svg": {
+    "mtime": 1787085825.8240385,
+    "ast_hash": "c77741912d64c5d35d06a3a7dde8232b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/electrical_sensor.svg": {
+    "mtime": 1787085825.7868478,
+    "ast_hash": "09a244facfcbbb8b3e6d301260cfa833",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/electrical_threshold.svg": {
+    "mtime": 1787085825.7996624,
+    "ast_hash": "fc1f3f81d478e08c485c8c1a1949500d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/electricity.svg": {
+    "mtime": 1787085825.8429577,
+    "ast_hash": "57938b30d9184ca590484979c1212159",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/electro_devices.svg": {
+    "mtime": 1787085825.7786849,
+    "ast_hash": "8c88a7bfd094d880aceaa364476470d6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/electronics.svg": {
+    "mtime": 1787085825.8547907,
+    "ast_hash": "25bd8c7a1861c06dea79bb999d425d52",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/empty_battery.svg": {
+    "mtime": 1787085825.8346033,
+    "ast_hash": "1ceb70c2c0f225a3794e48883d1d8710",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/empty_filter.svg": {
+    "mtime": 1787085825.8570206,
+    "ast_hash": "cb0ebec3e7b4cb5c11766a36d6fbb1b1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/empty_trash.svg": {
+    "mtime": 1787085825.818484,
+    "ast_hash": "a3c2778c5d15dc11068fe074cc6791df",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/end_call.svg": {
+    "mtime": 1787085825.8095782,
+    "ast_hash": "e93ac0e0fc8b3519bf0b64cd64c4aa22",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/engineering.svg": {
+    "mtime": 1787085825.8359349,
+    "ast_hash": "8e2049b2a50ec65567886f3a096e1e72",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/entering_heaven_alive.svg": {
+    "mtime": 1787085825.7890847,
+    "ast_hash": "858a976c89a6d69864f8b8c8d5a30f08",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/expand.svg": {
+    "mtime": 1787085825.802051,
+    "ast_hash": "c5ac74f156366b4667190c6090bbabdb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/expired.svg": {
+    "mtime": 1787085825.8221707,
+    "ast_hash": "67d5910e80c7c501282cf58fd8db2fc2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/export.svg": {
+    "mtime": 1787085825.7779906,
+    "ast_hash": "a1c822fc09c2bfb508dba44ffca03c77",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/external.svg": {
+    "mtime": 1787085825.8156915,
+    "ast_hash": "93d477cf4a15594093aac5351dc0e1d4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/factory.svg": {
+    "mtime": 1787085825.8166635,
+    "ast_hash": "8c54268a1ca365270643b3da7a4a1b01",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/factory_breakdown.svg": {
+    "mtime": 1787085825.8033557,
+    "ast_hash": "bb666a6e78086c9b09e602be3536e511",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/faq.svg": {
+    "mtime": 1787085825.8363907,
+    "ast_hash": "dd8817c2244773aad3e5102bebbf3b3b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/feed_in.svg": {
+    "mtime": 1787085825.7784698,
+    "ast_hash": "45d32c4ee20b55db6dc92a2f1305b83d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/feedback.svg": {
+    "mtime": 1787085825.828748,
+    "ast_hash": "6360b0615731a13ca3d6275ad3d4cc3b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/file.svg": {
+    "mtime": 1787085825.7829082,
+    "ast_hash": "bdc094f25070c0a26067ca2d49774027",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/filing_cabinet.svg": {
+    "mtime": 1787085825.8401744,
+    "ast_hash": "1fb75ab802ce803da3326605223820a0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/filled_filter.svg": {
+    "mtime": 1787085825.8315375,
+    "ast_hash": "345cf5efacafd14356e48807123a7032",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/film.svg": {
+    "mtime": 1787085825.8593946,
+    "ast_hash": "f478c5bc4d27324240f0ee7f927a8f37",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/film_reel.svg": {
+    "mtime": 1787085825.7818053,
+    "ast_hash": "0a3c4cb84134812b5aafde516cee1461",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/fine_print.svg": {
+    "mtime": 1787085825.8209739,
+    "ast_hash": "d03f66bcf7de585933f5026a358da37d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/flash_auto.svg": {
+    "mtime": 1787085825.8516886,
+    "ast_hash": "a413011bd3715118eea62918410204f8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/flash_off.svg": {
+    "mtime": 1787085825.8348217,
+    "ast_hash": "d6c8d7ffd615e46e9bb7cf8d97a0031f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/flash_on.svg": {
+    "mtime": 1787085825.8273456,
+    "ast_hash": "089f19062c1c450913e3ebbea711e6c0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/flow_chart.svg": {
+    "mtime": 1787085825.8055975,
+    "ast_hash": "03e00f3bac8cfa7f4e9baf482f4c68b6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/folder.svg": {
+    "mtime": 1787085825.8581808,
+    "ast_hash": "533b711ba5b4044b81f58f4e1a9f2e57",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/frame.svg": {
+    "mtime": 1787085825.8389032,
+    "ast_hash": "0b1eb0db2578df1e0328565167d26a35",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/full_battery.svg": {
+    "mtime": 1787085825.8562942,
+    "ast_hash": "df92a2cf681525af584e2ddfa5c8251a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/full_trash.svg": {
+    "mtime": 1787085825.831864,
+    "ast_hash": "f018447f5b1ff36f33073b84eedf653c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/gallery.svg": {
+    "mtime": 1787085825.8029315,
+    "ast_hash": "70619ac91baeb7a182dcfe04ac2db4a8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/genealogy.svg": {
+    "mtime": 1787085825.841661,
+    "ast_hash": "6df07b385aade4f1a1ffe57bfdf8530a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/generic_sorting_asc.svg": {
+    "mtime": 1787085825.7671273,
+    "ast_hash": "887d229fa13f1de4ee53b2852d7574dc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/generic_sorting_desc.svg": {
+    "mtime": 1787085825.8519342,
+    "ast_hash": "138d5f015fb24b31e9ed640a084f8693",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/globe.svg": {
+    "mtime": 1787085825.847418,
+    "ast_hash": "04758700234dc7e0621f909c955fe123",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/good_decision.svg": {
+    "mtime": 1787085825.7809432,
+    "ast_hash": "1ab989d254d91263feabe2ee0dc20974",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/google.svg": {
+    "mtime": 1787085825.83209,
+    "ast_hash": "b9344554d7503e996eacdce1dc727d9e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/graduation_cap.svg": {
+    "mtime": 1787085825.8427076,
+    "ast_hash": "40bfc852349531230213505286fe1f2a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/grid.svg": {
+    "mtime": 1787085825.7606645,
+    "ast_hash": "0c27c2f9d52af92b340f4fd3280bdce6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/headset.svg": {
+    "mtime": 1787085825.7804077,
+    "ast_hash": "9b55cf4b0290979aaf860eb140dd13ab",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/heat_map.svg": {
+    "mtime": 1787085825.7699113,
+    "ast_hash": "0121c5087c7f558c6d99ad16cf5da5eb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/high_battery.svg": {
+    "mtime": 1787085825.788839,
+    "ast_hash": "931938ea06477f4853618b0d198694e2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/high_priority.svg": {
+    "mtime": 1787085825.852125,
+    "ast_hash": "c72c3c74ed06346cab0ef80cf2cab1d4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/home.svg": {
+    "mtime": 1787085825.7736113,
+    "ast_hash": "db1b5d6339127c1f6b510bf2eb66367a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/icons8_cup.svg": {
+    "mtime": 1787085825.779714,
+    "ast_hash": "557b573f1408ffc0871f61118aeeb107",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/idea.svg": {
+    "mtime": 1787085825.837872,
+    "ast_hash": "b7d66d7e08174b68bf5b60a857c87a76",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/image_file.svg": {
+    "mtime": 1787085825.8400104,
+    "ast_hash": "026d2132b64cf966c62eef83a1bcd609",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/import.svg": {
+    "mtime": 1787085825.8025525,
+    "ast_hash": "566b6bf87f8e5f0099d990a989bd7fc4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/in_transit.svg": {
+    "mtime": 1787085825.7730613,
+    "ast_hash": "fac8621f5e3f72338ee1289060f77afb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/info.svg": {
+    "mtime": 1787085825.820748,
+    "ast_hash": "94b6d04177088107174f4f4590041cbd",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/inspection.svg": {
+    "mtime": 1787085825.813314,
+    "ast_hash": "b88d32faad39f216254fb69274fd4bc4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/integrated_webcam.svg": {
+    "mtime": 1787085825.7777712,
+    "ast_hash": "7872e7a6dfcc80bbd68914fa2db290fa",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/internal.svg": {
+    "mtime": 1787085825.7682252,
+    "ast_hash": "6309a55ed45c76a9203b5dadea9cc67b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/invite.svg": {
+    "mtime": 1787085825.757042,
+    "ast_hash": "66bb546e19ea99257810fc6b9def0d3a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/ipad.svg": {
+    "mtime": 1787085825.8310342,
+    "ast_hash": "fc4faee95dd06aea001ab6a91b6a8ea0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/iphone.svg": {
+    "mtime": 1787085825.854478,
+    "ast_hash": "9de135b37a6b78e48d50e3dbe9b2fbc0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/key.svg": {
+    "mtime": 1787085825.791341,
+    "ast_hash": "060845aa5ad79ac6ac6d64218785a677",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/kindle.svg": {
+    "mtime": 1787085825.8335092,
+    "ast_hash": "8c997162f94adbbdf53e8cab3db5a2e3",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/landscape.svg": {
+    "mtime": 1787085825.7920306,
+    "ast_hash": "47c3a31f3e107f1847d6db373ab019f4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/leave.svg": {
+    "mtime": 1787085825.825256,
+    "ast_hash": "894109d74176f658c4643eb6248ba881",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/left.svg": {
+    "mtime": 1787085825.8584163,
+    "ast_hash": "6f5cac9b829d938807077831904e31dc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/left_down.svg": {
+    "mtime": 1787085825.794219,
+    "ast_hash": "7c07ad69f9351c52b3746422c0d6f109",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/left_down2.svg": {
+    "mtime": 1787085825.7764847,
+    "ast_hash": "2a93123bdc26b78fcf8f2ce93402cad7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/left_up.svg": {
+    "mtime": 1787085825.7717292,
+    "ast_hash": "b9a72cac7203b7972b4f76d2721d710d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/left_up2.svg": {
+    "mtime": 1787085825.7850976,
+    "ast_hash": "a95e22a1b7e6f5b78b109ea28bc2c150",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/library.svg": {
+    "mtime": 1787085825.7759793,
+    "ast_hash": "d561dd58da691544bfd3f614913f616f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/light_at_the_end_of_tunnel.svg": {
+    "mtime": 1787085825.8437054,
+    "ast_hash": "01a3e128b1a71530ba9a00a2a29abddb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/like.svg": {
+    "mtime": 1787085825.7676244,
+    "ast_hash": "3fbbbc05d40d739a186a749519a6ab59",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/like_placeholder.svg": {
+    "mtime": 1787085825.8189478,
+    "ast_hash": "8b87892f70c584c2942ccae93cb37db0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/line_chart.svg": {
+    "mtime": 1787085825.8555834,
+    "ast_hash": "3eedb24b97ae76c9173fd43dd8cd13c6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/link.svg": {
+    "mtime": 1787085825.7909966,
+    "ast_hash": "f1707e26eec5b7a0e54e4b0b1169e4d8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/linux.svg": {
+    "mtime": 1787085825.77219,
+    "ast_hash": "a1287da2e6217db847260d859a6fc2cd",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/list.svg": {
+    "mtime": 1787085825.7685032,
+    "ast_hash": "32f14935e38e3434776e92fd07158a16",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/lock.svg": {
+    "mtime": 1787085825.788553,
+    "ast_hash": "98f708ab487e1e4a75ab5147c9ecee88",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/lock_landscape.svg": {
+    "mtime": 1787085825.7917905,
+    "ast_hash": "34e181c68160a06474e7e7a0cffad8eb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/lock_portrait.svg": {
+    "mtime": 1787085825.8396237,
+    "ast_hash": "d4b7c88e8c3113b9a58ba2a4f146a790",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/low_battery.svg": {
+    "mtime": 1787085825.8058553,
+    "ast_hash": "49b4ae4ea87b986e5566e13f966b7306",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/low_priority.svg": {
+    "mtime": 1787085825.8193274,
+    "ast_hash": "72485318087da9f888936762f211a6ff",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/make_decision.svg": {
+    "mtime": 1787085825.8471804,
+    "ast_hash": "00edb406b0eb333263b763288694b05f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/manager.svg": {
+    "mtime": 1787085825.850831,
+    "ast_hash": "4fb3200e7129b7625d352c2bef53b4a7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/medium_priority.svg": {
+    "mtime": 1787085825.7640316,
+    "ast_hash": "9e4f73c692f1ce65ef5454c2230a1eba",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/menu.svg": {
+    "mtime": 1787085825.8552856,
+    "ast_hash": "3b14236e96602213f62aa7e7347f01cc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/middle_battery.svg": {
+    "mtime": 1787085825.8531432,
+    "ast_hash": "b283382a7c91d3d2f72ce553acb13f8a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/mind_map.svg": {
+    "mtime": 1787085825.7970216,
+    "ast_hash": "fcd59e096ef5f2ff70ddf07d83f5984a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/minus.svg": {
+    "mtime": 1787085825.8589904,
+    "ast_hash": "9a35a6a9c26189698a08fef88cf69a8c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/missed_call.svg": {
+    "mtime": 1787085825.7658403,
+    "ast_hash": "82b78c7c658c218abe3a75e9dcf45b0d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/mms.svg": {
+    "mtime": 1787085825.7823365,
+    "ast_hash": "fcd04a5b56ed1a1c7c46dca59e52f0ea",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/money_transfer.svg": {
+    "mtime": 1787085825.8255553,
+    "ast_hash": "6465967a47847e818faad6ea34ce4fe8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/multiple_cameras.svg": {
+    "mtime": 1787085825.842063,
+    "ast_hash": "58b97f84345cfcabd38252a55b45278c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/multiple_devices.svg": {
+    "mtime": 1787085825.837431,
+    "ast_hash": "1b33adcc82d00322195c7aac385fbbe5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/multiple_inputs.svg": {
+    "mtime": 1787085825.8042817,
+    "ast_hash": "76068abb79de2e1ac58b00b4e042da97",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/multiple_smartphones.svg": {
+    "mtime": 1787085825.7692409,
+    "ast_hash": "cba28523d470d7c67974a65483328093",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/music.svg": {
+    "mtime": 1787085825.7752337,
+    "ast_hash": "aa65c4e9bbaf619099f14cfef101538f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/negative_dynamic.svg": {
+    "mtime": 1787085825.7992072,
+    "ast_hash": "47acc16de800884f48fe00f3680737c0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/neutral_decision.svg": {
+    "mtime": 1787085825.8251045,
+    "ast_hash": "ebd99cc0590d3128586cd9065dca34ee",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/neutral_trading.svg": {
+    "mtime": 1787085825.823682,
+    "ast_hash": "bce68f9d69c2236badd34da5f696cd3a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/news.svg": {
+    "mtime": 1787085825.8204772,
+    "ast_hash": "2ab007332e95c628ef2e3a1d8412e6b8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/next.svg": {
+    "mtime": 1787085825.8366153,
+    "ast_hash": "fcda410ef05853bb40900acc44f22c5a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/nfc_sign.svg": {
+    "mtime": 1787085825.8577275,
+    "ast_hash": "174fe0cc54335b1d1e6c8e000beb943d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/night_landscape.svg": {
+    "mtime": 1787085825.7933562,
+    "ast_hash": "d60521664aaa35316223ba7519e739de",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/night_portrait.svg": {
+    "mtime": 1787085825.7923245,
+    "ast_hash": "b6c49bfedb3ec02aa538e343e0a1861f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/no_idea.svg": {
+    "mtime": 1787085825.8602204,
+    "ast_hash": "6620a028682b86d31b4aa96e67759c1e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/no_video.svg": {
+    "mtime": 1787085825.7865863,
+    "ast_hash": "ec85a955a9ee8ce71ac7c22020b35bb8",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/nook.svg": {
+    "mtime": 1787085825.806788,
+    "ast_hash": "4ef81bfd1131ccb40d3e79e360fe964f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/numerical_sorting_12.svg": {
+    "mtime": 1787085825.8536437,
+    "ast_hash": "79b59bc22384f320bafb25640d764ac6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/numerical_sorting_21.svg": {
+    "mtime": 1787085825.7680213,
+    "ast_hash": "6398a87524367e9938b561d1142d0c1e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/ok.svg": {
+    "mtime": 1787085825.804897,
+    "ast_hash": "99a503d11f18a3d4047685eb0f1f66b9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/old_time_camera.svg": {
+    "mtime": 1787085825.7707922,
+    "ast_hash": "441137439e20fd0d7fb91a5075993ad1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/online_support.svg": {
+    "mtime": 1787085825.8546286,
+    "ast_hash": "33ce1bfb303dd39b142bbc24c1c00961",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/opened_folder.svg": {
+    "mtime": 1787085825.8587565,
+    "ast_hash": "8c594933c697a84a5c5b74ab89ff5def",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/org_unit.svg": {
+    "mtime": 1787085825.840466,
+    "ast_hash": "775ab54b3f28682599ef9c0171df570d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/organization.svg": {
+    "mtime": 1787085825.8247797,
+    "ast_hash": "8ac0932d016cfa11ea39e0e36d2526c3",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/overtime.svg": {
+    "mtime": 1787085825.8297837,
+    "ast_hash": "31a3bb77eda6d41f5fdeebcbd1cafd63",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/package.svg": {
+    "mtime": 1787085825.7903018,
+    "ast_hash": "fb4343f1ef81f31e00a591bea82ef867",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/paid.svg": {
+    "mtime": 1787085825.8065655,
+    "ast_hash": "606bcc7c14a64eea41946ac1c3d9d016",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/panorama.svg": {
+    "mtime": 1787085825.7724376,
+    "ast_hash": "2a0897b7a3c00dbd3c496fd4a3d0cc4b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/parallel_tasks.svg": {
+    "mtime": 1787085825.8330574,
+    "ast_hash": "8cdd3040e66857699d256a1d2254e42e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/phone.svg": {
+    "mtime": 1787085825.8414543,
+    "ast_hash": "8a0c1d8b2680e0cd9ff1c14f9dfd5968",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/phone_android.svg": {
+    "mtime": 1787085825.7944863,
+    "ast_hash": "6a01a6a7d17182a0329c30afe71c159c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/photo_reel.svg": {
+    "mtime": 1787085825.8604686,
+    "ast_hash": "417e669b41457970105791768fda8633",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/picture.svg": {
+    "mtime": 1787085825.8282807,
+    "ast_hash": "12709055d2ddc27813924b30db9978b3",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/pie_chart.svg": {
+    "mtime": 1787085825.798988,
+    "ast_hash": "367fa53f62009a4f4def1465d057e05e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/planner.svg": {
+    "mtime": 1787085825.8458161,
+    "ast_hash": "7df1ec6d098b3f00d9cc9fb62861af4e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/plus.svg": {
+    "mtime": 1787085825.817581,
+    "ast_hash": "64c964ca2a17ea011b98e0aca6011718",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/podium_with_audience.svg": {
+    "mtime": 1787085825.8384252,
+    "ast_hash": "77f2a3ad278403ce5c10ae03ea43868f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/podium_with_speaker.svg": {
+    "mtime": 1787085825.8543227,
+    "ast_hash": "79390e6c19d3157adcc8f1ec08a2455e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/podium_without_speaker.svg": {
+    "mtime": 1787085825.8270457,
+    "ast_hash": "7dcaa7c0a9efff6726c96f46ee44287c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/portrait_mode.svg": {
+    "mtime": 1787085825.8195937,
+    "ast_hash": "e67c4c3bc98872f64970fb11cb65f095",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/positive_dynamic.svg": {
+    "mtime": 1787085825.7876508,
+    "ast_hash": "f7adb53eae6f89fe6ade3af9f2bdad55",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/previous.svg": {
+    "mtime": 1787085825.8271966,
+    "ast_hash": "c23c683962229f420104d54da49b9d44",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/print.svg": {
+    "mtime": 1787085825.8596225,
+    "ast_hash": "baac8c6ddae28eb952b6299e89d7f124",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/privacy.svg": {
+    "mtime": 1787085825.860711,
+    "ast_hash": "63827dd0f1b4b5c95724faf6a9382cbf",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/process.svg": {
+    "mtime": 1787085825.823391,
+    "ast_hash": "661439dd011026893e9194100127433a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/puzzle.svg": {
+    "mtime": 1787085825.7844052,
+    "ast_hash": "7aee8e5acc70cf7f450b86f8ea8ae3a6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/questions.svg": {
+    "mtime": 1787085825.7733817,
+    "ast_hash": "06374640f095703d722cd9f1bd4ce6eb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/radar_plot.svg": {
+    "mtime": 1787085825.7881172,
+    "ast_hash": "a5c4fa29649273a8a6278bffed23059e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/rating.svg": {
+    "mtime": 1787085825.8278108,
+    "ast_hash": "e50487a88be23470f28ab7903eb35ff9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/ratings.svg": {
+    "mtime": 1787085825.7793274,
+    "ast_hash": "ecbbd42c89387e1644cd30aca65c2e1e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/reading.svg": {
+    "mtime": 1787085825.8371823,
+    "ast_hash": "156aec7474a9ff9d2294d3dc02ca0de0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/reading_ebook.svg": {
+    "mtime": 1787085825.8337336,
+    "ast_hash": "f6834e4bfd4ca59faa97a17778efff4f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/reddit.svg": {
+    "mtime": 1787085825.8410048,
+    "ast_hash": "5a8b789b7b985f747c4e83c71e221efc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/redo.svg": {
+    "mtime": 1787085825.8293674,
+    "ast_hash": "c4dc3356db10974e7b8594997685b2c2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/refresh.svg": {
+    "mtime": 1787085825.8245904,
+    "ast_hash": "58ffc1f71abc09ceaf6730a259b63249",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/registered_trademark.svg": {
+    "mtime": 1787085825.8355007,
+    "ast_hash": "c87946fbe764fca905baf5a42016c7c7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/remove_image.svg": {
+    "mtime": 1787085825.779915,
+    "ast_hash": "30bb4db5f435b202e88a4145e02944f0",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/reuse.svg": {
+    "mtime": 1787085825.8549464,
+    "ast_hash": "20863c7f6d497a96a60d3bf5c61449ae",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/right.svg": {
+    "mtime": 1787085825.8264353,
+    "ast_hash": "25e1cfe60a54263ca7fd9a1531e9abad",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/right_down.svg": {
+    "mtime": 1787085825.790785,
+    "ast_hash": "56f62edb328da399f7b583501a0c7dd2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/right_down2.svg": {
+    "mtime": 1787085825.7986207,
+    "ast_hash": "96ef16c5bf8a4e4f8d8e3082e3ee24ea",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/right_up.svg": {
+    "mtime": 1787085825.8361647,
+    "ast_hash": "f591a826411b707dbd23b2d828c3d0fc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/right_up2.svg": {
+    "mtime": 1787085825.7754934,
+    "ast_hash": "ec47e65e960bb62892b3dccf766d4860",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/rotate_camera.svg": {
+    "mtime": 1787085825.841863,
+    "ast_hash": "2b30196f9e8dd94012e75096c935cf88",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/rotate_to_landscape.svg": {
+    "mtime": 1787085825.8369708,
+    "ast_hash": "74e4aba988333f80f4747e9ca9f86ea4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/rotate_to_portrait.svg": {
+    "mtime": 1787085825.8279629,
+    "ast_hash": "d4264b7f42112b92ac58d6df187cf2e4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/ruler.svg": {
+    "mtime": 1787085825.8147314,
+    "ast_hash": "d7026d25d425d9e4d07030f37767c610",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/rules.svg": {
+    "mtime": 1787085825.805134,
+    "ast_hash": "1c4966ec6aa65fdfc472b0ce68bbbf76",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/safe.svg": {
+    "mtime": 1787085825.7749674,
+    "ast_hash": "cfcccb87bbe9754b8b2f893a8c4cd961",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/sales_performance.svg": {
+    "mtime": 1787085825.7703907,
+    "ast_hash": "4c494a800da364bff1d908509b9613bc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/scatter_plot.svg": {
+    "mtime": 1787085825.7847636,
+    "ast_hash": "9a989dfa9c258d5b1ccc94660b5db73c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/search.svg": {
+    "mtime": 1787085825.762171,
+    "ast_hash": "615700783286fe9609d83a1f66e10690",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/self_service_kiosk.svg": {
+    "mtime": 1787085825.8461492,
+    "ast_hash": "a56e8f5314b2ffda7d2ce3b8d16c97a9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/selfie.svg": {
+    "mtime": 1787085825.8281274,
+    "ast_hash": "44f98b7613fc7acc0cafd55f379890e7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/serial_tasks.svg": {
+    "mtime": 1787085825.847753,
+    "ast_hash": "080c41a5d8fd0153897b83edc0e438c9",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/service_mark.svg": {
+    "mtime": 1787085825.7788801,
+    "ast_hash": "a61c0ac7442323646d65d3aea46d7e80",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/services.svg": {
+    "mtime": 1787085825.780145,
+    "ast_hash": "2e2f19e9034dbc7fd2bcbc7976da1e8e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/settings.svg": {
+    "mtime": 1787085825.7948804,
+    "ast_hash": "219d6c7772f3656fe10b27ecea7a938f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/share.svg": {
+    "mtime": 1787085825.8440866,
+    "ast_hash": "22bdd795fedcd8364c0267b560e93b97",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/shipped.svg": {
+    "mtime": 1787085825.8499658,
+    "ast_hash": "24a0b2189b650a91abe6b6451d4fff42",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/shop.svg": {
+    "mtime": 1787085825.7738597,
+    "ast_hash": "3f1f2a38637bb71b9dff2b8793e4ceaa",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/signature.svg": {
+    "mtime": 1787085825.8228302,
+    "ast_hash": "2880a1fb35f7e77889628006e2590439",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/sim_card.svg": {
+    "mtime": 1787085825.780627,
+    "ast_hash": "89cbccc4d4f89c08c2168b953bec9fc6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/sim_card_chip.svg": {
+    "mtime": 1787085825.8514962,
+    "ast_hash": "b7d8b802e37fdcada632ff48b1636308",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/slr_back_side.svg": {
+    "mtime": 1787085825.7701094,
+    "ast_hash": "5d8ffa62be7d143b004aabacb65bf01e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/smartphone_tablet.svg": {
+    "mtime": 1787085825.7915611,
+    "ast_hash": "a43665c5b09eb043573a9e6ef3e6d0c2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/sms.svg": {
+    "mtime": 1787085825.8038445,
+    "ast_hash": "b71ab311297bca09079d88ded46f559a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/sound_recording_copyright.svg": {
+    "mtime": 1787085825.7874484,
+    "ast_hash": "1421f4f11c9e118ff91722e76d3351a4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/speaker.svg": {
+    "mtime": 1787085825.8285978,
+    "ast_hash": "7eaedfcda22280d301d508c47b7d397f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/sports_mode.svg": {
+    "mtime": 1787085825.842389,
+    "ast_hash": "1dd5bd4e65ef0ed366997bebbbea6d6a",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/stack_of_photos.svg": {
+    "mtime": 1787085825.8391392,
+    "ast_hash": "3a8eb56a2efa436771c215cb09190773",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/start.svg": {
+    "mtime": 1787085825.8268893,
+    "ast_hash": "b6498f2f0865e9f724305caf3d2ed041",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/statistics.svg": {
+    "mtime": 1787085825.8565078,
+    "ast_hash": "feb18b61ffd02784a33899be9a325536",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/steam.svg": {
+    "mtime": 1787085825.7689238,
+    "ast_hash": "b1ee0ec9143ab8259d43c3b7d9a33d32",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/stumbleupon.svg": {
+    "mtime": 1787085825.8386629,
+    "ast_hash": "e20c3016e4c9f08776f2b0fc85620f49",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/support.svg": {
+    "mtime": 1787085825.8149571,
+    "ast_hash": "938d527a783f6f14239c36702fc1e221",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/survey.svg": {
+    "mtime": 1787085825.8216321,
+    "ast_hash": "7ef4c52aa3c5202ca49574c770582be3",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/switch_camera.svg": {
+    "mtime": 1787085825.8076127,
+    "ast_hash": "a8bf010ff0c40a1747aedcf69d7c51aa",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/synchronize.svg": {
+    "mtime": 1787085825.8446152,
+    "ast_hash": "6b8b5a0b312e9e3664b404f3508c2520",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/tablet_android.svg": {
+    "mtime": 1787085825.8452356,
+    "ast_hash": "4d2986766f965d58249ee324fcaa36ac",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/template.svg": {
+    "mtime": 1787085825.8352647,
+    "ast_hash": "5d8f236badab8fb08284a9ff610249e4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/timeline.svg": {
+    "mtime": 1787085825.8466845,
+    "ast_hash": "0dbf357e85633ad12b731db9d301cca4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/todo_list.svg": {
+    "mtime": 1787085825.8254037,
+    "ast_hash": "71751f5d94f3bcc319ec026192fe64bc",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/touchscreen_smartphone.svg": {
+    "mtime": 1787085825.796774,
+    "ast_hash": "fd5ecbd83a5753255fa21085179bb744",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/trademark.svg": {
+    "mtime": 1787085825.8187444,
+    "ast_hash": "fc3caffe9cc8c5a94e5a73e92e6bc8d5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/tree_structure.svg": {
+    "mtime": 1787085825.8117924,
+    "ast_hash": "6c3727912087435b49150fc1db3a5f4b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/two_smartphones.svg": {
+    "mtime": 1787085825.7673662,
+    "ast_hash": "fdf94f4910997d994725dc5771d7c446",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/undo.svg": {
+    "mtime": 1787085825.8447804,
+    "ast_hash": "1a734204511bcedaf3e41771dae415fb",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/unlock.svg": {
+    "mtime": 1787085825.8381693,
+    "ast_hash": "89cbdaa52c09596683dc7cb1b2d96a2b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/up.svg": {
+    "mtime": 1787085825.7878797,
+    "ast_hash": "4644f712f7c7bb34283b0f4d5d96f892",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/up_left.svg": {
+    "mtime": 1787085825.8035874,
+    "ast_hash": "acd40a03f3295918b6c13baf85799d9f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/up_right.svg": {
+    "mtime": 1787085825.7790742,
+    "ast_hash": "8163ee14872680c4f3917d29f5edfa66",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/upload.svg": {
+    "mtime": 1787085825.8524284,
+    "ast_hash": "a5b9875df947b384ea59c77aadcb070f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/usb.svg": {
+    "mtime": 1787085825.7774105,
+    "ast_hash": "559825edfec6a9ededb9fdfed1620c98",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/video_call.svg": {
+    "mtime": 1787085825.8219323,
+    "ast_hash": "f62c663006e1c8f3a845d230d424690f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/video_file.svg": {
+    "mtime": 1787085825.8267405,
+    "ast_hash": "8a02c4d0bfba57e098d1dfbe204bc218",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/video_projector.svg": {
+    "mtime": 1787085825.8276532,
+    "ast_hash": "8dabfd77f6d279893455d616bfb24a50",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/view_details.svg": {
+    "mtime": 1787085825.7712367,
+    "ast_hash": "c086a650465fa834d7257934f8f704f6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/vip.svg": {
+    "mtime": 1787085825.8398252,
+    "ast_hash": "003cfeba5ed8f99a6af9f73bfb08acc2",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/vlc.svg": {
+    "mtime": 1787085825.7743409,
+    "ast_hash": "8ff3bbde1005ac8ba03913caab6f26a4",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/voice_presentation.svg": {
+    "mtime": 1787085825.826592,
+    "ast_hash": "74b7771b981fb42c963cce8c316443c5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/voicemail.svg": {
+    "mtime": 1787085825.785346,
+    "ast_hash": "e25f4109fdb2a4ac2f5f6d875c1f4f8d",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/webcam.svg": {
+    "mtime": 1787085825.8027413,
+    "ast_hash": "72bce20fe9e1218ab21f2abba1598142",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/wi-fi_logo.svg": {
+    "mtime": 1787085825.7931018,
+    "ast_hash": "1d7cfc489c4ef536cdcd2c4dbd951726",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/wikipedia.svg": {
+    "mtime": 1787085825.7855854,
+    "ast_hash": "382c35591dad2e5e2437556474bfd78f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/icons/flat-icons-svg/workflow.svg": {
+    "mtime": 1787085825.8292124,
+    "ast_hash": "7a6c64ef862ba9dd65c6683f0ddb03ba",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Beach.jpg": {
+    "mtime": 1787085825.6411426,
+    "ast_hash": "debb3c8d1f41195e08c6cf96b1a2a7f7",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Black.jpg": {
+    "mtime": 1787085825.6400995,
+    "ast_hash": "e51addf961cefc9172c52f4e0fbf4068",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/BlackHills.jpg": {
+    "mtime": 1787085825.63192,
+    "ast_hash": "e927a275a9cd8d1ad8811c89a8e68540",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Blue Sky.jpg": {
+    "mtime": 1787085825.6392767,
+    "ast_hash": "99ff20117452658449e6863f3779aa65",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Blue.jpg": {
+    "mtime": 1787085825.638713,
+    "ast_hash": "d9ebd4cc012d011f01b7ad8e99b59ae6",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/BlueSky.jpg": {
+    "mtime": 1787085825.6282055,
+    "ast_hash": "99ff20117452658449e6863f3779aa65",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Burgundy.jpg": {
+    "mtime": 1787085825.6271768,
+    "ast_hash": "724f65a716f569c2e302dca198f8ea42",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Cobalt.jpg": {
+    "mtime": 1787085825.6415846,
+    "ast_hash": "2c43358c689e00d6c742039d7b4e1c28",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Explode.jpg": {
+    "mtime": 1787085825.6325622,
+    "ast_hash": "4cb9279a235e9b32e564d83751ff07ad",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Ice Blue.jpg": {
+    "mtime": 1787085825.620734,
+    "ast_hash": "4c3938b7298cc4d294242a2a85e4536c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/IceBlue.jpg": {
+    "mtime": 1787085825.638054,
+    "ast_hash": "4c3938b7298cc4d294242a2a85e4536c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Matte Black.jpg": {
+    "mtime": 1787085825.6331003,
+    "ast_hash": "6c53352806a791e0a79db45a96d52a42",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/MatteBlack.jpg": {
+    "mtime": 1787085825.6406674,
+    "ast_hash": "6c53352806a791e0a79db45a96d52a42",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Mountains.jpg": {
+    "mtime": 1787085825.6432178,
+    "ast_hash": "b9c93288b8e013b7edac858bb67098b5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Night Sky.jpg": {
+    "mtime": 1787085825.650182,
+    "ast_hash": "2eed0d9a9ac8c2bee27c3770b4c0bc62",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/NightSky.jpg": {
+    "mtime": 1787085825.6482952,
+    "ast_hash": "2eed0d9a9ac8c2bee27c3770b4c0bc62",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Platinum.jpg": {
+    "mtime": 1787085825.6630836,
+    "ast_hash": "4d2a1ff2577ac7f0048a193521187a71",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Rainbow.jpg": {
+    "mtime": 1787085825.6609204,
+    "ast_hash": "68bc60cdf1c45156b945085a4bca53aa",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Red.jpg": {
+    "mtime": 1787085825.6574748,
+    "ast_hash": "77bd1584d367e3738a6552b41a31aea5",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/RedBlack.jpg": {
+    "mtime": 1787085825.6263926,
+    "ast_hash": "fcbbaa91c621c84a6e89dcc988d5b788",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Sandstone.jpg": {
+    "mtime": 1787085825.620266,
+    "ast_hash": "22a435f5326f3ce6e8a40568469b246f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Surf.jpg": {
+    "mtime": 1787085825.6437943,
+    "ast_hash": "23fa93060fa542e251c0de1bd1f80ddf",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Wave.jpg": {
+    "mtime": 1787085825.642392,
+    "ast_hash": "b91edc8a0b272cd22aee5d502ef6d473",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/images/surface/Yellow.jpg": {
+    "mtime": 1787085825.6372712,
+    "ast_hash": "e5d229958dcc46c3f2fb9c0dc71bde5f",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/font/jquery-ui.svg": {
+    "mtime": 1787085825.7495034,
+    "ast_hash": "9c7f3ec0f3223bc4ab536ce90cd9d02e",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/images/ui-icons_444444_256x240.png": {
+    "mtime": 1787085825.723441,
+    "ast_hash": "dd2e68a5cebea8ef3a075bf37c65cd5c",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/images/ui-icons_555555_256x240.png": {
+    "mtime": 1787085825.7216074,
+    "ast_hash": "3be54ade6efbd22fe13c472161d5e138",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/images/ui-icons_777620_256x240.png": {
+    "mtime": 1787085825.7192414,
+    "ast_hash": "6dc44b6912b9754c26c758323984c537",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/images/ui-icons_777777_256x240.png": {
+    "mtime": 1787085825.7137167,
+    "ast_hash": "abd867efd32d16d5c42bca61e116f0c1",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/images/ui-icons_cc0000_256x240.png": {
+    "mtime": 1787085825.7155454,
+    "ast_hash": "1d3af932227ed6722ca050425207beee",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/images/ui-icons_ffffff_256x240.png": {
+    "mtime": 1787085825.7212253,
+    "ast_hash": "dd0d18f2a5d5852b304fb4976b3a740b",
+    "semantic_hash": ""
+  },
+  "app/src/main/assets/miniweb/libs/jquery/jquery-ui-1.14.1/screen.png": {
+    "mtime": 1787085825.7405403,
+    "ast_hash": "83b9f15a39a1fb1010d0f6a6ed0b48f5",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/HostGuard.java": {
+    "mtime": 1787086665.0186412,
+    "ast_hash": "ea6dcb76a2ee0eaa09d5787a24972113",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/MiniwebBridge.java": {
+    "mtime": 1787086938.186815,
+    "ast_hash": "e543ae774f683090db0b031ce6395043",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/HostGuardSelfTest.java": {
+    "mtime": 1787086678.9253368,
+    "ast_hash": "72759853fdb500edd1b8cbe2e37d5573",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/HostGuardTest.java": {
+    "mtime": 1787086872.8370686,
+    "ast_hash": "77ad2287161f9267c735b9a3f8d40dc9",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/com/eurobuddha/pocketweb/PocketPublisher.java": {
+    "mtime": 1787087100.7377284,
+    "ast_hash": "2e8263f8600bf9da437602f0e6208227",
+    "semantic_hash": ""
+  },
+  "app/src/test/java/com/eurobuddha/pocketweb/PocketPublisherTest.java": {
+    "mtime": 1787087116.1702313,
+    "ast_hash": "e65c552ad3c18f6d84c8efdbc7ff1ef2",
+    "semantic_hash": ""
+  }
+}

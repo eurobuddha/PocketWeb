@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.net.Uri;
 import android.util.Log;
 import android.webkit.ConsoleMessage;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -35,10 +36,15 @@ public class AppServer {
     public static final String APP_ORIGIN = "https://" + APP_HOST;
 
     public interface Navigator { void openSite(String mx, String path); }
+    /** Handles a WebView <input type=file> by opening SAF and delivering the picked uri(s). */
+    public interface FileChooser { boolean onChoose(ValueCallback<Uri[]> callback, WebChromeClient.FileChooserParams params); }
 
     private final Context ctx;
     private final WebView web;
     private final Navigator navigator;
+    private FileChooser fileChooser;
+
+    public void setFileChooser(FileChooser fc) { this.fileChooser = fc; }
 
     public AppServer(Context ctx, WebView web, AppBridge bridge, Navigator navigator) {
         this.ctx = ctx.getApplicationContext();
@@ -63,6 +69,11 @@ public class AppServer {
             @Override public boolean onConsoleMessage(ConsoleMessage m) {
                 Log.i("PocketWebJS", "[app] " + m.message() + " @" + m.sourceId() + ":" + m.lineNumber());
                 return true;
+            }
+            @Override public boolean onShowFileChooser(WebView wv, ValueCallback<Uri[]> cb, FileChooserParams params) {
+                if (fileChooser != null) return fileChooser.onChoose(cb, params);
+                cb.onReceiveValue(null);
+                return false;
             }
         });
     }

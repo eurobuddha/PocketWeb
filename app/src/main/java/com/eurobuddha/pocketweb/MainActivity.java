@@ -11,6 +11,8 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -57,10 +59,13 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver notifyReceiver;
     private final Handler ui = new Handler(Looper.getMainLooper());
     private boolean enabled = false;
+    private volatile boolean syncing = false;
     private boolean siteMode = false;
 
     private ActivityResultLauncher<String[]> pickZip;
     private ActivityResultLauncher<String[]> pickKey;
+    private ActivityResultLauncher<String> fileChooserLauncher;
+    private ValueCallback<Uri[]> fileChooserCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +97,14 @@ public class MainActivity extends AppCompatActivity {
         server.attachBridge(bridge);
 
         // The app's own designed UI + its privileged bridge
-        appBridge = new AppBridge(this, store, keys);
+        appBridge = new AppBridge(this, appWeb, store, keys, node, new AppBridge.Host() {
+            @Override public void pickPublishZip() { ui.post(() -> pickZip.launch(new String[]{"application/zip", "application/octet-stream"})); }
+            @Override public void pickImportKey() { ui.post(() -> pickKey.launch(new String[]{"*/*"})); }
+            @Override public String status() { return statusJson(); }
+            @Override public void refreshSync() { ui.post(MainActivity.this::sync); }
+        });
         appServer = new AppServer(this, appWeb, appBridge, this::openSite);
+        appServer.setFileChooser(this::openFileChooser);
         appServer.loadHome();
 
         pickZip = registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
@@ -101,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
         });
         pickKey = registerForActivityResult(new ActivityResultContracts.OpenDocument(), uri -> {
             if (uri != null) onKeyPicked(uri);
+        });
+        // WebView <input type=file> (pocketFS New File upload) -> SAF -> back into the page
+        fileChooserLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            ValueCallback<Uri[]> cb = fileChooserCallback;
+            fileChooserCallback = null;
+            if (cb != null) cb.onReceiveValue(uri != null ? new Uri[]{ uri } : null);
         });
 
         registerNotify();
@@ -117,6 +134,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /** WebView file input -> SAF picker; result delivered back to the page's ValueCallback. */
+    private boolean openFileChooser(ValueCallback<Uri[]> cb, WebChromeClient.FileChooserParams params) {
+        if (fileChooserCallback != null) { fileChooserCallback.onReceiveValue(null); }
+        fileChooserCallback = cb;
+        String mime = "*/*";
+        try {
+            String[] types = params != null ? params.getAcceptTypes() : null;
+            if (types != null && types.length > 0 && types[0] != null && !types[0].isEmpty()) mime = types[0];
+        } catch (Exception ignored) {}
+        try { fileChooserLauncher.launch(mime); }
+        catch (Exception e) { fileChooserCallback = null; cb.onReceiveValue(null); return false; }
+        return true;
+    }
+
     private void showHome() {
         siteMode = false;
         siteWeb.setVisibility(View.GONE);
@@ -128,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
     private void onPaired(boolean isEnabled) {
         enabled = isEnabled;
         ui.post(() -> banner.setVisibility(isEnabled ? View.GONE : View.VISIBLE));
+        pushStatus();
         if (isEnabled) { chain.subscribeRequests(); sync(); }
     }
 
@@ -150,10 +182,27 @@ public class MainActivity extends AppCompatActivity {
     private void requestSync() { ui.removeCallbacks(syncTask); ui.postDelayed(syncTask, 400); }
 
     private void sync() {
-        if (!enabled) return;
+        if (!enabled) { pushStatus(); return; }
+        syncing = true; pushStatus();
         chain.syncFromChain(new PocketNode.SyncListener() {
-            @Override public void onSynced(int changed) { /* store updated; UI refreshes on demand */ }
-            @Override public void onError(String message) { /* silent; surfaced in UI if user acts */ }
+            @Override public void onSynced(int changed) { syncing = false; pushStatus(); }
+            @Override public void onError(String message) { syncing = false; pushStatus(); }
+        });
+    }
+
+    /** Current pairing/sync state for the UI status line. */
+    private String statusJson() {
+        int count = 0;
+        try { count = store.count(); } catch (Exception ignored) {}
+        return "{\"enabled\":" + enabled + ",\"syncing\":" + syncing + ",\"count\":" + count + "}";
+    }
+
+    /** Push a STATUS event into the app UI so it can render the connection/sync line. */
+    private void pushStatus() {
+        ui.post(() -> {
+            if (siteMode || appWeb == null) return;
+            appWeb.evaluateJavascript(
+                "window.MDS && MDS._emit && MDS._emit({event:'STATUS',data:" + statusJson() + "});", null);
         });
     }
 
@@ -201,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override public void onOk(JSONObject resp) {
                     store.markPublished(p.data.name);
                     toast("Published (mining): " + p.data.name);
+                    reloadAppUi();
                 }
                 @Override public void onError(String message) {
                     boolean needsAdmin = message != null && (message.contains("write")
@@ -217,8 +267,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             String owner = keys.importPrivateKeyHex(keyTextToHex(new String(bytes, StandardCharsets.UTF_8).trim()));
             toast("Imported key for\n" + owner);
+            reloadAppUi();
         } catch (Exception e) { toast("Import failed: " + e.getMessage()); }
     }
+
+    /** Reload the app UI (e.g. after publish/import) so My Site reflects the change. */
+    private void reloadAppUi() { ui.post(() -> { if (!siteMode && appWeb != null) appWeb.reload(); }); }
 
     private String keyTextToHex(String text) {
         String t = text.trim();

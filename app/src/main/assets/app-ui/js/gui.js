@@ -25,6 +25,10 @@ function jumpToCatalog(){
 	location.href="catalog.html?uid="+MDS.minidappuid;
 }
 
+function jumpToFS(){
+	location.href="/fs/index.html";
+}
+
 function startupButtons(){
 	$( "#button-help" ).button({
 		icon: "ui-icon-help",
@@ -50,6 +54,11 @@ function startupButtons(){
 		icon: "ui-icon-grid",
 		showLabel: false
 	}).click(function(){jumpToCatalog();});
+
+	$( "#button-fs" ).button({
+		icon: "ui-icon-disk",
+		showLabel: false
+	}).click(function(){jumpToFS();});
 }
 
 var NOTIFICATION_ENABLED = false;

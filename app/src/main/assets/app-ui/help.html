@@ -1,0 +1,249 @@
+<html>
+
+<head>
+	<title>MiniWEB</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	
+	<!-- Load the main MDS JS lib -->
+	<script type="text/javascript" src="js/mds.js"></script>
+	
+	<!-- Load the CSS Style sheet -->
+	<link rel="stylesheet" href="style.css">
+	
+	<!-- And the ICON for the page -->
+	<link rel="icon" type="image/x-icon" href="/miniweb/browser.png">
+	
+	<!-- Load the local JS lib -->
+	<script type="text/javascript" src="./js/jslib.js"></script>
+	<script type="text/javascript" src="./js/purify.min.js"></script>
+	<script type="text/javascript" src="./js/sql.js"></script>
+	<script type="text/javascript" src="./js/gui.js"></script>
+	
+	<!--  JQUERY CSS + JS -->
+	<link rel="stylesheet" href="/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+	<link rel="stylesheet" href="/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.icon-font.css">
+	<script type="text/javascript" src="/miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+			
+</head>
+
+<body>
+
+<center>
+
+	<div class="titlebar" onclick="showTitleOnAndroid();">
+		<div class="topnav-inner">
+			<div class="topnav-brand">
+				<img height=28 src="browser.png">
+				<span>pocketWeb</span>
+			</div>
+			<div class="topnav-links">
+				<button id="button-home">Home</button>
+				<button id="button-mysite">My Site</button>
+			<button id="button-fs">MiniFS</button>
+				<button id="button-dev">Dev</button>
+				<button id="button-help">Help</button>
+				<button id="theme-toggle" class="theme-toggle" onclick="toggleTheme();" title="Switch to light mode">&#9728;</button>
+			</div>
+		</div>
+	</div>
+	
+<br>
+		
+<div class=blueborder>
+<div style="padding:16">
+
+<h2>Getting Started</h2>
+
+<h3>What is pocketWeb?</h3>
+<b>pocketWeb</b> lets you browse websites published on the Minima blockchain via <b>PocketFS</b>. We call these <b>MiniSites</b>.<br>
+<br>
+MiniSites can link to each other — just like the regular internet. They have access to <b>MDS</b> in READ mode, allowing them to act as full decentralized applications. You can bookmark your favourites and they update automatically when a new version is published.<br>
+<br>
+
+<h2>Pre-requisites</h2>
+
+<b>1. Check you have Java installed</b><br>
+<br>
+To run Minima, you need Java installed on your system. Check by running:<br>
+<br>
+<code>java -version</code><br>
+<br>
+If you don't have Java, download it from <a href="https://www.java.com/en/download/" target="_blank">java.com</a>.<br>
+<br>
+<b>2. Download the latest minima.jar</b><br>
+<br>
+Download the latest version from the <a href="https://github.com/minima-global/Minima/releases" target="_blank">Minima GitHub releases page</a>.<br>
+<br>
+
+<h2>Start a New Minima Node</h2>
+
+<ol>
+<li>Create a new folder and copy the <b>minima.jar</b> into that folder</li>
+<li>Open your command line interface / Terminal</li>
+<li>Navigate to the folder:<br><br>
+<b>Windows:</b><br>
+<code>cd C:\Users\Bob\MyMinimaFolder\</code><br><br>
+<b>Mac/Linux:</b><br>
+<code>cd ~/MyMinimaFolder/</code><br><br>
+<i>Tip: drag and drop the folder into the terminal to avoid typing the path.</i><br><br>
+</li>
+<li>Enter the following to start Minima with the MiniDapp System enabled. Replace <b>INSERTPASSWORD</b> with your own:<br><br>
+<code>java -jar minima.jar -data .minima -p2pnodes megammr.minima.global:9001 -mdsenable -mdspassword INSERTPASSWORD</code><br><br>
+</li>
+</ol>
+
+Minima will start and automatically join the network. You should see the Minima ASCII logo and logs running.<br>
+<br>
+<b>Closing the terminal window will stop Minima.</b> It is recommended to create a batch file (Windows) or bash script (Mac/Linux) to start Minima at startup.<br>
+<br>
+<b>Login to your node:</b> Go to <code>https://127.0.0.1:9003/</code> in your browser. You may need to proceed past a security warning (Minima uses self-signed certificates). Enter the password you set as your <code>-mdspassword</code>.<br>
+<br>
+<i>Custom Ports: 9003 is the default. If running on custom ports, use your base port + 2. E.g. port 8001 → https://127.0.0.1:8003/</i><br>
+<br>
+<i>Forgot your password? Type <code>mds</code> in the terminal where the Minima logs are running.</i><br>
+<br>
+
+<h2>Secure Your Node</h2>
+
+Keeping your wallet secure involves:<br>
+<br>
+<ul>
+<li>Keeping the device your node is running on secure</li>
+<li>Writing down your seed phrase <b>immediately after starting your node</b></li>
+<li>Locking your node with a password</li>
+<li>Backing up your node</li>
+</ul>
+<br>
+Your seed phrase is required to restore your wallet if you lose access to your node and do not have a backup.<br>
+<br>
+
+<b>Finding your seed phrase:</b><br>
+<br>
+<b>Security MiniDapp:</b><br>
+<ol>
+<li>Open the <b>Security</b> MiniDapp and ensure your node is not locked</li>
+<li>Select <b>Manage Seed Phrase</b></li>
+<li>Select <b>Show Seed Phrase</b></li>
+<li>Grab a pen and paper and write down your Seed Phrase in the correct order</li>
+</ol>
+<br>
+<b>Command Line:</b> Run the <code>vault</code> command from the Minima Terminal, RPC client or Docker CLI.<br>
+<br>
+
+<b>Seed Phrase Best Practices:</b><br>
+<ul>
+<li><b>DON'T</b> take a screenshot of your seed phrase</li>
+<li><b>DON'T</b> copy and paste your seed phrase to/from a device connected to the internet</li>
+<li><b>DO</b> write it on paper or use a metal plate to record it</li>
+<li><b>DO</b> make 2 copies and store them in separate locations</li>
+<li><b>DO</b> give one copy to a trusted relative</li>
+<li>For large amounts, consider cold storage — signing transactions offline using one offline node and one online node</li>
+</ul>
+<br>
+
+<h2>Using the MiniDapp Hub</h2>
+
+By default, all MiniDapps are given <b>READ</b> permission. Any transactions or sensitive commands triggered from READ apps must be approved from the <b>Pending</b> MiniDapp.<br>
+<br>
+MiniDapps with <b>WRITE</b> permission can transact or run any command without asking for your approval.<br>
+<br>
+<b>Warning:</b> Before giving a MiniDapp WRITE permissions, ensure your wallet is locked with a password. Only give WRITE permission to MiniDapps that you trust.<br>
+<br>
+
+<b>Changing MiniDapp permissions:</b><br>
+<ol>
+<li>Right click on a MiniDapp (or long press on mobile)</li>
+<li>Select <b>Write mode</b> (or Read mode)</li>
+<li>Click <b>Confirm</b></li>
+</ol>
+
+</div>
+</div>
+
+<br>
+
+<div class=blueborder>
+	<div id="testscript" style="font-size:12;padding:8"></div>
+</div>
+	
+</center>
+
+<script type="text/javascript">
+	
+	//Set up the buttons..
+	$(document).ready(function() {
+	   startupButtons();
+	});
+	
+testscript.innerHTML = 
+	"&lthtml&gt<br>"
+	+ "<br>"
+	+ "&lthead&gt<br>"
+	+ "	&lttitle&gtMiniWEB Site&lt/title&gt<br>"
+	+ "	<br>"
+	+ "	&lt!-- Load the main MDS JS lib --&gt<br>"
+	+ "	&ltscript type=\"text/javascript\" src=\"../../miniweb/libs/mds.js\"&gt&lt/script&gt<br>"
+	+ "	&ltscript type=\"text/javascript\" src=\"../../miniweb/libs/miniweb.js\"&gt&lt/script&gt<br>"
+	+ "		<br>"
+	+ "&lt/head&gt<br>"
+	+ "<br>"
+	+ "&ltbody&gt<br>"
+	+ "&ltcenter&gt<br>"
+	+ "<br>"
+	+ "&ltbr&gt<br>"
+	+ "&lth1&gtTest Site&lt/h1&gt<br>"
+	+ "&ltbr&gt<br>"
+	+ "Hello friends.. Welcome to my MiniWEB Site..!&ltbr&gt<br>"
+	+ "&ltbr&gt<br>"
+	+ "&lta href=\"linkpage.html\"&gtRegular link to another page&lt/a&gt&ltbr&gt<br>"
+	+ "&ltbr&gt<br>"
+	+ "&ltimg src=\"images/somimage.jpg\"&gt	<br>"
+	+ "&ltbr&gt&ltbr&gt<br>"
+	+ "&ltimg id=\"crossloadedImage\"&gt&ltbr&gt<br>"
+	+ "&ltbr&gt<br>"
+	+ "&ltbutton onclick=\"miniweb_JumpToURL('miniweb://Mx200G6CYQNDU597WPAGCA0BVWFSQZ0KGKFSAK');\"&gtJUMP TO OTHER SITE IN JS&lt/button&gt	<br>"
+	+ " <br>"
+	+ "&ltscript type=\"text/javascript\"&gt<br>"
+	+ "<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;//MUST ALWAYS initialise the MiniWEB system..<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;miniweb_Init();<br>"
+	+ "<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;//Load an image from a different site.. can use this to load ANY type of data..<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;miniweb_GetDataURI(\"miniweb://Mx200GUKPEZ0HANY6G22R8PJ53MFM8503RSNVP/images/spartacus.jpg\", function(datauri){<br>"
+	+ "<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//return a JSON with the data if found..<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MDS.log(JSON.stringify(datauri));	<br>"
+	+ "<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//If found set it!<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(datauri.found){<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;crossloadedImage.src = datauri.data;	<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;});<br>"
+	+ "<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;//MDS Works..<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;MDS.init(function(msg){<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(msg.event == \"inited\"){<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MDS.log(\"MDS Inited..\");<br>"
+	+ "&nbsp;&nbsp;&nbsp;&nbsp;}<br>"
+	+ "});<br>"
+	+ "<br>"
+	+ "&lt/script&gt<br>"
+	+ " <br>"
+	+ "&lt/center&gt<br>"
+	+ "&lt/body&gt<br>"
+	+ "&lt/html&gt";
+	
+	//Main message handler..
+	MDS.init(function(msg){
+		if(msg.event == "inited"){
+			loadTheme();
+		}
+	});
+	
+</script>
+
+</body>
+
+</html>
