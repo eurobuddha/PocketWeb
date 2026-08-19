@@ -190,6 +190,28 @@ public class PocketStore extends SQLiteOpenHelper {
         return out;
     }
 
+    /** Like search() but WITH the zip blob — for the trusted app UI (download/copy need the file). */
+    public List<Row> searchFull(String term, int limit) {
+        SQLiteDatabase db = getReadableDatabase();
+        List<Row> out = new ArrayList<>();
+        String t = term == null ? "" : term.trim();
+        if (t.isEmpty()) return out;
+        if (t.startsWith("Mx")) {
+            try (Cursor c = db.query("filepackets", COLS_FULL, "name LIKE ?",
+                    new String[]{ t + "%" }, null, null, "id DESC", String.valueOf(limit))) {
+                while (c.moveToNext()) out.add(readRow(c, true));
+            }
+            return out;
+        }
+        String sql = "SELECT " + join(COLS_FULL, "f.") +
+                " FROM filepackets f JOIN filepackets_fts x ON x.name = f.name" +
+                " WHERE filepackets_fts MATCH ? AND f.published = ? ORDER BY f.id DESC LIMIT ?";
+        try (Cursor c = db.rawQuery(sql, new String[]{ ftsQuery(t), String.valueOf(PUB_ONCHAIN), String.valueOf(limit) })) {
+            while (c.moveToNext()) out.add(readRow(c, true));
+        }
+        return out;
+    }
+
     public int count() {
         try (Cursor c = getReadableDatabase().rawQuery("SELECT COUNT(*) FROM filepackets", null)) {
             return c.moveToFirst() ? c.getInt(0) : 0;

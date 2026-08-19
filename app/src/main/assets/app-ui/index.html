@@ -1,0 +1,340 @@
+<html>
+
+<head>
+	<title>MiniWEB</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	
+	<!-- Load the main MDS JS lib -->
+	<script type="text/javascript" src="js/mds.js"></script>
+	
+	<!-- Load the CSS Style sheet -->
+	<link rel="stylesheet" href="style.css">
+	
+	<!-- And the ICON for the page -->
+	<link rel="icon" type="image/x-icon" href="/miniweb/browser.png">
+	
+	<!-- Load the local JS lib -->
+	<script type="text/javascript" src="./js/jslib.js"></script>
+	<script type="text/javascript" src="./js/purify.min.js"></script>
+	<script type="text/javascript" src="./js/sql.js"></script>
+	<script type="text/javascript" src="./js/gui.js"></script>
+	
+	<!--  JQUERY CSS + JS -->
+	<link rel="stylesheet" href="/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.css">
+	<link rel="stylesheet" href="/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.icon-font.css">
+	<script type="text/javascript" src="/miniweb/libs/jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/miniweb/libs/jquery/jquery-ui-1.14.1/jquery-ui.js"></script>
+	
+</head>
+
+<body>
+
+<!-- ═══ TOP NAV ═══ -->
+<div class="titlebar" onclick="showTitleOnAndroid();">
+	<div class="topnav-inner">
+		<div class="topnav-brand">
+			<img height=28 src="browser.png">
+			<span>pocketWeb</span>
+		</div>
+		<div class="topnav-links">
+			<button id="button-home">Home</button>
+			<button id="button-catalog">Catalog</button>
+			<button id="button-mysite">My Site</button>
+			<button id="button-dev">Dev</button>
+			<button id="button-help">Help</button>
+			<button id="theme-toggle" class="theme-toggle" onclick="toggleTheme();" title="Switch to light mode">&#9728;</button>
+		</div>
+	</div>
+</div>
+
+<!-- ═══ HERO + SEARCH ═══ -->
+<div class="hero">
+	<div class="hero-title">pocketWeb</div>
+	<div class="hero-sub">Browse the decentralized web</div>
+	<div class="search-wrap">
+		<input class=searchfield type="text" id="searchfield" placeholder="Enter Mx address or search MiniFS...">
+		<button id=searchweb onclick="search();">Search</button>
+	</div>
+</div>
+
+<!-- ═══ BOOKMARKS ═══ -->
+<div class="bookmarks-section">
+	<div class="section-label">Bookmarks</div>
+	<div id="bookmarkgrid" class="bookmarks-grid"></div>
+	<select id=bookmarkbar class="searchfield" style="display:none" onchange="bookmkchange();"></select>
+</div>
+
+<!-- ═══ SEARCH RESULTS ═══ -->
+<div id=mywebpackets class="results-section"></div>
+
+<script type="text/javascript">
+	
+	//Set up the buttons..
+	$(document).ready(function() {
+		startupButtons();
+		
+		$( "#searchweb" ).button({
+			icon: "ui-icon-search",
+			showLabel: true
+		});
+		
+		$(".searchfield").on('keyup', function (e) {
+		    if (e.key === 'Enter' || e.keyCode === 13) {
+		    	search();
+		    }
+		});
+	});
+	
+	function openBrowser(mxsite){
+		//window.open("browse.html?uid="+MDS.minidappuid+"&mxsite="+mxsite);
+		location.href="browse.html?uid="+MDS.minidappuid+"&mxsite="+mxsite;
+	}
+	
+	var TILE_COLORS = ["#5b8def","#e05d44","#48b884","#a855f7","#f59e0b","#ec4899","#14b8a6","#f97316"];
+
+	function loadBookmarks(){
+
+		//Clear the bookmarks
+		bookmarkbar.innerHTML = "";
+		bookmarkgrid.innerHTML = "";
+
+		//Load from SQL
+		getAllBookmarks(function(rows){
+
+			var opt 		= document.createElement("option");
+			opt.value		= "";
+		   	opt.innerHTML 	= "Choose : ";
+
+		   bookmarkbar.appendChild(opt);
+
+			var len = rows.length;
+			for(var i=0;i<len;i++){
+				var opt 		= document.createElement("option");
+				opt.value		= rows[i].BOOKMARK;
+			   	opt.innerHTML 	= rows[i].NAME;
+			   bookmarkbar.appendChild(opt);
+
+			   //Also create a visual tile
+			   var name  = rows[i].NAME;
+			   var value = rows[i].BOOKMARK;
+			   var color = TILE_COLORS[i % TILE_COLORS.length];
+			   var letter = name.charAt(0).toUpperCase();
+
+			   var tile = document.createElement("a");
+			   tile.className = "bookmark-tile";
+			   tile.setAttribute("data-bookmark", value);
+			   tile.onclick = (function(v){ return function(){ openBrowser(v); }; })(value);
+			   tile.innerHTML = '<div class="tile-icon" style="background:'+color+'">'+letter+'</div>'
+			                  + '<div class="tile-label">'+name+'</div>';
+			   bookmarkgrid.appendChild(tile);
+			}
+
+			if(len == 0){
+				bookmarkgrid.innerHTML = '<div style="color:var(--text-label);font-size:13px;">No bookmarks yet</div>';
+			}
+		});
+	}
+	
+	function bookmkchange(){
+		var id 		= bookmarkbar.selectedIndex;
+		var text 	= bookmarkbar.options[id].text;
+		var value 	= bookmarkbar.options[id].value;
+		if(value != ""){
+			openBrowser(value);	
+		}
+	}
+	
+	function downloadSite(hexdata, filename) {
+
+		if(confirm("This will download "+filename+" ?")){
+			//Convert to base 64..
+			var b64 = MDS.util.hexToBase64(hexdata);
+					
+			//Consrtruct the data URI
+			var datauri = "data:application/zip;base64,"+b64;  
+				
+			var link 		= document.createElement("a");
+			link.download 		= filename;
+			link.href 			= datauri;
+			
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+			delete link;		
+		}
+	}
+	
+	function copySite(filename) {
+
+		if(confirm("This will create an unpublished copy of\n\n "+filename+"\n\n in MiniFS ?")){
+			
+				//Now lets load the file..
+				var api 	= {};
+				api.action 	= "COPY";
+				api.data 	= filename;
+				
+				//Send it to MiniWEB
+				MDS.api.call("pocketfs",JSON.stringify(api),function(resp){
+					if(resp.status){
+						
+						//What was sent..
+						var data = JSON.parse(resp.data);
+						
+						alert("A copy has been made!\n\n"+data.results.data.name);
+					}else{
+						alert("Something went wrong - check console logs..");
+					}
+				});		
+		}
+	}
+	
+	function createSearchPacketView(filepacket, num){
+		
+		var copybuttname 	= "copybutton-"+num;
+		var downbuttname 	= "downbutton-"+num;
+		var browsebuttname 	= "browsebutton-"+num;
+		
+		var guidata =
+		"<table class=filepacketview border=0>\n"
+		+ "	<tr>\n"
+		+ "		<td><b>"+DOMPurify.sanitize(filepacket.data.name)+"</b></td>\n"
+		+ "		<td style=\"text-align:right\" nowrap>&nbsp</td>\n"
+		+ "	</tr>\n"
+		+ "	<tr>\n"
+		+ "		<td colspan=2><br>"+DOMPurify.sanitize(filepacket.data.description)+"<br><br></td>\n"
+		+ "	</tr>\n"
+		+ "	<tr>\n"
+		+ "		<td colspan=2 style=\"text-align:right\">\n"
+		+ "			<button id='"+downbuttname+"' onclick=\"downloadSite('"+filepacket.data.file+"','"+filepacket.data.name+".zip')\">Download</button>\n"
+		+ "			<button id='"+copybuttname+"' onclick=\"copySite('"+filepacket.data.name+"')\">Copy</button>\n"
+		+ "			<button id='"+browsebuttname+"' onclick=\"openBrowser('"+filepacket.data.name+"')\">Browse</button>\n"
+		+ "		</td>\n"
+		+ "	</tr>\n"
+		+ "</table><br>"
+		
+		return guidata;
+	}
+	
+	function search(){
+		var text = searchfield.value.trim();
+
+		if(text == ""){
+			return;
+		}
+
+		if(text == "*"){
+			//Jump to the full catalog
+			location.href="catalog.html?uid="+MDS.minidappuid;
+			return;
+		}
+
+		if(text.startsWith("miniweb://")){
+
+			//Just jump to that page!
+			openBrowser(text);
+
+		}else{
+			
+			mywebpackets.innerHTML = "Searching..";
+			
+			//Now lets load the file..
+			var api 	= {};
+			api.action 	= "SEARCH";
+			api.data 	= text;
+			
+			//Send it to MiniWEB
+			MDS.api.call("pocketfs",JSON.stringify(api),function(resp){
+				
+				//Call wqas replied to ?
+				if(resp.status){
+					
+					var data = JSON.parse(resp.data);
+					
+					var found = data.results; 
+					
+					if(found.length == 0){
+						mywebpackets.innerHTML = 
+							"<table class=filepacketview border=0><tr><td>"+
+							"No File packets found for <b>"+text+"</b></td></tr></table>";
+						return;
+					}
+					
+					var html = "";
+					var len = found.length;
+					for(var i=0;i<len;i++){
+						html += createSearchPacketView(found[i],i);	
+					}
+					
+					//Set the page
+					mywebpackets.innerHTML = html;
+					
+					//Now make the button nice..
+					for(var i=0;i<len;i++){
+						$( "#copybutton-"+i ).button({icon: "ui-icon-copy", showLabel:false});
+						$( "#downbutton-"+i ).button({icon: "ui-icon-download", showLabel:false});
+						$( "#browsebutton-"+i ).button({icon: "ui-icon-globe"});
+					}
+					
+				}else{
+					alert("MiniFS MinDAPP not found..");
+				}
+			});	
+		}
+	}
+	
+	//Main message handler..
+	MDS.init(function(msg){
+		
+		//Do initialisation
+		if(msg.event == "inited"){
+
+			askNotificationPermission();
+			loadTheme();
+
+			createDB(function(){
+				loadBookmarks();
+			});
+			
+			MDS.cmd("checkmode",function(resp){
+				
+				//Get the restricted  
+				if(resp.response.writemode){
+					alert("This application MUST NEVER be in WRITE mode..\n\nPlease change it to READ mode.");
+					return;
+				}
+			});
+		
+		}else if(msg.event == "MDSCOMMS"){
+			
+			if(msg.data.public && msg.data.minidapp.toLowerCase() == "pocketfs"){
+				MDS.log(JSON.stringify(msg));
+				
+				try{
+					var comms = JSON.parse(msg.data.message);
+					
+					if(comms.action == "SENDREQ_MAXIMA"){
+						showNotification("Sent request over Maxima for : \n\n"+comms.file);
+					}else if(comms.action == "SENDREQ_MINIMA"){
+						showNotification("Sent request over Minima for : \n\n"+comms.file);
+					}else if(comms.action == "SENDREQ_FAIL_READMODE"){
+						showNotification("MiniFS cannot request file in READ mode : \n\n"+comms.file);
+					}else if(comms.action == "SENDREQ_FAIL_RECENT"){
+						showNotification("File already requested recently.. : \n\n"+comms.file);
+					}else if(comms.action == "REC_MAXIMA"){
+						showNotification("Received file over Maxima : \n\n"+comms.file);
+					}
+					
+				}catch(error){
+					MDS.log("MDSCOMMS ERROR : "+error)
+				}
+			}
+			
+		}
+	});
+
+</script>
+
+</body>
+
+</html>
