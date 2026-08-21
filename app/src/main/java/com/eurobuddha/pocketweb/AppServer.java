@@ -86,8 +86,16 @@ public class AppServer {
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             Uri uri = request.getUrl();
             if (isBrowseNav(uri)) {
-                String mx = uri.getQueryParameter("mxsite");
-                if (mx != null && mx.startsWith("Mx")) { navigator.openSite(mx, "index.html"); return true; }
+                String raw = uri.getQueryParameter("mxsite");
+                if (raw != null) {
+                    String s = raw.trim();
+                    if (s.startsWith("miniweb://")) s = s.substring("miniweb://".length());
+                    while (s.startsWith("/")) s = s.substring(1);
+                    int slash = s.indexOf('/');
+                    String mx = slash >= 0 ? s.substring(0, slash) : s;
+                    String path = slash >= 0 ? s.substring(slash + 1) : "index.html";
+                    if (mx.startsWith("Mx")) { navigator.openSite(mx, path.isEmpty() ? "index.html" : path); return true; }
+                }
             }
             // Only allow same-origin app-ui navigation; block anything else.
             return !(APP_HOST.equals(uri.getHost()) && MiniwebUrl.SCHEME.equals(uri.getScheme()));

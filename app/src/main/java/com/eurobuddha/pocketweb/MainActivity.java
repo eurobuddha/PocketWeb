@@ -285,16 +285,28 @@ public class MainActivity extends AppCompatActivity {
         @Override public void onPageStarted(String mx, String url) {}
         @Override public void onTitle(String title) {}
         @Override public void onSiteMissing(String mx) {
+            // Reliable path first: fetch the verified packet straight from the archive indexer.
+            // Works even with no node/pairing, and doesn't depend on the owner being online.
             toast("Fetching " + mx + " …");
-            chain.syncFromChain(new PocketNode.SyncListener() {
-                @Override public void onSynced(int changed) {
-                    if (store.get(mx) != null) server.loadSite(mx);
-                    else toast("Site not found on-chain" + (enabled ? "" : " — enable the app first") + ".");
-                }
-                @Override public void onError(String message) { toast("Sync error: " + message); }
+            chain.fetchFromArchive(mx, new PocketNode.ArchiveListener() {
+                @Override public void onFetched(PocketProtocol.Data d) { ui.post(() -> server.loadSite(mx)); }
+                @Override public void onMiss() { syncFallback(mx); }
+                @Override public void onError(String message) { syncFallback(mx); }
             });
         }
         @Override public void onError(String message) { toast(message); }
+    }
+
+    /** Site not in the archive (e.g. brand new): fall back to a chain sync, then the request/Maxima path. */
+    private void syncFallback(String mx) {
+        if (!enabled) { toast("Site not in archive; enable the app to search the chain."); return; }
+        chain.syncFromChain(new PocketNode.SyncListener() {
+            @Override public void onSynced(int changed) {
+                if (store.get(mx) != null) server.loadSite(mx);
+                else toast("Site not found in archive or on-chain.");
+            }
+            @Override public void onError(String message) { toast("Sync error: " + message); }
+        });
     }
 
     // ---- helpers ----
@@ -335,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
         if (notifyReceiver != null) try { unregisterReceiver(notifyReceiver); } catch (Exception ignored) {}
         if (bridge != null) bridge.shutdown();
         if (appBridge != null) appBridge.close();
+        if (chain != null) chain.close();
         if (node != null) node.onDestroy();
         if (store != null) store.close();
         super.onDestroy();
