@@ -167,8 +167,8 @@ public class AppBridge {
             String action = req.optString("action", "");
             String data = req.optString("data", "");
             switch (action) {
-                case "SEARCH":   return apiOk(payloadResults(store.searchFull(data, 200), true));
-                case "LISTALL":  return apiOk(payloadResults(store.listAll(), false));
+                case "SEARCH":   return apiOk(mergeArchive(payloadResults(store.searchFull(data, 200), true), data));
+                case "LISTALL":  return apiOk(mergeArchive(payloadResults(store.listAll(), false), null));
                 case "LISTMINE": return apiOk(payloadResults(mineAndOwned(), true));
                 case "DELETE":   store.delete(data); return apiOk(new JSONObject());
                 case "COPY":     return copy(data);
@@ -324,6 +324,69 @@ public class AppBridge {
             arr.put(fp);
         }
         JSONObject payload = new JSONObject(); payload.put("results", arr);
+        return payload;
+    }
+
+    /** Cached archive catalogue (list of {name,version,size,description}), fetched once per process. */
+    private volatile JSONArray archiveIndexCache;
+
+    /**
+     * GET the always-on archive indexer's catalogue so every site ever published is discoverable in the
+     * app even with no node pairing and nothing cached locally. Cached after the first successful fetch.
+     */
+    private JSONArray fetchArchiveIndex() {
+        JSONArray cached = archiveIndexCache;
+        if (cached != null) return cached;
+        HttpURLConnection c = null;
+        try {
+            String base = PocketNode.ARCHIVE_BASE;
+            if (!base.endsWith("/")) base += "/";
+            c = (HttpURLConnection) new URL(base + "index.json").openConnection();
+            c.setConnectTimeout(8000);
+            c.setReadTimeout(12000);
+            if (c.getResponseCode() >= 400) return null;
+            JSONArray idx = new JSONArray(readCapped(c.getInputStream(), 1024 * 1024));
+            archiveIndexCache = idx;
+            return idx;
+        } catch (Exception e) {
+            android.util.Log.w("PocketWebArchive", "index fetch failed", e);
+            return null;
+        } finally { if (c != null) c.disconnect(); }
+    }
+
+    /**
+     * Merge the archive catalogue into a LISTALL/SEARCH result so the Catalog surfaces every published
+     * site (not just locally-cached ones). Archive entries are marked {archive:true} and carry no file;
+     * tapping Browse triggers the on-demand archive fetch + verify + render path. `query` (SEARCH) is a
+     * case-insensitive name/description filter; null (LISTALL) keeps everything.
+     */
+    private JSONObject mergeArchive(JSONObject payload, String query) {
+        try {
+            JSONArray results = payload.getJSONArray("results");
+            java.util.HashSet<String> have = new java.util.HashSet<>();
+            for (int i = 0; i < results.length(); i++)
+                have.add(results.getJSONObject(i).getJSONObject("data").optString("name"));
+            JSONArray idx = fetchArchiveIndex();
+            if (idx == null) return payload;
+            String q = query == null ? null : query.trim().toLowerCase();
+            for (int i = 0; i < idx.length(); i++) {
+                JSONObject e = idx.optJSONObject(i);
+                if (e == null) continue;
+                String name = e.optString("name", "");
+                if (name.isEmpty() || have.contains(name)) continue;
+                String desc = e.optString("description", "");
+                if (q != null && !q.isEmpty()
+                        && !name.toLowerCase().contains(q) && !desc.toLowerCase().contains(q)) continue;
+                JSONObject d = new JSONObject();
+                d.put("name", name); d.put("owner", e.optString("owner", ""));
+                d.put("randid", e.optString("randid", "")); d.put("description", desc);
+                d.put("version", e.optInt("version", 1)); d.put("published", "onchain");
+                d.put("size", e.optInt("size", 0)); d.put("archive", true);
+                JSONObject fp = new JSONObject();
+                fp.put("data", d); fp.put("signature", e.optString("signature", "")); fp.put("archive", true);
+                results.put(fp);
+            }
+        } catch (Exception ignored) {}
         return payload;
     }
 
