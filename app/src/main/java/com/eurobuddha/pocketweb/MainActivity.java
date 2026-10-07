@@ -28,8 +28,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import org.json.JSONObject;
-import org.minimarex.minimaapi.MinimaAPI;
-import org.minimarex.minimaapi.MinimaAPIMessages;
+import com.eurobuddha.minimaapi.MinimaAPI;
+import com.eurobuddha.minimaapi.MinimaAPIMessages;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -42,7 +42,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NODE_PKG = "org.minimarex.minimacore";
+    public static final String NODE_PKG = "com.eurobuddha.minimacore";
 
     private NodeApi node;
     private PocketStore store;
@@ -325,6 +325,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void openMinimaCore() {
         Intent launch = getPackageManager().getLaunchIntentForPackage(NODE_PKG);
+        if (launch == null) launch = getPackageManager().getLaunchIntentForPackage("com.eurobuddha.minimablock");
+        if (launch == null) launch = getPackageManager().getLaunchIntentForPackage("com.eurobuddha.pandamonium");
         if (launch != null) startActivity(launch);
         else toast("Minima Core is not installed.");
     }
