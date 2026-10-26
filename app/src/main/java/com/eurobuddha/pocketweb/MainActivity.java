@@ -42,7 +42,6 @@ import java.nio.charset.StandardCharsets;
  */
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NODE_PKG = "com.eurobuddha.minimacore";
 
     private NodeApi node;
     private PocketStore store;
@@ -167,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         notifyReceiver = new BroadcastReceiver() {
             @Override public void onReceive(Context c, Intent intent) {
                 if (!MinimaAPI.checkMinimaID(MainActivity.this, intent)) return;   // fail closed
-                String data = intent.getStringExtra(MinimaAPIMessages.MINIMA_API_NOTIFY_DATA);
+                String data = MinimaAPI.notifyData(intent);
                 if (data == null) return;
                 try {
                     if ("NEWBLOCK".equals(new JSONObject(data).optString("event", ""))) requestSync();
@@ -175,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         ContextCompat.registerReceiver(this, notifyReceiver,
-                new IntentFilter(MinimaAPIMessages.MINIMA_API_NOTIFY), ContextCompat.RECEIVER_EXPORTED);
+                MinimaAPI.notifyFilter(), ContextCompat.RECEIVER_EXPORTED);
     }
 
     private final Runnable syncTask = this::sync;
@@ -324,9 +323,7 @@ public class MainActivity extends AppCompatActivity {
     private void toast(String s) { ui.post(() -> Toast.makeText(this, s, Toast.LENGTH_LONG).show()); }
 
     private void openMinimaCore() {
-        Intent launch = getPackageManager().getLaunchIntentForPackage(NODE_PKG);
-        if (launch == null) launch = getPackageManager().getLaunchIntentForPackage("com.eurobuddha.minimablock");
-        if (launch == null) launch = getPackageManager().getLaunchIntentForPackage("com.eurobuddha.pandamonium");
+        Intent launch = MinimaAPI.launchNode(this);
         if (launch != null) startActivity(launch);
         else toast("Minima Core is not installed.");
     }
